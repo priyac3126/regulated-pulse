@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en"><head><script src="/_sdk/telemetry_sdk.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Regulated Pulse</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Source+Serif+Pro:wght@600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    @keyframes pulse-draw {
+      0% { stroke-dashoffset: 565; opacity: 0; }
+      10% { opacity: 1; }
+      90% { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes pulse-glow {
+      0% { filter: drop-shadow(0 0 0 rgba(6,182,212,0)); }
+      50% { filter: drop-shadow(0 0 20px rgba(6,182,212,0.6)); }
+      100% { filter: drop-shadow(0 0 0 rgba(6,182,212,0)); }
+    }
+    .pulse-circle {
+      stroke-dasharray: 565;
+      stroke-dashoffset: 565;
+      animation: pulse-draw 2.2s cubic-bezier(0.34,1.56,0.64,1) forwards, pulse-glow 2.2s ease-in-out forwards;
+    }
+    @keyframes fade-out { 0%{opacity:1} 100%{opacity:0} }
+    .intro-fade { animation: fade-out 0.6s ease forwards; }
+    .tab-active { border-bottom: 3px solid #06b6d4; color: #06b6d4; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .card-hover { transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .accordion-content.open { max-height: 4000px; }
+    .accordion-btn svg { transition: transform 0.3s; }
+    .accordion-btn.active svg { transform: rotate(180deg); }
+    .emphasis-card { border-left: 3px solid #06b6d4; }
+    .focus-card { border-left: 3px solid #f59e0b; }
+    .blog-post-content h2 { font-family: 'Source Serif Pro', serif; font-size: 1.4rem; font-weight: 700; color: #f1f5f9; margin: 2rem 0 0.75rem; }
+    .blog-post-content h3 { font-family: 'Source Serif Pro', serif; font-size: 1.15rem; font-weight: 600; color: #e2e8f0; margin: 1.5rem 0 0.5rem; }
+    .blog-post-content p { color: #94a3b8; margin-bottom: 1rem; line-height: 1.75; }
+    .blog-post-content ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+    .blog-post-content ul li { color: #94a3b8; margin-bottom: 0.4rem; line-height: 1.6; }
+    .blog-post-content blockquote { border-left: 3px solid #06b6d4; padding-left: 1rem; margin: 1.5rem 0; font-style: italic; color: #67e8f9; }
+    .blog-post-content .works-cited p { margin-bottom: 0.5rem; font-size: 0.85rem; color: #64748b; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen" style="background: rgb(15, 23, 42);">
+  <div id="intro-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center" style="background:#0f172a;">
+   <svg width="200" height="200" viewBox="0 0 160 160" fill="none">
+    <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="pulse-circle"></polyline>
+   </svg>
+   <h1 data-template-id="intro-title" class="canva-text text-center mt-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 56px;">The Regulated Pulse</h1>
+  </div>
+  <div id="main-content" class="opacity-0 transition-opacity duration-500">
+   <header class="flex items-center gap-3 pt-8 pb-6 max-w-4xl mx-auto px-6">
+    <svg width="48" height="48" viewBox="0 0 160 160" fill="none">
+     <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
+    </svg>
+    <h1 data-template-id="blog-title" class="canva-text" style="color: rgb(240, 253, 250); font-weight: 700; font-style: normal; font-size: 32px;">The Regulated Pulse</h1>
+   </header>
+   <nav class="flex justify-center gap-8 pb-0 mb-10 border-b border-slate-700 max-w-4xl mx-auto px-6">
+    <button class="tab-btn tab-active px-2 pb-3 font-medium" data-tab="blog" data-template-id="tab-blog" style="color: rgb(6, 182, 212); font-weight: 500; font-style: normal; font-size: 16px;">Blog</button> <button class="tab-btn px-2 pb-3 font-medium" data-tab="major" data-template-id="tab-major" style="color: rgb(148, 163, 184); font-weight: 500; font-style: normal; font-size: 16px;">My Major</button> <button class="tab-btn px-2 pb-3 font-medium" data-tab="about" data-template-id="tab-about" style="color: rgb(148, 163, 184); font-weight: 500; font-style: normal; font-size: 16px;">About Me</button>
+   </nav>
+   <main class="max-w-4xl mx-auto px-6 pb-16">
+    <section id="section-blog" class="tab-section">
+     <div id="blog-list-view">
+      <h2 data-template-id="blog-section-title" class="canva-text mb-8" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 22px;">Recent Posts</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+       <article data-template-id="card-ai-access" class="canva-card rounded-2xl p-7 card-hover" id="card-ai-access-click" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237));">
+        <span data-template-id="card-ai-access-tag" class="canva-tag text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253); font-weight: 400; font-style: normal; font-size: 16px;">AI &amp; Policy</span>
+        <h3 data-template-id="card-ai-access-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
+        <p data-template-id="card-ai-access-desc" class="canva-text text-sm mb-2" style="color: rgb(226, 232, 240); font-weight: 400; font-style: normal; font-size: 16px;">How we build ethical, inclusive design</p>
+        <p data-template-id="card-ai-access-date" class="canva-text text-xs" style="color: rgb(196, 181, 253); font-weight: 400; font-style: normal; font-size: 16px;">June 2026</p>
+       </article>
+       <article data-template-id="card-giant-leap" class="canva-card rounded-2xl p-7 card-hover" style="background: linear-gradient(135deg, rgb(30, 58, 95), rgb(13, 148, 136));">
+        <span data-template-id="card-giant-leap-tag" class="canva-tag text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(6, 78, 59); color: rgb(110, 231, 183); font-weight: 400; font-style: normal; font-size: 16px;">Book Review</span>
+        <h3 data-template-id="card-giant-leap-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">A Giant Leap: Healthtech Focus Summary</h3>
+        <p data-template-id="card-giant-leap-desc" class="canva-text text-sm mb-2" style="color: rgb(226, 232, 240); font-weight: 400; font-style: normal; font-size: 16px;">AI will transform healthtech. This book explains why — and what it means for healthcare technology law.</p>
+        <p data-template-id="card-giant-leap-date" class="canva-text text-xs" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">June 2026</p>
+       </article>
+       <article data-template-id="card-story" class="canva-card rounded-2xl p-7 card-hover" id="card-story-click" style="background: linear-gradient(135deg, rgb(30, 41, 59), rgb(8, 145, 178));">
+        <span data-template-id="card-story-tag" class="canva-tag text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(22, 78, 99); color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">Personal</span>
+        <h3 data-template-id="card-story-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">The Realities of Chronic Illness</h3>
+        <p data-template-id="card-story-desc" class="canva-text text-sm mb-2" style="color: rgb(226, 232, 240); font-weight: 400; font-style: normal; font-size: 16px;">The hidden epidemic of autoimmune disease and my chronic illness journey</p>
+        <p data-template-id="card-story-date" class="canva-text text-xs" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">June 2026</p>
+       </article>
+       <article data-template-id="card-welcome" id="card-welcome-click" class="canva-card rounded-2xl p-7 card-hover" style="background: linear-gradient(135deg, rgb(131, 24, 67), rgb(225, 29, 72));">
+        <span data-template-id="card-welcome-tag" class="canva-tag text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(159, 18, 57); color: rgb(253, 164, 175); font-weight: 400; font-style: normal; font-size: 16px;">Welcome</span>
+        <h3 data-template-id="card-welcome-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 19px;">Welcome to The Regulated Pulse</h3>
+        <p data-template-id="card-welcome-desc" class="canva-text text-sm mb-2" style="color: rgb(226, 232, 240); font-weight: 400; font-style: normal; font-size: 16px;">What to expect from the blog</p>
+        <p data-template-id="card-welcome-date" class="canva-text text-xs" style="color: rgb(253, 164, 175); font-weight: 400; font-style: normal; font-size: 16px;">June 2026</p>
+       </article>
+      </div><h3 data-template-id="upcoming-heading" class="canva-text mt-12 mb-4" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 20px;">Coming Dec 2026</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+       <div data-template-id="upcoming-disability" class="canva-card rounded-xl p-5" style="background: rgb(30, 41, 59);">
+        <p data-template-id="upcoming-disability-title" class="canva-text font-semibold mb-1" style="color: rgb(226, 232, 240); font-weight: 600; font-style: normal; font-size: 16px;">Disability Studies: Communication Devices &amp; Innovation</p>
+        <p data-template-id="upcoming-disability-source" class="canva-text text-xs" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">Informed by Disability Studies coursework</p>
+       </div>
+       <div data-template-id="upcoming-invisible" class="canva-card rounded-xl p-5" style="background: rgb(30, 41, 59);">
+        <p data-template-id="upcoming-invisible-title" class="canva-text font-semibold mb-1" style="color: rgb(226, 232, 240); font-weight: 600; font-style: normal; font-size: 16px;">Invisible Among the Invisible: The Most Marginalized in Healthcare</p>
+        <p data-template-id="upcoming-invisible-desc" class="canva-text text-xs mb-2" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">Highlighting the need for culturally responsive health policy</p>
+       </div>
+      </div><div data-template-id="contact-box" class="canva-panel rounded-xl p-6 mt-12" style="background: rgb(30, 41, 59);">
+       <h3 data-template-id="contact-title" class="canva-text font-bold mb-4" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 19px;">Get In Touch</h3>
+       <p data-template-id="contact-email" class="canva-text text-sm mb-4" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Email: hello@theregulatedpulse.com</p>
+       <form id="subscribe-form" class="flex flex-col gap-3">
+        <div>
+         <label data-template-id="email-label" for="subscribe-email" class="canva-text block text-sm font-medium mb-2" style="color: rgb(241, 245, 249); font-weight: 600; font-style: normal; font-size: 16px;">Subscribe for Updates</label> <input id="subscribe-email" type="email" placeholder="your@email.com" class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-600 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors" required="">
+        </div><button data-template-id="subscribe-btn" type="submit" class="canva-button px-4 py-2 rounded-lg font-medium transition-colors" style="background: rgb(6, 182, 212); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Subscribe</button>
+       </form>
+       <p id="subscribe-message" class="text-xs mt-3"></p>
+      </div>
+     </div><div id="blog-post-view" class="hidden">
+      <button id="back-to-blog" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-medium"> <i data-lucide="arrow-left" style="width:18px;height:18px;"></i> Back to Posts </button>
+      
+      <div id="post-ai-container" class="hidden">
+       <h1 data-template-id="post-ai-title" class="canva-text mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 28px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h1>
+       <p data-template-id="post-ai-meta" class="canva-text text-sm mb-8" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">AI &amp; Policy · June 2026 · 8 min read</p>
+       <div class="blog-post-content">
+        <p>Upon a 2023 Executive Order on "safe, secure, and trustworthy" AI, a national investigation into how AI affects people with disabilities was launched (Gilbert 2-3). AI could support independence through AI-powered captioning, smart navigation tools, and accessible smart home technology.</p>
+        <p>However, it could also pose serious risks:</p>
+        <ul>
+         <li>Hiring algorithms screening out applicants who are disabled</li>
+         <li>Education tools misjudging how students who are disabled learn</li>
+         <li>Public benefits systems wrongly denying support</li>
+         <li>Healthcare AI failing to account for disability-specific needs</li>
+         <li>Biometric tech that can't identify faces or gestures of people with disabilities (Gilbert 3).</li>
+        </ul>
+        <p>The Access Board recommended transparency, inclusive datasets, and including people with disabilities at every stage of AI development to ensure equity (Gilbert 3).</p>
+        <p>The definition of disability according to the Inclusive Design Research Centre (IDRC) is aligned with the social and design models of disability: disability is socially constructed and relational. "Rather than as a binary property (disability or not) that adheres to an individual. Disability is 'a mismatch between the needs of the individual and the design of the product, system or service. With this framing, disability can be experienced by anyone excluded by the design'" (Costanza-Chock 53).</p>
+        <p>The tables below describe how inclusive design features can directly benefit those with various disabilities and the differing roles of AI and humans in creating accessible design features (Gilbert 23; 122).</p>
+        <div style="overflow-x: auto; margin: 1.5rem 0;">
+         <table style="width: 100%; border-collapse: collapse; color: #94a3b8; font-size: 0.85rem;">
+          <thead>
+           <tr style="background: rgba(6, 182, 212, 0.1); border-bottom: 2px solid #06b6d4;">
+            <th style="padding: 0.75rem; text-align: left; color: #a5f3fc; font-weight: 600;">Disability Type</th>
+            <th style="padding: 0.75rem; text-align: left; color: #a5f3fc; font-weight: 600;">Examples</th>
+            <th style="padding: 0.75rem; text-align: left; color: #a5f3fc; font-weight: 600;">Common Inclusive Features</th>
+           </tr>
+          </thead>
+          <tbody>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Physical/Mobility</td>
+            <td style="padding: 0.75rem;">Paralysis, arthritis, chronic pain, limb differences</td>
+            <td style="padding: 0.75rem;">Keyboard navigation, voice control, adjustable touch targets</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Sensory: Vision</td>
+            <td style="padding: 0.75rem;">Blindness, low vision, color blindness</td>
+            <td style="padding: 0.75rem;">Screen reader support, alt text, high contrast, resizable text</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Sensory: Hearing</td>
+            <td style="padding: 0.75rem;">d/Deafness, hard of hearing</td>
+            <td style="padding: 0.75rem;">Captions, transcripts, visual alerts, sign language interpretation</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Cognitive/Learning</td>
+            <td style="padding: 0.75rem;">Dyslexia, ADHD, autism, traumatic brain injury</td>
+            <td style="padding: 0.75rem;">Clear layout, plain language, consistent navigation, error forgiveness</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Mental Health</td>
+            <td style="padding: 0.75rem;">Anxiety, PTSD, depression</td>
+            <td style="padding: 0.75rem;">Reduced animations, flexible timing, calming visual design</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Chronic/Invisible</td>
+            <td style="padding: 0.75rem;">Long COVID, epilepsy, chronic fatigue, migraines</td>
+            <td style="padding: 0.75rem;">Customizable contrast, reduced motion settings, flexible formats</td>
+           </tr>
+           <tr>
+            <td style="padding: 0.75rem;">Temporary or Situational</td>
+            <td style="padding: 0.75rem;">Broken arm, noisy environment, multitasking</td>
+            <td style="padding: 0.75rem;">Voice input, captions, one-handed use, adaptable interface design</td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <p>A recommended approach to creating accessible design is for design teams to engage in community co-design, involving disabled users in the design process. This has been shown to result in "45% better usability scores and 38% fewer accessibility violations compared to traditional design-then-test approaches" (Teeters 156-157).</p>
+        <p>An interesting example of an AI-integrated assistive technology that works with community members and people with disabilities would be the Be My Eyes app. The "AI feature enables blind or low vision users to take photos and receive detailed text descriptions, offering capabilities beyond basic object identification, including text recognition, mood interpretation, and image quality feedback with suggestions for retaking unclear photos. If the AI-generated description proves inadequate, users can request additional information or connect with a human volunteer for further assistance" (Gilbert 183).</p>
+        <p>AI is also becoming a useful partner in UX research, being able to flag accessibility violations, track user flows, and provide automated insights. However, human researchers currently still remain essential in addressing the subtle nuances of user intent, emotions, and cultural context– all important in designing accessible UI/UX design.</p>
+        <p>A way that organizations in the process of creating more inclusive web design have an accessibility statement that describes their current progress and provides a way for users to report issues. An Equally Alternative Access Plan is also an effective strategy as it creates alternative ways website information and its offered tasks can be accessed to those with disabilities.</p>
+        <div style="overflow-x: auto; margin: 1.5rem 0;">
+         <table style="width: 100%; border-collapse: collapse; color: #94a3b8; font-size: 0.85rem;">
+          <thead>
+           <tr style="background: rgba(6, 182, 212, 0.1); border-bottom: 2px solid #06b6d4;">
+            <th style="padding: 0.75rem; text-align: left; color: #a5f3fc; font-weight: 600;">What AI Can Do (Fast, Scalable, But Limited)</th>
+            <th style="padding: 0.75rem; text-align: left; color: #a5f3fc; font-weight: 600;">What Humans Must Do (Ethical and Accountable)</th>
+           </tr>
+          </thead>
+          <tbody>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Detect Web Content Accessibility Guideline violations (e.g., low contrast, missing alt text)</td>
+            <td style="padding: 0.75rem;">Understand how barriers affect people differently based on race, gender, disability, class, etc.</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Generate accessible formats (captions, transcripts, alt text)</td>
+            <td style="padding: 0.75rem;">Ensure those formats reflect real-world context and lived experience</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Process thousands of pages, code, or apps quickly</td>
+            <td style="padding: 0.75rem;">Identify patterns of exclusion that data alone won't show</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Apply standards evenly without bias (in theory only)</td>
+            <td style="padding: 0.75rem;">Recognize how "neutral" standards can still exclude marginalized voices</td>
+           </tr>
+           <tr style="border-bottom: 1px solid #334155;">
+            <td style="padding: 0.75rem;">Translate content into multiple formats automatically</td>
+            <td style="padding: 0.75rem;">Tailor accessibility for cultural, linguistic, and regional needs</td>
+           </tr>
+           <tr>
+            <td style="padding: 0.75rem;">Flag technical gaps at scale</td>
+            <td style="padding: 0.75rem;">Address systematic gaps that AI isn't trained to see (e.g., who is left out entirely)</td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+        <p>Designing inclusively means designing for human dignity. It means creating a world that decreases disability as it is defined by the social and design model (Gilbert 6). It decreases systemic barriers and friction those with disabilities face between their identity as users and their environments.</p>
+        <p>Furthermore, over 1 billion people live with a disability (Gilbert 8). That is $490 billion in disposable income of working-age adults. Increasingly, accessibility is a requirement to business success, as consumers have increasingly valued accessibility and inclusion in who they buy from.</p>
+        <blockquote>
+         Inclusive Design for a Digital World provides some fast facts on this:
+        </blockquote>
+        <ul>
+         <li>Nearly 70% of consumers say a brand's diversity, equity, and inclusion (DEI) values influence where they shop.</li>
+         <li>45% say they'll even pay more for products from brands that reflect those values.</li>
+         <li>Almost 90% of digital professionals say that accessibility investments have improved overall user experience for all users (Gilbert 8).</li>
+        </ul>
+        <p>In addition to this, a 2024 study from MIT's Computer Science and Artificial Intelligence Laboratory "found that 73% of breakthrough interface innovations originated from accessibility requirements before being adopted by mainstream users" (Teeters 155). Two notable examples are email and voice-to-speech technology that were born out of the disabled community's need for alternative communication methods.</p>
+        <p>Jamaal Davis, an Inclusive UX Expert, also uses these two words to get the attention of companies intending to build fast and exclude many: <strong>liability and revenue</strong> (Teeters 164; 166).</p>
+        <p>Title III of the American Disabilities Act (1990) requires that businesses open to the public, including websites, be accessible to those with disabilities ("Americans").</p>
+        <p>Section 1557 of the Affordable Care Act (ACA) and Sections 504 and 508 of The Rehabilitation Act of 1973 extend this a step further– taking away federal funding from organizations that are not accessible.</p>
+        <p>For instance, this section of the ACA ensures not just a person's disability status, but attributes such as race, color, national origin, sex, and race are protected from discrimination from health programs or activity that receive any funding from the Department of Health and Human Services ("Section 1557").</p>
+        <p>The Rehabilitation Act's Sections address this concern in federal agencies to ensure the Information and Communication Technology (ICT) used by employees and members of the public are accessible ("Understanding"). It also prohibits discrimination against those with disabilities in these areas: "Programs and activities receiving federal financial assistance or conducted by executive agencies or the U.S. Postal Service" ("Understanding").</p>
+        <p>Overall, the relationship between accessible UI/UX design and artificial intelligence is one of nuance. AI increasingly is becoming a co-pilot in UX research, an integral tool for designers. However, designers must build UI/UX design with both the importance of accessibility and the limitations and risks of artificial intelligence in mind. Only then can we build an inclusive society towards those that are able-bodied and disabled alike.</p>
+        <p>One of the goals of user-interface design is "to reduce the user's cognitive load to a minimum" (Costanza-Chock 55). An important point Design Justice makes is that user-interface decisions will result in some users having the privilege of having a lower cognitive load than others and that this is not inherently wrong (Costanza-Chock 55). Default language settings are one example of this that is common and acceptable (Costanza-Chock 55).</p>
+        <p>Another example of this concept is in two versions of a university admissions portal's race/ethnicity selection process (Costanza-Chock 58). In one version, the default race/ethnicity is set to White, Non-Hispanic, the most common race/ethnicity group that will create a personal profile on this site (Costanza-Chock 58). On the other version, there is no default selected (Costanza-Chock 58). The majority of white users will have a smoother experience under Version A, as it requires less clicks; however, this version produces a slightly more time and click consuming (increased cognitive load) experience for people of color– perhaps along the lines of a microaggression.</p>
+        <p>The same essential principle of user-interface design being implemented in these two frequently encountered scenarios for UI/UX designers has a different ethical and sociotechnical component, one that would be perceived differently by different designers and users. This highlights the nuances hidden behind lines of code, or, rather, with the advancement of AI, the more technical aspect this job is known for.</p>
+        <p>Where the answers are not clear-cut is where designers must step in, and bring the community to the table. UI/UX design matters in a world that is ever-so-reliant on technology. It is integral to do the work to make sure designs are inclusive and accessible not just to obey the law, but to stay true to the governing principle of what it means to be a human– to have empathy and a moral compass.</p>
+        <p>Where a corporation sees a shortcut in seeing a product to market is where Inclusive UX Experts such as Davis shake their head and say the magic words, <strong>liability and revenue</strong>.</p>
+        <h3>References</h3>
+        <div class="works-cited">
+         <p>"Americans with Disabilities Act Title III Regulations." ADA.Gov, ADA.gov, www.ada.gov/law-and-regs/regulations/title-iii-regulations/. Accessed 23 May 2026.</p>
+         <p>Costanza-Chock, Sasha. Design Justice. Community-Led Practices to Build the Worlds We Need. Tantor Media, Inc, 2021.</p>
+         <p>Gilbert, Regine M., and Spandita Sarmah. Inclusive Design for a Digital World: Designing with Accessibility in Mind. Second ed., Apress, 2025.</p>
+         <p>(OCR), Office for Civil Rights. "Section 1557: Protecting Individuals Against Sex Discrimination." HHS.Gov, U.S. Department of Health and Human Services, 9 Mar. 2026, www.hhs.gov/civil-rights/for-individuals/section-1557/fs-sex-discrimination/index.html.</p>
+         <p>Teeters, Rikki. Conscious UX: Leading Human-Centered Design in the Age of AI: Designing the Future of Artificial Intelligence with Compassion, Inclusion, and Openness. First ed., ConsciousUX.Ai, 2025.</p>
+         <p>"Understanding and Leveraging the Relationship between Sections 501, 504, and 508 of the Rehabilitation Act." Section508.Gov, Section508.gov, www.section508.gov/manage/relationship-between-sections-508-504-and-501/. Accessed 23 May 2026.</p>
+         <p>"Rehabilitation Act of 1973." U.S. Equal Employment Opportunity Commission, U.S. Equal Employment Opportunity Commission, www.eeoc.gov/rehabilitation-act-1973. Accessed 23 May 2026.</p>
+        </div>
+        <h3 style="font-family: 'Source Serif Pro', serif; font-size: 1.15rem; font-weight: 600; color: #e2e8f0; margin: 1.5rem 0 0.5rem;">Author's Note</h3>
+        <p style="color: #94a3b8; margin-bottom: 1rem; line-height: 1.75;">Generative AI was used solely for initial research brainstorming, text formatting, and proofreading assistance; all core synthesis, arguments, and literature analysis are entirely original.</p>
+       </div>
+      </div>
+
+      <div id="post-welcome-container" class="hidden">
+       <h1 class="canva-text mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 28px;">Welcome to The Regulated Pulse</h1>
+       <p class="canva-text text-sm mb-8" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">Welcome · June 2026</p>
+       <div class="blog-post-content">
+        <p>This blog analyzes the shifting landscape of healthtech, the systemic structures governing it, and the healthcare law and policy choices shaping how we heal—bridging the gap between complex academic research and practical industry impact.</p>
+        <p>Innovation moves fast, but systemic frameworks must be built intentionally. This space focuses on where healthcare stands today and where we go from here, highlighting critical ethical guidelines alongside interviews with the innovators and leaders driving progress on the ground.</p>
+        <p>Subscribe to the newsletter to stay updated on upcoming research deep-dives, book reviews, and interviews.</p>
+        <p class="font-semibold text-white mt-4" style="font-size: 18px; color: #06b6d4;">Welcome to the pulse.</p>
+       </div>
+       
+       <div data-template-id="contact-box-welcome" class="canva-panel rounded-xl p-6 mt-12" style="background: rgb(30, 41, 59);">
+        <h3 data-template-id="contact-title-welcome" class="canva-text font-bold mb-4" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 19px;">Subscribe for Updates</h3>
+        <form id="subscribe-form-welcome" class="flex flex-col gap-3">
+         <div>
+          <input id="subscribe-email-welcome" type="email" placeholder="your@email.com" class="w-full px-3 py-2 rounded-lg bg-slate-800 border border-slate-600 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors" required="">
+         </div><button data-template-id="subscribe-btn-welcome" type="submit" class="canva-button px-4 py-2 rounded-lg font-medium transition-colors" style="background: rgb(6, 182, 212); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Subscribe</button>
+        </form>
+        <p id="subscribe-message-welcome" class="text-xs mt-3"></p>
+       </div>
+      </div>
+      
+      <div id="post-chronic-container" class="hidden">
+       <h1 data-template-id="post-chronic-title" class="canva-text mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 28px;">The Realities of Chronic Illness</h1>
+       <p data-template-id="post-chronic-meta" class="canva-text text-sm mb-8" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">Personal · June 2026 · 6 min read</p>
+       <div class="blog-post-content">
+        <blockquote>"When, I wondered, had I last yearned for something other than simply feeling better?"<br><span style="font-size: 0.85rem; color: #64748b;">— The Invisible Kingdom, page 92</span></blockquote>
+        <p>It was Monday, September 9, 2024. My eyes opened, natural sunlight from our small dorm windows greeting me. But, before I could walk down the steps of my bunk bed and get ready for class, I had to confront the bodily sensations deluding me out of the healthy privilege I had grown used to for the past nineteen years. I had just gotten a shaded butterfly tattoo for my nineteenth birthday and was still learning to embrace being a college freshman- the communal bathrooms, sharing a dorm with someone, and learning to navigate the enormous University of Georgia campus. I would also soon learn how to navigate the American healthcare system in the throes of chronic pain for the next four months of my life, without answers for why I was in debilitating pain, what could mitigate it, and how this would affect my academic career. It was a rough period, no doubt, but, somehow I survived to tell the tale- moreover, I survived to create a major and professional aspirations stemming from those experiences. Making a major and planning to acquire over a decade of post-secondary education is an arduous journey, but nothing compares to waking up for the next 123 days in the worst pain of your life, an invisible illness no test or doctor can explain.</p>
+        <p>For those suffering from chronic pain, a diagnosis is more than a descriptive phrase on an electronic health record, a set of code words hard to pronounce that clinical professionals break down to a patient's level. It's a label that makes us feel seen, understood, and gives us hope. Hope of a cure, and for someone facing our symptoms in the future to get definitive answers, more than that, the answers we deserve. In reading The Invisible Kingdom, I came across a dance of words in which I felt that my experience was shared by others, people I didn't know, but I understood and they understood me in a way that those closest to us may never, despite their empathetic attempts. I couldn't imagine a better quote to begin this article.</p>
+        <blockquote>"But this is not a story of recovery or the overcoming of a disease; the focus is not on my being a survivor, or getting “better,” as it is in that object turned out to be learning to live with uncertainty and incapacity. Without data or answers, I had to make room for a reality that included my near-total lack of control. I still don't have definitive answers. But gradually, peeling away uncertainty layer by layer, I arrived at what feels, to me at least, like a truth I can live with."</blockquote>
+        <p>Autoimmune diseases affect over 15 million Americans, and they are rising at near epidemic rates according to scientists. However, the Autoimmune Association estimates that as many as 50 million could be affected due to the dramatic changes in environment and lifestyle that have occurred since 1991. Antinuclear antibodies (ANA), commonly found in those suffering from autoimmune issues, have tripled in prevalence in adolescents since then, and women account for 80% of autoimmune patients. When accounting for women of color, the health disparities enlarge, as Black and Hispanic women are diagnosed with lupus, a common autoimmune condition, at nearly three times the rate of non-Hispanic white women, and have a mortality rate of that multiple as them as well. When we account for how women of color are underrepresented in clinical trials, and often have greater barriers in accessing the healthcare essential to being diagnosed, the disparities widen further. Furthermore, according to the Autoimmune Association, "It takes an average of three years (and four doctors) for a sufferer to be given a diagnosis of an auto-immune disease," a level of effort, time, and resources that those of marginalized communities often do not have. In addition to that, reliable diagnostic tools are still scarce for the over 100 autoimmune diseases and there is no cure for them, making chronic pain the reality of millions. Moreover, one Harvard researcher points out that "Medical science's understanding of auto-immunity lags a decade behind its understanding of cancer," a disease still only partially understood.</p>
+        <p>Until medicine catches up to the needs of those suffering from autoimmune issues, whether they know it or not, it pays to understand the plight of these "invisible" people. It is only by bringing their stories to the light can we increase public awareness, and, therefore, federal funding and policy reform to better face the autoimmune disease epidemic. For instance, over one billion was allocated by the National Institutes of Health to autoimmune disease research, conditions that 23.5-50 million Americans suffer from. Meanwhile, 8.1 billion was allocated to cancer research (over two million projected new cases and ~611k projected deaths for 2024) and over three billion to HIV/AIDS research (over 1.2 million Americans had HIV in 2024, AIDS refers to the latest HIV infection stage). In telling my story, with the courage that reading O' Rourke's health testimony has brought me, I hope to make these numbers feel more real, more connected to the stories of our loved ones and communities, making us feel more passionately about how to reduce the pain that our fellow Americans face- if only there were more resources to do this literal life or death work.</p>
+        <p>When I briefly tell my story to new friends or those that ask why I feel so passionately about pursuing healthcare technology law, they are often surprised. My story sounds like a living nightmare for any nineteen-year-old far from home to face, especially as I did not walk into university with a strong peer network or access to a car- and it was. There were numerous doctors appointments, primarily with my primary care physician at the University Health Center, but also to neurologists, physical therapists, ear, nose, and throat doctors, and as a final suggestion of my primary care physician, a massage therapist. Coming from an upper middle class background and going to a university that had many of these services on-campus, I came from a position of privilege. But illness discriminates against no one. At the end of a four month journey, I was given "the talk" by my primary care physician that we might never know what triggered my sudden health decline, and we won't know how long it will last if it will ever end, or know of a cure. Lucky for me though, a commonly known neuropathic pain relieving medication gave me a 97% reduction in symptoms: amitriptyline. A simple Google search will lead you to seeing that it is most commonly used as an anti-depressant- which leads me to my next point.</p>
+        <p>It is estimated that up to one-third of those with a serious medical condition will have symptoms of depression. I was one of them. To anyone suffering from unresolved chronic health issues, it's a given that it will take a mental toll on you. How could it not? I was wasting away "the best years of my life" in and out of medical institutions, not getting answers and spending thousands in the process. My debilitating headaches were causing me to face declined cognitive function- it was harder to focus and my memory got worse. The same Introduction to Psychology exam I would have spent a few days before preparing, I now had to spend 4-6 weeks to do just as well. Combined with the fact that I had to withdraw from Introduction to Biology and its lab because I physically couldn't complete the course, all while wanting to be an Anesthesiologist's Assistant further complicated matters.</p>
+        <p>As I got no answers from months of seeking treatment, I had to make peace with the reality that I may never be "normal" again. Having the same intelligence that put me in the top 5% of my graduating class academically may never be in reach again. The reason why I was at the University of Georgia was taken from me and I spent the next few months trying to figure out what academic and professional path I would pursue in its absence. I stumbled upon law because it was the only academic and professional sector left. I had realized math and introductory science courses were not particularly interesting and I always excelled at English. Toss in an extended, eye-opening experience in the American healthcare system, and an interest in artificial intelligence, and we've got the building blocks to a 17-page major curriculum for Healthcare Technology Law and Regulation through UGA's Interdisciplinary Studies program. It is, as my former freshman-year roommate said, excellent material for graduate school personal statements. I would add, an extremely costly one.</p>
+        <p>The only reason I was able to survive this period in my life was not due to unwilting optimism in regards to my poor health, but because of two important things in my life: God and my loved ones. When I caught myself daydreaming about the afterlife, I reminded myself that God's Plan is intentional and will, one day, make sense- even if you wake up in the worst pain of your life for 123 consecutive days in a row. O' Rourke's statement, "But I had not anticipated what should have been my biggest fear of all: that I would lose hope" could not ring more true, for as long as we have hope, we can endure. The never-ending dance between severe health issues and balancing being a normal college freshman was not one of grace. Some days were better than others, but, till this day, over 1.5 years later, not a day passes where I can fully forget what it is that afflicts me. I don't know how my neck accumulated severe nerve damage- I never got injured. The closest guess anyone has is that by carrying my backpack around campus would have put increased pressure on my back and could have aggravated the issue. It's not a particularly logically strong conclusion but chronic health issues rarely are. People that suffer from them rarely get a "heads-up" from their doctor that this may be in their cards or how to avoid it. Autoimmune diseases stem from one-third genetic and two-thirds environmental causes, but as O' Rourke points out, many like her try supplement, food, therapy, and other lifestyle modification after another to no avail. As I mentioned earlier, health issues do not discriminate so as a well-off educated middle-aged married straight white woman, she often threw money, time, and effort essentially at a brick wall.</p>
+        <blockquote>In her own words:<br>
+        "‘It's bearable, and yet I cannot bear it," wrote Alphonse Daudet of living with syphilis. I had revised his line in my head: "It is unbearable- and yet I bear it." I survived, but it was the nature of the disease to rob me of myself."<br><span style="font-size: 0.85rem; color: #64748b;">- O' Rourke, pg. 261</span>
+        </blockquote>
+        <p>As I write this article for The Regulated Pulse, I am reminded of my former reality. I doubt if anyone can be more passionate about pursuing a certain academic and career track than me as I really do believe I did not go through Earth's version of Hell to turn around and not work towards advancing healthcare for Americans for the rest of my life- through policy and advocacy work as well as through the cases I may encounter as a practicing attorney. I can't write this piece without mentioning the elephant in the room when it comes to the struggles of those with serious health issues: the lack of clinical empathy we often face. There were several times during the throes of my health challenges I would get quite emotional in the doctor's office. Of course, it was not my intention to illicit Kleenexes being handed to me while I sat on a stiff patient's table but to go through pain for an extended period of time like that and not know why can be extremely frustrating. There were multiple times my primary care physician would suggest I seek therapy, and wondered how my parents were faring as I went through this while living three-hours away. And therapy I did go to. Once a clinical pain psychologist was employed by the University Health Center, I knew it was high-time to seek mental health help. Although my friends were critical to me feeling heard and understood, it was nice being able to dump your problems on a middle-aged white lady that made empathetic faces as you ranted about why nearly your whole college career has been a complete sham.</p>
+        <blockquote>This quote summarizes the source of my frustrations quite poetically:<br>
+        " I don't believe I will get better," Daudet wrote, "... yet I always behave as if my damned pains were going to disappear by tomorrow morning."</blockquote>
+        <p>But, alas, life isn't so bad anymore, and for that I am quite grateful. My beloved amitriptyline's price with insurance did increase by 2,252.94% last month, but, fortunately, that is still $20 for a month's supply. I think I can spare a 20 to function normally (for the most part; I still deal with the occasional tics, convulsions, and breathing problems that also began at the same time my headaches did, but, you know, life's not fair). I have thought about what I would do if it suddenly jumped to, let's say, $200 or $400 and the thing is, like many Americans, I would just have to find the money. It is high time the United States implements a nationalized single-payer healthcare system- costs have never been higher, and as I've experienced, financial stress only adds to your existing health issues. Being referred to one hospital for my MRI instead of a local clinic meant paying $1,600 versus $400 with insurance. Americans deserve better, or rather the bare minimum as most other rich democratic nations have shown.</p>
+        <h3 style="font-family: 'Source Serif Pro', serif; font-size: 1.15rem; font-weight: 600; color: #e2e8f0; margin: 1.5rem 0 0.5rem;">AI Disclosure Notice</h3>
+        <p style="color: #94a3b8; margin-bottom: 1rem; line-height: 1.75;">This blog post was written by the author with the assistance of generative AI. AI tools were utilized to compile historical research data, analyze federal funding statistics, and help refine the formatting and structure of the final text. All personal experiences, narratives, and creative directions are entirely the author's own.</p>
+        <h3>References</h3>
+        <div class="works-cited">
+         <p>Abend, Aaron H., et al. "Estimation of Prevalence of Autoimmune Diseases in the United States Using Electronic Health Record Data." The Journal of Clinical Investigation, American Society for Clinical Investigation, 12 Dec. 2024, www.jci.org/articles/view/178722.</p>
+         <p>"Amitriptyline (Oral Route)." Mayo Clinic, Mayo Foundation for Medical Education and Research, www.mayoclinic.org/drugs-supplements/amitriptyline-oral-route/description/drg-20072061. Accessed 9 June 2026.</p>
+         <p>"Autoimmune Diseases." Cleveland Clinic, Cleveland Clinic, 22 Oct. 2024, my.clevelandclinic.org/health/diseases/21624-autoimmune-diseases#management-and-treatment.</p>
+         <p>"CDC Publishes 2024 National HIV Data." Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, www.cdc.gov/nchhstp/whats-new/2024-hiv-surveillance-data.html. Accessed 9 June 2026.</p>
+         <p>"Coping with Chronic Illnesses and Depression." WebMD, WebMD, 27 Aug. 2024, www.webmd.com/depression/chronic-illnesses-depression.</p>
+         <p>"Latest Policy Brief Highlights State of Federal Autoimmune Disease Research and Need for Continued Prioritization." Society for Women's Health Research, Society for Women's Health Research, 21 Apr. 2024, swhr.org/latest-policy-brief-highlights-state-of-federal-autoimmune-disease-research-and-need-for-continued-prioritization/.</p>
+         <p>Moore, R Andrew et al. "Amitriptyline for neuropathic pain in adults." The Cochrane database of systematic reviews vol. 2015,7 CD008242. 6 Jul. 2015, doi:10.1002/14651858.CD008242.pub3</p>
+         <p>O'Rourke, Meghan. The Invisible Kingdom: Reimagining Chronic Illness. Riverhead Books, 2022.</p>
+         <p>"Report." National Institutes of Health, U.S. Department of Health and Human Services, report.nih.gov/funding/categorical-spending#/. Accessed 9 June 2026.</p>
+         <p>Siegel, Rebecca L et al. "Cancer statistics, 2024." CA: a cancer journal for clinicians vol. 74,1 (2024): 12-49. doi: 10.3322/caac.21820</p>
+        </div>
+       </div>
+      </div>
+
+      <div id="global-comment-section" class="mt-16 pt-8 border-t border-slate-700">
+       <h3 class="text-xl font-bold text-slate-100 mb-6">Comments</h3>
+       <form class="flex flex-col gap-4 mb-8">
+        <div class="flex gap-4">
+         <input type="text" placeholder="Name" class="w-1/2 px-4 py-2 rounded-lg bg-slate-800 border border-slate-600 text-slate-100 focus:outline-none focus:border-cyan-400" required>
+         <input type="email" placeholder="Email (optional)" class="w-1/2 px-4 py-2 rounded-lg bg-slate-800 border border-slate-600 text-slate-100 focus:outline-none focus:border-cyan-400">
+        </div>
+        <textarea placeholder="Leave a comment..." rows="4" class="w-full px-4 py-2 rounded-lg bg-slate-800 border border-slate-600 text-slate-100 focus:outline-none focus:border-cyan-400" required></textarea>
+        <button type="button" class="self-start px-6 py-2 rounded-lg font-medium transition-colors" style="background: rgb(6, 182, 212); color: rgb(255, 255, 255);">Post Comment</button>
+       </form>
+       <div class="space-y-6">
+        <p class="text-sm text-slate-400 italic">No comments yet. Be the first to share your thoughts!</p>
+       </div>
+      </div>
+
+     </div>
+    </section><section id="section-major" class="tab-section hidden">
+     <h2 data-template-id="major-heading" class="canva-text mb-4" style="color: rgb(241, 245, 249); font-weight: bold; font-style: normal; font-size: 24px;">Interdisciplinary Studies: Healthcare Technology Law &amp; Regulation</h2>
+     <p data-template-id="major-intro" class="canva-text mb-3" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 14px;">University of Georgia · Franklin College of Arts and Sciences · A.B. Interdisciplinary Studies</p>
+     <p data-template-id="major-description" class="canva-text mb-8" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Designed for students at the intersection of public health, technology law, and public policy, this major investigates the regulatory frameworks and ethical foundations required to protect society's most vulnerable. Requiring 24 hours of major coursework, the curriculum examines how marginalized groups such as the sick, disabled, elderly, immigrants, and those suffering from mental health and substance abuse issues interact with the healthcare system. It provides specialized training in healthcare management, American law, and how ethics interplay with law, business, and medicine.</p>
+     <div data-template-id="major-req-box" class="canva-panel rounded-xl p-6 mb-8" style="background: rgb(30, 41, 59);">
+      <h3 data-template-id="major-req-title" class="canva-text font-bold mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 19px;">Required Core Courses</h3>
+      <p data-template-id="major-req-desc" class="canva-text text-sm mb-4" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">All students must complete these courses:</p>
+      <ul class="space-y-2 text-sm">
+       <li data-template-id="major-req-1" class="canva-text" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• SOCI 3110: Sociology of Healthcare OR SOCI 3100/H: Medical Sociology</li>
+       <li data-template-id="major-req-2" class="canva-text" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• HPAM 3600: Introduction to Health Policy</li>
+       <li data-template-id="major-req-3" class="canva-text" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• One course in Artificial Intelligence (e.g., ARTI 2130, ARTI 2550, MIST 5400)</li>
+       <li data-template-id="major-req-4" class="canva-text" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• INTS 4990R: Undergraduate Research Thesis or Final Project</li>
+      </ul>
+     </div>
+     <h3 data-template-id="aoe-heading" class="canva-text font-bold mb-4" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 22px;">Areas of Emphasis</h3>
+     <p data-template-id="aoe-subtitle" class="canva-text text-sm mb-6" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Optional specializations recognized on your official transcript.</p><div class="emphasis-card rounded-lg p-5 mb-4" style="background:rgba(6,182,212,0.05);">
+      <button class="accordion-btn active w-full flex items-center justify-between text-left" data-target="aoe-disability-content"> <span data-template-id="aoe-disability-title" class="canva-text font-bold" style="color: rgb(6, 182, 212); font-weight: 700; font-style: normal; font-size: 16px;">Disability Studies</span>
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400"><polyline points="6 9 12 15 18 9"></polyline>
+       </svg></button>
+      <div id="aoe-disability-content" class="accordion-content open mt-3">
+       <p data-template-id="aoe-disability-desc" class="canva-text text-sm mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Investigates the social, legal, and systemic frameworks that define the experiences of individuals with disabilities. Focuses on neuro-inclusion, disability rights legislation, and advocacy for cognitive and physical diversity within healthcare.</p>
+       <p data-template-id="aoe-disability-hours" class="canva-text text-xs" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">10–12 credit hours · Choose 4 courses</p>
+       <div class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4">
+        <p data-template-id="aoe-disability-conc-title" class="canva-text text-sm font-semibold mb-1" style="color: rgb(165, 243, 252); font-weight: 400; font-style: normal; font-size: 16px;">↳ Concentration: Neuro-Inclusive Education (6 hrs)</p>
+        <p data-template-id="aoe-disability-conc-desc" class="canva-text text-xs" style="color: rgb(100, 116, 139); font-weight: 400; font-style: normal; font-size: 16px;">Examines disability studies, legal frameworks, and special education to develop equitable learning environments for students with diverse cognitive profiles.</p>
+       </div>
+      </div>
+     </div><div class="emphasis-card rounded-lg p-5 mb-4" style="background:rgba(6,182,212,0.05);">
+      <button class="accordion-btn w-full flex items-center justify-between text-left" data-target="aoe-ethics-content"> <span data-template-id="aoe-ethics-title" class="canva-text font-bold" style="color: rgb(6, 182, 212); font-weight: 700; font-style: normal; font-size: 16px;">Applied Ethics</span>
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400"><polyline points="6 9 12 15 18 9"></polyline>
+       </svg></button>
+      <div id="aoe-ethics-content" class="accordion-content mt-3">
+       <p data-template-id="aoe-ethics-desc" class="canva-text text-sm mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Investigates moral and philosophical frameworks used to evaluate emerging technologies and systemic policy decisions — biomedical ethics, AI governance, and intercultural justice.</p>
+       <p data-template-id="aoe-ethics-req" class="canva-text text-xs mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Required: PHIL 3220: Biomedical Ethics</p>
+       <p data-template-id="aoe-ethics-hours" class="canva-text text-xs" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">10–12 credit hours</p>
+       <div class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4">
+        <p data-template-id="aoe-ethics-conc-title" class="canva-text text-sm font-semibold mb-1" style="color: rgb(165, 243, 252); font-weight: 400; font-style: normal; font-size: 16px;">↳ Concentration: Ethics of Intercultural Law &amp; Healthcare (9 hrs)</p>
+        <p data-template-id="aoe-ethics-conc-desc" class="canva-text text-xs" style="color: rgb(100, 116, 139); font-weight: 400; font-style: normal; font-size: 16px;">Investigates moral obligations of legal and medical institutions within pluralistic societies — displacement, colonialism, and equitable culturally responsive health policy.</p>
+       </div>
+      </div>
+     </div><div class="emphasis-card rounded-lg p-5 mb-4" style="background:rgba(6,182,212,0.05);">
+      <button class="accordion-btn w-full flex items-center justify-between text-left" data-target="aoe-admin-content"> <span data-template-id="aoe-admin-title" class="canva-text font-bold" style="color: rgb(6, 182, 212); font-weight: 700; font-style: normal; font-size: 16px;">Healthcare Administration &amp; Corporate Jurisprudence</span>
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400"><polyline points="6 9 12 15 18 9"></polyline>
+       </svg></button>
+      <div id="aoe-admin-content" class="accordion-content mt-3">
+       <p data-template-id="aoe-admin-desc" class="canva-text text-sm mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Investigates operational, financial, and legal structures governing the modern healthcare industry — business law, risk management, institutional policy, and how corporate regulations and technological innovations are managed.</p>
+       <p data-template-id="aoe-admin-hours" class="canva-text text-xs" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">12 credit hours</p>
+      </div>
+     </div><div class="emphasis-card rounded-lg p-5 mb-4" style="background:rgba(6,182,212,0.05);">
+      <button class="accordion-btn w-full flex items-center justify-between text-left" data-target="aoe-geron-content"> <span data-template-id="aoe-geron-title" class="canva-text font-bold" style="color: rgb(6, 182, 212); font-weight: 700; font-style: normal; font-size: 16px;">Gerontology</span>
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400"><polyline points="6 9 12 15 18 9"></polyline>
+       </svg></button>
+      <div id="aoe-geron-content" class="accordion-content mt-3">
+       <p data-template-id="aoe-geron-desc" class="canva-text text-sm mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Investigates multidisciplinary challenges associated with an aging population — biological, social, and economic aspects of the lifespan and how health technology and policy must adapt for elderly populations.</p>
+       <p data-template-id="aoe-geron-req" class="canva-text text-xs mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Required: GRNT 3500: Smart Technology in an Aging Society</p>
+       <p data-template-id="aoe-geron-hours" class="canva-text text-xs" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">7–9 credit hours</p>
+      </div>
+     </div><div class="emphasis-card rounded-lg p-5 mb-8" style="background:rgba(6,182,212,0.05);">
+      <button class="accordion-btn w-full flex items-center justify-between text-left" data-target="aoe-equity-content"> <span data-template-id="aoe-equity-title" class="canva-text font-bold" style="color: rgb(6, 182, 212); font-weight: 700; font-style: normal; font-size: 16px;">Equity &amp; Institutional Access in Healthcare</span>
+       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400"><polyline points="6 9 12 15 18 9"></polyline>
+       </svg></button>
+      <div id="aoe-equity-content" class="accordion-content mt-3">
+       <p data-template-id="aoe-equity-desc" class="canva-text text-sm mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Investigates systemic, cultural, and legal barriers that diverse and vulnerable populations encounter within the healthcare system. ANTH 3540: Multicultural Healthcare is required for Specialized distinction.</p>
+       <p data-template-id="aoe-equity-hours" class="canva-text text-xs" style="color: rgb(103, 232, 249); font-weight: 400; font-style: normal; font-size: 16px;">12 credit hours · 4 Specialized Threads available</p>
+       <div class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4 space-y-1">
+        <p data-template-id="aoe-equity-thread1" class="canva-text text-xs" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• Disability Thread</p>
+        <p data-template-id="aoe-equity-thread2" class="canva-text text-xs" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• Global Migration &amp; Ethnic Diversity Thread</p>
+        <p data-template-id="aoe-equity-thread3" class="canva-text text-xs" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• Gerontechnology &amp; Health Communication Thread</p>
+        <p data-template-id="aoe-equity-thread4" class="canva-text text-xs" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">• Mental Health Thread</p>
+       </div>
+      </div>
+     </div><h3 data-template-id="focus-heading" class="canva-text font-bold mb-4" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 22px;">Focus Areas</h3>
+     <p data-template-id="focus-subtitle" class="canva-text text-sm mb-6" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Optional specializations that complement the major coursework.</p>
+     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10"><div data-template-id="focus-ph" class="canva-card focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
+       <h4 data-template-id="focus-ph-title" class="canva-text font-semibold mb-2" style="color: rgb(245, 158, 11); font-weight: 600; font-style: normal; font-size: 16px;">Public Health</h4>
+       <p data-template-id="focus-ph-desc" class="canva-text text-xs mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Examines health management, policy legalities, and comparative systems to analyze how underserved and rural communities navigate institutional healthcare barriers.</p>
+       <p data-template-id="focus-ph-hours" class="canva-text text-xs" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">9 credit hours</p>
+      </div>
+      <div data-template-id="focus-ai" class="canva-card focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
+       <h4 data-template-id="focus-ai-title" class="canva-text font-semibold mb-2" style="color: rgb(245, 158, 11); font-weight: 600; font-style: normal; font-size: 16px;">Artificial Intelligence</h4>
+       <p data-template-id="focus-ai-desc" class="canva-text text-xs mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Explores data analytics, user experience integration, and ethical governance to understand how emerging computing technologies impact societal systems and compliance.</p>
+       <p data-template-id="focus-ai-hours" class="canva-text text-xs" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">9 credit hours</p>
+      </div>
+      <div data-template-id="focus-sa" class="canva-card focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
+       <h4 data-template-id="focus-sa-title" class="canva-text font-semibold mb-2" style="color: rgb(245, 158, 11); font-weight: 600; font-style: normal; font-size: 16px;">Substance Abuse</h4>
+       <p data-template-id="focus-sa-hours" class="canva-text text-xs mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">6 credit hours</p>
+       <p data-template-id="focus-sa-desc" class="canva-text text-xs" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Investigates the biological, social, and historical forces of addiction to inform the development of ethical, culturally responsive digital health interventions.</p>
+      </div>
+      <div data-template-id="focus-ca" class="canva-card focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
+       <h4 data-template-id="focus-ca-title" class="canva-text font-semibold mb-2" style="color: rgb(245, 158, 11); font-weight: 600; font-style: normal; font-size: 16px;">Companion Animals</h4>
+       <p data-template-id="focus-ca-hours" class="canva-text text-xs mb-2" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">6 credit hours</p>
+       <p data-template-id="focus-ca-desc" class="canva-text text-xs" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Examines the therapeutic, legal, and biological bonds between humans and animals to effectively integrate animal-centered support into digital care models.</p>
+      </div>
+     </div>
+     <h3 data-template-id="electives-heading" class="canva-text font-bold mb-4" style="color: rgb(241, 245, 249); font-weight: 700; font-style: normal; font-size: 22px;">Major Electives</h3>
+     <p data-template-id="electives-description" class="canva-text text-sm mb-6" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Enriches the degree with unique coursework outside the standard curriculum, spanning Native American history, entrepreneurial thinking, comparative health systems, and tech innovation.</p>
+     <div data-template-id="major-advisor-box" class="emphasis-card rounded-xl p-6 mb-8" style="background: rgb(30, 41, 59);">
+       <p>
+         <a href="https://osas.franklin.uga.edu/directory/people/jessica-couch" target="_blank" rel="noopener noreferrer" style="color: rgb(103, 232, 249); font-weight: 500; font-size: 16px;" class="hover:underline transition-colors hover:text-cyan-300">
+           Contact UGA's Interdisciplinary Studies Advisor for further information.
+         </a>
+       </p>
+     </div>
+    </section><section id="section-about" class="tab-section hidden">
+     <h2 data-template-id="about-heading" class="canva-text mb-6" style="color: rgb(241, 245, 249); font-weight: bold; font-style: normal; font-size: 24px;">About Me</h2>
+     <div class="flex flex-col lg:flex-row gap-8">
+      <div class="flex-1">
+       <div class="flex flex-col gap-4 pt-2">
+        <blockquote data-template-id="about-bio-quote" class="canva-text border-l-4 border-cyan-400 pl-6 italic font-bold text-lg" style="color: rgb(6, 182, 212); font-weight: 400; font-style: normal; font-size: 16px;">After navigating an unexpected chronic illness journey during my freshman year, I experienced firsthand the systemic fractures within the American healthcare system.</blockquote>
+        <p data-template-id="about-bio" class="canva-text" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">This exposure shifted my focus from clinical pre-health tracks toward a deeper calling: reshaping the legal, regulatory, and business frameworks that dictate how care is delivered. This inspired me to design an Interdisciplinary Studies major at the University of Georgia, focusing on Healthcare Technology Law and Regulation.
+
+As an aspiring healthcare attorney and future Master of Health Administration (MHA) candidate at UGA, my focus sits at the intersection of emerging AI, compliance frameworks, and inclusive UI/UX design. I am dedicated to moving beyond mere legal compliance to advocate for patient welfare and advance accessible technology rights. This blog is a space to analyze where our healthcare system stands today, and explore how we ethically build where we go next.</p>
+       </div>
+      </div>
+      <div class="flex flex-col gap-4 items-start flex-shrink-0">
+       <img data-template-id="about-portrait" class="canva-image w-64 h-80 rounded-lg" style="object-fit:cover;object-position:center 10%;" loading="lazy" src="IMG_2072.jpg" alt="Priya Chaudhari portrait"> <a href="https://www.linkedin.com/in/priya-chaudhari-8798b2398/" target="_blank" rel="noopener noreferrer" data-template-id="contact-linkedin-btn" class="canva-button inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors" style="background: rgb(6, 182, 212); color: rgb(255, 255, 255); font-weight: 600;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.437-.103.25-.129.599-.129.948v5.42h-3.554s.048-8.789 0-9.714h3.554v1.375c.427-.659 1.191-1.597 2.897-1.597 2.117 0 3.704 1.385 3.704 4.362v5.574zM5.337 8.855c-1.144 0-1.915-.759-1.915-1.71 0-.956.768-1.71 1.959-1.71 1.189 0 1.917.751 1.948 1.71 0 .951-.759 1.71-1.992 1.71zm1.582 11.597H3.635V9.738h3.284v10.714zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path>
+        </svg><span data-template-id="linkedin-label" style="color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">LinkedIn</span> </a>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script src="/_sdk/editing_sdk.js"></script>
+  <script>
+    setTimeout(() => {
+      const overlay = document.getElementById('intro-overlay');
+      overlay.classList.add('intro-fade');
+      document.getElementById('main-content').classList.remove('opacity-0');
+      setTimeout(() => overlay.remove(), 600);
+    }, 2500);
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
+        btn.classList.add('tab-active');
+        document.querySelectorAll('.tab-section').forEach(s => s.classList.add('hidden'));
+        document.getElementById('section-' + btn.dataset.tab).classList.remove('hidden');
+        document.getElementById('blog-list-view').classList.remove('hidden');
+        document.getElementById('blog-post-view').classList.add('hidden');
+      });
+    });
+
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        btn.classList.toggle('active');
+        target.classList.toggle('open');
+      });
+    });
+
+    document.getElementById('card-ai-access-click').addEventListener('click', () => {
+      document.getElementById('blog-list-view').classList.add('hidden');
+      document.getElementById('blog-post-view').classList.remove('hidden');
+      document.getElementById('post-ai-container').classList.remove('hidden');
+      document.getElementById('post-welcome-container').classList.add('hidden');
+      document.getElementById('post-chronic-container').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('card-welcome-click').addEventListener('click', () => {
+      document.getElementById('blog-list-view').classList.add('hidden');
+      document.getElementById('blog-post-view').classList.remove('hidden');
+      document.getElementById('post-welcome-container').classList.remove('hidden');
+      document.getElementById('post-ai-container').classList.add('hidden');
+      document.getElementById('post-chronic-container').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('card-story-click').addEventListener('click', () => {
+      document.getElementById('blog-list-view').classList.add('hidden');
+      document.getElementById('blog-post-view').classList.remove('hidden');
+      document.getElementById('post-chronic-container').classList.remove('hidden');
+      document.getElementById('post-ai-container').classList.add('hidden');
+      document.getElementById('post-welcome-container').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('back-to-blog').addEventListener('click', () => {
+      document.getElementById('blog-post-view').classList.add('hidden');
+      document.getElementById('post-ai-container').classList.add('hidden');
+      document.getElementById('post-welcome-container').classList.add('hidden');
+      document.getElementById('post-chronic-container').classList.add('hidden');
+      document.getElementById('blog-list-view').classList.remove('hidden');
+    });
+
+    lucide.createIcons();
+
+    document.getElementById('subscribe-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('subscribe-email').value.trim();
+      const msg = document.getElementById('subscribe-message');
+      if (email) {
+        msg.textContent = 'Thanks for subscribing!';
+        msg.style.color = '#6ee7b7';
+        document.getElementById('subscribe-email').value = '';
+        setTimeout(() => { msg.textContent = ''; }, 3000);
+      }
+    });
+
+    document.getElementById('subscribe-form-welcome').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('subscribe-email-welcome').value.trim();
+      const msg = document.getElementById('subscribe-message-welcome');
+      if (email) {
+        msg.textContent = 'Thanks for subscribing!';
+        msg.style.color = '#6ee7b7';
+        document.getElementById('subscribe-email-welcome').value = '';
+        setTimeout(() => { msg.textContent = ''; }, 3000);
+      }
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0950ae4b8727790',t:'MTc4MTA1OTU1NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body></html>
