@@ -75,7 +75,6 @@
     .blog-post-content h3 { font-family: 'Source Serif Pro', serif; font-size: 1.3rem; font-weight: 600; color: #e2e8f0; margin: 2rem 0 0.75rem; }
     .blog-post-content p { color: #94a3b8; margin-bottom: 1.25rem; line-height: 1.8; }
     
-    /* Updated List Styling to prevent Works Cited from inheriting bullets */
     .blog-post-content ul:not(.works-cited) { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
     .blog-post-content ul:not(.works-cited) li { color: #94a3b8; margin-bottom: 0.5rem; line-height: 1.7; }
     .blog-post-content .works-cited { list-style: none !important; padding-left: 0 !important; margin-bottom: 1.25rem; }
@@ -120,7 +119,6 @@
       #mlb2-42510540.ml-form-embedContainer h4, #mlb2-42510540.ml-form-embedContainer p, #mlb2-42510540.ml-form-embedContainer span, #mlb2-42510540.ml-form-embedContainer button { text-transform: none !important; letter-spacing: normal !important; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper { background-color: #181536; border-width: 0px; border-color: transparent; border-radius: 4px; border-style: solid; box-sizing: border-box; display: inline-block !important; margin: 0 auto; padding: 0; position: relative; }
       
-      /* Updated max-width from 400px to 600px for a longer input box */
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedPopup, #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedDefault { width: 600px; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedForm { max-width: 600px !important; width: 100%; margin: 0 auto; display: block !important; }
       
@@ -420,7 +418,32 @@
         <p style="color: #94a3b8; margin-bottom: 1rem; line-height: 1.75;">Generative AI was used solely for initial research brainstorming, text formatting, and proofreading assistance; all core synthesis, arguments, and literature analysis are entirely original.</p>
        </div>
        
-       <div id="post-ai-container-comments" class="mt-12 pt-8 border-t border-slate-700"></div>
+       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
+         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
+         
+         <form onsubmit="submitComment(event, 'post-ai')" class="text-left space-y-4 max-w-2xl mx-auto">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
+               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
+               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+           </div>
+           <div class="flex flex-col">
+             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
+             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+           </div>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+         </form>
+         
+         <div id="post-ai-comments-list">
+             </div>
+       </div>
+
       </article>
 
       <article id="post-giant-leap-container" class="hidden max-w-3xl mx-auto relative">
@@ -484,7 +507,32 @@
         </ul>
        </div>
        
-       <div id="post-giant-leap-container-comments" class="mt-12 pt-8 border-t border-slate-700"></div>
+       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
+         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
+         
+         <form onsubmit="submitComment(event, 'post-giant-leap')" class="text-left space-y-4 max-w-2xl mx-auto">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
+               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
+               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+           </div>
+           <div class="flex flex-col">
+             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
+             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+           </div>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+         </form>
+         
+         <div id="post-giant-leap-comments-list">
+             </div>
+       </div>
+
       </article>
 
       <article id="post-welcome-container" class="hidden max-w-3xl mx-auto relative">
@@ -505,7 +553,32 @@
         <p class="font-semibold mt-4" style="font-size: 18px; color: #06b6d4;">Welcome to the pulse.</p>
        </div>
 
-       <div id="post-welcome-container-comments" class="mt-12 pt-8 border-t border-slate-700"></div>
+       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
+         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
+         
+         <form onsubmit="submitComment(event, 'post-welcome')" class="text-left space-y-4 max-w-2xl mx-auto">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
+               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
+               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+           </div>
+           <div class="flex flex-col">
+             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
+             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+           </div>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+         </form>
+         
+         <div id="post-welcome-comments-list">
+             </div>
+       </div>
+
       </article>
       
       <article id="post-chronic-container" class="hidden max-w-3xl mx-auto relative">
@@ -551,7 +624,7 @@
         <p style="color: #94a3b8; margin-bottom: 1rem; line-height: 1.75;">This blog post was written by the author with the assistance of generative AI. AI tools were utilized to compile historical research data, analyze federal funding statistics, and help refine the formatting and structure of the final text. All personal experiences, narratives, and creative directions are entirely the author's own.</p>
         
         <h3>References</h3>
-        <ul class="works-cited">
+        <ul class="works-cited list-none pl-0">
          <li>Abend, Aaron H., et al. "Estimation of Prevalence of Autoimmune Diseases in the United States Using Electronic Health Record Data." The Journal of Clinical Investigation, American Society for Clinical Investigation, 12 Dec. 2024, www.jci.org/articles/view/178722.</li>
          <li>"Amitriptyline (Oral Route)." Mayo Clinic, Mayo Foundation for Medical Education and Research, www.mayoclinic.org/drugs-supplements/amitriptyline-oral-route/description/drg-20072061. Accessed 9 June 2026.</li>
          <li>"Autoimmune Diseases." Cleveland Clinic, Cleveland Clinic, 22 Oct. 2024, my.clevelandclinic.org/health/diseases/21624-autoimmune-diseases#management-and-treatment.</li>
@@ -565,7 +638,32 @@
         </ul>
        </div>
        
-       <div id="post-chronic-container-comments" class="mt-12 pt-8 border-t border-slate-700"></div>
+       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
+         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
+         
+         <form onsubmit="submitComment(event, 'post-chronic')" class="text-left space-y-4 max-w-2xl mx-auto">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
+               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
+               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+           </div>
+           <div class="flex flex-col">
+             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
+             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+           </div>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+         </form>
+         
+         <div id="post-chronic-comments-list">
+             </div>
+       </div>
+
       </article>
 
      </div>
@@ -753,46 +851,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Giscus Script Injector
-        function loadComments(containerId, title) {
-            const targetContainer = document.getElementById(containerId);
-            if (!targetContainer) return;
-
-            // Prevent reloading if it's already there
-            if (targetContainer.querySelector('.giscus')) return;
-
-            // 1. Remove ANY existing giscus container or script anywhere on the page
-            document.querySelectorAll('.giscus').forEach(el => el.remove());
-            const oldScript = document.getElementById('giscus-script');
-            if (oldScript) oldScript.remove();
-
-            // 2. Create the fresh giscus container right inside the target post
-            const giscusDiv = document.createElement('div');
-            giscusDiv.className = 'giscus';
-            targetContainer.appendChild(giscusDiv);
-
-            // 3. Inject the script so it builds the iframe inside the new .giscus div
-            const script = document.createElement('script');
-            script.id = 'giscus-script';
-            script.src = "https://giscus.app/client.js";
-            script.setAttribute("data-repo", "priyac3126/regulated-pulse");
-            script.setAttribute("data-repo-id", "R_kgDOS229vg");
-            script.setAttribute("data-category", "General");
-            script.setAttribute("data-category-id", "DIC_kwDOS229vs4C-_q0");
-            script.setAttribute("data-mapping", "specific");
-            script.setAttribute("data-term", title); // Maps comments directly to this unique string
-            script.setAttribute("data-strict", "0");
-            script.setAttribute("data-reactions-enabled", "1");
-            script.setAttribute("data-emit-metadata", "0");
-            script.setAttribute("data-input-position", "top");
-            script.setAttribute("data-theme", "preferred_color_scheme");
-            script.setAttribute("data-lang", "en");
-            script.setAttribute("crossorigin", "anonymous");
-            script.async = true;
-            
-            document.body.appendChild(script);
-        }
-
         // Core Routing Function
         function navigateTo(hash) {
             // Hide all sections first
@@ -827,15 +885,26 @@
                 document.getElementById('tab-blog').classList.add('tab-active');
                 document.getElementById('blog-post-view').classList.remove('hidden');
                 
-                let containerId = hash.replace('#', '') + '-container';
+                let postId = hash.replace('#', '');
+                let containerId = postId + '-container';
+                let commentsContainerId = postId + '-comments-list';
                 let el = document.getElementById(containerId);
+                
                 if (el) {
                     el.classList.remove('hidden');
-                    let title = el.querySelector('h2').innerText;
-                    loadComments(containerId + '-comments', title); // Inject comments safely
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     el.querySelector('h2').setAttribute('tabindex', '-1');
                     el.querySelector('h2').focus();
+                    
+                    // Trigger Firebase load for this specific post
+                    if (window.loadComments) {
+                        window.loadComments(postId, commentsContainerId);
+                    } else {
+                        // If Firebase script is slightly delayed, try again in 500ms
+                        setTimeout(() => {
+                           if (window.loadComments) window.loadComments(postId, commentsContainerId);
+                        }, 500);
+                    }
                 }
             } else {
                 // Default fallback to blog list
@@ -980,6 +1049,121 @@
   <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
   <script>
         fetch("https://assets.mailerlite.com/jsonp/2426551/forms/190027996672821166/takel")
+  </script>
+
+  <script type="module">
+    // Import the functions using the specific web SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // Your active Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyANxrKdCFT0Sv5lDAvxefTi9XCfBcfG3uc",
+      authDomain: "regulated-pulse.firebaseapp.com",
+      projectId: "regulated-pulse",
+      storageBucket: "regulated-pulse.firebasestorage.app",
+      messagingSenderId: "386384989644",
+      appId: "1:386384989644:web:4e962b8ea20ffaf621e169",
+      measurementId: "G-226FYER9J4"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Function to submit a comment to the cloud
+    window.submitComment = async function(event, postId) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const nameInput = form.querySelector('input[type="text"]');
+        const emailInput = form.querySelector('input[type="email"]');
+        const textInput = form.querySelector('textarea');
+        const btn = form.querySelector('button[type="submit"]');
+        const originalBtnText = btn.innerText;
+
+        try {
+            btn.innerText = "Posting...";
+            btn.disabled = true;
+            
+            // Send data to Firestore
+            await addDoc(collection(db, "comments"), {
+                postId: postId,
+                name: nameInput.value,
+                email: emailInput.value, // Saved securely in the database, but not displayed publicly
+                text: textInput.value,
+                createdAt: serverTimestamp(),
+                likes: 0
+            });
+            
+            // Clear the form
+            form.reset();
+        } catch (e) {
+            console.error("Error adding document: ", e);
+            alert("Something went wrong! Make sure your Firebase database rules are set up correctly.");
+        } finally {
+            btn.innerText = originalBtnText;
+            btn.disabled = false;
+        }
+    };
+
+    // Function to fetch comments from the cloud and draw them on screen
+    window.loadComments = function(postId, containerId) {
+        if (!db) return;
+
+        const q = query(collection(db, "comments"), where("postId", "==", postId));
+        
+        // Listen for real-time updates
+        onSnapshot(q, (snapshot) => {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+            
+            container.innerHTML = ""; 
+            
+            if (snapshot.empty) {
+                container.innerHTML = '<p class="text-sm text-slate-400 mt-8 text-center border-t border-slate-700 pt-8 max-w-2xl mx-auto">No comments yet. Be the first to start the discussion!</p>';
+                return;
+            }
+
+            // Grab the comments and sort them by newest first
+            let commentsData = [];
+            snapshot.forEach((doc) => commentsData.push({ id: doc.id, ...doc.data() }));
+            commentsData.sort((a, b) => {
+                 let timeA = a.createdAt ? a.createdAt.toMillis() : Date.now();
+                 let timeB = b.createdAt ? b.createdAt.toMillis() : Date.now();
+                 return timeB - timeA; 
+            });
+
+            // Draw the HTML for each comment
+            commentsData.forEach((data) => {
+                const initials = data.name ? data.name.substring(0, 2).toUpperCase() : "RP";
+                const dateStr = data.createdAt ? data.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now";
+
+                const commentHTML = `
+                  <div class="mt-8 pt-8 border-t border-slate-700 text-left max-w-2xl mx-auto">
+                    <div class="flex items-center justify-between mb-2">
+                      <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">${initials}</div>
+                        <div>
+                          <p class="font-semibold text-sm" style="color: rgb(226, 232, 240);">${data.name}</p>
+                          <p class="text-xs" style="color: rgb(100, 116, 139);">${dateStr}</p>
+                        </div>
+                      </div>
+                      <button type="button" class="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Like comment" onclick="this.style.color='#06b6d4'; this.querySelector('span').innerText='1';">
+                        <i data-lucide="heart" style="width: 16px; height: 16px;"></i> <span class="font-medium">${data.likes || 0}</span>
+                      </button>
+                    </div>
+                    <p class="text-sm leading-relaxed mt-2 break-words" style="color: rgb(148, 163, 184);">${data.text}</p>
+                  </div>
+                `;
+                container.insertAdjacentHTML('beforeend', commentHTML);
+            });
+
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    };
   </script>
 </body>
 </html>
