@@ -1,9 +1,28 @@
-<script type="module">
-    // Import the functions using the specific web SDKs
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Regulated Pulse - Comments</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-900 text-white p-8">
+
+  <form id="comment-form" onsubmit="submitComment(event, 'post-1')" class="max-w-2xl mx-auto flex flex-col gap-4">
+    <input type="text" placeholder="Name" required class="p-2 rounded bg-slate-800 border border-slate-700 text-white">
+    <input type="email" placeholder="Email" required class="p-2 rounded bg-slate-800 border border-slate-700 text-white">
+    <textarea placeholder="Your comment" required class="p-2 rounded bg-slate-800 border border-slate-700 text-white"></textarea>
+    <button type="submit" class="bg-cyan-600 hover:bg-cyan-500 p-2 rounded text-white font-bold transition-colors">Post Comment</button>
+  </form>
+
+  <div id="comments-container"></div>
+
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // Your active Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBfCrRXdjRGutIpZU14pOic5BUhrgOF2BA",
       authDomain: "regulated-pulse.firebaseapp.com",
@@ -14,11 +33,9 @@
       measurementId: "G-226FYER9J4"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Function to submit a comment to the cloud
     window.submitComment = async function(event, postId) {
         event.preventDefault();
         
@@ -33,17 +50,15 @@
             btn.innerText = "Posting...";
             btn.disabled = true;
             
-            // Send data to Firestore
             await addDoc(collection(db, "comments"), {
                 postId: postId,
                 name: nameInput.value,
-                email: emailInput.value, // Saved securely in the database, but not displayed publicly
+                email: emailInput.value,
                 text: textInput.value,
                 createdAt: serverTimestamp(),
                 likes: 0
             });
             
-            // Clear the form
             form.reset();
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -54,13 +69,11 @@
         }
     };
 
-    // Function to fetch comments from the cloud and draw them on screen
     window.loadComments = function(postId, containerId) {
         if (!db) return;
 
         const q = query(collection(db, "comments"), where("postId", "==", postId));
         
-        // Listen for real-time updates
         onSnapshot(q, (snapshot) => {
             const container = document.getElementById(containerId);
             if(!container) return;
@@ -72,7 +85,6 @@
                 return;
             }
 
-            // Grab the comments and sort them by newest first
             let commentsData = [];
             snapshot.forEach((doc) => commentsData.push({ id: doc.id, ...doc.data() }));
             commentsData.sort((a, b) => {
@@ -81,7 +93,6 @@
                  return timeB - timeA; 
             });
 
-            // Draw the HTML for each comment
             commentsData.forEach((data) => {
                 const initials = data.name ? data.name.substring(0, 2).toUpperCase() : "RP";
                 const dateStr = data.createdAt ? data.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now";
@@ -111,4 +122,9 @@
             }
         });
     };
+
+    // Explicitly execute the function to display data on the screen
+    loadComments('post-1', 'comments-container');
   </script>
+</body>
+</html>
