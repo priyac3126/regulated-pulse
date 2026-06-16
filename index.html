@@ -119,8 +119,8 @@
       #mlb2-42510540.ml-form-embedContainer h4, #mlb2-42510540.ml-form-embedContainer p, #mlb2-42510540.ml-form-embedContainer span, #mlb2-42510540.ml-form-embedContainer button { text-transform: none !important; letter-spacing: normal !important; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper { background-color: #181536; border-width: 0px; border-color: transparent; border-radius: 4px; border-style: solid; box-sizing: border-box; display: inline-block !important; margin: 0 auto; padding: 0; position: relative; }
       
-      #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedPopup, #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedDefault { width: 600px; }
-      #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedForm { max-width: 600px !important; width: 100%; margin: 0 auto; display: block !important; }
+      #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedPopup, #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedDefault { width: 100%; }
+      #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper.embedForm { max-width: 100% !important; width: 100%; margin: 0 auto; display: block !important; }
       
       #mlb2-42510540.ml-form-embedContainer .ml-form-align-left { text-align: center; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-align-center { text-align: center; }
@@ -129,7 +129,7 @@
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4, #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 { color: #ffffff; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 30px; font-weight: 400; margin: 0 0 10px 0; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p, #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p { color: #ffffff; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 400; line-height: 20px; margin: 0 0 10px 0; text-align: center; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-block-form .ml-field-group label { margin-bottom: 5px; color: #333333; font-size: 14px; font-weight: bold; }
-      #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody form { margin: 0 auto; width: 100%; max-width: 600px; }
+      #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody form { margin: 0 auto; width: 100%; max-width: 100%; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-formContent, #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-checkboxRow { margin: 0 0 20px 0; width: 100%; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow { margin: 0 0 10px 0; width: 100%; }
       #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button { background-color: #000000 !important; border: none !important; border-radius: 4px !important; color: #ffffff !important; font-weight: 700 !important; padding: 10px !important; width: 100% !important; }
@@ -173,52 +173,65 @@
     <section id="section-blog" class="tab-section" role="tabpanel" aria-labelledby="tab-blog">
      <div id="blog-list-view">
       <h2 class="mb-8" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 22px;">Recent Posts</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+      
+      <!-- Postcard Grid (3 Columns) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
        
-       <button class="rounded-2xl p-7 card-hover text-left w-full focus:outline-none cursor-pointer" id="card-ai-access-click" aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237));">
-        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">AI & Policy</span>
-        <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
-        <p class="text-sm mb-2" style="color: rgb(226, 232, 240);">How we build ethical, inclusive design</p>
-        <p class="text-xs" style="color: rgb(196, 181, 253);">June 2026</p>
-       </button>
+       <!-- Column 1 -->
+       <div class="flex flex-col gap-8">
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-migration-click" aria-label="Read post: Healing Without Borders" style="background: linear-gradient(135deg, rgb(15, 118, 110), rgb(30, 58, 95));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(15, 118, 110); color: rgb(204, 251, 241);">Book review</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Healing Without Borders</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">Bridging gaps in migrant health through innovation and policy</p>
+          <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
+         </button>
 
-       <button class="rounded-2xl p-7 card-hover text-left w-full focus:outline-none cursor-pointer" id="card-giant-leap-click" aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI" style="background: linear-gradient(135deg, rgb(30, 58, 95), rgb(13, 148, 136));">
-        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(6, 78, 59); color: rgb(110, 231, 183);">Book Review</span>
-        <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">A Giant Leap: Trust and Oversight in Healthcare AI</h3>
-        <p class="text-sm mb-2" style="color: rgb(226, 232, 240);">AI will transform healthcare. This book explains why-- and what it means for healthtech regulation</p>
-        <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
-       </button>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care" style="background: linear-gradient(135deg, rgb(88, 28, 135), rgb(225, 29, 72));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(88, 28, 135); color: rgb(243, 232, 255);">Book Review</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The Case for Compassionate Care</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The medical necessity of compassionate care.</p>
+          <p class="text-xs" style="color: rgb(254, 205, 211);">June 2026</p>
+         </button>
+       </div>
 
-       <button class="rounded-2xl p-7 card-hover text-left w-full focus:outline-none cursor-pointer" id="card-story-click" aria-label="Read post: The Realities of Chronic Illness" style="background: linear-gradient(135deg, rgb(30, 41, 59), rgb(8, 145, 178));">
-        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(22, 78, 99); color: rgb(103, 232, 249);">Personal</span>
-        <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The Realities of Chronic Illness</h3>
-        <p class="text-sm mb-2" style="color: rgb(226, 232, 240);">The hidden epidemic of autoimmune disease and my chronic illness journey</p>
-        <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
-       </button>
+       <!-- Column 2 -->
+       <div class="flex flex-col gap-8">
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-giant-leap-click" aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI" style="background: linear-gradient(135deg, rgb(30, 64, 175), rgb(14, 165, 233));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(30, 58, 95); color: rgb(186, 230, 253);">Book Review</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">A Giant Leap: Trust and Oversight in Healthcare AI</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">AI will transform healthcare. This book explains why and what it means for healthtech regulation</p>
+          <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
+         </button>
 
-       <button class="rounded-2xl p-7 card-hover text-left w-full focus:outline-none cursor-pointer" id="card-welcome-click" aria-label="Read post: Welcome to The Regulated Pulse" style="background: linear-gradient(135deg, rgb(131, 24, 67), rgb(225, 29, 72));">
-        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium" style="background: rgb(159, 18, 57); color: rgb(253, 164, 175);">Welcome</span>
-        <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Welcome to The Regulated Pulse</h3>
-        <p class="text-sm mb-2" style="color: rgb(226, 232, 240);">What to expect from the blog</p>
-        <p class="text-xs" style="color: rgb(253, 164, 175);">June 2026</p>
-       </button>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-ai-access-click" aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights" style="background: linear-gradient(135deg, rgb(79, 70, 229), rgb(217, 70, 239));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(49, 46, 129); color: rgb(245, 208, 254);">AI & Policy</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">How we build ethical, inclusive design</p>
+          <p class="text-xs" style="color: rgb(196, 181, 253);">June 2026</p>
+         </button>
+       </div>
+
+       <!-- Column 3 -->
+       <div class="flex flex-col gap-8">
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-story-click" aria-label="Read post: The Realities of Chronic Illness" style="background: linear-gradient(135deg, rgb(30, 41, 59), rgb(8, 145, 178));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(30, 41, 59); color: rgb(203, 213, 225);">Personal</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The Realities of Chronic Illness</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The hidden epidemic of autoimmune disease and my chronic illness journey</p>
+          <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
+         </button>
+         
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-welcome-click" aria-label="Read post: Welcome to The Regulated Pulse" style="background: linear-gradient(135deg, rgb(225, 29, 72), rgb(245, 158, 11));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(159, 18, 57); color: rgb(254, 215, 170);">Welcome</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Welcome to The Regulated Pulse</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">What to expect from the blog</p>
+          <p class="text-xs" style="color: rgb(253, 164, 175);">June 2026</p>
+         </button>
+       </div>
       </div>
 
-      <h3 class="mt-12 mb-4" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 20px;">Coming Dec 2026</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-       <div class="rounded-xl p-5" style="background: rgb(30, 41, 59);">
-        <p class="font-semibold mb-1" style="color: rgb(226, 232, 240); font-size: 16px;">Building for Inclusion</p>
-        <p class="text-xs" style="color: rgb(103, 232, 249);">Insights from Disability Studies coursework</p>
-       </div>
-       <div class="rounded-xl p-5" style="background: rgb(30, 41, 59);">
-        <p class="font-semibold mb-1" style="color: rgb(226, 232, 240); font-size: 16px;">Invisible Among the Invisible: The Most Marginalized in Healthcare</p>
-        <p class="text-xs mb-2" style="color: rgb(103, 232, 249);">Highlighting the need for culturally responsive health policy</p>
-       </div>
-      </div>
-
-      <aside class="rounded-2xl p-7 mt-12 text-center" style="background: rgb(30, 41, 59);" aria-label="Subscription Form">
+      <aside class="rounded-2xl p-7 mt-12 text-center max-w-md mx-auto" style="background: rgb(30, 41, 59);" aria-label="Subscription Form">
         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Subscribe for Updates</h3>
-        <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Get notified directly in your inbox when I publish a new post.</p>
+        <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Get notified when I publish a new post.</p>
         
         <div id="mlb2-42510540" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-42510540">
           <div class="ml-form-align-center">
@@ -228,7 +241,7 @@
                   <div class="ml-form-formContent">
                     <div class="ml-form-fieldRow ml-last-item">
                       <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                        <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Enter your email address" autocomplete="email">
+                        <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Enter your email address" autocomplete="email" style="width: 100%;">
                       </div>
                     </div>
                   </div>
@@ -267,7 +280,182 @@
       <button id="back-to-blog" class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-medium focus:outline-none cursor-pointer z-10" aria-label="Back to all blog posts"> 
         <i data-lucide="arrow-left" style="width:18px;height:18px;" aria-hidden="true"></i> Back to Posts 
       </button>
-      
+
+      <!-- Post: Migration and Health -->
+      <article id="post-migration-container" class="hidden max-w-3xl mx-auto relative">
+       <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Healing Without Borders</h2>
+       <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">Bridging gaps in migrant health through innovation and policy</h3>
+       <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Book review · June 2026 · 6 min read</p>
+       
+       <div class="text-center mb-10">
+         <img src="Screenshot 2026-06-15 at 7.37.50 PM.jpg" alt="Migration and Health book cover" class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+         <p class="text-slate-400 text-sm mt-3 italic">Published in 2022</p>
+       </div>
+       
+       <div class="blog-post-content">
+        <blockquote>
+         <p>“It is estimated that there are 272 million international migrants today, about 3.5 percent of the world’s population… If international migrants made up one country today, they would be the fifth largest country in the world after China, India, the United States, and Indonesia.”</p>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Migration and Health, pg. 4</cite>
+        </blockquote>
+        <p>People migrate for reasons as varied as seeking greater economic opportunities, escaping authoritarian regimes and war, to obtain higher education, to running from religious persecution.</p>
+        <p>The 1946 Constitution of the World Health Organization (WHO) states “The right to the enjoyment of the highest attainable standard of physical and mental health is a fundamental part of our human rights” (54). However, this principle lies in direct contrast to the realities millions of migrants face. In many countries, asylum seekers are primarily entitled to emergency care, as primary care access is limited (55). Furthermore, 12/30 European countries provided limited health care entitlements to asylum-seeking children with Germany standing out as having the most restrictive policy for migrant children in the continent (55).</p>
+        <p>The UN High Commissioner for Refugees (UNHCR) provides the strongest legal and institutional frameworks for the international law of refugees; however, they have no enforcing power which means the human rights migrants have are primarily up to the current government and existing policies of a nation.</p>
+        <p>This has led to a wide array of policies and processes concerning the treatment and care of migrants. Migrants face heightened health care needs because of the dangerous routes they often take to secure better futures, and because of the often subpar access to high-quality health care in their homelands.</p>
+        <p>As climate change contributes to record-high average temperatures and natural disasters, the World Bank estimates that more than 117 million people will need to migrate within their countries by 2050 in addition to the 20 million a year that are displaced annually due to extreme rapid-onset climate events (70-71). The poorest citizens of the poorest countries will face the most severe impacts as they are more likely to depend on climate-dependent industries such as agriculture and fishing.</p>
+        <p>Migrants are more likely to get Hepatitis B and C, HIV, STIs, tuberculosis, malaria, and COVID-19 (92-95). Because of a lack of screening policies and effort taken to ensure adequate migrant health, there is a great deal of needless suffering that migrants face for diseases that are curable and have widely available treatment options (93).</p>
+        <p>Moreover, migrant communities face heightened risks for undernutrition and being overweight or obese (118). Undernutrition contributes to much of the 45% nutrition-related risks for global child mortality (118).</p>
+        <p>Interestingly, older migrants, especially those that have a disability, are more likely to migrate than those that are younger than 65 and able-bodied (147). This highlights the need for nations to invest more in migrant health, as many have greater health needs while being physically weaker. In addition to this, disabled people, as migrants, have limited rights to employment and welfare in their host nations, and “Tend to be ignored in migration policy and interventions” revealing a troubling reality (266).</p>
+        <p>Another marginalized group within migrant communities is that of children. One-eighths of international migrants are children (36 million) and they account for half of all refugees as well as 42% of those that are forcibly displaced (149). Additionally, even after being settled in their host nations, children still face increased risk of violence and exploitation (151). Moreover, the circumstances as to why and how they were able to be resettled can affect their psychomotor development, immune function, and long-term physical and mental health (151). Furthermore, in overcrowded European accommodation facilities, Hepatitis A outbreaks are highly prevalent for those under 18 (153). Over time, children are better able to recover from the high rates of depression and PTSD common in migrants, but there are still barriers in them accessing mental health support (157).</p>
+        <p>However, technology can be harnessed to advance migrant health– and is being harnessed through UN Sustainable Development Goal SDG-9C which aims to provide universal, affordable Internet in the least developed nations (LDNs) by 2020 (179-180). This goal was created knowing that only 19% of an LDNs population used the internet compared to 87% in high-income countries (180). This is being done through the development of digital translation and communication tools that are able to positively impact the limitations migrants face in receiving health care such as cost, trust, time, and availability (180-181). Two other digital tools that are addressing migrant health inequities are Tarjimly, an app that connects migrants to volunteer translators, and the Health Resources Available Mapping System (WHO-sponsored) that assesses medical resource availability for emergency care in 21 countries such as Syria, Sudan, Yemen, and Bangladesh (181). Furthermore, the United Nations developed an electronic health record system to serve Palestinian refugees seeking primary care (181). It includes features such as an appointment system, medicine analysis tools, and auto-populated prescription forms based on clinical guidelines (181).</p>
+        <p>Clean water accessibility is also essential to avoiding infectious disease outbreaks in migrant populations (181). For this, the UNHCR has developed a tool to monitor water truck deliveries using a networked ultrasonic water-level sensor series (181).</p>
+        <p>Here are more examples of migrant-tailored healthcare technologies being deployed:</p>
+        <ul>
+         <li>Step-by-Step, a WHO-developed mental health resource that trains users in behavioral activation, psychoeducation, stress management, positive self-talk, and relapse intervention (182).</li>
+         <li>Multi-Adaptive Psychological Screening Software (MAPSS) and Open Data Toolkit (ODK) that aid in self-reporting, collecting, and assessing mental health symptoms (182).</li>
+         <li>The HADStress screening tool used alongside telepsychiatry that allows for PTSD screening based on these symptoms: headaches, appetite changes, sleep changes, and dizziness (182).</li>
+        </ul>
+        <p>To switch gears, in September 2019, Bangladesh shut off internet and telephone access in Cox’s Bazaar (city), affecting the Rohingya and host community refugee camps on the grounds of preserving security and addressing rising crime (183-184). In Bangladesh, a national registration number or a passport is required to obtain a phone number, presenting ethics concerns as the COVID-19 pandemic began (ban ended Aug 2020 after facing international pressure) (184).</p>
+        <p>Another ethical concern for migrants related to data privacy: “Often, the willful and consensual submission of biometric or personal data by refugees is later used for surveillance, detention, and deportation” (184). Two examples of this would be in the U.S. Deferred Action for Childhood Arrivals (DACA) program, and in the deportation of migrants from France in 2006 (184).</p>
+        <p>Nationalism and discrimination against migrants plays a central role in many’s beliefs that migrants are not obligated to the rights of citizens, including that of access to medical care. In fact, many states have responded to increasing migration by reducing migrant health benefits– a decision causing many to face severe, preventable health issues that may affect them long-term. Access to quality health care is essential as Norman Daniels, Harvard professor and bioethicist argues that “health is of special moral importance because it contributes to the range of opportunities open to use” (197-198).</p>
+        <p>Furthermore, it goes without saying that the traumatizing and challenging situations migrants face affect their health more than access to medical care can in many cases. One infamous example lies in when the U.S. separated young migrant children from their parents and put them in cages.</p>
+        <p>Immigration status is now recognized as a negative determinant of health because of the vulnerabilities in immigration law, fear of deportation, and legal barriers in accessing health care they face (198). Especially considering that immigrants account for a considerable percentage of the healthcare workforce of wealthy nations such as the United States (39% of physicians and 17% of nurses), and the United Kingdom (28% of physicians), it is vitally important to expand health care to our foreign-born populations (199).</p>
+        <p>To conclude, it is essential that migrants have free access to primary health care with a focus on addressing the needs of more vulnerable populations such as pregnant women and children (295). While international efforts such as the 1951 Convention Relating to the Status of Refugees and the 1967 Protocol are important steps in progressing migrant human rights on a global scale, bettering local legal structures are equally as important, according to *Migration and Health* (42; 378-379).</p>
+        <p>Access to quality healthcare is a human right, as good health is essential to the human realization of potential and success.</p>
+        <p>Migrants deserve better.</p>
+        
+        <h3>References</h3>
+        <ul class="works-cited list-none pl-0">
+         <li>Galea, S., Ettman, C. K., & Zaman, M. H. (Eds.). (2022). Migration and Health. University of Chicago Press.</li>
+         <li>Harvard T. H. Chan School of Public Health. (n.d.). Norman Daniels. Harvard T. H. Chan School of Public Health. https://hsph.harvard.edu/profile/norman-daniels/</li>
+        </ul>
+       </div>
+       
+       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
+         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
+         
+         <form onsubmit="submitComment(event, 'post-migration')" class="text-left space-y-4 max-w-2xl mx-auto">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
+               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
+               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+           </div>
+           <div class="flex flex-col">
+             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
+             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+           </div>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(15, 118, 110); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+         </form>
+         
+         <div id="post-migration-comments-list">
+             </div>
+       </div>
+
+      </article>
+
+      <!-- Post: The Case for Compassionate Care -->
+      <article id="post-compassion-container" class="hidden max-w-3xl mx-auto relative">
+       <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Case for Compassionate Care</h2>
+       <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Book Review · June 2026 · 8 min read</p>
+       
+       <div class="text-center mb-10">
+         <img src="Compassionomics.jpg" alt="Compassionomics book cover" class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+         <p class="text-slate-400 text-sm mt-3 italic">Published in 2019</p>
+       </div>
+       
+       <div class="blog-post-content">
+        <blockquote>
+         <p>“Love and compassion are necessities, not luxuries. Without them, humanity cannot survive.”</p>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Dalai Lama (Trzeciak and Mazzarelli xi)</cite>
+        </blockquote>
+        <p>Compassionomics presents an enormous amount of scientific data reeling in the literal reality and significance of this Dalai Lama quote. The decline in how compassion is presented from clinicians to patients has led to dozens of studies confirming a concerning reality: patients suffer when they are not treated compassionately, regardless of if clinical and hospital administrative protocols are followed.</p>
+        <p>A Harvard Medical School study survey revealed stark statistics: nearly half of Americans and physicians believe that the health care system is not compassionate (6). The same percentage of Americans also believed health care providers are not compassionate (Trzeciak and Mazzarelli 6). However, when physicians were asked if providers were, three-fourths said they were (6).</p>
+        <p>There was a greater consensus between patients and their providers in another survey that showed that 63% of healthcare providers “Have observed a decline in compassionate care over the past five years” (6).</p>
+        <p>This decline has proven quite costly for patients— in the increase of medical errors, costs incurred for patient care, and in the reduced efficacy of treatment plans.</p>
+        <p>When comparing the 891 diabetic patient outcomes of high and low compassion physicians (29 total), the results were striking: patients of highly compassionate physicians were 80% more likely to have optimal blood sugar control (82). U.S. researchers then repeated this study in Italy, where it could be replicated on an enormous scale (242 physicians and nearly 21k patients), and revealed another astounding fact: patients of high compassion physicians had a 41% lower chance of having serious diabetes complications (82-83).</p>
+        <p>In a 1960s study by Harvard Medical School researchers, similarly strong results of the power of compassionate care were shown. Patients that had a pre-surgery appointment with the anesthesiologist to build rapport and ease anxieties had “More than double the effect of administering pentobarbital,” a powerful anesthetic (62). Their second experiment showed that those who had this pre-surgery meeting needed 50% less opiate pain medication post-surgery (62).</p>
+        <p>If these results were published in acclaimed medical journals such as The New England Journal of Medicine and JAMA at the time, why did they not revolutionize medical school education, residency programs, and the fabric for how patient-provider relationships were navigated for decades to come? Why has the level of perceived compassion by providers greatly declined since the 60s, especially in the wide scale adoption of electronic health records?</p>
+        <p>The authors of Compassionomics argue that it is because, prior to the release of this 2019 book, the findings of hundreds of scientific articles on this topic were not connected to one another, building on each other like how medicine was in its various specialties. Although over six years has passed since the book’s release, medical care in this country still hasn’t been revolutionized– but by educating ourselves and spreading the word, we pave the way towards a standard level of care that reflects scientific findings, and what patients truly deserve.</p>
+        <p>A study that looked at how 136 Level 1 trauma patients responded to their subjective assessments of their own recovery six weeks and one year following hospital discharge produced an incredible finding: “The odds of a patient-reported good outcome were four times higher when the physician was rated as having high compassion” (Trzeciak and Mazzarelli 63). Furthermore, a Mass General Hospital study showed that “Patients randomly assigned to receive compassionate palliative care actually survived, on average, 30 percent longer” (68).</p>
+        <p>A University of Haifa in Israel study even found compelling evidence for the power of hand-holding done by a loved one: volunteers’ pain rating from a painful heat stimulus declined by 50% (70-71).</p>
+        <p>In a Carnegie Mellon University study, even the number of hugs received by volunteers facing common cold symptoms contributed to 32% of the protective effect that social support had against infection (87).</p>
+        <p>Moreover, when an oncologist showed compassion in consultations with breast cancer survivors that they had cancer again, they reported significantly less anxiety than those in the control group that had just been presented the facts (108-109).</p>
+        <p>Over and over, the data shows that when physicians are compassionate towards patients, patients trust them more, view them as more competent (the research shows this is scientifically backed), are more compliant with treatment plans, feel less alone, and have more hope.</p>
+        <p>But, in a system where patients get to see providers for 10-15 minutes, and for most of that they’re staring at a screen, thinking about how other patients are waiting to see them, where does building a more compassionate clinical team start?</p>
+        <p>It starts with addressing the hidden curriculum of medical schools so it can instill in the next generation of physicians a better way of healing.</p>
+        <p>The hidden curriculum describes the habits and unsaid way of doing things medical students pick up on practicing physicians– absorbing what it means to be a competent physician. In order to do that, compassion training should be mandatory for all clinicians. It seems unnecessary and obvious that in helping professions, compassion should and is shown by most everyone. But, it’s not. When you’re engaging in patient care 40 hrs a week for years on end, you inevitably become desensitized to medical aspects of your environment. But, more than that, you lose touch with how devastating your daily tasks are to the average person. For instance, being in the emergency room, getting diagnosed with a grave illness, or being told a loved one is near the end are things patients will remember and be affected by for years, if not the rest of their life. The way physicians talk to patients about the nature of their health issues greatly affects their understanding of their medical reality and what that means for other aspects of their lives.</p>
+        <p>But, in the compassion crisis, we’re facing another alarming crisis– one of unprecedented physician burnout. 50% of U.S. physicians are suffering from burnout (288). A Mayo Clinic survey of nearly seven thousand physicians found that 35% of doctors are so burnt out that they show high levels of depersonalization, a trait that makes providing compassionate care difficult (8). The same percentage was found in a study that looked at over a thousand European family physicians– it’s not a U.S.-only problem.</p>
+        <p>One thing to note though is that burn out starts early. A University of Pennsylvania study found that during the first year of residency, student doctors experienced a sharp increase in depression with one-third of students having experienced it (8-9).</p>
+        <p>Practicing medicine is a mentally and emotionally taxing profession which is why the physician suicide rate is nearly double than that of the general population, and the highest suicide rate among all professions (289-290). In addition to this, almost 40% of U.S. physicians have symptoms of depression, compelling 6% of them to contemplate suicide (290).</p>
+        <p>It is vitally important for healthcare systems to encourage healthy work cultures, ones in which clinicians are able to foster strong relationships with colleagues, proving as protective factors for good mental health.</p>
+        <p>Even here, compassion is the answer. “Research shows that compassion for others can be a coping strategy to overcome personal distress and strengthen one’s own resilience” (300-301). Here lies the difference between empathy and compassion. When we feel empathy, the parts of our brain that light up when we are in pain ourselves light up, but when we feel compassion (act on our empathy), our reward pathway lights up.</p>
+        <p>In fact, “Neuroscience research shows that the most potent activator of brain circuits involved in human happiness is actually… compassion” (304). Humans have been hard-wired to be compassionate towards others for millenia as an ancient survival strategy.</p>
+        <p>And as research continues to show modern-day, it is still a survival strategy. Not only do physicians show decreased symptoms of burnout when they lean-in emotionally with their patients, but they report better well-being, promoted by how the “helper’s high” increased feelings of calmness, feelings of self-worth, and boosts “Circulating neuromodulators (such as the hormone oxytocin) which not only buffers stress, but also triggers positive emotions (such as feelings of calm and closeness)” (302-303).</p>
+        <p>An interesting study done on Chief Medical Officers (CMOs) in Harvard Business Review confirms these findings. While 69% of them reported “severe,” “very severe,” or “worst possible” stress levels, they had surprisingly low levels of burn out (313). 91% of these CMOs actively practiced compassion in their careers– protecting them physically, mentally, and emotionally from the negative effects that stress and burnout can have (313). That was their secret to being resilient in their intense, demanding careers.</p>
+        <p>But the benefits of more compassionate care extends to the finances of healthcare organizations: “Hospitals that are rated highly on their patient experience scores are also higher performing hospitals financially” (219). For instance, those that were rated “excellent” by patients had 2.9% higher average margins than low performers (219). A 4.7% margin vs a 1.8% one is the difference between being able to keep doors open or not for many hospitals, highlighting the nonnegotiable need to provide positive patient experiences (220). This is especially relevant as the federal government partially determines how they fund healthcare organizations based on how they score on a mandated patient experience survey (HCAHPS) (218-219).</p>
+        <p>But, what do patients value in their healthcare experiences?</p>
+        <p>One Harris Poll showed that patients valued being listened carefully and being easy to talk to way more than the prestige of where the physician was trained, their experience treating patients with their medical conditions, and even if they spoke their native language (222-223). This shows how compassion transcends culture, language, and belief systems.</p>
+        <p>Kenneth Schwartz, a health lawyer that received an advanced lung cancer diagnosis at 40 with no smoking history, and a wife and two-year-old son, shared the profound impact his clinicians had on him, remarking “compassion makes “the unbearable bearable’” (120-121). One particular physician scientist, Dr. Kurt Isselbacher took a great interest in helping him navigate which experimental therapy to choose. “Schwartz wrote this about him: “I was especially affected because such hopefulness was not coming from a faith healer, but a distinguished researcher’” (121). Later on, he remarked how touched he was even by the small empathetic gestures his caregivers gave him, saying: “In some ways, these quiet acts of humanity have given more healing than the high-dose radiation and chemotherapy that hold the hope of a cure” (122).</p>
+        <p>Although Schwartz passed away less than a year after his diagnosis, his legacy continues through the “Schwartz Rounds” that occur in lecture halls and conference rooms of hospitals nationwide. During these regularly scheduled rounds, healthcare providers openly discuss the socio-emotional issues they face in caring for patients and their families, finding community and support in sharing with co-workers that understand what they’re going through (122). Over 550 hospitals and health systems across the globe participate in Schwartz rounds because of the support made possible by the Schwartz Center for Compassionate Healthcare. The Center supports over 200k healthcare professionals yearly through education, resources, and regularly held conferences (123).</p>
+        <p>Unlocking the door to a more compassionate health care experience for patients doesn’t require a lot of time either. A University of Wisconsin-Madison study showed that a two-week compassion training course showed fMRI changes signalling greater ability to be compassionate (237). Furthermore, a Mass General psychiatrist and her colleagues developed three 60-minute modules rooted in the neuroscientific underpinnings of how to harness human connection in clinical settings (275). In a randomized controlled trial, “The physicians who were randomized to empathy training had a statistically significant rise in positive patient ratings of physician compassion” (276).</p>
+        <p>Compassion training works, helping to decrease medical errors, improve the mental health of clinicians and patients alike, and improves the bottom line. More than that, it promotes the very humanity and care our world desperately needs.</p>
+        <p>There is a worldwide loneliness epidemic, so much so that, in 2018, the U.K. government appointed a Minister of Loneliness (51). Heart attack patients that lacked emotional support had three times higher odds of death than those who did (50). Moreover, the Harvard Study of Adult Development that began in 1938 and is still ongoing gathered this revealing insight: “The people who were the most satisfied in their relationships at age 50 were the healthiest at age 80” (51-52).</p>
+        <p>When people are at as vulnerable and emotionally-taxing a point in their lives as being admitted to the hospital due to fatal health issues, they need that point of human connection to feel less alone, that someone cares. Patients pay attention to how they or their loved ones are treated and talked about– that “53-year-old alcoholic with liver failure” is someone’s brother, husband, father, and uncle, and it can be a depressing sign to patients as to just how depersonalized and disconnected many physicians are to the people they closely interact with.</p>
+        <blockquote>
+         <p>“Resarchers found that 56 percent of physicians believe they do not have time to treat patients with compassion.”</p>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Compassionomics, 249</cite>
+        </blockquote>
+        <p>Research done by Northwestern University concluded 31.5 seconds was all it took for a physician to demonstrably show compassion in their interactions with patients as well as their responses (254). Physicians' fears of how being compassionate might take up too much time for them to stay on track with schedules or open up a Pandora’s box of patients delving into their emotional issues was proven to be unfounded.</p>
+        <p>A Johns Hopkins University study found that “Compassionate care not only reduced patients’ emotional distress, but the effects also persisted up to six months after the clinic visit” (256).</p>
+        <p>Compassion training includes “Training in communication skills, recognition of emotional cues, increasing eye contact, sitting down (versus standing up), goal setting, shared decision-making, and avoiding interrupting the patient,” components that benefit patients, providers, healthcare systems, and even the government and insurance companies who have lower bills to pay from physicians that truly listen and order less diagnostic testing (277).</p>
+        <p>Additionally, a perceived lack of caring rather than negligence is what pushes most families to litigate (244). When patients trust their physicians, they believe them to be more competent and well-intentioned, traits that mean the difference between deciding to file a medical malpractice suit– even if the physician made costly errors (242-246).</p>
+        <p>The science is in on clinician-led compassion in healthcare settings, and I prescribe three doses of compassion training modules (60 mins each) to all clinicians worldwide.</p>
+        <p>From nursing aides at nursing homes to esteemed specialists in academic hospitals, we could all benefit from learning about the science of human compassion. To be compassionate is to be human and treat one another with the humanity we desperately need to feel whole in a world that is increasingly connected and showing unprecedented mental health issues such as loneliness at the same time.</p>
+        <blockquote>
+         <p>“Before one can learn to be more compassionate, there is a vital first step. First, one must believe that every patient deserves compassion. Every single one.”</p>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Compassionomics, 285</cite>
+        </blockquote>
+        
+        <h3>References</h3>
+        <ul class="works-cited list-none pl-0">
+         <li>Trzeciak, Stephen, and Anthony Mazzarelli. Compassionomics: The Revolutionary Scientific Evidence That Caring Makes a Difference. Huron Consulting Services LLC, 2019.</li>
+        </ul>
+       </div>
+       
+       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
+         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
+         
+         <form onsubmit="submitComment(event, 'post-compassion')" class="text-left space-y-4 max-w-2xl mx-auto">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
+               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
+               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+           </div>
+           <div class="flex flex-col">
+             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
+             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+           </div>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(88, 28, 135); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+         </form>
+         
+         <div id="post-compassion-comments-list">
+             </div>
+       </div>
+
+      </article>
+
+      <!-- Post: Beyond Compliance -->
       <article id="post-ai-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">AI & Policy · June 2026 · 8 min read</p>
@@ -437,7 +625,7 @@
              <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
              <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
            </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(79, 70, 229); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
          </form>
          
          <div id="post-ai-comments-list">
@@ -446,6 +634,7 @@
 
       </article>
 
+      <!-- Post: A Giant Leap -->
       <article id="post-giant-leap-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">A Giant Leap: Trust and Oversight in Healthcare AI</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Book Review · June 2026 · 5 min read</p>
@@ -526,7 +715,7 @@
              <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
              <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
            </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(30, 64, 175); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
          </form>
          
          <div id="post-giant-leap-comments-list">
@@ -535,52 +724,7 @@
 
       </article>
 
-      <article id="post-welcome-container" class="hidden max-w-3xl mx-auto relative">
-       <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Welcome to The Regulated Pulse</h2>
-       <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Welcome · June 2026</p>
-       
-       <button class="audio-player flex items-center gap-3 mb-8 transition-colors focus:outline-none cursor-pointer relative z-10" data-src="Welcome%20to%20the%20Pulse.m4a" data-fallback-time="2:00" aria-label="Play audio narration">
-           <span class="play-btn flex items-center justify-center rounded-full bg-slate-800 p-2 w-8 h-8 pointer-events-none">
-               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-           </span>
-           <span class="font-medium text-sm flex items-center gap-1 pointer-events-none">Listen <span class="text-slate-500 mx-1">•</span> <span class="duration-text">-2:00 remaining</span></span>
-       </button>
-       
-       <div class="blog-post-content">
-        <p>This blog demystifies the legal frameworks and ethical guardrails shaping the future of healthcare technology. It analyzes the shifting landscape of healthtech, the systemic structures governing it, and the healthcare law and policy choices shaping how we heal—bridging the gap between complex academic research and practical industry impact.</p>
-        <p>Innovation moves fast, but systemic frameworks must be built intentionally. This space focuses on where healthcare stands today and where we go from here, highlighting critical ethical guidelines alongside interviews with the innovators and leaders driving progress on the ground.</p>
-        <p>Subscribe to the newsletter to stay updated on upcoming research deep-dives, book reviews, and interviews.</p>
-        <p class="font-semibold mt-4" style="font-size: 18px; color: #06b6d4;">Welcome to the pulse.</p>
-       </div>
-
-       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
-         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
-         
-         <form onsubmit="submitComment(event, 'post-welcome')" class="text-left space-y-4 max-w-2xl mx-auto">
-           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-             <div class="flex flex-col">
-               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
-               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
-             </div>
-             <div class="flex flex-col">
-               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
-               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
-             </div>
-           </div>
-           <div class="flex flex-col">
-             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
-             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
-           </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
-         </form>
-         
-         <div id="post-welcome-comments-list">
-             </div>
-       </div>
-
-      </article>
-      
+      <!-- Post: The Realities of Chronic Illness -->
       <article id="post-chronic-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Realities of Chronic Illness</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Personal · June 2026 · 6 min read</p>
@@ -657,10 +801,57 @@
              <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
              <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
            </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(8, 145, 178); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
          </form>
          
          <div id="post-chronic-comments-list">
+             </div>
+       </div>
+
+      </article>
+
+      <!-- Post: Welcome -->
+      <article id="post-welcome-container" class="hidden max-w-3xl mx-auto relative">
+       <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Welcome to The Regulated Pulse</h2>
+       <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Welcome · June 2026</p>
+       
+       <button class="audio-player flex items-center gap-3 mb-8 transition-colors focus:outline-none cursor-pointer relative z-10" data-src="Welcome%20to%20the%20Pulse.m4a" data-fallback-time="2:00" aria-label="Play audio narration">
+           <span class="play-btn flex items-center justify-center rounded-full bg-slate-800 p-2 w-8 h-8 pointer-events-none">
+               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+           </span>
+           <span class="font-medium text-sm flex items-center gap-1 pointer-events-none">Listen <span class="text-slate-500 mx-1">•</span> <span class="duration-text">-2:00 remaining</span></span>
+       </button>
+       
+       <div class="blog-post-content">
+        <p>This blog demystifies the legal frameworks and ethical guardrails shaping the future of healthcare technology. It analyzes the shifting landscape of healthtech, the systemic structures governing it, and the healthcare law and policy choices shaping how we heal—bridging the gap between complex academic research and practical industry impact.</p>
+        <p>Innovation moves fast, but systemic frameworks must be built intentionally. This space focuses on where healthcare stands today and where we go from here, highlighting critical ethical guidelines alongside interviews with the innovators and leaders driving progress on the ground.</p>
+        <p>Subscribe to the newsletter to stay updated on upcoming research deep-dives, book reviews, and interviews.</p>
+        <p class="font-semibold mt-4" style="font-size: 18px; color: #06b6d4;">Welcome to the pulse.</p>
+       </div>
+
+       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
+         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
+         
+         <form onsubmit="submitComment(event, 'post-welcome')" class="text-left space-y-4 max-w-2xl mx-auto">
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
+               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+             <div class="flex flex-col">
+               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
+               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+             </div>
+           </div>
+           <div class="flex flex-col">
+             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
+             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+           </div>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(225, 29, 72); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+         </form>
+         
+         <div id="post-welcome-comments-list">
              </div>
        </div>
 
@@ -861,7 +1052,7 @@
             });
             document.getElementById('blog-list-view').classList.add('hidden');
             document.getElementById('blog-post-view').classList.add('hidden');
-            ['post-ai-container', 'post-giant-leap-container', 'post-welcome-container', 'post-chronic-container'].forEach(id => {
+            ['post-ai-container', 'post-giant-leap-container', 'post-welcome-container', 'post-chronic-container', 'post-migration-container', 'post-compassion-container'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.classList.add('hidden');
             });
@@ -946,6 +1137,8 @@
         document.getElementById('card-giant-leap-click').addEventListener('click', () => navigateTo('#post-giant-leap'));
         document.getElementById('card-welcome-click').addEventListener('click', () => navigateTo('#post-welcome'));
         document.getElementById('card-story-click').addEventListener('click', () => navigateTo('#post-chronic'));
+        document.getElementById('card-migration-click').addEventListener('click', () => navigateTo('#post-migration'));
+        document.getElementById('card-compassion-click').addEventListener('click', () => navigateTo('#post-compassion'));
 
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
