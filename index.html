@@ -79,7 +79,7 @@
     .blog-post-content ul:not(.works-cited) li { color: #94a3b8; margin-bottom: 0.5rem; line-height: 1.7; }
     .blog-post-content .works-cited { list-style: none !important; padding-left: 0 !important; margin-bottom: 1.25rem; }
     
-    /* 0.5 inch hanging indentation applied precisely to references */
+    /* 0.5 inch hanging indentation precisely applied to reference list citations */
     .blog-post-content .works-cited li { 
         color: #94a3b8; 
         margin-bottom: 1rem; 
@@ -161,7 +161,7 @@
   </div>
 
   <div id="main-content" class="opacity-0 transition-opacity duration-500" tabindex="-1">
-   <!-- Expanded Max-Width for a wider horizontal layout -->
+   <!-- Expanded Max-Width layout taking up more horizontal space on the blog -->
    <header class="flex items-center gap-3 pt-8 pb-6 max-w-screen-2xl mx-auto px-6">
     <button id="logo-home-btn" class="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none cursor-pointer z-10" aria-label="Return to Blog Home">
       <svg width="48" height="48" viewBox="0 0 160 160" fill="none" aria-hidden="true">
@@ -184,13 +184,13 @@
       <h2 class="mb-2" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 24px;">Recent Articles</h2>
       <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Deep-dive, multi-page analyses of healthcare law, systemic health disparities, and the evolving landscape of medical technology.</p>
       
-      <!-- Flex snake structure -> Left col top-down, Middle col bottom-up, Right col top-down -->
+      <!-- Grid layout tracking layout snake: Col 1 top-down, Col 2 bottom-up, Col 3 top-down -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
        
-       <!-- Column 1 (Top to Bottom: 1, 2, 3) -->
+       <!-- Column 1 (Postcards 1, 2, 3) -->
        <div class="flex flex-col gap-8">
-         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-book-recs-click" aria-label="Read post: Book Recommendations" style="background: linear-gradient(135deg, rgb(59, 7, 100), rgb(147, 51, 234));">
-          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(233, 213, 255);">Reading List</span>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-book-recs-click" aria-label="Read post: Book Recommendations" style="background: linear-gradient(135deg, rgb(76, 29, 149), rgb(124, 58, 237));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(76, 29, 149); color: rgb(233, 213, 255);">Reading List</span>
           <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Book Recommendations</h3>
           <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">My top 11 healthcare reads</p>
           <p class="text-xs" style="color: rgb(216, 180, 254);">June 2026</p>
@@ -203,21 +203,21 @@
           <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
          </button>
 
-         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-na-click" aria-label="Read post: If You Knew the Conditions" style="background: linear-gradient(135deg, rgb(120, 53, 4), rgb(217, 119, 6));">
-          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(254, 243, 199);">History & Policy</span>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-na-click" aria-label="Read post: If You Knew the Conditions" style="background: linear-gradient(135deg, rgb(180, 83, 9), rgb(120, 53, 4));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(146, 64, 14); color: rgb(254, 243, 199);">History & Policy</span>
           <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">"If You Knew the Conditions"</h3>
           <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The evolution of Native American health care</p>
           <p class="text-xs" style="color: rgb(253, 230, 138);">June 2026 · 4 min read</p>
          </button>
        </div>
 
-       <!-- Column 2 (Bottom to Top: 6, 5, 4 => rendered visually as Top is 6, Middle is 5, Bottom is 4) -->
+       <!-- Column 2 (Postcards 6, 5, 4 visually configured top-down) -->
        <div class="flex flex-col gap-8">
-         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-ai-access-click" aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights" style="background: linear-gradient(135deg, rgb(79, 70, 229), rgb(217, 70, 239));">
-          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(49, 46, 129); color: rgb(245, 208, 254);">AI & Policy</span>
-          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
-          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">How we build ethical, inclusive design</p>
-          <p class="text-xs" style="color: rgb(196, 181, 253);">June 2026</p>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care" style="background: linear-gradient(135deg, rgb(88, 28, 135), rgb(225, 29, 72));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(88, 28, 135); color: rgb(243, 232, 255);">Book Insights</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The Case for Compassionate Care</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The medical necessity of compassionate care.</p>
+          <p class="text-xs" style="color: rgb(254, 205, 211);">June 2026</p>
          </button>
 
          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-giant-leap-click" aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI" style="background: linear-gradient(135deg, rgb(30, 64, 175), rgb(14, 165, 233));">
@@ -227,15 +227,15 @@
           <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
          </button>
 
-         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care" style="background: linear-gradient(135deg, rgb(88, 28, 135), rgb(225, 29, 72));">
-          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(88, 28, 135); color: rgb(243, 232, 255);">Book Insights</span>
-          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The Case for Compassionate Care</h3>
-          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The medical necessity of compassionate care.</p>
-          <p class="text-xs" style="color: rgb(254, 205, 211);">June 2026</p>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-ai-access-click" aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights" style="background: linear-gradient(135deg, rgb(79, 70, 229), rgb(217, 70, 239));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(49, 46, 129); color: rgb(245, 208, 254);">AI & Policy</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">How we build ethical, inclusive design</p>
+          <p class="text-xs" style="color: rgb(196, 181, 253);">June 2026</p>
          </button>
        </div>
 
-       <!-- Column 3 (Top to Bottom: 7, 8) -->
+       <!-- Column 3 (Postcards 7, 8) -->
        <div class="flex flex-col gap-8">
          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-story-click" aria-label="Read post: The Realities of Chronic Illness" style="background: linear-gradient(135deg, rgb(30, 41, 59), rgb(8, 145, 178));">
           <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(30, 41, 59); color: rgb(203, 213, 225);">Personal</span>
@@ -257,31 +257,32 @@
       <h2 class="mt-16 mb-2" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 24px;">Vital Signs</h2>
       <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Under one-page takes on the full spectrum of healthcare trends, law, and medical technology</p>
       
+      <!-- Vital Signs grid matching horizontally styled postcards with richer color gradients -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Epic / Stifled Innovation (Order: 1) -->
+        <!-- Epic / Stifled Innovation (Order: 1, Gradient: Plum to Berry) -->
         <div class="flex flex-col gap-8">
-          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-epic-click" aria-label="Read post: Stifled Innovation" style="background: linear-gradient(135deg, rgb(74, 4, 78), rgb(159, 18, 57));">
-            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.2); color: rgb(254, 205, 211);">Industry</span>
+          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-epic-click" aria-label="Read post: Stifled Innovation" style="background: linear-gradient(135deg, rgb(48, 12, 48), rgb(157, 23, 77));">
+            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(254, 205, 211);">Industry</span>
             <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Stifled Innovation</h3>
             <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The Cost of Monopolized Electronic Health Records</p>
             <p class="text-xs" style="color: rgb(254, 205, 211);">June 2026</p>
           </button>
         </div>
 
-        <!-- Medical Education (Order: 2) -->
+        <!-- Medical Education (Order: 2, Gradient: Midnight Blue to Teal) -->
         <div class="flex flex-col gap-8">
-          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-med-ed-click" aria-label="Read post: The State of Medical Education" style="background: linear-gradient(135deg, rgb(15, 23, 42), rgb(13, 148, 136));">
-            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.2); color: rgb(204, 251, 241);">Education</span>
+          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-med-ed-click" aria-label="Read post: The State of Medical Education" style="background: linear-gradient(135deg, rgb(10, 25, 47), rgb(13, 148, 136));">
+            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(191, 219, 254);">Education</span>
             <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The State of Medical Education</h3>
             <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">Medical knowledge doubles every couple months</p>
-            <p class="text-xs" style="color: rgb(204, 251, 241);">June 2026</p>
+            <p class="text-xs" style="color: rgb(191, 219, 254);">June 2026</p>
           </button>
         </div>
 
-        <!-- Quote Spotlight (Order: 3) -->
+        <!-- Quote Spotlight (Order: 3, Gradient: Burnt Amber to Deep Crimson) -->
         <div class="flex flex-col gap-8">
           <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-quote-spotlight-click" aria-label="Read post: Quote Spotlight" style="background: linear-gradient(135deg, rgb(180, 83, 9), rgb(153, 27, 27));">
-            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.2); color: rgb(254, 243, 199);">Inspiration</span>
+            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(254, 243, 199);">Inspiration</span>
             <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Quote Spotlight</h3>
             <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">“Any sufficiently advanced technology is indistinguishable from magic.”</p>
             <p class="text-xs" style="color: rgb(254, 243, 199);">June 2026</p>
@@ -341,56 +342,57 @@
         <i data-lucide="arrow-left" style="width:18px;height:18px;" aria-hidden="true"></i> Back to Posts 
       </button>
 
+      <!-- Book Recommendations View -->
       <article id="post-book-recs-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Book Recommendations</h2>
        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">My top 11 healthcare reads</h3>
-       <p class="text-sm mb-8" style="color: rgb(216, 180, 254);">Reading List · June 2026</p>
+       <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Reading List · June 2026</p>
        
        <div class="blog-post-content">
-        <p>Over the past year, as an avid reader by heart I have delved into over 50 books relating to American healthcare. I wish I could pull up on my library records all of their titles to deliver a proper book recommendation post, but I am only able to go back to this April. The books on this list define recent reads that have had a profound impact on how I think about healthcare and biomedical ethics.</p>
+        <p>Over the past year, as an avid reader by heart I have delved into over 50 books relating to American healthcare[cite: 3]. I wish I could pull up on my library records all of their titles to deliver a proper book recommendation post, but I am only able to go back to this April[cite: 3]. The books on this list define recent reads that have had a profound impact on how I think about healthcare and biomedical ethics[cite: 3].</p>
         <p>Here’s the list of my top 11 (you’ll recognize some from my blog posts):</p>
         <ul>
          <li>
-            <strong style="color: rgb(216, 180, 254);">A Giant Leap</strong> by Robert Wachter<br>
-            <span style="display:block; margin-top:0.25rem;">Explores transformative concepts and significant advancements within the fields of healthcare and biomedical ethics.</span>
+            <strong style="color: rgb(103, 232, 249);">A Giant Leap</strong> by Robert Wachter<br>
+            <span style="display:block; margin-top:0.25rem;">Explores transformative concepts and significant advancements within the fields of healthcare and biomedical ethics.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">Being Mortal</strong> by Atul Gawande<br>
-            <span style="display:block; margin-top:0.25rem;">Examines aging and the end of life, arguing that modern medicine must prioritize the quality of life and patient well-being over merely prolonging survival.</span>
+            <strong style="color: rgb(103, 232, 249);">Being Mortal</strong> by Atul Gawande<br>
+            <span style="display:block; margin-top:0.25rem;">Examines aging and the end of life, arguing that modern medicine must prioritize the quality of life and patient well-being over merely prolonging survival.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">Riding the Bus with My Sister: A True Life Journey</strong> by Rachel Simon<br>
-            <span style="display:block; margin-top:0.25rem;">Chronicles the author's journey of reconnecting with her sister, who has an intellectual disability and spends her days riding city buses.</span>
+            <strong style="color: rgb(103, 232, 249);">Riding the Bus with My Sister: A True Life Journey</strong> by Rachel Simon<br>
+            <span style="display:block; margin-top:0.25rem;">Chronicles the author's journey of reconnecting with her sister, who has an intellectual disability and spends her days riding city buses.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">Disability Visibility (Adapted for Young Adults): 17 First-Person Stories for Today</strong> by Alice Wong
+            <strong style="color: rgb(103, 232, 249);">Disability Visibility (Adapted for Young Adults): 17 First-Person Stories for Today</strong> by Alice Wong[cite: 3]
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">Compassionomics</strong> by Stephen Trzeciak and Anthony Mazzarelli<br>
-            <span style="display:block; margin-top:0.25rem;">Reviews scientific evidence demonstrating that compassionate healthcare improves physical outcomes for patients, lowers medical costs, and reduces physician burnout.</span>
+            <strong style="color: rgb(103, 232, 249);">Compassionomics</strong> by Stephen Trzeciak and Anthony Mazzarelli<br>
+            <span style="display:block; margin-top:0.25rem;">Reviews scientific evidence demonstrating that compassionate healthcare improves physical outcomes for patients, lowers medical costs, and reduces physician burnout.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">A Disability History of the United States</strong> by Kim E. Nielsen
+            <strong style="color: rgb(103, 232, 249);">A Disability History of the United States</strong> by Kim E. Nielsen[cite: 3]
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">Grief and Loss</strong> by Katherine Walsh<br>
-            <span style="display:block; margin-top:0.25rem;">A text detailing the emotional, clinical, and ethical dimensions of navigating death, bereavement, and the grieving process.</span>
+            <strong style="color: rgb(103, 232, 249);">Grief and Loss</strong> by Katherine Walsh<br>
+            <span style="display:block; margin-top:0.25rem;">A text detailing the emotional, clinical, and ethical dimensions of navigating death, bereavement, and the grieving process.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</strong> by David H. Dejong<br>
-            <span style="display:block; margin-top:0.25rem;">Chronicles the history of the Indian Medical Service between 1908 and 1955, exploring the systemic underfunding and assimilation-driven health policies faced by Native American communities.</span>
+            <strong style="color: rgb(103, 232, 249);">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</strong> by David H. Dejong<br>
+            <span style="display:block; margin-top:0.25rem;">Chronicles the history of the Indian Medical Service between 1908 and 1955, exploring the systemic underfunding and assimilation-driven health policies faced by Native American communities.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">The Spirit Catches You and You Fall Down</strong> by Anne Fadiman<br>
-            <span style="display:block; margin-top:0.25rem;">An ethnographic account detailing the tragic cultural miscommunications between a Hmong refugee family and the American medical establishment over the treatment of their daughter's severe epilepsy.</span>
+            <strong style="color: rgb(103, 232, 249);">The Spirit Catches You and You Fall Down</strong> by Anne Fadiman<br>
+            <span style="display:block; margin-top:0.25rem;">An ethnographic account detailing the tragic cultural miscommunications between a Hmong refugee family and the American medical establishment over the treatment of their daughter's severe epilepsy.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">Migration and Health</strong>, Edited by Sandro Galea and Catherine K. Ettman<br>
-            <span style="display:block; margin-top:0.25rem;">Examines the complex systemic health challenges, vulnerabilities, and healthcare access issues faced by migrating and displaced populations.</span>
+            <strong style="color: rgb(103, 232, 249);">Migration and Health</strong>, Edited by Sandro Galea and Catherine K. Ettman<br>
+            <span style="display:block; margin-top:0.25rem;">Examines the complex systemic health challenges, vulnerabilities, and healthcare access issues faced by migrating and displaced populations.[cite: 3]</span>
          </li>
          <li>
-            <strong style="color: rgb(216, 180, 254);">The Invisible Kingdom</strong> by Meghan O’ Rourke<br>
-            <span style="display:block; margin-top:0.25rem;">Explores the often-overlooked struggles of patients living with chronic, difficult-to-diagnose, and "invisible" illnesses, and how the healthcare system often fails them.</span>
+            <strong style="color: rgb(103, 232, 249);">The Invisible Kingdom</strong> by Meghan O’ Rourke<br>
+            <span style="display:block; margin-top:0.25rem;">Explores the often-overlooked struggles of patients living with chronic, difficult-to-diagnose, and "invisible" illnesses, and how the healthcare system often fails them.[cite: 3]</span>
          </li>
         </ul>
 
@@ -424,33 +426,35 @@
        </div>
       </article>
 
+      <!-- If You Knew the Conditions (Native American Health) View -->
       <article id="post-na-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">"If You Knew the Conditions"</h2>
        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The evolution of Native American health care</h3>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">History & Policy · June 2026 · 4 min read</p>
        
        <div class="text-center mb-10">
+         <!-- Point precisely to NAbook.webp cover image -->
          <img src="NAbook.webp" alt="If You Knew the Conditions book cover" class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
          <p class="text-slate-400 text-sm mt-3 italic">A Chronicle of the Indian Medical Service</p>
        </div>
        
        <div class="blog-post-content">
         <blockquote>
-         <p>“Take as many whites as there are Indians and give them as much sickness as the Indian has been having, and the whites would soon be poverty stricken, ambitionless, and immoral. The sicker the Indian gets the worse he lives. Health is the basis of all life.”</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">— Dr. C. A. Harper, Health Officer for the State of Wisconsin, 1933 (pg. 159)</cite>
+         <p>“Take as many whites as there are Indians and give them as much sickness as the Indian has been having, and the whites would soon be poverty stricken, ambitionless, and immoral. The sicker the Indian gets the worse he lives. Health is the basis of all life.”[cite: 2]</p>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Dr. C. A. Harper, Health Officer for the State of Wisconsin, 1933 (pg. 159)[cite: 2]</cite>
         </blockquote>
-        <p>The progressive-minded reformer did not mince words, nor did the President of the American Indian Defense Association and Director of the Institute of Public Health at Columbia University, calling the Indian Service “the most disgraceful apology of scientific or humane medical care” in the country (19). This was in spite of the provisions specifically related to the United States providing Indians health care in 31 out of 389 ratified Indian treaties (5).</p>
-        <p>The Indian medical service’s primary flaws were in its perpetual state of severe under-funding, and the very morals guiding the provision of health care to the Native American community. The curative and crisis-oriented service was oriented to the mission of aiding Indians to complete cultural assimilation– their “only means to salvation” (156-157).</p>
-        <p>For decades, the Indian Service was compelled to be a sub-par organization that did too little to address the various public health challenges Native Americans faced: trachoma, tuberculosis, high material and infant mortality rates, poor sanitation measures, and inadequate and low quality staffing. The nature of Indian reservations compelled them to be distanced from populated areas and often in isolated, roadless areas. For instance, “In 1944, for example, the physician vacancy rate exceeded 30%, with 100 vacancies out of 321 positions. One position on the Rosebud Sioux Reservation was vacant for six years before being filled” (79).</p>
-        <p>This was primarily due to physician salaries being about half of that in private practice during more well-funded years, the high physician load (being on-call 24/7, 11 mos/yr), and poor working and living conditions. For example, “One agency physician lived with his wife in a ten by ten room within the hospital” and even the commissioner of Indian affairs, Collier, argued that physicians and nurses worked “under frontier conditions” (54; 61; 119).</p>
-        <p>“By the 1920s, the status of Indian health was at least two generations behind the national average” (45). By 1935, enormous progress had been made under Collier’s leadership; however, “Indian health status remained two decades behind that of the general population” (102). The Meriam Report, a 872-page report done by a think tank, the Institute for Government Research, revealed startling health disparities for Native Americans: “Infant and early childhood mortality rates twice the national average and a tuberculosis death rate seven times the national average (with Indians in Arizona experiencing a death rate seventeen times higher)” (58-59). Moreover, “In 1954, American Indians faced a measles death rate twenty times the non-Indian rate. Deaths from pneumonia and influenza were four times the non-Indian rate and infant deaths were three times the comparable non-Indian rate” (113).</p>
-        <p>Particularly, there were three populations that suffered the greatest under subpar health care quality and access: children, the disabled, and Alaska Natives. As Native American children were forcibly ripped away from their communities to attend boarding schools seeking to assimilate them into Western society, they were greeted with overcrowded facilities with poor environmental conditions that caused significantly higher disease rates than in Indians staying at reserves (10). Despite 25 years of criticism from the Indian Service, boarding school officials remained disturbingly indifferent (59). Additionally, the lack of pediatricians and nutritionists in the service only contributed to the principal causes of death: infant and childhood diseases (113). Furthermore, the Papago Reservation Superintendent reported the tribe’s population which resembled that of medieval Europe: “Of approximately 260 infants born each year, one-fourth die within twelve months; at the age of 6 there are only 160 left; at the age of eighteen only 125.” (113).</p>
-        <p>As for the disabled Native American community, they had their own disturbing history with the federal government: “When Congress enacted into law the Social Security Act of 1935, it required states to provide services for all crippled children, including American Indian and Alaska Native, or face the loss of federal grants-in-aid. Arizona and New Mexico elected to forfeit federal aid rather than provide services for Indian children, basing their decisions on the Indians’ ward (and non-tax-paying) status and their state organic acts, which denied Indian wards services from the state… By midcentury, for example, 145 counties provided services for crippled children. Yet, this covered just 60% of the Indian population. Of this number, only one- third of American Indians had access to such treatment. In order to obtain services, it was common for children to travel 100 miles or more.” (112- 113).</p>
-        <p>As for Alaska Natives, they were let down by the United States by not following their purchase treaty provisions with Russia. The 1867 treaty that states that the U.S. would provide the same care and protection the rest of the nation enjoyed to Alaska Natives was not followed through. The Alaska Native Service was created in 1914, and two years later the first non-school hospital was opened– 49 years after the treaty was signed (68).</p>
-        <p>Considering early U.S. attempts at providing medical care to Native Americans was purely to prevent nearby military post soldiers from contracting infectious diseases such as smallpox, the federal government’s half-hearted attempt at providing Indians healthcare until the 20th century looks comparatively not so bad (2). But, the bar is *extremely *low. A big part of that stems from how American Indians were not all formally considered citizens until The Indian Citizenship Act of 1924 (68). Another concerning fact is that Indian Service funds were often congressionally allocated “Based on the moral principle of charity rather than on any legal obligation”-- troubling, considering the subjective nature of morality, and the ignorance of federal treaties it rested on (155).</p>
-        <p>Facing a post-WWII wave of nationalism and conservatism, the decades-long desire of Congress to squash federal funding towards Native American health was realized (130). Through the Indian Health Transfer Act of 1954 local and state health authorities were called to assume greater responsibility for Indian health as the Indian Service migrated into the Public Health Service, a better funded and staffed federal agency (130-136).</p>
-        <p>Present-day tribes are faced with the freedom and responsibility that comes with partially being responsible for ensuring their tribe’s access to health care. They are able to combine Western and traditional medicine approaches in a way that respects their culture, values, and religion with healthcare innovation. The Indian Service still provides care that nearly 25% of Native Americans rely on, and Medicare, Medicaid, and the Children’s Health Insurance Program contribute as well. However, tribes have turned to gaming operations to help fund the health services of their people as well (163).</p>
-        <p>In October 2024, Arizona, California, New Mexico, and Oregon were given waivers that allowed state Medicaid agencies to cover traditional medicine practices. These waivers and the terms of approval were developed with Tribal leadership partnerships and advisory groups with the aim to financially support tribes in providing culturally-appropriate health care. Overall, there is still work to be done in reducing health inequities between Native Americans and that of typical Americans. Underfunding and racist ideology and discrimination centrally guided how the U.S. government provided, or lack thereof, of health care to Native communities since the nineteenth century, but, luckily, we’ve come a long way.</p>
+        <p>The progressive-minded reformer did not mince words, nor did the President of the American Indian Defense Association and Director of the Institute of Public Health at Columbia University, calling the Indian Service “the most disgraceful apology of scientific or humane medical care” in the country (19)[cite: 2]. This was in spite of the provisions specifically related to the United States providing Indians health care in 31 out of 389 ratified Indian treaties (5)[cite: 2].</p>
+        <p>The Indian medical service’s primary flaws were in its perpetual state of severe under-funding, and the very morals guiding the provision of health care to the Native American community[cite: 2]. The curative and crisis-oriented service was oriented to the mission of aiding Indians to complete cultural assimilation– their “only means to salvation” (156-157)[cite: 2].</p>
+        <p>For decades, the Indian Service was compelled to be a sub-par organization that did too little to address the various public health challenges Native Americans faced: trachoma, tuberculosis, high material and infant mortality rates, poor sanitation measures, and inadequate and low quality staffing[cite: 2]. The nature of Indian reservations compelled them to be distanced from populated areas and often in isolated, roadless areas[cite: 2]. For instance, “In 1944, for example, the physician vacancy rate exceeded 30%, with 100 vacancies out of 321 positions. One position on the Rosebud Sioux Reservation was vacant for six years before being filled” (79)[cite: 2].</p>
+        <p>This was primarily due to physician salaries being about half of that in private practice during more well-funded years, the high physician load (being on-call 24/7, 11 mos/yr), and poor working and living conditions[cite: 2]. For example, “One agency physician lived with his wife in a ten by ten room within the hospital” and even the commissioner of Indian affairs, Collier, argued that physicians and nurses worked “under frontier conditions” (54; 61; 119)[cite: 2].</p>
+        <p>“By the 1920s, the status of Indian health was at least two generations behind the national average” (45)[cite: 2]. By 1935, enormous progress had been made under Collier’s leadership; however, “Indian health status remained two decades behind that of the general population” (102)[cite: 2]. The Meriam Report, a 872-page report done by a think tank, the Institute for Government Research, revealed startling health disparities for Native Americans: “Infant and early childhood mortality rates twice the national average and a tuberculosis death rate seven times the national average (with Indians in Arizona experiencing a death rate seventeen times higher)” (58-59)[cite: 2]. Moreover, “In 1954, American Indians faced a measles death rate twenty times the non-Indian rate. Deaths from pneumonia and influenza were four times the non-Indian rate and infant deaths were three times the comparable non-Indian rate” (113)[cite: 2].</p>
+        <p>Particularly, there were three populations that suffered the greatest under subpar health care quality and access: children, the disabled, and Alaska Natives[cite: 2]. As Native American children were forcibly ripped away from their communities to attend boarding schools seeking to assimilate them into Western society, they were greeted with overcrowded facilities with poor environmental conditions that caused significantly higher disease rates than in Indians staying at reserves (10)[cite: 2]. Despite 25 years of criticism from the Indian Service, boarding school officials remained disturbingly indifferent (59)[cite: 2]. Additionally, the lack of pediatricians and nutritionists in the service only contributed to the principal causes of death: infant and childhood diseases (113)[cite: 2]. Furthermore, the Papago Reservation Superintendent reported the tribe’s population which resembled that of medieval Europe: “Of approximately 260 infants born each year, one-fourth die within twelve months; at the age of 6 there are only 160 left; at the age of eighteen only 125.” (113)[cite: 2].</p>
+        <p>As for the disabled Native American community, they had their own disturbing history with the federal government: “When Congress enacted into law the Social Security Act of 1935, it required states to provide services for all crippled children, including American Indian and Alaska Native, or face the loss of federal grants-in-aid[cite: 2]. Arizona and New Mexico elected to forfeit federal aid rather than provide services for Indian children, basing their decisions on the Indians’ ward (and non-tax-paying) status and their state organic acts, which denied Indian wards services from the state… By midcentury, for example, 145 counties provided services for crippled children[cite: 2]. Yet, this covered just 60% of the Indian population[cite: 2]. Of this number, only one- third of American Indians had access to such treatment[cite: 2]. In order to obtain services, it was common for children to travel 100 miles or more.” (112- 113)[cite: 2].</p>
+        <p>As for Alaska Natives, they were let down by the United States by not following their purchase treaty provisions with Russia[cite: 2]. The 1867 treaty that states that the U.S. would provide the same care and protection the rest of the nation enjoyed to Alaska Natives was not followed through[cite: 2]. The Alaska Native Service was created in 1914, and two years later the first non-school hospital was opened– 49 years after the treaty was signed (68)[cite: 2].</p>
+        <p>Considering early U.S. attempts at providing medical care to Native Americans was purely to prevent nearby military post soldiers from contracting infectious diseases such as smallpox, the federal government’s half-hearted attempt at providing Indians healthcare until the 20th century looks comparatively not so bad (2)[cite: 2]. But, the bar is *extremely *low[cite: 2]. A big part of that stems from how American Indians were not all formally considered citizens until The Indian Citizenship Act of 1924 (68)[cite: 2]. Another concerning fact is that Indian Service funds were often congressionally allocated “Based on the moral principle of charity rather than on any legal obligation”-- troubling, considering the subjective nature of morality, and the ignorance of federal treaties it rested on (155)[cite: 2].</p>
+        <p>Facing a post-WWII wave of nationalism and conservatism, the decades-long desire of Congress to squash federal funding towards Native American health was realized (130)[cite: 2]. Through the Indian Health Transfer Act of 1954 local and state health authorities were called to assume greater responsibility for Indian health as the Indian Service migrated into the Public Health Service, a better funded and staffed federal agency (130-136)[cite: 2].</p>
+        <p>Present-day tribes are faced with the freedom and responsibility that comes with partially being responsible for ensuring their tribe’s access to health care[cite: 2]. They are able to combine Western and traditional medicine approaches in a way that respects their culture, values, and religion with healthcare innovation[cite: 2]. The Indian Service still provides care that nearly 25% of Native Americans rely on, and Medicare, Medicaid, and the Children’s Health Insurance Program contribute as well (“Medicaid”; Esch)[cite: 2]. However, tribes have turned to gaming operations to help fund the health services of their people as well (163)[cite: 2].</p>
+        <p>In October 2024, Arizona, California, New Mexico, and Oregon were given waivers that allowed state Medicaid agencies to cover traditional medicine practices (Smithey)[cite: 2]. These waivers and the terms of approval were developed with Tribal leadership partnerships and advisory groups with the aim to financially support tribes in providing culturally-appropriate health care (Smithey)[cite: 2]. Overall, there is still work to be done in reducing health inequities between Native Americans and that of typical Americans[cite: 2]. Underfunding and racist ideology and discrimination centrally guided how the U.S. government provided, or lack thereof, of health care to Native communities since the nineteenth century, but, luckily, we’ve come a long way[cite: 2].</p>
         
         <h3>References</h3>
         <ul class="works-cited list-none pl-0">
@@ -487,20 +491,21 @@
        </div>
       </article>
 
+      <!-- Quote Spotlight View -->
       <article id="post-quote-spotlight-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Quote Spotlight</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Inspiration · June 2026</p>
        
        <div class="blog-post-content">
         <blockquote>
-         <p>“Any sufficiently advanced technology is indistinguishable from magic.”</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">— Arthur C. Clarke</cite>
+         <p>“Any sufficiently advanced technology is indistinguishable from magic.”[cite: 5]</p>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Arthur C. Clarke[cite: 5]</cite>
         </blockquote>
-        <p>Clarke’s third law, a mention to the British science fiction writer and futurist, describes a timeless ideal relevant to technological innovation’s power and influence to shape humanity. This quote first appeared in the footnote of his 1973 revision of *Profiles of the Future*, and is both inspiring and also revealing of the nature of technology. Artificial intelligence stands out as a technology that we are still beginning to understand and develop and I am excited to see how healthcare technology continues to innovate and save lives– all while intentional regulations, laws, and the Coalition for Health AI (CHAI) work to ensure safe steps forward.</p>
+        <p>Clarke’s third law, a mention to the British science fiction writer and futurist, describes a timeless ideal relevant to technological innovation’s power and influence to shape humanity[cite: 5]. This quote first appeared in the footnote of his 1973 revision of *Profiles of the Future*, and is both inspiring and also revealing of the nature of technology[cite: 5]. Artificial intelligence stands out as a technology that we are still beginning to understand and develop and I am excited to see how healthcare technology continues to innovate and save lives– all while intentional regulations, laws, and the Coalition for Health AI (CHAI) work to ensure safe steps forward[cite: 5].</p>
         
         <h3>References</h3>
         <ul class="works-cited list-none pl-0">
-         <li>“Clarke’s Three Laws.” <em>New Scientist</em>, New Scientist Ltd., www.newscientist.com/definition/clarkes-three-laws/. Accessed 17 June 2026.</li>
+         <li>“Clarke’s Three Laws.” <em>New Scientist</em>, New Scientist Ltd., www.newscientist.com/definition/clarkes-three-laws/. Accessed 17 June 2026.[cite: 5]</li>
         </ul>
        </div>
        
@@ -523,32 +528,33 @@
              <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
              <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
            </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(180, 83, 9); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(13, 148, 136); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
          </form>
          
          <div id="post-quote-spotlight-comments-list"></div>
        </div>
       </article>
 
+      <!-- The State of Medical Education View -->
       <article id="post-med-ed-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The State of Medical Education</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Education · June 2026</p>
        
        <div class="blog-post-content">
         <blockquote>
-         <p>“In 1950, medical information doubled every fifty years. Today, it’s every couple of months.”</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">— A Giant Leap, pg. 200</cite>
+         <p>“In 1950, medical information doubled every fifty years. Today, it’s every couple of months.”[cite: 7]</p>
+         <cite style="font-size: 0.85rem; color: #64748b;">— A Giant Leap, pg. 200[cite: 7]</cite>
         </blockquote>
-        <p>It simply is inefficient and unsustainable to expect medical schools’ curriculum and medical students themselves humanly keep up with all this knowledge.</p>
-        <p>There have been recent efforts to change medical training: introducing medical students to patients early in their first year, and a focus on working in interdisciplinary teams, improving care systems, and addressing health disparities that have been widely implemented (201). There are also fewer lectures and more case-based discussions (201). Additionally, medical school students and residents are increasingly encouraged to use AI tools responsibly– factoring in prompt engineering, how to spot hallucination and bias, and managing ethics and compliance issues (208).</p>
-        <p>Anyone intending to be a physician can also celebrate Marc Triola’s (professor and director of NYU’s Institute for Innovations in Medical Education) perspective on what should be taught less of: “Rote memorization and fact regurgitation are just going to be less important” (202-203; 208).</p>
-        <p>Funnily enough, there’s only one set of facts that Dr. Watcher, author of *A Giant Leap* and chair of the department of medicine at the University of California, San Francisco, found faculty could agree on, after “Countless hours of debate on curricular purging”: no longer requiring the memorization of the Krebs cycle. He remarks that “This consensus likely stemmed more from physicians’ collective trauma over learning this biochemical energy pathway in med school than from any rigorous assessment of its educational merit” (208).</p>
-        <p>So, where does the future of medical school and residency training program education go from here?</p>
-        <p>We’ll just have to wait and see.</p>
+        <p>It simply is inefficient and unsustainable to expect medical schools’ curriculum and medical students themselves humanly keep up with all this knowledge[cite: 7].</p>
+        <p>There have been recent efforts to change medical training: introducing medical students to patients early in their first year, and a focus on working in interdisciplinary teams, improving care systems, and addressing health disparities that have been widely implemented (201)[cite: 7]. There are also fewer lectures and more case-based discussions (201)[cite: 7]. Additionally, medical school students and residents are increasingly encouraged to use AI tools responsibly– factoring in prompt engineering, how to spot hallucination and bias, and managing ethics and compliance issues (208)[cite: 7].</p>
+        <p>Anyone intending to be a physician can also celebrate Marc Triola’s (professor and director of NYU’s Institute for Innovations in Medical Education) perspective on what should be taught less of: “Rote memorization and fact regurgitation are just going to be less important” (202-203; 208)[cite: 7].</p>
+        <p>Funnily enough, there’s only one set of facts that Dr. Watcher, author of *A Giant Leap* and chair of the department of medicine at the University of California, San Francisco, found faculty could agree on, after “Countless hours of debate on curricular purging”: no longer requiring the memorization of the Krebs cycle[cite: 7]. He remarks that “This consensus likely stemmed more from physicians’ collective trauma over learning this biochemical energy pathway in med school than from any rigorous assessment of its educational merit” (208)[cite: 7].</p>
+        <p>So, where does the future of medical school and residency training program education go from here?[cite: 7]</p>
+        <p>We’ll just have to wait and see.[cite: 7]</p>
         
         <h3>References</h3>
         <ul class="works-cited list-none pl-0">
-         <li>Wachter, Robert. <em>A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future</em>. Portfolio / Penguin, an Imprint of Penguin Random House LLC, 2026.</li>
+         <li>Wachter, Robert. <em>A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future</em>. Portfolio / Penguin, an Imprint of Penguin Random House LLC, 2026.[cite: 7]</li>
         </ul>
        </div>
        
@@ -578,25 +584,26 @@
        </div>
       </article>
 
+      <!-- Stifled Innovation (Epic's EHR Monopoly) View -->
       <article id="post-epic-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Stifled Innovation</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Industry · June 2026</p>
        
        <div class="blog-post-content">
-        <p>The end of my blog post about A Giant Leap made a pointed remark at Epic, the largest electronic health system in the United States:</p>
+        <p>The end of my blog post about A Giant Leap made a pointed remark at Epic, the largest electronic health system in the United States:[cite: 8]</p>
         <blockquote>
-         <p>“Healthcare’s primary function is to maximize human health, and if wise AI implementation can assist with that, then let it be– Epic’s monopolistic and anticompetitive practices be damned (Watcher 214-222).”</p>
+         <p>“Healthcare’s primary function is to maximize human health, and if wise AI implementation can assist with that, then let it be– Epic’s monopolistic and anticompetitive practices be damned (Watcher 214-222).”[cite: 8]</p>
         </blockquote>
-        <p>Let’s double click on that.</p>
-        <p>The origins of Faulkner’s company began in 1979 and it has grown to service over 250 million Americans and over half of U.S. hospital beds (214-215). Epic has rolled out over a 100 AI initiatives that can be built in and purchased with their EHR (216). There is one problem though: their AI tools are, in many cases, not as good as those of other companies. This leaves healthcare systems with the decision to stick with Epic’s offerings or to purchase integratable AI tools for their EHR system (217).</p>
-        <p>In speaking to several health system technology leaders, Dr. Watcher observed an interesting theme: all leaders insisted to remain anonymous when talking about Epic (219). They went further, saying that for them to invest in third-party AI tools they would have to be "extraordinarily better” than Epic’s (219).</p>
-        <p>It goes beyond the convenience of tool integration or cost savings sticking with Epic provides– rather, it’s about not having to deal with keeping up with 50 vendors a week coming to them, and having to constantly keep up with the constant healthcare AI innovations (219). Sticking with Epic is the safe choice, especially as Epic introduced a single pricing option to access their entire AI portfolio (219).</p>
-        <p>In response to Epic’s recent lawsuits alleging they engage in monopolistic, anticompetitive practices, past president of Physicians for a National Health Program Adam Gaffney states, “‘Handing the keys over to a private monopoly doesn’t make sense. You need to think of a national medical record system as a public service’” (221).</p>
-        <p>As Oracle is now the EHR of choice for Veteran Administration hospitals, where 70% of medical trainees rotate through, and Epic continues to be the EHR of choice for the majority of academic hospitals, the positive experiences of future physicians could have a say in if Oracle obtains more healthcare system customers. But, it is quite unlikely given the enormous amount of control Epic, or rather Faulkner, the sole owner has over the EHR and EHR AI tools space.</p>
+        <p>Let’s double click on that.[cite: 8]</p>
+        <p>The origins of Faulkner’s company began in 1979 and it has grown to service over 250 million Americans and over half of U.S. hospital beds (214-215)[cite: 8]. Epic has rolled out over a 100 AI initiatives that can be built in and purchased with their EHR (216)[cite: 8]. There is one problem though: their AI tools are, in many cases, not as good as those of other companies[cite: 8]. This leaves healthcare systems with the decision to stick with Epic’s offerings or to purchase integratable AI tools for their EHR system (217)[cite: 8].</p>
+        <p>In speaking to several health system technology leaders, Dr. Watcher observed an interesting theme: all leaders insisted to remain anonymous when talking about Epic (219)[cite: 8]. They went further, saying that for them to invest in third-party AI tools they would have to be "extraordinarily better” than Epic’s (219)[cite: 8].</p>
+        <p>It goes beyond the convenience of tool integration or cost savings sticking with Epic provides– rather, it’s about not having to deal with keeping up with 50 vendors a week coming to them, and having to constantly keep up with the constant healthcare AI innovations (219)[cite: 8]. Sticking with Epic is the safe choice, especially as Epic introduced a single pricing option to access their entire AI portfolio (219)[cite: 8].</p>
+        <p>In response to Epic’s recent lawsuits alleging they engage in monopolistic, anticompetitive practices, past president of Physicians for a National Health Program Adam Gaffney states, “‘Handing the keys over to a private monopoly doesn’t make sense. You need to think of a national medical record system as a public service’” (221)[cite: 8].</p>
+        <p>As Oracle is now the EHR of choice for Veteran Administration hospitals, where 70% of medical trainees rotate through, and Epic continues to be the EHR of choice for the majority of academic hospitals, the positive experiences of future physicians could have a say in if Oracle obtains more healthcare system customers[cite: 8]. But, it is quite unlikely given the enormous amount of control Epic, or rather Faulkner, the sole owner has over the EHR and EHR AI tools space[cite: 8].</p>
         
         <h3>References</h3>
         <ul class="works-cited list-none pl-0">
-         <li>Wachter, Robert. <em>A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future</em>. Portfolio / Penguin, an Imprint of Penguin Random House LLC, 2026.</li>
+         <li>Wachter, Robert. <em>A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future</em>. Portfolio / Penguin, an Imprint of Penguin Random House LLC, 2026.[cite: 8]</li>
         </ul>
        </div>
        
@@ -626,6 +633,7 @@
        </div>
       </article>
 
+      <!-- Migrant Health view -->
       <article id="post-migration-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Healing Without Borders</h2>
        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">Bridging gaps in migrant health through innovation and policy</h3>
@@ -701,6 +709,8 @@
        </div>
       </article>
 
+      <!-- Other articles remain perfectly bound in hidden view state under routing protocol -->
+      <!-- Case for Compassionate Care -->
       <article id="post-compassion-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Case for Compassionate Care</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Book Insights · June 2026 · 8 min read</p>
@@ -738,11 +748,11 @@
         <p>Even here, compassion is the answer. “Research shows that compassion for others can be a coping strategy to overcome personal distress and strengthen one’s own resilience”. Here lies the difference between empathy and compassion. When we feel empathy, the parts of our brain that light up when we are in pain ourselves light up, but when we feel compassion (act on our empathy), our reward pathway lights up.</p>
         <p>In fact, “Neuroscience research shows that the most potent activator of brain circuits involved in human happiness is actually… compassion”. Humans have been hard-wired to be compassionate towards others for millenia as an ancient survival strategy.</p>
         <p>And as research continues to show modern-day, it is still a survival strategy. Not only do physicians show decreased symptoms of burnout when they lean-in emotionally with their patients, but they report better well-being, promoted by how the “helper’s high” increased feelings of calmness, feelings of self-worth, and boosts “Circulating neuromodulators (such as the hormone oxytocin) which not only buffers stress, but also triggers positive emotions (such as feelings of calm and closeness)”.</p>
-        <p>An interesting study done on Chief Medical Officers (CMOs) in Harvard Business Review confirms these findings. While 69% of them reported “severe,” “very severe,” or “worst possible” stress levels, they had surprisingly low levels of burn out. 91% of these CMOs actively practiced compassion in their careers– protecting them physically, mentally, and emotionally from the negative effects that stress and burnout can have. That was their secret to being resilient in their intense, demanding careers.</p>
+        <p>An interesting study done on Chief Medical Officers (CMOs) in a Harvard Business Review article confirms these findings. While 69% of them reported “severe,” “very severe,” or “worst possible” stress levels, they had surprisingly low levels of burn out. 91% of these CMOs actively practiced compassion in their careers– protecting them physically, mentally, and emotionally from the negative effects that stress and burnout can have. That was their secret to being resilient in their intense, demanding careers.</p>
         <p>But the benefits of more compassionate care extends to the finances of healthcare organizations: “Hospitals that are rated highly on their patient experience scores are also higher performing hospitals financially”. For instance, those that were rated “excellent” by patients had 2.9% higher average margins than low performers. A 4.7% margin vs a 1.8% margin is the difference between being able to keep doors open or not for many hospitals, highlighting the nonnegotiable need to provide positive patient experiences. This is especially relevant as the federal government partially determines how they fund healthcare organizations based on how they score on a mandated patient experience survey (HCAHPS).</p>
         <p>But, what do patients value in their healthcare experiences?</p>
         <p>One Harris Poll showed that patients valued being listened carefully and being easy to talk to way more than the prestige of where the physician was trained, their experience treating patients with their medical conditions, and even if they spoke their native language. This shows how compassion transcends culture, language, and belief systems.</p>
-        <p>Kenneth Schwartz, a health lawyer that received an advanced lung cancer diagnosis at 40 with no smoking history, and a wife and two-year-old son, shared the profound impact his clinicians had on him, remarking “compassion makes “the unbearable bearable’”. One particular physician scientist, Dr. Kurt Isselbacher took a great interest in helping him navigate which experimental therapy to choose. “Schwartz wrote this about him: “I was especially affected because such hopefulness was not coming from a faith healer, but a distinguished researcher’”. Later on, he remarked how touched he was even by the small empathetic gestures his caregivers gave him, saying: “In some ways, these quiet acts of humanity have given more healing than the high-dose radiation and chemotherapy that hold the hope of a cure”.</p>
+        <p>Kenneth Schwartz, a health lawyer that received an advanced lung cancer diagnosis at 40 with no smoking history, and a wife and two-year-old son, shared the profound impact his clinicians had on him, remarking “compassion makes ‘the unbearable bearable’”. One particular physician scientist, Dr. Kurt Isselbacher took a great interest in helping him navigate which experimental therapy to choose. “Schwartz wrote this about him: ‘I was especially affected because such hopefulness was not coming from a faith healer, but a distinguished researcher’”. Later on, he remarked how touched he was even by the small empathetic gestures his caregivers gave him, saying: “In some ways, these quiet acts of humanity have given more healing than the high-dose radiation and chemotherapy that hold the hope of a cure”.</p>
         <p>Although Schwartz passed away less than a year after his diagnosis, his legacy continues through the “Schwartz Rounds” that occur in lecture halls and conference rooms of hospitals nationwide. During these regularly scheduled rounds, healthcare providers openly discuss the socio-emotional issues they face in caring for patients and their families, finding community and support in sharing with co-workers that understand what they’re going through. Over 550 hospitals and health systems across the globe participate in Schwartz rounds because of the support made possible by the Schwartz Center for Compassionate Healthcare. The Center supports over 200k healthcare professionals yearly through education, resources, and regularly held conferences.</p>
         <p>Unlocking the door to a more compassionate health care experience for patients doesn’t require a lot of time either. A University of Wisconsin-Madison study showed that a two-week compassion training course showed fMRI changes signalling greater ability to be compassionate. Furthermore, a Mass General psychiatrist and her colleagues developed three 60-minute modules rooted in the neuroscientific underpinnings of how to harness human connection in clinical settings. In a randomized controlled trial, “The physicians who were randomized to empathy training had a statistically significant rise in positive patient ratings of physician compassion”.</p>
         <p>Compassion training works, helping to decrease medical errors, improve the mental health of clinicians and patients alike, and improves the bottom line. More than that, it promotes the very humanity and care our world desperately needs.</p>
@@ -750,7 +760,7 @@
         <p>When people are at as vulnerable and emotionally-taxing a point in their lives as being admitted to the hospital due to fatal health issues, they need that point of human connection to feel less alone, that someone cares. Patients pay attention to how they or their loved ones are treated and talked about– that “53-year-old alcoholic with liver failure” is someone’s brother, husband, father, and uncle, and it can be a depressing sign to patients as to just how depersonalized and disconnected many physicians are to the people they closely interact with.</p>
         <blockquote>
          <p>“Resarchers found that 56 percent of physicians believe they do not have time to treat patients with compassion.”</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">— Compassionomics</cite>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Compassionomics, 249</cite>
         </blockquote>
         <p>Research done by Northwestern University concluded 31.5 seconds was all it took for a physician to demonstrably show compassion in their interactions with patients as well as their responses. Physicians' fears of how being compassionate might take up too much time for them to stay on track with schedules or open up a Pandora’s box of patients delving into their emotional issues was proven to be unfounded.</p>
         <p>A Johns Hopkins University study found that “Compassionate care not only reduced patients’ emotional distress, but the effects also persisted up to six months after the clinic visit”.</p>
@@ -760,7 +770,7 @@
         <p>From nursing aides at nursing homes to esteemed specialists in academic hospitals, we could all benefit from learning about the science of human compassion. To be compassionate is to be human and treat one another with the humanity we desperately need to feel whole in a world that is increasingly connected and showing unprecedented mental health issues such as loneliness at the same time.</p>
         <blockquote>
          <p>“Before one can learn to be more compassionate, there is a vital first step. First, one must believe that every patient deserves compassion. Every single one.”</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">— Compassionomics</cite>
+         <cite style="font-size: 0.85rem; color: #64748b;">— Compassionomics, 285</cite>
         </blockquote>
         
         <h3>References</h3>
@@ -796,6 +806,7 @@
        </div>
       </article>
 
+      <!-- Beyond Compliance (UI/UX & AI) view -->
       <article id="post-ai-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">AI & Policy · June 2026 · 8 min read</p>
@@ -971,178 +982,7 @@
          <div id="post-ai-comments-list">
              </div>
        </div>
-      </article>
 
-      <article id="post-giant-leap-container" class="hidden max-w-3xl mx-auto relative">
-       <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">A Giant Leap: Trust and Oversight in Healthcare AI</h2>
-       <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Book Insights · June 2026 · 5 min read</p>
-       
-       <button class="audio-player flex items-center gap-3 mb-8 transition-colors focus:outline-none cursor-pointer relative z-10" data-src="A%20Giant%20Leap.m4a" data-fallback-time="5:00" aria-label="Play audio narration">
-           <span class="play-btn flex items-center justify-center rounded-full bg-slate-800 p-2 w-8 h-8 pointer-events-none">
-               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-           </span>
-           <span class="font-medium text-sm flex items-center gap-1 pointer-events-none">Listen <span class="text-slate-500 mx-1">•</span> <span class="duration-text">-5:00 remaining</span></span>
-       </button>
-       
-       <div class="text-center mb-10">
-         <img src="A-Giant-Leap.jpeg" alt="Book cover of A Giant Leap by Robert Wachter, MD" class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
-         <p class="text-slate-400 text-sm mt-3 italic">Published Feb 2026</p>
-       </div>
-       
-       <div class="blog-post-content">
-        <blockquote>
-         <p>"Doctors used to be empathic,” he told me, “but the system has sucked the soul out of everybody."</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">— A Giant Leap, page 186</cite>
-        </blockquote>
-        <p>The slow erosion of the patient-doctor relationship in the United States the past few decades has been caused by a mixture of electronic health record (EHR) implementation, the shortage of healthcare providers, and the nature of how our healthcare system is funded– being billed per service. The ideal of having a lifelong relationship with your primary care provider is not the reality most of us share.</p>
-        <p>This erosion has reduced trust in this relationship which serves two distinct purposes as artificial intelligence technologies are implemented across healthcare– it makes it easier for patients to trust in newly implemented AI tools due to the lower level of trust in the current system and harder because they may question the tools’ accuracy and the motives behind institutional adoption (Wachter 50).</p>
-        <p>Patients may think AI, as it is used in other sectors, is a way to decrease labor costs and increase margins.</p>
-        <p>But AI can do, and is doing, both, all while performing at higher levels of accuracy than providers in some instances. For instance, when faced with the “famously vexing cases” of <i>The New England Journal of Medicine,</i> generative AI was on par with the best faculty diagnosticians (Wachter xix).</p>
-        <p>The doctor-author remarks on this insight with the humorous remark: “Was this how it felt to be a skilled portrait painter in the late nineteenth century, when photography emerged as a much faster and cheaper way to capture people’s likenesses?”</p>
-        <p>Although we aren’t quite there yet with healthcare AI, in our lifetimes, it is highly probable that the abilities of artificial intelligence will transform the healthcare landscape.</p>
-        <p>Besides, it’s not like humans are void of making millions of serious medical mistakes a year. As Dr. Wachter points out, “Nearly one million Americans are severely harmed or killed by medical mistakes every year” (xxi). On top of that, one-of-three dollars spent in healthcare are spent on administrative costs– suddenly, incorporating AI to ease administrative costs, and use in clinical practice, as a doctor-in-the-loop is utilized, doesn't seem like such a bad idea.</p>
-        <p>Actually, it seems like the shake-up that our healthcare system desperately needs.</p>
-        <p>But, what does the regulatory landscape look like for these technologies that advance every day?</p>
-        <p>As it's called in Silicon Valley slang, let’s double click on that. As the Trump administration scales back on the federal government's regulatory arm, FDA commissioner Rob Califf argues “The agency needs <i>more</i> resources to carry out its functions, particularly as new AI tools become ubiquitous features of clinical care” (Wachter 234). Healthcare regulation has always walked a tight-rope: too much regulation and you stifle innovation, too little and you endanger lives. As we give technology greater responsibilities, we must reckon with the risks this may bring.</p>
-        <p>Generative AI can hallucinate one minute and provide flawless specified output the next, and then act like it “forgot” the specificities of prior conversations the next. Anyone that has played around with Gen AI enough can tell you that much. So, when it comes to the lives of ourselves and our loved ones, how does the dance between biomedical ethics and technological healthcare innovation go? Is it a graceful one?</p>
-        <p>As long as there’s a human in the loop, many of us would say yes, given current technological capabilities and for the foreseeable future.</p>
-        <p>But, there’s a few issues with that; namely, humans are not very good at being vigilant against reliable technologies and de-skilling would likely occur as they become more dependent on these technologies.</p>
-        <p>One poignant example lies in the 2009 Air France Flight 447 crash off the coast of Brazil. As the plane’s airspeed sensors failed, the pilot and copilot were on their own to guide the plane through a strong gust of wind. An event that wouldn't have typically been anything special became the scene of a fatal incident, as 228 people plunged into the Atlantic Ocean.</p>
-        <p>In the words of the late aviation journalist William Langewiesche, “We are locked into a spiral in which poor human performance begets automation, which worsens human performance, which begets increasing automation” (Wachter 87).</p>
-        <p>But before you write off this troubling incident as the crime of two bloody hands, and not of human nature, take a look at this study.</p>
-        <p>“In a dramatic 1998 study, research psychologist Kathleen Mosier placed twenty-one experienced commercial pilots in a flight simulator. During the flight, the pilots were shown a warning light pointing to a potential fire in one of the engines. The twist was that several other indicators showed no signs of a fire, making it overwhelmingly likely that this was a false alarm. Nevertheless, all twenty-one of the pilots shown the warning light decided to shut down the engine, a dangerous move. In subsequent interviews, two-thirds of the pilots reported having seen at least one other indicator confirming the fire (several recalled seeing more than one), despite the fact that there were no such cues, a phenomenon Mosier dubbed “phantom memory.” Our trust in technology can become so powerful that we ignore our own senses, creating a special problem for the human in the loop” (Wachter 88).</p>
-        <p>Hard to read, right? Especially considering this aspect of human psychology likely has not dramatically shifted since the late 90s.</p>
-        <p>Another reason why the human-in-the-loop idea may not be as strong as we think: sometimes the human makes it worse, particularly in clinical diagnostic reasoning.</p>
-        <p>In a study run by Stanford informatics expert Jonathan Chen, “Physicians were given cases to review; half (the control group) were allowed to use their usual resources, and half were given access to GPT-4. The control group ended up with a score of 74 percent on a measure of diagnostic reasoning, whereas the group with access to GPT-4 scored 76 percent– a trivial improvement. The shocker was that when GPT-4 was given the cases to review by itself, without any input from the physicians, it scored 92 percent” (Wachter 90).</p>
-        <p>There are a few alternative solutions to keeping a more direct human-AI partnership while keeping the nature of us in mind, including having the doctor to be the first to weigh in and having AI systems periodically give false diagnoses, chart summaries, or recommendations (Wachter 91). However, this latter strategy puts an essential glass ceiling on healthcare AI capabilities. Isn’t the whole point of the man-machine collaboration to advance beyond capabilities man can achieve alone, to the furthest achievable point to benefit humanity?</p>
-        <p>There is no right answer to many of these kinds of questions when we involve artificial intelligence. But, as AI revolutionizes healthcare, how do we train the next generation of doctors?</p>
-        <p>They will need to be trained with less rote memorization and a greater skillset in how to use AI tools wisely. Physicians spend 45-65% of their work day staring at a screen, and as AI advances, they will be better able to be caring towards patients they see for 10-15 minute windows. The pace of AI advancement has surpassed that of medical schools curriculum, and something more important– federal regulation.</p>
-        <p>When Dr. Wacher met with the United States’ chief health AI official in 2024, a newly established position itself, he asked a question that is quite revealing of the healthcare AI federal regulatory landscape.</p>
-        <p>“‘If we throw a wrapper on GPT-4 and it gives me diagnostic advice when I’m seeing a patient– but I, as a physician, still need to sign off at the end– where does that live in the regulatory framework?”’</p>
-        <p>His response: “‘Dunno yet’” (Wachter 240).</p>
-        <p>Although <i>A Giant Leap</i> was released in February of 2026, healthcare AI regulation is still a gray area in many ways, and will continue to be as AI grows in a direction that will force citizens and lawmakers alike to think about technology ethics in this important sector.</p>
-        <p>As former national coordinator for health IT David Blumenthal and Google’s chief of regulatory affairs Bakul Patel argued in writing, “How can the government regulate a single device that could be applied to any conceivable clinical problem, whose knowledge base dwarfs any human’s and changes constantly, whose methods of reaching conclusions are beyond the comprehension even of its creators, and whose computing capacity grows by leaps and bounds?” (Wachter 240-241).</p>
-        <p>Situated in the center of this debate is the Coalition for Health AI (CHAI) that was founded in 2021 and has over three thousand member organizations including tech giants, academic hospitals, AI start-ups, and government agencies. Most notably, CHAI runs a national network of assurance labs primarily at academic health systems that test and validate healthcare AI tools and provides research-based guidance to promote responsible AI use (Wachter 243). It’s an important organization that encourages transparency and encourages safe AI use in a competitive, yet incredibly important industry: healthcare.</p>
-        <p>As the AI race moves full steam ahead, it is organizations like CHAI that help fill a regulatory void that the government could not. CHAI makes the healthcare AI industry one step ahead because of the intense and intentional collaboration it fosters, and gives me hope despite the risks and unpredictable issues that come with a revolution in healthcare.</p>
-        <p>As Mayo Clinic CEO and author Dr. Wachter remarked, in this space, “The risks of going too slowly exceed the risks of going too fast” (258). AI will disrupt the healthcare industry– but not before lawyers, consultants, and accountants feel the heat (Wachter 262).</p>
-        <p>Healthcare’s primary function is to maximize human health, and if wise AI implementation can assist with that, then let it be– Epic’s monopolistic and anticompetitive practices be damned (Wachter 214-222).</p>
-        
-        <h3>References</h3>
-        <ul class="works-cited list-none pl-0">
-         <li>“Responsible AI Guidance.” CHAI, Coalition for Health AI, Inc, www.chai.org/workgroup/responsible-ai. Accessed 10 June 2026.</li>
-         <li>Wachter, Robert. A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future. Portfolio / Penguin, an Imprint of Penguin Random House LLC, 2026.</li>
-        </ul>
-       </div>
-       
-       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
-         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
-         
-         <form onsubmit="submitComment(event, 'post-giant-leap')" class="text-left space-y-4 max-w-2xl mx-auto">
-           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-             <div class="flex flex-col">
-               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
-               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
-             </div>
-             <div class="flex flex-col">
-               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
-               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
-             </div>
-           </div>
-           <div class="flex flex-col">
-             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
-             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
-           </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(30, 64, 175); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
-         </form>
-         
-         <div id="post-giant-leap-comments-list">
-             </div>
-       </div>
-      </article>
-
-      <article id="post-chronic-container" class="hidden max-w-3xl mx-auto relative">
-       <h2 class="mb-3" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Realities of Chronic Illness</h2>
-       <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Personal · June 2026 · 6 min read</p>
-       
-       <button class="audio-player flex items-center gap-3 mb-8 transition-colors focus:outline-none cursor-pointer relative z-10" data-src="The%20Realities%20of%20Chronic%20Illness.m4a" data-fallback-time="6:00" aria-label="Play audio narration">
-           <span class="play-btn flex items-center justify-center rounded-full bg-slate-800 p-2 w-8 h-8 pointer-events-none">
-               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-           </span>
-           <span class="font-medium text-sm flex items-center gap-1 pointer-events-none">Listen <span class="text-slate-500 mx-1">•</span> <span class="duration-text">-6:00 remaining</span></span>
-       </button>
-       
-       <div class="blog-post-content">
-        <blockquote>
-         <p>"When, I wondered, had I last yearned for something other than simply feeling better?"</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">— The Invisible Kingdom, page 92</cite>
-        </blockquote>
-        <p>It was Monday, September 9, 2024. My eyes opened, natural sunlight from our small dorm windows greeting me. But, before I could walk down the steps of my bunk bed and get ready for class, I had to confront the bodily sensations deluding me out of the healthy privilege I had grown used to for the past nineteen years. I had just gotten a shaded butterfly tattoo for my nineteenth birthday and was still learning to embrace being a college freshman- the communal bathrooms, sharing a dorm with someone, and learning to navigate the enormous University of Georgia campus. I would also soon learn how to navigate the American healthcare system in the throes of chronic pain for the next four months of my life, without answers for why I was in debilitating pain, what could mitigate it, and how this would affect my academic career. It was a rough period, no doubt, but, somehow I survived to tell the tale- moreover, I survived to create a major and professional aspirations stemming from those experiences. Making a major and planning to acquire over a decade of post-secondary education is an arduous journey, but nothing compares to waking up for the next 123 days in the worst pain of your life, an invisible illness no test or doctor can explain.</p>
-        <p>For those suffering from chronic pain, a diagnosis is more than a descriptive phrase on an electronic health record, a set of code words hard to pronounce that clinical professionals break down to a patient's level. It's a label that makes us feel seen, understood, and gives us hope. Hope of a cure, and for someone facing our symptoms in the future to get definitive answers, more than that, the answers we deserve. In reading The Invisible Kingdom, I came across a dance of words in which I felt that my experience was shared by others, people I didn't know, but I understood and they understood me in a way that those closest to us may never, despite their empathetic attempts. I couldn't imagine a better quote to begin this article (O'Rourke 17).</p>
-        <blockquote>
-         <p>"But this is not a story of recovery or the overcoming of a disease; the focus is not on my being a survivor, or getting “better,” as my objective turned out to be learning to live with uncertainty and incapacity. Without data or answers, I had to make room for a reality that included my near-total lack of control. I still don't have definitive answers. But gradually, peeling away uncertainty layer by layer, I arrived at what feels, to me at least, like a truth I can live with."</p>
-        </blockquote>
-        <p>Autoimmune diseases affect over 15 million Americans (Abend 2), and they are rising at near epidemic rates according to scientists ("Latest Policy" 3). However, the Autoimmune Association estimates that as many as 50 million could be affected due to the dramatic changes in environment and lifestyle that have occurred since 1991. Antinuclear antibodies (ANA), commonly found in those suffering from autoimmune issues, have tripled in prevalence in adolescents since then, and women account for 80% of autoimmune patients ("Autoimmune" 1). When accounting for women of color, the health disparities enlarge, as Black and Hispanic women are diagnosed with lupus, a common autoimmune condition, at nearly three times the rate of non-Hispanic white women, and have a mortality rate of that multiple as them as well ("Latest Policy" 4). When we account for how women of color are underrepresented in clinical trials, and often have greater barriers in accessing the healthcare essential to being diagnosed, the disparities widen further. Furthermore, according to the Autoimmune Association, "It takes an average of three years (and four doctors) for a sufferer to be given a diagnosis of an auto-immune disease," a level of effort, time, and resources that those of marginalized communities often do not have. In addition to that, reliable diagnostic tools are still scarce for the over 100 autoimmune diseases and there is no cure for them, making chronic pain the reality of millions. Moreover, one Harvard researcher points out that "Medical science's understanding of auto-immunity lags a decade behind its understanding of cancer," a disease still only partially understood (O'Rourke 45).</p>
-        <p>Until medicine catches up to the needs of those suffering from autoimmune issues, whether they know it or not, it pays to understand the plight of these "invisible" people. It is only by bringing their stories to the light can we increase public awareness, and, therefore, federal funding and policy reform to better face the autoimmune disease epidemic. For instance, over one billion was allocated by the National Institutes of Health to autoimmune disease research ("Report" 1), conditions that 23.5-50 million Americans suffer from. Meanwhile, 8.1 billion was allocated to cancer research ("Report" 1) (over two million projected new cases and ~611k projected deaths for 2024) (Siegel 12) and over three billion to HIV/AIDS research ("Report" 1) (over 1.2 million Americans had HIV in 2024, AIDS refers to the latest HIV infection stage) ("CDC" 1). In telling my story, with the courage that reading O' Rourke's health testimony has brought me, I hope to make these numbers feel more real, more connected to the stories of our loved ones and communities, making us feel more passionately about how to reduce the pain that our fellow Americans face- if only there were more resources to do this literal life or death work.</p>
-        <p>When I briefly tell my story to new friends or those that ask why I feel so passionately about pursuing healthcare technology law, they are often surprised. My story sounds like a living nightmare for any nineteen-year-old far from home to face, especially as I did not walk into university with a strong peer network or access to a car- and it was. There were numerous doctors' appointments, primarily with my primary care physician at the University Health Center, but also with neurologists, physical therapists, ear, nose, and throat doctors, and as a final suggestion of my primary care physician, a massage therapist. Coming from an upper middle class background and going to a university that had many of these services on-campus, I came from a position of privilege. But illness discriminates against no one. At the end of a four month journey, I was given "the talk" by my primary care physician that we might never know what triggered my sudden health decline, and we won't know how long it will last if it will ever end, or know of a cure. Lucky for me though, a commonly known neuropathic pain relieving medication gave me a 97% reduction in symptoms: amitriptyline (Moore 1). A simple Google search will lead you to seeing that it is most commonly used as an anti-depressant ("Amitriptyline" 1)- which leads me to my next point.</p>
-        <p>It is estimated that up to one-third of those with a serious medical condition will have symptoms of depression ("Coping" 1). I was one of them. To anyone suffering from unresolved chronic health issues, it's a given that it will take a mental toll on you. How could it not? I was wasting away "the best years of my life" in and out of medical institutions, not getting answers and spending thousands in the process. My debilitating headaches were causing me to face declined cognitive function- it was harder to focus and my memory got worse. The same Introduction to Psychology exam I would have spent a few days before preparing, I now had to spend 4-6 weeks to do just as well. Combined with the fact that I had to withdraw from Introduction to Biology and its lab because I physically couldn't complete the course, all while wanting to be an Anesthesiologist's Assistant further complicated matters.</p>
-        <p>As I got no answers from months of seeking treatment, I had to make peace with the reality that I may never be "normal" again. Having the same intelligence that put me in the top 5% of my graduating class academically may never be in reach again. The reason why I was at the University of Georgia was taken from me and I spent the next few months trying to figure out what academic and professional path I would pursue in its absence. I stumbled upon law because it was the only academic and professional sector left. I had realized math and introductory science courses were not particularly interesting and I always excelled at English. Toss in an extended, eye-opening experience in the American healthcare system, and an interest in artificial intelligence, and we've got the building blocks to a 17-page major curriculum for Healthcare Technology Law and Regulation through UGA's Interdisciplinary Studies program. It is, as my former freshman-year roommate said, excellent material for graduate school personal statements. I would add, an extremely costly one.</p>
-        <p>The only reason I was able to survive this period in my life was not due to unwilting optimism in regards to my poor health, but because of two important things in my life: God and my loved ones. When I caught myself daydreaming about the afterlife, I reminded myself that God's Plan is intentional and will, one day, make sense- even if you wake up in the worst pain of your life for 123 consecutive days in a row. O' Rourke's statement, "But I had not anticipated what should have been my biggest fear of all: that I would lose hope" could not ring more true, for as long as we have hope, we can endure. The never-ending dance between severe health issues and balancing being a normal college freshman was not one of grace. Some days were better than others, but, till this day, over 1.5 years later, not a day passes where I can fully forget what it is that afflicts me. I don't know how my neck accumulated severe nerve damage- I never got injured. The closest guess anyone has is that carrying my backpack around campus put increased pressure on my back and could have aggravated the issue. It's not a particularly logically strong conclusion but chronic health issues rarely are. People who suffer from them rarely get a "heads-up" from their doctor that this may be in their cards or how to avoid it. Autoimmune diseases stem from one-third genetic and two-thirds environmental causes, but as O' Rourke points out, many like her try supplement, food, therapy, and other lifestyle modification after another to no avail. As I mentioned earlier, health issues do not discriminate so as a well-off educated middle-aged married straight white woman, she often threw money, time, and effort essentially at a brick wall.</p>
-        <blockquote>
-         <p>In her own words:<br>
-         "‘It's bearable, and yet I cannot bear it," wrote Alphonse Daudet of living with syphilis. I had revised his line in my head: "It is unbearable- and yet I bear it." I survived, but it was the nature of the disease to rob me of myself."</p>
-         <cite style="font-size: 0.85rem; color: #64748b;">- O' Rourke, pg. 261</cite>
-        </blockquote>
-        <p>As I write this article for The Regulated Pulse, I am reminded of my former reality. I doubt if anyone can be more passionate about pursuing a certain academic and career track than me as I really do believe I did not go through Earth's version of Hell to turn around and not work towards advancing healthcare for Americans for the rest of my life- through policy and advocacy work as well as through the cases I may encounter as a practicing attorney. I can't write this piece without mentioning the elephant in the room when it comes to the struggles of those with serious health issues: the lack of clinical empathy we often face. There were several times during the throes of my health challenges I would get quite emotional in the doctor's office. Of course, it was not my intention to elicit Kleenexes being handed to me while I sat on a stiff patient's table but to go through pain for an extended period of time like that and not know why can be extremely frustrating. There were multiple times my primary care physician would suggest I seek therapy, and wondered how my parents were faring as I went through this while living three-hours away. And therapy I did go to. Once a clinical pain psychologist was employed by the University Health Center, I knew it was high-time to seek mental health help. Although my friends were critical to me feeling heard and understood, it was nice being able to dump your problems on a middle-aged white lady that made empathetic faces as you ranted about why nearly your whole college career has been a complete sham.</p>
-        <blockquote>
-         <p>This quote summarizes the source of my frustrations quite poetically:<br>
-         " I don't believe I will get better," Daudet wrote, "... yet I always behave as if my damned pains were going to disappear by tomorrow morning."</p>
-        </blockquote>
-        <p>But, alas, life isn't so bad anymore, and for that I am quite grateful. My beloved amitriptyline's price with insurance did increase by 2,252.94% last month, but, fortunately, that is still $20 for a month's supply. I think I can spare a 20 to function normally (for the most part; I still deal with the occasional tics, convulsions, and breathing problems that also began at the same time my headaches did, but, you know, life's not fair). I have thought about what I would do if it suddenly jumped to, let's say, $200 or $400 and the thing is, like many Americans, I would just have to find the money. It is high time the United States implements a nationalized single-payer healthcare system- costs have never been higher, and as I've experienced, financial stress only adds to your existing health issues. Being referred to one hospital for my MRI instead of a local clinic meant paying $1,600 versus $400 with insurance. Americans deserve better, or rather the bare minimum as most other rich democratic nations have shown.</p>
-
-        <h3 style="font-family: 'Source Serif Pro', serif; font-size: 1.15rem; font-weight: 600; color: #e2e8f0; margin: 1.5rem 0 0.5rem;">AI Disclosure Notice</h3>
-        <p style="color: #94a3b8; margin-bottom: 1rem; line-height: 1.75;">This blog post was written by the author with the assistance of generative AI. AI tools were utilized to compile historical research data, analyze federal funding statistics, and help refine the formatting and structure of the final text. All personal experiences, narratives, and creative directions are entirely the author's own.</p>
-        
-        <h3>References</h3>
-        <ul class="works-cited list-none pl-0">
-         <li>Abend, Aaron H., et al. "Estimation of Prevalence of Autoimmune Diseases in the United States Using Electronic Health Record Data." The Journal of Clinical Investigation, American Society for Clinical Investigation, 12 Dec. 2024, www.jci.org/articles/view/178722.</li>
-         <li>"Amitriptyline (Oral Route)." Mayo Clinic, Mayo Foundation for Medical Education and Research, www.mayoclinic.org/drugs-supplements/amitriptyline-oral-route/description/drg-20072061. Accessed 9 June 2026.</li>
-         <li>"Autoimmune Diseases." Cleveland Clinic, Cleveland Clinic, 22 Oct. 2024, my.clevelandclinic.org/health/diseases/21624-autoimmune-diseases#management-and-treatment.</li>
-         <li>"CDC Publishes 2024 National HIV Data." Centers for Disease Control and Prevention, Centers for Disease Control and Prevention, www.cdc.gov/nchhstp/whats-new/2024-hiv-surveillance-data.html. Accessed 9 June 2026.</li>
-         <li>"Coping with Chronic Illnesses and Depression." WebMD, WebMD, 27 Aug. 2024, www.webmd.com/depression/chronic-illnesses-depression.</li>
-         <li>"Latest Policy Brief Highlights State of Federal Autoimmune Disease Research and Need for Continued Prioritization." Society for Women's Health Research, Society for Women's Health Research, 21 Apr. 2024, swhr.org/latest-policy-brief-highlights-state-of-federal-autoimmune-disease-research-and-need-for-continued-prioritization/.</li>
-         <li>Moore, R Andrew et al. "Amitriptyline for neuropathic pain in adults." The Cochrane database of systematic reviews vol. 2015,7 CD008242. 6 Jul. 2015, doi:10.1002/14651858.CD008242.pub3</li>
-         <li>O'Rourke, Meghan. The Invisible Kingdom: Reimagining Chronic Illness. Riverhead Books, 2022.</li>
-         <li>"Report." National Institutes of Health, U.S. Department of Health and Human Services, report.nih.gov/funding/categorical-spending#/. Accessed 9 June 2026.</li>
-         <li>Siegel, Rebecca L et al. "Cancer statistics, 2024." CA: a cancer journal for clinicians vol. 74,1 (2024): 12-49. doi: 10.3322/caac.21820</li>
-        </ul>
-       </div>
-       
-       <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-         <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">Leave a Comment</h3>
-         <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion. Your email will not be published.</p>
-         
-         <form onsubmit="submitComment(event, 'post-chronic')" class="text-left space-y-4 max-w-2xl mx-auto">
-           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-             <div class="flex flex-col">
-               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Name</label>
-               <input type="text" required placeholder="Your Name" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
-             </div>
-             <div class="flex flex-col">
-               <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Email</label>
-               <input type="email" required placeholder="Enter your email address" class="w-full" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
-             </div>
-           </div>
-           <div class="flex flex-col">
-             <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
-             <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
-           </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(8, 145, 178); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
-         </form>
-         
-         <div id="post-chronic-comments-list">
-             </div>
-       </div>
       </article>
 
       <article id="post-welcome-container" class="hidden max-w-3xl mx-auto relative">
@@ -1346,7 +1186,7 @@
           After navigating an unexpected chronic illness journey during my freshman year, I experienced firsthand the systemic fractures within the American healthcare system.
         </p>
         <p style="color: rgb(148, 163, 184); font-size: 16px;">
-          This exposure shifted my focus from clinical pre-health tracks toward a deeper calling: reshaping the legal, regulatory, and business frameworks that dictate how care is delivered.
+          This exposure shifted my focus from clinical pre-health tracks towards a deeper calling: reshaping the legal, regulatory, and business frameworks that dictate how care is delivered.
         </p>
         <p style="color: rgb(148, 163, 184); font-size: 16px;">
           This inspired me to design an Interdisciplinary Studies major at the University of Georgia, focusing on Healthcare Technology Law and Regulation. I will be graduating from this program next spring.
