@@ -41,8 +41,8 @@
     .pulse-circle {
       stroke-dasharray: 265;
       stroke-dashoffset: 265;
-      -webkit-animation: pulse-draw 1.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards, pulse-glow 1.8s ease-in-out forwards;
-      animation: pulse-draw 1.8s cubic-bezier(0.4, 0.0, 0.2, 1) forwards, pulse-glow 1.8s ease-in-out forwards;
+      -webkit-animation: pulse-draw 1.71s linear forwards, pulse-glow 1.71s ease-in-out forwards;
+      animation: pulse-draw 1.71s linear forwards, pulse-glow 1.71s ease-in-out forwards;
     }
 
     @-webkit-keyframes fade-out { 0%{opacity:1} 100%{opacity:0} }
@@ -150,13 +150,14 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
   
   <div id="intro-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center" style="background:#0f172a;" aria-hidden="true">
-   <svg width="146" height="146" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+   <svg width="200" height="200" viewBox="0 0 160 160" fill="none" aria-hidden="true">
     <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="pulse-circle"></polyline>
    </svg>
    <div class="text-center mt-4" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 56px;">The Regulated Pulse</div>
   </div>
 
   <div id="main-content" class="opacity-0 transition-opacity duration-500" tabindex="-1">
+   <!-- Expanded Max-Width layout taking up more horizontal space on the blog -->
    <header class="flex items-center gap-3 pt-8 pb-6 max-w-screen-2xl mx-auto px-6">
     <button id="logo-home-btn" class="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none cursor-pointer z-10" aria-label="Return to Blog Home">
       <svg width="48" height="48" viewBox="0 0 160 160" fill="none" aria-hidden="true">
@@ -179,8 +180,10 @@
       <h2 class="mb-2" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 24px;">Recent Articles</h2>
       <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Deep-dive, multi-page analyses of healthcare law, systemic health disparities, and the evolving landscape of medical technology.</p>
       
+      <!-- Grid layout tracking layout snake: Col 1 top-down, Col 2 bottom-up, Col 3 top-down -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
        
+       <!-- Column 1 (Postcards 1, 2, 3) -->
        <div class="flex flex-col gap-8">
          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-book-recs-click" aria-label="Read post: Book Recommendations" style="background: linear-gradient(135deg, rgb(59, 7, 100), rgb(147, 51, 234));">
           <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(233, 213, 255);">Reading List</span>
@@ -204,6 +207,7 @@
          </button>
        </div>
 
+       <!-- Column 2 (Postcards 6, 5, 4 visually configured top-down) -->
        <div class="flex flex-col gap-8">
          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care" style="background: linear-gradient(135deg, rgb(88, 28, 135), rgb(225, 29, 72));">
           <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(88, 28, 135); color: rgb(243, 232, 255);">Book Insights</span>
@@ -227,6 +231,7 @@
          </button>
        </div>
 
+       <!-- Column 3 (Postcards 7, 8) -->
        <div class="flex flex-col gap-8">
          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-story-click" aria-label="Read post: The Realities of Chronic Illness" style="background: linear-gradient(135deg, rgb(30, 41, 59), rgb(8, 145, 178));">
           <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(30, 41, 59); color: rgb(203, 213, 225);">Personal</span>
@@ -248,7 +253,9 @@
       <h2 class="mt-16 mb-2" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 24px;">Vital Signs</h2>
       <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Under one-page takes on the full spectrum of healthcare trends, law, and medical technology</p>
       
+      <!-- Vital Signs grid matching horizontally styled postcards with richer color gradients -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Epic / Stifled Innovation (Order: 1, Gradient: Plum to Berry) -->
         <div class="flex flex-col gap-8">
           <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-epic-click" aria-label="Read post: Stifled Innovation" style="background: linear-gradient(135deg, rgb(48, 12, 48), rgb(157, 23, 77));">
             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(254, 205, 211);">Industry</span>
@@ -258,6 +265,7 @@
           </button>
         </div>
 
+        <!-- Medical Education (Order: 2, Gradient: Midnight Blue to Teal) -->
         <div class="flex flex-col gap-8">
           <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-med-ed-click" aria-label="Read post: The State of Medical Education" style="background: linear-gradient(135deg, rgb(10, 25, 47), rgb(13, 148, 136));">
             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(191, 219, 254);">Education</span>
@@ -267,6 +275,7 @@
           </button>
         </div>
 
+        <!-- Quote Spotlight (Order: 3, Gradient: Burnt Amber to Deep Crimson) -->
         <div class="flex flex-col gap-8">
           <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-quote-spotlight-click" aria-label="Read post: Quote Spotlight" style="background: linear-gradient(135deg, rgb(180, 83, 9), rgb(153, 27, 27));">
             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgba(255,255,255,0.15); color: rgb(254, 243, 199);">Inspiration</span>
@@ -329,6 +338,7 @@
         <i data-lucide="arrow-left" style="width:18px;height:18px;" aria-hidden="true"></i> Back to Posts 
       </button>
 
+      <!-- Book Recommendations View -->
       <article id="post-book-recs-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Book Recommendations</h2>
        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">My top 11 healthcare reads</h3>
@@ -412,6 +422,7 @@
        </div>
       </article>
 
+      <!-- If You Knew the Conditions (Native American Health) View -->
       <article id="post-na-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">"If You Knew the Conditions"</h2>
        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The evolution of Native American health care</h3>
@@ -475,6 +486,7 @@
        </div>
       </article>
 
+      <!-- Quote Spotlight View -->
       <article id="post-quote-spotlight-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Quote Spotlight</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Inspiration · June 2026</p>
@@ -518,6 +530,7 @@
        </div>
       </article>
 
+      <!-- The State of Medical Education View -->
       <article id="post-med-ed-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The State of Medical Education</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Education · June 2026</p>
@@ -566,6 +579,7 @@
        </div>
       </article>
 
+      <!-- Stifled Innovation (Epic's EHR Monopoly) View -->
       <article id="post-epic-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Stifled Innovation</h2>
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Industry · June 2026</p>
@@ -881,7 +895,7 @@
               document.getElementById('main-content').classList.remove('opacity-0');
               navigateTo(window.location.hash || '#blog');
             }
-        }, 2500);
+        }, 2400);
 
         // UI Event Listeners
         document.getElementById('tab-blog').addEventListener('click', () => navigateTo('#blog'));
