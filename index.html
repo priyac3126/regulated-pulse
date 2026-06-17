@@ -79,13 +79,13 @@
     .blog-post-content ul:not(.works-cited) li { color: #94a3b8; margin-bottom: 0.5rem; line-height: 1.7; }
     .blog-post-content .works-cited { list-style: none !important; padding-left: 0 !important; margin-bottom: 1.25rem; }
     
-    /* 0.5 inch hanging indentation applied to references */
+    /* 0.5 inch hanging indentation applied precisely to references */
     .blog-post-content .works-cited li { 
         color: #94a3b8; 
         margin-bottom: 1rem; 
         line-height: 1.7; 
-        padding-left: 2rem; 
-        text-indent: -2rem; 
+        padding-left: 0.5in; 
+        text-indent: -0.5in; 
     }
     
     .blog-post-content blockquote { border-left: 3px solid #06b6d4; padding-left: 1.25rem; margin: 2rem 0; font-style: italic; color: #67e8f9; }
@@ -213,11 +213,11 @@
 
        <!-- Column 2 (Bottom to Top: 6, 5, 4 => rendered visually as Top is 6, Middle is 5, Bottom is 4) -->
        <div class="flex flex-col gap-8">
-         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care" style="background: linear-gradient(135deg, rgb(88, 28, 135), rgb(225, 29, 72));">
-          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(88, 28, 135); color: rgb(243, 232, 255);">Book Insights</span>
-          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The Case for Compassionate Care</h3>
-          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The medical necessity of compassionate care.</p>
-          <p class="text-xs" style="color: rgb(254, 205, 211);">June 2026</p>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-ai-access-click" aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights" style="background: linear-gradient(135deg, rgb(79, 70, 229), rgb(217, 70, 239));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(49, 46, 129); color: rgb(245, 208, 254);">AI & Policy</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">How we build ethical, inclusive design</p>
+          <p class="text-xs" style="color: rgb(196, 181, 253);">June 2026</p>
          </button>
 
          <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-giant-leap-click" aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI" style="background: linear-gradient(135deg, rgb(30, 64, 175), rgb(14, 165, 233));">
@@ -227,11 +227,11 @@
           <p class="text-xs" style="color: rgb(203, 213, 225);">June 2026</p>
          </button>
 
-         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-ai-access-click" aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights" style="background: linear-gradient(135deg, rgb(79, 70, 229), rgb(217, 70, 239));">
-          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(49, 46, 129); color: rgb(245, 208, 254);">AI & Policy</span>
-          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
-          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">How we build ethical, inclusive design</p>
-          <p class="text-xs" style="color: rgb(196, 181, 253);">June 2026</p>
+         <button class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col" id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care" style="background: linear-gradient(135deg, rgb(88, 28, 135), rgb(225, 29, 72));">
+          <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start" style="background: rgb(88, 28, 135); color: rgb(243, 232, 255);">Book Insights</span>
+          <h3 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The Case for Compassionate Care</h3>
+          <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">The medical necessity of compassionate care.</p>
+          <p class="text-xs" style="color: rgb(254, 205, 211);">June 2026</p>
          </button>
        </div>
 
@@ -344,52 +344,52 @@
       <article id="post-book-recs-container" class="hidden max-w-3xl mx-auto relative">
        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Book Recommendations</h2>
        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">My top 11 healthcare reads</h3>
-       <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Reading List · June 2026</p>
+       <p class="text-sm mb-8" style="color: rgb(216, 180, 254);">Reading List · June 2026</p>
        
        <div class="blog-post-content">
         <p>Over the past year, as an avid reader by heart I have delved into over 50 books relating to American healthcare. I wish I could pull up on my library records all of their titles to deliver a proper book recommendation post, but I am only able to go back to this April. The books on this list define recent reads that have had a profound impact on how I think about healthcare and biomedical ethics.</p>
         <p>Here’s the list of my top 11 (you’ll recognize some from my blog posts):</p>
         <ul>
          <li>
-            <strong style="color: rgb(103, 232, 249);">A Giant Leap</strong> by Robert Wachter<br>
+            <strong style="color: rgb(216, 180, 254);">A Giant Leap</strong> by Robert Wachter<br>
             <span style="display:block; margin-top:0.25rem;">Explores transformative concepts and significant advancements within the fields of healthcare and biomedical ethics.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">Being Mortal</strong> by Atul Gawande<br>
+            <strong style="color: rgb(216, 180, 254);">Being Mortal</strong> by Atul Gawande<br>
             <span style="display:block; margin-top:0.25rem;">Examines aging and the end of life, arguing that modern medicine must prioritize the quality of life and patient well-being over merely prolonging survival.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">Riding the Bus with My Sister: A True Life Journey</strong> by Rachel Simon<br>
+            <strong style="color: rgb(216, 180, 254);">Riding the Bus with My Sister: A True Life Journey</strong> by Rachel Simon<br>
             <span style="display:block; margin-top:0.25rem;">Chronicles the author's journey of reconnecting with her sister, who has an intellectual disability and spends her days riding city buses.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">Disability Visibility (Adapted for Young Adults): 17 First-Person Stories for Today</strong> by Alice Wong
+            <strong style="color: rgb(216, 180, 254);">Disability Visibility (Adapted for Young Adults): 17 First-Person Stories for Today</strong> by Alice Wong
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">Compassionomics</strong> by Stephen Trzeciak and Anthony Mazzarelli<br>
+            <strong style="color: rgb(216, 180, 254);">Compassionomics</strong> by Stephen Trzeciak and Anthony Mazzarelli<br>
             <span style="display:block; margin-top:0.25rem;">Reviews scientific evidence demonstrating that compassionate healthcare improves physical outcomes for patients, lowers medical costs, and reduces physician burnout.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">A Disability History of the United States</strong> by Kim E. Nielsen
+            <strong style="color: rgb(216, 180, 254);">A Disability History of the United States</strong> by Kim E. Nielsen
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">Grief and Loss</strong> by Katherine Walsh<br>
+            <strong style="color: rgb(216, 180, 254);">Grief and Loss</strong> by Katherine Walsh<br>
             <span style="display:block; margin-top:0.25rem;">A text detailing the emotional, clinical, and ethical dimensions of navigating death, bereavement, and the grieving process.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</strong> by David H. Dejong<br>
+            <strong style="color: rgb(216, 180, 254);">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</strong> by David H. Dejong<br>
             <span style="display:block; margin-top:0.25rem;">Chronicles the history of the Indian Medical Service between 1908 and 1955, exploring the systemic underfunding and assimilation-driven health policies faced by Native American communities.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">The Spirit Catches You and You Fall Down</strong> by Anne Fadiman<br>
+            <strong style="color: rgb(216, 180, 254);">The Spirit Catches You and You Fall Down</strong> by Anne Fadiman<br>
             <span style="display:block; margin-top:0.25rem;">An ethnographic account detailing the tragic cultural miscommunications between a Hmong refugee family and the American medical establishment over the treatment of their daughter's severe epilepsy.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">Migration and Health</strong>, Edited by Sandro Galea and Catherine K. Ettman<br>
+            <strong style="color: rgb(216, 180, 254);">Migration and Health</strong>, Edited by Sandro Galea and Catherine K. Ettman<br>
             <span style="display:block; margin-top:0.25rem;">Examines the complex systemic health challenges, vulnerabilities, and healthcare access issues faced by migrating and displaced populations.</span>
          </li>
          <li>
-            <strong style="color: rgb(103, 232, 249);">The Invisible Kingdom</strong> by Meghan O’ Rourke<br>
+            <strong style="color: rgb(216, 180, 254);">The Invisible Kingdom</strong> by Meghan O’ Rourke<br>
             <span style="display:block; margin-top:0.25rem;">Explores the often-overlooked struggles of patients living with chronic, difficult-to-diagnose, and "invisible" illnesses, and how the healthcare system often fails them.</span>
          </li>
         </ul>
@@ -430,7 +430,7 @@
        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">History & Policy · June 2026 · 4 min read</p>
        
        <div class="text-center mb-10">
-         <img src="NAbook_2.webp" alt="If You Knew the Conditions book cover" class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+         <img src="NAbook.webp" alt="If You Knew the Conditions book cover" class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
          <p class="text-slate-400 text-sm mt-3 italic">A Chronicle of the Indian Medical Service</p>
        </div>
        
@@ -449,8 +449,8 @@
         <p>As for Alaska Natives, they were let down by the United States by not following their purchase treaty provisions with Russia. The 1867 treaty that states that the U.S. would provide the same care and protection the rest of the nation enjoyed to Alaska Natives was not followed through. The Alaska Native Service was created in 1914, and two years later the first non-school hospital was opened– 49 years after the treaty was signed (68).</p>
         <p>Considering early U.S. attempts at providing medical care to Native Americans was purely to prevent nearby military post soldiers from contracting infectious diseases such as smallpox, the federal government’s half-hearted attempt at providing Indians healthcare until the 20th century looks comparatively not so bad (2). But, the bar is *extremely *low. A big part of that stems from how American Indians were not all formally considered citizens until The Indian Citizenship Act of 1924 (68). Another concerning fact is that Indian Service funds were often congressionally allocated “Based on the moral principle of charity rather than on any legal obligation”-- troubling, considering the subjective nature of morality, and the ignorance of federal treaties it rested on (155).</p>
         <p>Facing a post-WWII wave of nationalism and conservatism, the decades-long desire of Congress to squash federal funding towards Native American health was realized (130). Through the Indian Health Transfer Act of 1954 local and state health authorities were called to assume greater responsibility for Indian health as the Indian Service migrated into the Public Health Service, a better funded and staffed federal agency (130-136).</p>
-        <p>Present-day tribes are faced with the freedom and responsibility that comes with partially being responsible for ensuring their tribe’s access to health care. They are able to combine Western and traditional medicine approaches in a way that respects their culture, values, and religion with healthcare innovation. The Indian Service still provides care that nearly 25% of Native Americans rely on, and Medicare, Medicaid, and the Children’s Health Insurance Program contribute as well (“Medicaid”; Esch). However, tribes have turned to gaming operations to help fund the health services of their people as well (163).</p>
-        <p>In October 2024, Arizona, California, New Mexico, and Oregon were given waivers that allowed state Medicaid agencies to cover traditional medicine practices (Smithey). These waivers and the terms of approval were developed with Tribal leadership partnerships and advisory groups with the aim to financially support tribes in providing culturally-appropriate health care (Smithey). Overall, there is still work to be done in reducing health inequities between Native Americans and that of typical Americans. Underfunding and racist ideology and discrimination centrally guided how the U.S. government provided, or lack thereof, of health care to Native communities since the nineteenth century, but, luckily, we’ve come a long way.</p>
+        <p>Present-day tribes are faced with the freedom and responsibility that comes with partially being responsible for ensuring their tribe’s access to health care. They are able to combine Western and traditional medicine approaches in a way that respects their culture, values, and religion with healthcare innovation. The Indian Service still provides care that nearly 25% of Native Americans rely on, and Medicare, Medicaid, and the Children’s Health Insurance Program contribute as well. However, tribes have turned to gaming operations to help fund the health services of their people as well (163).</p>
+        <p>In October 2024, Arizona, California, New Mexico, and Oregon were given waivers that allowed state Medicaid agencies to cover traditional medicine practices. These waivers and the terms of approval were developed with Tribal leadership partnerships and advisory groups with the aim to financially support tribes in providing culturally-appropriate health care. Overall, there is still work to be done in reducing health inequities between Native Americans and that of typical Americans. Underfunding and racist ideology and discrimination centrally guided how the U.S. government provided, or lack thereof, of health care to Native communities since the nineteenth century, but, luckily, we’ve come a long way.</p>
         
         <h3>References</h3>
         <ul class="works-cited list-none pl-0">
@@ -523,7 +523,7 @@
              <label class="text-sm font-bold mb-2" style="color: rgb(226, 232, 240);">Comment</label>
              <textarea required rows="4" placeholder="Join the discussion..." class="w-full resize-y" style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
            </div>
-           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(13, 148, 136); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
+           <button type="submit" class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer" style="background: rgb(180, 83, 9); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post Comment</button>
          </form>
          
          <div id="post-quote-spotlight-comments-list"></div>
