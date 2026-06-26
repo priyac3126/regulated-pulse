@@ -2692,7 +2692,7 @@
                 <div class="emphasis-card rounded-lg p-5 mb-8" style="background:rgba(6,182,212,0.05);">
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
                         data-target="aoe-equity-content" aria-expanded="false" aria-controls="aoe-equity-content">
-                        <span class="font-bold" style="color: rgb(6, 182, 212); font-size: 16px;">Equity & Institutional
+                        <span class="font-bold" style="color: rgb(6, 182, 212); font-size: 16px;">Equity &amp; Institutional
                             Access in Healthcare</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" class="text-cyan-400" aria-hidden="true">
@@ -2705,14 +2705,68 @@
                             system. ANTH 3540: Multicultural Healthcare is required for Specialized distinction.</p>
                         <p class="text-xs" style="color: rgb(103, 232, 249);">12 credit hours · 4 Specialized Threads
                             available</p>
-                        <ul class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4 space-y-1 list-disc marker:text-slate-500">
-                            <li class="text-xs" style="color: rgb(203, 213, 225);">Disability Thread</li>
-                            <li class="text-xs" style="color: rgb(203, 213, 225);">Global Migration & Ethnic Diversity
-                                Thread</li>
-                            <li class="text-xs" style="color: rgb(203, 213, 225);">Gerontechnology & Health
-                                Communication Thread</li>
-                            <li class="text-xs" style="color: rgb(203, 213, 225);">Mental Health Thread</li>
-                        </ul>
+                        <p class="text-xs mt-2 mb-3" style="color: rgb(148, 163, 184); font-style: italic;">
+                            A thread becomes <span style="color: rgb(165, 243, 252); font-weight: 600;">Specialized</span> when a student completes two courses within that thread, earning a formal distinction on their transcript.</p>
+
+                        <!-- Specialized Thread: Disability -->
+                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mt-3 mb-2">
+                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-disability-content" aria-expanded="false" aria-controls="thread-disability-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Disability Thread</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div id="thread-disability-content" class="accordion-content mt-2" role="region">
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Examines the social, legal, and systemic frameworks shaping the lived experiences of individuals with disabilities — including disability rights legislation, accessibility in digital health platforms, and advocacy for cognitive and physical diversity within healthcare delivery.</p>
+                            </div>
+                        </div>
+
+                        <!-- Specialized Thread: Global Migration & Ethnic Diversity -->
+                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
+                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-migration-content" aria-expanded="false" aria-controls="thread-migration-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Global Migration &amp; Ethnic Diversity Thread</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div id="thread-migration-content" class="accordion-content mt-2" role="region">
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Explores how displacement, immigration policy, and ethnic identity intersect with healthcare access — analyzing the cultural, linguistic, and structural barriers that migrant and ethnically diverse populations face when navigating institutional medical systems.</p>
+                            </div>
+                        </div>
+
+                        <!-- Specialized Thread: Gerontechnology & Health Communication -->
+                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
+                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-gerontech-content" aria-expanded="false" aria-controls="thread-gerontech-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Gerontechnology &amp; Health Communication Thread</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div id="thread-gerontech-content" class="accordion-content mt-2" role="region">
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Investigates the design and deployment of assistive technologies for aging populations and the communication strategies that bridge health literacy gaps — focusing on how smart technology, telemedicine, and patient-provider messaging must adapt for elderly and underserved communities.</p>
+                            </div>
+                        </div>
+
+                        <!-- Specialized Thread: Mental Health -->
+                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
+                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-mental-content" aria-expanded="false" aria-controls="thread-mental-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Mental Health Thread</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div id="thread-mental-content" class="accordion-content mt-2" role="region">
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Analyzes the psychological, sociological, and institutional dimensions of mental health care — examining stigma, access disparities, crisis intervention frameworks, and how digital health innovations are reshaping behavioral health services for marginalized populations.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2955,6 +3009,27 @@
             document.getElementById('card-quote-spotlight-click').addEventListener('click', () => navigateTo('#post-quote-spotlight'));
             document.getElementById('card-med-ed-click').addEventListener('click', () => navigateTo('#post-med-ed'));
             document.getElementById('card-epic-click').addEventListener('click', () => navigateTo('#post-epic'));
+
+            // Accordion Toggle Logic
+            document.querySelectorAll('.accordion-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const targetId = btn.getAttribute('data-target');
+                    const content = document.getElementById(targetId);
+                    if (!content) return;
+
+                    const isOpen = content.classList.contains('open');
+
+                    if (isOpen) {
+                        content.classList.remove('open');
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-expanded', 'false');
+                    } else {
+                        content.classList.add('open');
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
 
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
