@@ -260,6 +260,25 @@
         .skip-link:focus {
             top: 0;
         }
+
+        .intro-title {
+            font-size: 56px;
+        }
+
+        @media (max-width: 640px) {
+            .intro-title {
+                font-size: 32px;
+            }
+        }
+
+        .podcast-platform-link {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .podcast-platform-link:hover {
+            transform: translateY(-2px);
+            background-color: rgb(51, 65, 85) !important;
+        }
     </style>
 
     <style type="text/css">
@@ -466,7 +485,7 @@
                 stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="pulse-circle">
             </polyline>
         </svg>
-        <div class="text-center mt-4" style="color: rgb(255, 255, 255); font-weight: 700; font-size: 56px;">The
+        <div class="intro-title text-center mt-4" style="color: rgb(255, 255, 255); font-weight: 700;">The
             Regulated Pulse</div>
     </div>
 
@@ -490,6 +509,8 @@
             role="tablist">
             <button class="tab-btn tab-active px-2 pb-3 font-medium" data-tab="blog" style="font-size: 16px;" role="tab"
                 aria-selected="true" aria-controls="section-blog" id="tab-blog">Blog</button>
+            <button class="tab-btn px-2 pb-3 font-medium text-slate-400" data-tab="podcast" style="font-size: 16px;"
+                role="tab" aria-selected="false" aria-controls="section-podcast" id="tab-podcast">Podcast</button>
             <button class="tab-btn px-2 pb-3 font-medium text-slate-400" data-tab="major" style="font-size: 16px;"
                 role="tab" aria-selected="false" aria-controls="section-major" id="tab-major">My Major</button>
             <button class="tab-btn px-2 pb-3 font-medium text-slate-400" data-tab="about" style="font-size: 16px;"
@@ -1519,6 +1540,24 @@
                             build ethical, inclusive design</h3>
                         <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">AI & Policy · June 2026 · 4 min read
                         </p>
+
+                        <div class="audio-player flex items-center gap-3 mb-8 cursor-pointer w-max"
+                            data-src="./UI-UX Design.m4a" data-fallback-time="4:00">
+                            <button
+                                class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none"
+                                style="background: rgba(6,182,212,0.1); color: #06b6d4;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </button>
+                            <div>
+                                <p class="text-sm font-bold text-white">Listen to Article</p>
+                                <p class="duration-text text-xs text-slate-400">-4:00 remaining</p>
+                            </div>
+                        </div>
+
                         <div class="blog-post-content">
                             <p>Upon a 2023 Executive Order on “safe, secure, and trustworthy” AI, a national
                                 investigation into how AI affects people with disabilities was launched (Gilbert 2-3).
@@ -2564,6 +2603,188 @@
                 </div>
             </section>
 
+            <section id="section-podcast" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-podcast">
+                <h2 class="mb-2" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 24px;">The Regulated
+                    Pulse Podcast</h2>
+                <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Conversations at the intersection of
+                    healthcare, technology, law, and the human experience.</p>
+
+                <!-- Streaming Platform Links -->
+                <div class="mb-12">
+                    <h3 class="font-bold mb-4" style="color: rgb(203, 213, 225); font-size: 16px;">Listen &amp;
+                        Subscribe</h3>
+                    <nav aria-label="Podcast streaming platforms" class="flex flex-wrap gap-3">
+                        <!-- Replace each href="#" with your actual podcast URL on that platform -->
+                        <a href="#" target="_blank" rel="noopener noreferrer"
+                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium"
+                            style="background: rgb(30, 41, 59); color: rgb(226, 232, 240); text-decoration: none;"
+                            aria-label="Listen on YouTube (opens in new tab)">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #FF0000; flex-shrink: 0;"
+                                aria-hidden="true"></span>
+                            YouTube
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                style="opacity: 0.4;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"
+                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium"
+                            style="background: rgb(30, 41, 59); color: rgb(226, 232, 240); text-decoration: none;"
+                            aria-label="Listen on Spotify (opens in new tab)">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #1DB954; flex-shrink: 0;"
+                                aria-hidden="true"></span>
+                            Spotify
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                style="opacity: 0.4;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"
+                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium"
+                            style="background: rgb(30, 41, 59); color: rgb(226, 232, 240); text-decoration: none;"
+                            aria-label="Listen on Apple Podcasts (opens in new tab)">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #9933CC; flex-shrink: 0;"
+                                aria-hidden="true"></span>
+                            Apple Podcasts
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                style="opacity: 0.4;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"
+                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium"
+                            style="background: rgb(30, 41, 59); color: rgb(226, 232, 240); text-decoration: none;"
+                            aria-label="Listen on Amazon Music (opens in new tab)">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #00A8E1; flex-shrink: 0;"
+                                aria-hidden="true"></span>
+                            Amazon Music
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                style="opacity: 0.4;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"
+                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium"
+                            style="background: rgb(30, 41, 59); color: rgb(226, 232, 240); text-decoration: none;"
+                            aria-label="Listen on Pocket Casts (opens in new tab)">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #F43E37; flex-shrink: 0;"
+                                aria-hidden="true"></span>
+                            Pocket Casts
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                style="opacity: 0.4;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"
+                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium"
+                            style="background: rgb(30, 41, 59); color: rgb(226, 232, 240); text-decoration: none;"
+                            aria-label="Listen on Overcast (opens in new tab)">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #FC7E0F; flex-shrink: 0;"
+                                aria-hidden="true"></span>
+                            Overcast
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                style="opacity: 0.4;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer"
+                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium"
+                            style="background: rgb(30, 41, 59); color: rgb(226, 232, 240); text-decoration: none;"
+                            aria-label="Listen on Castbox (opens in new tab)">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #F55B23; flex-shrink: 0;"
+                                aria-hidden="true"></span>
+                            Castbox
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                style="opacity: 0.4;">
+                                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                                <polyline points="15 3 21 3 21 9" />
+                                <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Spotify Embed Player -->
+                <div class="mb-10">
+                    <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Latest Episode</h3>
+                    <div class="max-w-2xl mx-auto" role="region" aria-label="Spotify podcast player">
+                        <!-- Replace the src URL below with your actual Spotify episode or show embed URL -->
+                        <iframe style="border-radius: 12px;"
+                            src="https://open.spotify.com/embed/show/PLACEHOLDER_SHOW_ID?utm_source=generator&amp;theme=0"
+                            width="100%" height="352" frameBorder="0" allowfullscreen=""
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy" title="The Regulated Pulse Podcast on Spotify"></iframe>
+                    </div>
+                </div>
+
+                <!-- Episode Details -->
+                <article class="max-w-3xl mx-auto rounded-2xl p-7 mb-12" style="background: rgb(30, 41, 59);"
+                    aria-label="Episode details">
+                    <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Episode Title</h3>
+                    <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 1</p>
+
+                    <!-- Episode Summary -->
+                    <div class="mb-6" role="region" aria-label="Episode summary">
+                        <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode Summary
+                        </h4>
+                        <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                            Replace this text with your episode summary. Describe the main topics discussed, featured
+                            guests, and key themes explored in this episode.
+                        </p>
+                    </div>
+
+                    <!-- Key Takeaways -->
+                    <div class="mb-6" role="region" aria-label="Key takeaways">
+                        <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways
+                        </h4>
+                        <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
+                            <li style="color: rgb(148, 163, 184); line-height: 1.7;">Replace with your first key
+                                takeaway from the episode.</li>
+                            <li style="color: rgb(148, 163, 184); line-height: 1.7;">Replace with your second key
+                                takeaway from the episode.</li>
+                            <li style="color: rgb(148, 163, 184); line-height: 1.7;">Replace with your third key
+                                takeaway from the episode.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Full Transcript -->
+                    <div role="region" aria-label="Full transcript">
+                        <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Full Transcript
+                        </h4>
+                        <div class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                            <p>Replace this text with the full transcript of the episode. You can format this with
+                                timestamps, speaker labels, and paragraph breaks as needed.</p>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
             <section id="section-major" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-major">
                 <h2 class="mb-4" style="color: rgb(241, 245, 249); font-weight: bold; font-size: 24px;">
                     Interdisciplinary Studies: Healthcare Technology Law & Regulation</h2>
@@ -2692,7 +2913,8 @@
                 <div class="emphasis-card rounded-lg p-5 mb-8" style="background:rgba(6,182,212,0.05);">
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
                         data-target="aoe-equity-content" aria-expanded="false" aria-controls="aoe-equity-content">
-                        <span class="font-bold" style="color: rgb(6, 182, 212); font-size: 16px;">Equity &amp; Institutional
+                        <span class="font-bold" style="color: rgb(6, 182, 212); font-size: 16px;">Equity &amp;
+                            Institutional
                             Access in Healthcare</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" class="text-cyan-400" aria-hidden="true">
@@ -2706,65 +2928,94 @@
                         <p class="text-xs" style="color: rgb(103, 232, 249);">12 credit hours · 4 Specialized Threads
                             available</p>
                         <p class="text-xs mt-2 mb-3" style="color: rgb(148, 163, 184); font-style: italic;">
-                            A thread becomes <span style="color: rgb(165, 243, 252); font-weight: 600;">Specialized</span> when a student completes two courses within that thread, earning a formal distinction on their transcript.</p>
+                            A thread becomes <span
+                                style="color: rgb(165, 243, 252); font-weight: 600;">Specialized</span> when a student
+                            completes two courses within that thread, earning a formal distinction on their transcript.
+                        </p>
 
                         <!-- Specialized Thread: Disability -->
                         <div class="ml-4 border-l-2 border-cyan-800 pl-4 mt-3 mb-2">
-                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
-                                data-target="thread-disability-content" aria-expanded="false" aria-controls="thread-disability-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Disability Thread</span>
+                            <button
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-disability-content" aria-expanded="false"
+                                aria-controls="thread-disability-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Disability
+                                    Thread</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" class="text-cyan-400" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </button>
                             <div id="thread-disability-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Examines the social, legal, and systemic frameworks shaping the lived experiences of individuals with disabilities — including disability rights legislation, accessibility in digital health platforms, and advocacy for cognitive and physical diversity within healthcare delivery.</p>
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Examines the social, legal, and
+                                    systemic frameworks shaping the lived experiences of individuals with disabilities —
+                                    including disability rights legislation, accessibility in digital health platforms,
+                                    and advocacy for cognitive and physical diversity within healthcare delivery.</p>
                             </div>
                         </div>
 
                         <!-- Specialized Thread: Global Migration & Ethnic Diversity -->
                         <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
-                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
-                                data-target="thread-migration-content" aria-expanded="false" aria-controls="thread-migration-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Global Migration &amp; Ethnic Diversity Thread</span>
+                            <button
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-migration-content" aria-expanded="false"
+                                aria-controls="thread-migration-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Global
+                                    Migration &amp; Ethnic Diversity Thread</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" class="text-cyan-400" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </button>
                             <div id="thread-migration-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Explores how displacement, immigration policy, and ethnic identity intersect with healthcare access — analyzing the cultural, linguistic, and structural barriers that migrant and ethnically diverse populations face when navigating institutional medical systems.</p>
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Explores how displacement,
+                                    immigration policy, and ethnic identity intersect with healthcare access — analyzing
+                                    the cultural, linguistic, and structural barriers that migrant and ethnically
+                                    diverse populations face when navigating institutional medical systems.</p>
                             </div>
                         </div>
 
                         <!-- Specialized Thread: Gerontechnology & Health Communication -->
                         <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
-                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
-                                data-target="thread-gerontech-content" aria-expanded="false" aria-controls="thread-gerontech-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Gerontechnology &amp; Health Communication Thread</span>
+                            <button
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-gerontech-content" aria-expanded="false"
+                                aria-controls="thread-gerontech-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Gerontechnology
+                                    &amp; Health Communication Thread</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" class="text-cyan-400" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </button>
                             <div id="thread-gerontech-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Investigates the design and deployment of assistive technologies for aging populations and the communication strategies that bridge health literacy gaps — focusing on how smart technology, telemedicine, and patient-provider messaging must adapt for elderly and underserved communities.</p>
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Investigates the design and
+                                    deployment of assistive technologies for aging populations and the communication
+                                    strategies that bridge health literacy gaps — focusing on how smart technology,
+                                    telemedicine, and patient-provider messaging must adapt for elderly and underserved
+                                    communities.</p>
                             </div>
                         </div>
 
                         <!-- Specialized Thread: Mental Health -->
                         <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
-                            <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
-                                data-target="thread-mental-content" aria-expanded="false" aria-controls="thread-mental-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Mental Health Thread</span>
+                            <button
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                data-target="thread-mental-content" aria-expanded="false"
+                                aria-controls="thread-mental-content">
+                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Mental Health
+                                    Thread</span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" class="text-cyan-400" aria-hidden="true">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </button>
                             <div id="thread-mental-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Analyzes the psychological, sociological, and institutional dimensions of mental health care — examining stigma, access disparities, crisis intervention frameworks, and how digital health innovations are reshaping behavioral health services for marginalized populations.</p>
+                                <p class="text-xs" style="color: rgb(100, 116, 139);">Analyzes the psychological,
+                                    sociological, and institutional dimensions of mental health care — examining stigma,
+                                    access disparities, crisis intervention frameworks, and how digital health
+                                    innovations are reshaping behavioral health services for marginalized populations.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -2936,6 +3187,10 @@
                     document.getElementById('section-about').classList.remove('hidden');
                     document.getElementById('tab-about').classList.add('tab-active');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else if (hash === '#podcast') {
+                    document.getElementById('section-podcast').classList.remove('hidden');
+                    document.getElementById('tab-podcast').classList.add('tab-active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash && hash.startsWith('#post-')) {
                     document.getElementById('section-blog').classList.remove('hidden');
                     document.getElementById('tab-blog').classList.add('tab-active');
@@ -2993,6 +3248,7 @@
 
             // UI Event Listeners
             document.getElementById('tab-blog').addEventListener('click', () => navigateTo('#blog'));
+            document.getElementById('tab-podcast').addEventListener('click', () => navigateTo('#podcast'));
             document.getElementById('tab-major').addEventListener('click', () => navigateTo('#major'));
             document.getElementById('tab-about').addEventListener('click', () => navigateTo('#about'));
             document.getElementById('logo-home-btn').addEventListener('click', () => navigateTo('#blog'));
