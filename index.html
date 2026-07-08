@@ -2703,56 +2703,209 @@
                     </nav>
                 </div>
 
-                <!-- YouTube Embed Player -->
-                <div class="mb-10">
-                    <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Latest Episode</h3>
-                    <div class="max-w-2xl mx-auto" role="region" aria-label="YouTube podcast player">
-                        <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/0JSWv1NJ_YI"
-                            width="100%" height="352" frameBorder="0" allowfullscreen=""
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            loading="lazy" title="Decoding Digital Accessibility: Authentic Leadership in UX"></iframe>
+                <!-- Podcast List View (Episode Cards) -->
+                <div id="podcast-list-view">
+                    <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Episodes</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+
+                        <!-- Episode 2 Card -->
+                        <button
+                            class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            id="card-ep2-click"
+                            aria-label="View episode: Clinical Advocacy: Bridging Climate, Policy, and Rural Health"
+                            style="background: linear-gradient(135deg, rgb(13, 148, 136), rgb(30, 58, 95));">
+                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
+                                style="background: rgba(255,255,255,0.15); color: rgb(204, 251, 241);">Season 1 ·
+                                Episode 2</span>
+                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Clinical
+                                Advocacy: Bridging Climate, Policy, and Rural Health</h4>
+                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 33m</p>
+                            <p class="text-xs" style="color: rgb(153, 246, 228);">July 2025</p>
+                        </button>
+
+                        <!-- Episode 1 Card -->
+                        <button
+                            class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            id="card-ep1-click"
+                            aria-label="View episode: Decoding Digital Accessibility: Authentic Leadership in UX"
+                            style="background: linear-gradient(135deg, rgb(30, 64, 175), rgb(14, 165, 233));">
+                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
+                                style="background: rgba(255,255,255,0.15); color: rgb(186, 230, 253);">Season 1 ·
+                                Episode 1</span>
+                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Decoding
+                                Digital Accessibility: Authentic Leadership in UX</h4>
+                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">55m</p>
+                            <p class="text-xs" style="color: rgb(186, 230, 253);">July 2025</p>
+                        </button>
+
                     </div>
                 </div>
 
-                <!-- Episode Details -->
-                <article class="max-w-3xl mx-auto rounded-2xl p-7 mb-12" style="background: rgb(30, 41, 59);"
-                    aria-label="Episode details">
-                    <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Decoding Digital
-                        Accessibility: Authentic Leadership in UX</h3>
-                    <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 1</p>
+                <!-- Podcast Episode Detail View (hidden by default) -->
+                <div id="podcast-episode-view" class="hidden">
+                    <button id="back-to-episodes"
+                        class="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-medium focus:outline-none cursor-pointer z-10"
+                        aria-label="Back to all episodes">
+                        <i data-lucide="arrow-left" style="width:18px;height:18px;" aria-hidden="true"></i> Back to
+                        Episodes
+                    </button>
 
-                    <!-- Episode Summary -->
-                    <div class="mb-6" role="region" aria-label="Episode summary">
-                        <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode Summary
-                        </h4>
-                        <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
-                            Explore the intersection of inclusive UI/UX design, digital accessibility, and empathetic
-                            leadership on this episode of The Regulated Pulse. Discover how a background in French and
-                            Studio Art led our guest to pioneer the first formal digital accessibility program at
-                            Synovus Bank. Learn practical strategies for applying the principles of leading from behind
-                            and successfully navigating corporate mergers, while understanding how to guide diverse
-                            teams authentically through both personal and professional challenges.
-                        </p>
-                    </div>
+                    <!-- Episode 2 Detail -->
+                    <article id="podcast-ep2-container" class="hidden max-w-3xl mx-auto mb-16">
+                        <!-- YouTube Embed -->
+                        <div class="mb-8" role="region" aria-label="Episode 2 video player">
+                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/n9UhLZi9abw"
+                                width="100%" height="352" frameBorder="0" allowfullscreen=""
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                loading="lazy"
+                                title="Clinical Advocacy: Bridging Climate, Policy, and Rural Health"></iframe>
+                        </div>
 
-                    <!-- Key Takeaways -->
-                    <div class="mb-6" role="region" aria-label="Key takeaways">
-                        <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways
-                        </h4>
-                        <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                            <li style="color: rgb(148, 163, 184); line-height: 1.7;">Learn how to translate a
-                                non-technical background—like Studio Art—into a successful career in digital
-                                accessibility.</li>
-                            <li style="color: rgb(148, 163, 184); line-height: 1.7;">Gain actionable strategies for
-                                "leading from behind" to empower teams during high-stakes corporate transitions.</li>
-                            <li style="color: rgb(148, 163, 184); line-height: 1.7;">Understand how to foster authentic
-                                leadership by guiding diverse teams through complex professional and personal obstacles.
-                            </li>
-                        </ul>
-                    </div>
+                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Clinical
+                                Advocacy: Bridging
+                                Climate, Policy, and Rural Health</h3>
+                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 2 · 1h 33m
+                            </p>
 
+                            <!-- Episode Summary -->
+                            <div class="mb-6" role="region" aria-label="Episode 2 summary">
+                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode
+                                    Summary</h4>
+                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                    In this episode of The Regulated Pulse Podcast, we sit down with Dr. Ethan
+                                    Sims, an emergency physician and Executive Director of Idaho Clinicians for
+                                    Climate and Health. We explore how climate change is reshaping rural health
+                                    outcomes, the real-world impact of restrictive reproductive laws on emergency
+                                    medicine, and the critical role of sustainability in hospital administration.
+                                    Dr. Sims also provides candid advice for students on navigating the competitive
+                                    landscape of medical training and maintaining work-life balance in a demanding
+                                    field.
+                                </p>
+                            </div>
 
-                </article>
+                            <!-- Key Takeaways -->
+                            <div class="mb-6" role="region" aria-label="Episode 2 key takeaways">
+                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key
+                                    Takeaways</h4>
+                                <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Understand how climate
+                                        change is directly impacting rural health outcomes and emergency medicine.
+                                    </li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Learn about the
+                                        real-world consequences of restrictive reproductive laws on emergency
+                                        physicians and patient care.</li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Discover the critical
+                                        role of sustainability initiatives in modern hospital administration.</li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Gain practical advice
+                                        on navigating medical training and maintaining work-life balance in a
+                                        demanding field.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Listen Links -->
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://open.spotify.com/episode/1OFR09NIGbt856qlvYmm3u?si=IzT0hbrAT5W9-3JLF6oCSA"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    Listen on Spotify
+                                </a>
+                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(153,51,204,0.1); color: rgb(192, 132, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    Listen on Apple Podcasts
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Episode 1 Detail -->
+                    <article id="podcast-ep1-container" class="hidden max-w-3xl mx-auto mb-16">
+                        <!-- YouTube Embed -->
+                        <div class="mb-8" role="region" aria-label="Episode 1 video player">
+                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/0JSWv1NJ_YI"
+                                width="100%" height="352" frameBorder="0" allowfullscreen=""
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                loading="lazy"
+                                title="Decoding Digital Accessibility: Authentic Leadership in UX"></iframe>
+                        </div>
+
+                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Decoding
+                                Digital Accessibility:
+                                Authentic Leadership in UX</h3>
+                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 1 · 55m
+                            </p>
+
+                            <!-- Episode Summary -->
+                            <div class="mb-6" role="region" aria-label="Episode 1 summary">
+                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode
+                                    Summary</h4>
+                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                    Explore the intersection of inclusive UI/UX design, digital accessibility, and
+                                    empathetic leadership on this episode of The Regulated Pulse. Discover how a
+                                    background in French and Studio Art led our guest to pioneer the first formal
+                                    digital accessibility program at Synovus Bank. Learn practical strategies for
+                                    applying the principles of leading from behind and successfully navigating
+                                    corporate mergers, while understanding how to guide diverse teams authentically
+                                    through both personal and professional challenges.
+                                </p>
+                            </div>
+
+                            <!-- Key Takeaways -->
+                            <div class="mb-6" role="region" aria-label="Episode 1 key takeaways">
+                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key
+                                    Takeaways</h4>
+                                <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Learn how to translate
+                                        a non-technical background—like Studio Art—into a successful career in
+                                        digital accessibility.</li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Gain actionable
+                                        strategies for &quot;leading from behind&quot; to empower teams during
+                                        high-stakes corporate transitions.</li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Understand how to
+                                        foster authentic leadership by guiding diverse teams through complex
+                                        professional and personal obstacles.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Listen Links -->
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    Listen on Spotify
+                                </a>
+                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(153,51,204,0.1); color: rgb(192, 132, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    Listen on Apple Podcasts
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
             </section>
 
             <section id="section-major" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-major">
@@ -3142,6 +3295,14 @@
                     if (el) el.classList.add('hidden');
                 });
 
+                // Reset podcast views
+                document.getElementById('podcast-list-view').classList.add('hidden');
+                document.getElementById('podcast-episode-view').classList.add('hidden');
+                ['podcast-ep1-container', 'podcast-ep2-container'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('hidden');
+                });
+
                 // Update Browser URL seamlessly
                 if (window.location.hash !== hash) {
                     history.pushState(null, null, hash || '#blog');
@@ -3159,7 +3320,26 @@
                 } else if (hash === '#podcast') {
                     document.getElementById('section-podcast').classList.remove('hidden');
                     document.getElementById('tab-podcast').classList.add('tab-active');
+                    document.getElementById('podcast-list-view').classList.remove('hidden');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else if (hash && hash.startsWith('#episode-')) {
+                    document.getElementById('section-podcast').classList.remove('hidden');
+                    document.getElementById('tab-podcast').classList.add('tab-active');
+                    document.getElementById('podcast-episode-view').classList.remove('hidden');
+
+                    let epId = hash.replace('#episode-', '');
+                    let epContainerId = 'podcast-' + epId + '-container';
+                    let epEl = document.getElementById(epContainerId);
+
+                    if (epEl) {
+                        epEl.classList.remove('hidden');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        let heading = epEl.querySelector('h3');
+                        if (heading) {
+                            heading.setAttribute('tabindex', '-1');
+                            heading.focus();
+                        }
+                    }
                 } else if (hash && hash.startsWith('#post-')) {
                     document.getElementById('section-blog').classList.remove('hidden');
                     document.getElementById('tab-blog').classList.add('tab-active');
@@ -3222,6 +3402,11 @@
             document.getElementById('tab-about').addEventListener('click', () => navigateTo('#about'));
             document.getElementById('logo-home-btn').addEventListener('click', () => navigateTo('#blog'));
             document.getElementById('back-to-blog').addEventListener('click', () => navigateTo('#blog'));
+            document.getElementById('back-to-episodes').addEventListener('click', () => navigateTo('#podcast'));
+
+            // Podcast episode card clicks
+            document.getElementById('card-ep2-click').addEventListener('click', () => navigateTo('#episode-ep2'));
+            document.getElementById('card-ep1-click').addEventListener('click', () => navigateTo('#episode-ep1'));
 
             document.getElementById('card-ai-access-click').addEventListener('click', () => navigateTo('#post-ai'));
             document.getElementById('card-giant-leap-click').addEventListener('click', () => navigateTo('#post-giant-leap'));
