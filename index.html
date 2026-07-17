@@ -387,7 +387,6 @@
         }
 
         .blog-post-content {
-            font-family: 'Source Serif Pro', Georgia, serif;
             font-size: 1.125rem;
             line-height: 1.85;
             color: rgb(203, 213, 225);
@@ -3229,7 +3228,22 @@
                 <!-- Podcast List View (Episode Cards) -->
                 <div id="podcast-list-view">
                     <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Episodes</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+
+                        <!-- Episode 3 Card -->
+                        <button
+                            class="rounded-2xl p-7 card-hover text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            id="card-ep3-click"
+                            aria-label="View episode: Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together"
+                            style="background: linear-gradient(135deg, rgb(109, 40, 217), rgb(30, 58, 95));">
+                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
+                                style="background: rgba(255,255,255,0.15); color: rgb(233, 213, 255);">Season 1 ·
+                                Episode 3</span>
+                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Breaking
+                                the Tech Silos: Bringing Clinicians, Policy, and Data Together</h4>
+                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 44m</p>
+                            <p class="text-xs" style="color: rgb(216, 180, 254);">July 2026</p>
+                        </button>
 
                         <!-- Episode 2 Card -->
                         <button
@@ -3272,6 +3286,65 @@
                         <i data-lucide="arrow-left" style="width:18px;height:18px;" aria-hidden="true"></i> Back to
                         Episodes
                     </button>
+
+                    <!-- Episode 3 Detail -->
+                    <article id="podcast-ep3-container" class="hidden max-w-3xl mx-auto mb-16">
+                        <!-- YouTube Embed -->
+                        <div class="mb-8" role="region" aria-label="Episode 3 video player">
+                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/Yc8ZDu7BM-w"
+                                width="100%" height="352" frameBorder="0" allowfullscreen=""
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                loading="lazy"
+                                title="Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together"></iframe>
+                        </div>
+
+                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together</h3>
+                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 3 · 1h 44m</p>
+
+                            <!-- Episode Summary -->
+                            <div class="mb-6" role="region" aria-label="Episode 3 summary">
+                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode Summary</h4>
+                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                    In this episode, Nadine Peever details her journey from launching a grassroots tech meetup to founding Ember Consulting Group. We dive into the critical intersections of healthcare: how TEFCA and data interoperability impact the patient experience, the balance between nonprofit community building and for-profit consulting strategy, and why inclusive design—from ASL accessibility to community-driven policy—is vital for the future of healthcare.
+                                </p>
+                            </div>
+
+                            <!-- Key Takeaways -->
+                            <div class="mb-6" role="region" aria-label="Episode 3 key takeaways">
+                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways</h4>
+                                <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Learn how to organically scale a professional tech community into a structured 501c3 non-profit while maintaining strategic boundaries with a for-profit consulting firm.</li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Gain actionable insights into navigating complex healthtech regulations, establishing TEFCA readiness, and bridging the divide between public health expertise and technology integration.</li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Understand how digital health interoperability acts as essential medical infrastructure, directly minimizing redundant clinical work and respecting the diverse communication needs of patients.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Listen Links -->
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://open.spotify.com/episode/55lYUpf7USA8lWidxgk7sn?si=sRnkF_FHS1mdxbaQVKthWg"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    Listen on Spotify
+                                </a>
+                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020?i=1000777267017"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(153,51,204,0.1); color: rgb(192, 132, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
+                                        aria-hidden="true">
+                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    </svg>
+                                    Listen on Apple Podcasts
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
                     <!-- Episode 2 Detail -->
                     <article id="podcast-ep2-container" class="hidden max-w-3xl mx-auto mb-16">
@@ -3823,7 +3896,7 @@
                 // Reset podcast views
                 document.getElementById('podcast-list-view').classList.add('hidden');
                 document.getElementById('podcast-episode-view').classList.add('hidden');
-                ['podcast-ep1-container', 'podcast-ep2-container'].forEach(id => {
+                ['podcast-ep1-container', 'podcast-ep2-container', 'podcast-ep3-container'].forEach(id => {
                     const el = document.getElementById(id);
                     if (el) el.classList.add('hidden');
                 });
@@ -3949,6 +4022,7 @@
             document.getElementById('back-to-episodes').addEventListener('click', () => navigateTo('#podcast'));
 
             // Podcast episode card clicks
+            document.getElementById('card-ep3-click').addEventListener('click', () => navigateTo('#episode-ep3'));
             document.getElementById('card-ep2-click').addEventListener('click', () => navigateTo('#episode-ep2'));
             document.getElementById('card-ep1-click').addEventListener('click', () => navigateTo('#episode-ep1'));
 
