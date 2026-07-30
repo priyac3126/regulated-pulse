@@ -748,6 +748,8 @@
                 role="tab" aria-selected="false" aria-controls="section-podcast" id="tab-podcast">Podcast</button>
             <button class="tab-btn px-2 pb-3 font-medium text-slate-400" data-tab="major" style="font-size: 16px;"
                 role="tab" aria-selected="false" aria-controls="section-major" id="tab-major">My Major</button>
+            <button class="tab-btn px-2 pb-3 font-medium text-slate-400" data-tab="faq" style="font-size: 16px;"
+                role="tab" aria-selected="false" aria-controls="section-faq" id="tab-faq">FAQ</button>
             <button class="tab-btn px-2 pb-3 font-medium text-slate-400" data-tab="about" style="font-size: 16px;"
                 role="tab" aria-selected="false" aria-controls="section-about" id="tab-about">About Me</button>
         </nav>
@@ -884,6 +886,15 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div class="flex flex-col gap-8">
+                            <button
+                                class="rounded-2xl p-7 card-hover card-book text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                                id="card-pain-brokers-click" aria-label="Read post: The Pain Brokers">
+                                <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start tag-book">Reading List</span>
+                                <h3 class="font-bold mb-2 text-white" style="font-size: 19px;">The Pain Brokers</h3>
+                                <p class="text-sm mb-4 flex-grow text-slate-300">Defective healthcare technology and legal corruption</p>
+                                <p class="text-xs text-slate-400">June 2026</p>
+                            </button>
+
                             <button
                                 class="rounded-2xl p-7 card-hover card-epic text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                                 id="card-epic-click" aria-label="Read post: Stifled Innovation">
@@ -3122,6 +3133,60 @@
                         </div>
                     </article>
 
+                    <article id="post-pain-brokers-container" class="hidden max-w-3xl mx-auto relative">
+                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Pain Brokers</h2>
+                        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Reading List · June 2026</p>
+
+                        <div class="blog-post-content">
+                            <div class="mb-8 flex flex-col items-center">
+                                <img src="./ThePainBrokers.jpg" alt="The Pain Brokers book cover" class="max-w-xs rounded-lg shadow-xl" style="max-height: 450px; object-fit: contain;">
+                                <p class="text-xs text-slate-400 mt-3">Released Jan 2026</p>
+                            </div>
+                            <p>The Pain Brokers was a fantastic read intersecting the worlds of legal and business corruption, women systematically being taken advantage of, and the chilling effects of the lack of the medical device industry can have on thousands of Americans.</p>
+                            <p>In other words, it is a must-read to gain a deeper understanding into how mass torts, filed as hundreds or thousands of individual lawsuits, are orchestrated across a cross-country, multi-year process to expose defective healthcare technology, in this case, about pelvic mesh. Several corporations and bad actors took advantage of women by telling them their pelvic mesh was a “ticking time bomb” and they would have to seek removal surgery in a few select locations, primarily, in Florida.</p>
+                            <p>As readers turn every page, they become ever-more horrified by the injustices that women underwent in the 21st century, revealing how cracks in medical device regulation can lead to lifelong injury and disability for women that simply took the advice of their doctors to have pelvic mesh input to treat pelvic organ prolapse and reduce incontinence.</p>
+                        </div>
+
+                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                                Leave a Comment</h3>
+                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                                Your email will not be published.</p>
+
+                            <form onsubmit="submitComment(event, 'post-pain-brokers')"
+                                class="text-left space-y-4 max-w-2xl mx-auto">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="flex flex-col">
+                                        <label class="text-sm font-bold mb-2"
+                                            style="color: rgb(226, 232, 240);">Name</label>
+                                        <input type="text" required placeholder="Your Name" class="w-full"
+                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <label class="text-sm font-bold mb-2"
+                                            style="color: rgb(226, 232, 240);">Email</label>
+                                        <input type="email" required placeholder="Enter your email address"
+                                            class="w-full"
+                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-sm font-bold mb-2"
+                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                    <textarea required rows="4" placeholder="Join the discussion..."
+                                        class="w-full resize-y"
+                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                </div>
+                                <button type="submit"
+                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    style="background: rgb(76, 29, 149); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
+                                    Comment</button>
+                            </form>
+
+                            <div id="post-pain-brokers-comments-list"></div>
+                        </div>
+                    </article>
+
                 </div>
             </section>
 
@@ -3824,6 +3889,62 @@
                 </div>
             </section>
 
+            <section id="section-faq" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-faq">
+                <h2 class="mb-6" style="color: rgb(241, 245, 249); font-weight: bold; font-size: 24px;">Frequently Asked Questions</h2>
+                <div class="space-y-6">
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">What inspired you to create The Regulated Pulse Blog and Podcast?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">The origins of this website stem purely from the drive behind any passion project. I had some time on my hands summer 2026 and thought pursuing this would be a cool way to get hands-on experience building a website, blog, and podcast. I was already reading the books and wanting to talk to the people in the healthtech law space, but now I would write my thoughts down or press record. I could’ve never imagined I’d feel so passionate about a summer/side project but now I don’t know how I went without this great outlet for so long. The Regulated Pulse has become one of the great joys of my life and I intend on continuing this throughout my career.</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">Where did the name “The Regulated Pulse” come from?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">I was running the idea of the website/blog by Gemini and asked for name suggestions. It may not make sense in the fact that a human pulse cannot be regulated but it brought healthcare, technology, and law into a short, appealing name and I instantly liked it. Running the name by some close friends gave me the confirmation I needed to purchase “<a href="https://theregulatedpulse.com" target="_blank" rel="noopener noreferrer" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-cyan-300">theregulatedpulse.com</a>”.</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">What are your plans post-grad?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">I intend on applying to law school this fall and, ideally, getting into a well-rounded program with plenty of healthtech law adjacent opportunities. It is a slightly nerve-wracking process but I trust I will be where I’m meant to be.</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">Why did you decide to graduate from undergrad in three years?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">I was unsure for much of summer 2026 as to if I should extend graduation to fall 2027. In the end, pushing it up six months made more sense as I decided to pursue INTS 4990R: Undergraduate Research Thesis or Final Project for nine credit hours versus the three mandated ones.</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">Are you receiving course credit through The Regulated Pulse?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">Yes! That is one of the main reasons why I am able to graduate a year early. Although I didn’t recognize it at first, The Pulse’s posts definitely make sense for my Major Final Project. Another reason why being an Interdisciplinary Studies major rocks!</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">What was the process like creating your major’s curriculum?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">It was really hard for a really long time (1.5 years to be exact). Particularly, during spring break 2026, when I decided to add areas of concentration within the major, I spiraled for a few weeks developing the 18 areas, across Areas of Emphasis, Focus Areas, Concentrations, Threads, and Specialized Threads. Trust me, being an Interdisciplinary Studies major is definitely worth the perks (such as getting pre and co-requisite waives for courses, and being able to take graduate-level coursework) but it was a period that tested me not just academically but also mentally, emotionally, and spiritually. The first nine months I pursued this program, I struggled to find enough faculty support to be able to officially apply for this major which was stressful. I was nearly two years into a degree I was hoping I could make in time for my accelerated graduation timeline. But, in the end, what kept me going was that I knew I was passionate about what I was studying and how that would help me as I pursued my future academic and professional goals. Creating a major at the oldest public university in the United States was a privilege, and the coolest thing I have ever done. I am proud of myself, and am extremely grateful to the faculty support as well as friends and family that never grew tired of hearing about my frequent major updates and rants about what-if I couldn’t pull it off in time and had to be an unsatisfied English major. Yes, that was actually my back-up plan.</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">How often can I expect updates from the blog and podcast? Is there an uploading schedule?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">I intend to post 2-3 podcasts/blog articles combined on a monthly basis. Truthfully, I am much more invested in the podcast at this point (what can I say, it’s more fun than writing legal research). It is a super cool project and I’ve met, and will continue meeting really cool people that I aspire to follow in the footsteps of as I continue my career.</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">I would like to, or know someone that would like to be on The Regulated Pulse Podcast. How can I contact you?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;"><a href="mailto:Theregulatedpulsepodcast@gmail.com" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-cyan-300">Theregulatedpulsepodcast@gmail.com</a> or sending me a message via <a href="https://www.linkedin.com/in/priya-chaudhari-8798b2398/" target="_blank" rel="noopener noreferrer" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-cyan-300">LinkedIn</a> is perfect.</p>
+                    </div>
+
+                    <div class="rounded-xl p-6" style="background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 class="font-bold mb-3" style="color: rgb(56, 189, 248); font-size: 18px;">I am passionate about reducing health inequities and inequalities and wanted nonprofit recommendations to give my time. Do you have any?</h3>
+                        <p style="color: rgb(226, 232, 240); font-size: 16px; line-height: 1.6;">Yes! I am involved in Eluna’s Young Professionals Advisory Committee (YPAC), a nonprofit that advances grief and addiction loss resources for youth and families digitally and through in-person camps. I highly recommend volunteering with them. Also, if you’re 21 or older, volunteering as a Wish Granter for the Make-A-Wish Foundation sounds wonderful. I intend on pursuing this position once I am of age (September!). For those interested in supporting rural health in Georgia, interning with the Lake Country Medical Group during the summer is a fantastic idea. Helping out at local food pantries is also a great way to boost the foundation of community health– access to nutrition.</p>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-slate-700 text-left">
+                        <p style="color: rgb(148, 163, 184); font-size: 16px; line-height: 1.6; font-style: italic;">
+                            Thanks again for reading guys, I appreciate y’all’s support tremendously. If you have any more questions, please do not hesitate to reach out to me on LinkedIn or via <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-cyan-300">hello@theregulatedpulse.com</a>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             <section id="section-about" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-about">
                 <h2 class="mb-6" style="color: rgb(241, 245, 249); font-weight: bold; font-size: 24px;">About Me</h2>
                 <div class="flex flex-col lg:flex-row gap-8">
@@ -3888,7 +4009,7 @@
                 });
                 document.getElementById('blog-list-view').classList.add('hidden');
                 document.getElementById('blog-post-view').classList.add('hidden');
-                ['post-ai-container', 'post-giant-leap-container', 'post-welcome-container', 'post-chronic-container', 'post-migration-container', 'post-compassion-container', 'post-book-recs-container', 'post-na-container', 'post-quote-spotlight-container', 'post-med-ed-container', 'post-epic-container', 'post-malpractice-container', 'post-cdc-interview-container'].forEach(id => {
+                ['post-ai-container', 'post-giant-leap-container', 'post-welcome-container', 'post-chronic-container', 'post-migration-container', 'post-compassion-container', 'post-book-recs-container', 'post-na-container', 'post-quote-spotlight-container', 'post-med-ed-container', 'post-epic-container', 'post-pain-brokers-container', 'post-malpractice-container', 'post-cdc-interview-container'].forEach(id => {
                     const el = document.getElementById(id);
                     if (el) el.classList.add('hidden');
                 });
@@ -3910,19 +4031,28 @@
                 if (hash === '#major') {
                     document.getElementById('section-major').classList.remove('hidden');
                     document.getElementById('tab-major').classList.add('tab-active');
+                    document.getElementById('tab-major').setAttribute('aria-selected', 'true');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else if (hash === '#faq') {
+                    document.getElementById('section-faq').classList.remove('hidden');
+                    document.getElementById('tab-faq').classList.add('tab-active');
+                    document.getElementById('tab-faq').setAttribute('aria-selected', 'true');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash === '#about') {
                     document.getElementById('section-about').classList.remove('hidden');
                     document.getElementById('tab-about').classList.add('tab-active');
+                    document.getElementById('tab-about').setAttribute('aria-selected', 'true');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash === '#podcast') {
                     document.getElementById('section-podcast').classList.remove('hidden');
                     document.getElementById('tab-podcast').classList.add('tab-active');
+                    document.getElementById('tab-podcast').setAttribute('aria-selected', 'true');
                     document.getElementById('podcast-list-view').classList.remove('hidden');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash && hash.startsWith('#episode-')) {
                     document.getElementById('section-podcast').classList.remove('hidden');
                     document.getElementById('tab-podcast').classList.add('tab-active');
+                    document.getElementById('tab-podcast').setAttribute('aria-selected', 'true');
                     document.getElementById('podcast-episode-view').classList.remove('hidden');
 
                     let epId = hash.replace('#episode-', '');
@@ -3941,6 +4071,7 @@
                 } else if (hash && hash.startsWith('#post-')) {
                     document.getElementById('section-blog').classList.remove('hidden');
                     document.getElementById('tab-blog').classList.add('tab-active');
+                    document.getElementById('tab-blog').setAttribute('aria-selected', 'true');
                     document.getElementById('blog-post-view').classList.remove('hidden');
 
                     let postId = hash.replace('#', '');
@@ -3968,6 +4099,7 @@
                     // Default fallback to blog list
                     document.getElementById('section-blog').classList.remove('hidden');
                     document.getElementById('tab-blog').classList.add('tab-active');
+                    document.getElementById('tab-blog').setAttribute('aria-selected', 'true');
                     document.getElementById('blog-list-view').classList.remove('hidden');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
@@ -4016,6 +4148,7 @@
             document.getElementById('tab-blog').addEventListener('click', () => navigateTo('#blog'));
             document.getElementById('tab-podcast').addEventListener('click', () => navigateTo('#podcast'));
             document.getElementById('tab-major').addEventListener('click', () => navigateTo('#major'));
+            document.getElementById('tab-faq').addEventListener('click', () => navigateTo('#faq'));
             document.getElementById('tab-about').addEventListener('click', () => navigateTo('#about'));
             document.getElementById('logo-home-btn').addEventListener('click', () => navigateTo('#blog'));
             document.getElementById('back-to-blog').addEventListener('click', () => navigateTo('#blog'));
@@ -4039,6 +4172,7 @@
             document.getElementById('card-quote-spotlight-click').addEventListener('click', () => navigateTo('#post-quote-spotlight'));
             document.getElementById('card-med-ed-click').addEventListener('click', () => navigateTo('#post-med-ed'));
             document.getElementById('card-epic-click').addEventListener('click', () => navigateTo('#post-epic'));
+            document.getElementById('card-pain-brokers-click').addEventListener('click', () => navigateTo('#post-pain-brokers'));
 
             // Accordion Toggle Logic
             document.querySelectorAll('.accordion-btn').forEach(btn => {
