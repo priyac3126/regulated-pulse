@@ -65,6 +65,25 @@
             animation: heartbeat 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
+        /* Specific animation behavior for the welcome screen overlay logo */
+        #intro-overlay .pulse-logo polyline {
+            animation: heartbeat 2.5s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+        }
+
+        .intro-fade {
+            animation: fade-out 0.6s ease forwards;
+            will-change: opacity;
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
         @keyframes heartbeat {
             0% {
                 stroke-dashoffset: 260;
