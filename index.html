@@ -71,7 +71,12 @@
         }
 
         #intro-overlay .pulse-logo polyline.welcome-pulse-active {
-            animation: heartbeat 2.5s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards !important;
+            animation: heartbeat 2.0s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards !important;
+        }
+
+        /* Prevent welcome animation from re-triggering during fade-out */
+        #intro-overlay.intro-fade .pulse-logo polyline {
+            animation: none !important;
         }
 
         .intro-fade {
