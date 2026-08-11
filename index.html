@@ -67,7 +67,11 @@
 
         /* Specific animation behavior for the welcome screen overlay logo */
         #intro-overlay .pulse-logo polyline {
-            animation: heartbeat 2.5s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards;
+            animation: none;
+        }
+
+        #intro-overlay .pulse-logo polyline.welcome-pulse-active {
+            animation: heartbeat 2.5s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards !important;
         }
 
         .intro-fade {
@@ -4926,6 +4930,13 @@
                 setTimeout(() => { hasLoaded = true; }, 500);
             } else {
                 // Play intro animation normally for default home view
+                setTimeout(() => {
+                    const welcomePolyline = document.querySelector('#intro-overlay .pulse-logo polyline');
+                    if (welcomePolyline) {
+                        welcomePolyline.classList.add('welcome-pulse-active');
+                    }
+                }, 150);
+
                 setTimeout(() => {
                     const overlay = document.getElementById('intro-overlay');
                     if (overlay) {
