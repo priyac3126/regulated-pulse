@@ -379,14 +379,39 @@
         }
 
         .blog-post-content blockquote {
+            font-family: 'Source Serif 4', Georgia, serif !important;
+            font-size: 1.2rem !important;
+            line-height: 1.9 !important;
+            color: #f8fafc !important;
             border-left: 4px solid var(--pulse-cyan) !important;
             background: linear-gradient(90deg, rgba(6, 182, 212, 0.04) 0%, transparent 100%) !important;
             padding: 1.25rem 1.75rem !important;
             margin: 2.5rem 0 !important;
-            font-style: italic !important;
-            color: #e2e8f0 !important;
-            font-size: 1.2rem !important;
             border-radius: 0 0.5rem 0.5rem 0 !important;
+            letter-spacing: 0.01em !important;
+        }
+
+        .blog-post-content blockquote p {
+            font-family: 'Source Serif 4', Georgia, serif !important;
+            font-size: 1.2rem !important;
+            line-height: 1.9 !important;
+            margin-bottom: 0.75rem !important;
+            font-style: italic !important;
+        }
+
+        .blog-post-content .works-cited {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin-bottom: 1.25rem !important;
+        }
+
+        .blog-post-content .works-cited li {
+            color: #94a3b8 !important;
+            margin-bottom: 1rem !important;
+            line-height: 1.7 !important;
+            padding-left: 0.5in !important;
+            text-indent: -0.5in !important;
+            font-size: 0.95rem !important;
         }
 
         /* Glass Floating Audio Player (bottom of screen) */
@@ -1457,7 +1482,7 @@
                                         <h4 class="font-bold text-white text-lg">Priya Chaudhari</h4>
                                         <p class="text-xs text-cyan-400 font-medium mt-1">UGA Class of 2027 · Interdisciplinary Studies</p>
                                         <p class="text-sm text-slate-400 mt-3 leading-relaxed" style="word-spacing: 0.06em;">
-                                            Studying Healthcare Technology Law &amp; Regulation with a core focus on AI, healthcare compliance, and digital accessibility rights.
+                                            Studying Healthcare Technology Law &amp; Regulation with a focus on AI, healthcare compliance, and digital accessibility rights.
                                         </p>
                                     </div>
                                 </div>
@@ -1560,25 +1585,6 @@
                         Posts
                     </button>
 
-                    <!-- Reader Settings Panel -->
-                    <div class="reader-settings-panel max-w-3xl mx-auto flex items-center justify-between text-xs text-slate-400 select-none mb-8">
-                        <div class="flex items-center gap-3">
-                            <span class="font-bold uppercase tracking-wider text-[10px]">Text Size:</span>
-                            <div class="flex items-center bg-white/5 border border-white/10 rounded-lg p-0.5">
-                                <button id="btn-font-dec" class="px-2 py-1 hover:text-white transition-colors focus:outline-none" aria-label="Decrease text size">A-</button>
-                                <div class="w-px h-3 bg-white/10"></div>
-                                <button id="btn-font-inc" class="px-2 py-1 hover:text-white transition-colors focus:outline-none" aria-label="Increase text size">A+</button>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <span class="font-bold uppercase tracking-wider text-[10px]">Theme:</span>
-                            <div class="flex items-center gap-1.5">
-                                <button class="w-5 h-5 rounded-full bg-[#080b11] border border-white/20 active-theme-btn" id="theme-dark" aria-label="Dark theme" title="Dark Theme"></button>
-                                <button class="w-5 h-5 rounded-full bg-[#f5eedc] border border-black/10" id="theme-sepia" aria-label="Sepia theme" title="Sepia Theme"></button>
-                                <button class="w-5 h-5 rounded-full bg-[#fafaf6] border border-black/10" id="theme-cream" aria-label="Cream theme" title="Cream Theme"></button>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- State Medical Malpractice Laws Comparison -->
                     <article id="post-malpractice-container" class="hidden max-w-3xl mx-auto relative mb-16">
@@ -3055,7 +3061,7 @@
                                 amitriptyline’s price with insurance did increase by 2,252.94% last month, but,
                                 fortunately, that is still $20 for a month’s supply. I think I can spare a 20 to
                                 function normally (for the most part; I still deal with the occasional tics,
-                                convulsions, and breathing problems that also began at the same time my headaches did,
+                                convulsions, paralysis, and breathing problems that also began at the same time my headaches did,
                                 but, you know, life’s not fair).</p>
                             <p>I have thought about what I would do if it suddenly jumped to, let’s say, $200 or $400
                                 and the thing is, like many Americans, I would just have to find the money. It is high
@@ -4272,9 +4278,9 @@
                 <h2 class="mb-2 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">
                     Interdisciplinary Studies: Healthcare Technology Law &amp; Regulation</h2>
                 <p class="mb-4 text-cyan-400 font-semibold text-sm">University of Georgia · Franklin College of Arts and Sciences · A.B. Interdisciplinary Studies</p>
-                <p class="mb-8 text-slate-300 leading-relaxed text-base" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">Designed for
-                    students at the intersection of public health, technology law, and public policy, this major
-                    investigates the regulatory frameworks and ethical foundations required to protect society's most
+                <p class="mb-8 text-slate-300 leading-relaxed text-base" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">I designed
+                    this major at the intersection of public health, technology law, and public policy to investigate
+                    the regulatory frameworks and ethical foundations required to protect society's most
                     vulnerable. Requiring 24 hours of major coursework, the curriculum examines how marginalized groups
                     such as the sick, disabled, elderly, immigrants, and those suffering from mental health and
                     substance abuse issues interact with the healthcare system. It provides specialized training in
@@ -5121,9 +5127,10 @@
             const themeDark = document.getElementById('theme-dark');
             const themeSepia = document.getElementById('theme-sepia');
             const themeCream = document.getElementById('theme-cream');
-            const themeButtons = [themeDark, themeSepia, themeCream];
+            const themeButtons = [themeDark, themeSepia, themeCream].filter(Boolean);
 
             function setActiveThemeButton(activeBtn) {
+                if (!activeBtn) return;
                 themeButtons.forEach(btn => btn.classList.remove('active-theme-btn', 'border-cyan-400', 'border-white/20'));
                 activeBtn.classList.add('active-theme-btn');
                 if (activeBtn === themeDark) {
@@ -5133,23 +5140,29 @@
                 }
             }
 
-            themeDark.addEventListener('click', () => {
-                blogPostView.className = 'hidden'; // Base class hidden is applied routing, strip theme
-                document.body.className = 'min-h-screen min-h-[100dvh] bg-[#080b11]';
-                setActiveThemeButton(themeDark);
-            });
+            if (themeDark) {
+                themeDark.addEventListener('click', () => {
+                    blogPostView.className = 'hidden'; // Base class hidden is applied routing, strip theme
+                    document.body.className = 'min-h-screen min-h-[100dvh] bg-[#080b11]';
+                    setActiveThemeButton(themeDark);
+                });
+            }
 
-            themeSepia.addEventListener('click', () => {
-                blogPostView.className = 'reader-theme-sepia';
-                document.body.className = 'min-h-screen min-h-[100dvh] reader-theme-sepia';
-                setActiveThemeButton(themeSepia);
-            });
+            if (themeSepia) {
+                themeSepia.addEventListener('click', () => {
+                    blogPostView.className = 'reader-theme-sepia';
+                    document.body.className = 'min-h-screen min-h-[100dvh] reader-theme-sepia';
+                    setActiveThemeButton(themeSepia);
+                });
+            }
 
-            themeCream.addEventListener('click', () => {
-                blogPostView.className = 'reader-theme-cream';
-                document.body.className = 'min-h-screen min-h-[100dvh] reader-theme-cream';
-                setActiveThemeButton(themeCream);
-            });
+            if (themeCream) {
+                themeCream.addEventListener('click', () => {
+                    blogPostView.className = 'reader-theme-cream';
+                    document.body.className = 'min-h-screen min-h-[100dvh] reader-theme-cream';
+                    setActiveThemeButton(themeCream);
+                });
+            }
 
             // Text scaling controls
             const scaleClasses = ['font-scale-sm', 'font-scale-md', 'font-scale-lg', 'font-scale-xl'];
@@ -5159,23 +5172,29 @@
             const btnInc = document.getElementById('btn-font-inc');
 
             function applyFontScale() {
-                blogPostView.classList.remove(...scaleClasses);
-                blogPostView.classList.add(scaleClasses[currentScaleIdx]);
+                if (blogPostView) {
+                    blogPostView.classList.remove(...scaleClasses);
+                    blogPostView.classList.add(scaleClasses[currentScaleIdx]);
+                }
             }
 
-            btnDec.addEventListener('click', () => {
-                if (currentScaleIdx > 0) {
-                    currentScaleIdx--;
-                    applyFontScale();
-                }
-            });
+            if (btnDec) {
+                btnDec.addEventListener('click', () => {
+                    if (currentScaleIdx > 0) {
+                        currentScaleIdx--;
+                        applyFontScale();
+                    }
+                });
+            }
 
-            btnInc.addEventListener('click', () => {
-                if (currentScaleIdx < scaleClasses.length - 1) {
-                    currentScaleIdx++;
-                    applyFontScale();
-                }
-            });
+            if (btnInc) {
+                btnInc.addEventListener('click', () => {
+                    if (currentScaleIdx < scaleClasses.length - 1) {
+                        currentScaleIdx++;
+                        applyFontScale();
+                    }
+                });
+            }
 
             // Mouse-tracker radial card glow
             const trackClasses = ['.card-premium', '.emphasis-card', '.faq-card', '.course-card'];
