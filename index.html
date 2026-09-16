@@ -560,6 +560,82 @@
             line-height: 1.65;
         }
 
+        /* Areas of Emphasis Accordion Dropdowns */
+        .emphasis-card {
+            border-left: 3px solid var(--pulse-cyan) !important;
+            transition: all 0.3s ease;
+        }
+
+        .emphasis-card:hover {
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.12);
+        }
+
+        .accordion-btn {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .accordion-btn:hover span {
+            color: var(--pulse-cyan) !important;
+        }
+
+        .accordion-btn svg {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+            flex-shrink: 0;
+        }
+
+        .accordion-btn.active svg {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+        }
+
+        .accordion-content:not(.open) {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .accordion-content.open {
+            max-height: 4000px;
+            opacity: 1;
+            overflow: visible;
+        }
+
+        .thread-dropdown-card {
+            background: rgba(11, 14, 20, 0.7);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 0.75rem;
+            padding: 0.875rem 1.125rem;
+            margin-bottom: 0.75rem;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .thread-dropdown-card:hover {
+            border-color: rgba(6, 182, 212, 0.45);
+            background: rgba(11, 14, 20, 0.95);
+        }
+
+        .focus-card {
+            border-left: 3px solid #f59e0b !important;
+            transition: all 0.3s ease;
+        }
+
+        .focus-card:hover {
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.12);
+        }
+
+        .focus-card .accordion-btn:hover span {
+            color: #fbbf24 !important;
+        }
+
         /* My Major Redesign */
         .major-timeline {
             position: relative;
@@ -1297,7 +1373,7 @@
                 </button>
                 <button class="mobile-dock-btn" id="mobile-tab-about" data-tab="about" role="tab" aria-selected="false" aria-controls="section-about">
                     <i data-lucide="user" style="width: 20px; height: 20px;"></i>
-                    <span>Profile</span>
+                    <span>About Me</span>
                 </button>
             </nav>
 
@@ -1488,7 +1564,7 @@
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
                                 <div class="flex flex-row md:flex-col items-center gap-4 text-left md:text-center mt-2">
-                                    <img class="w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center 10%;" src="./IMG_2072.jpg" alt="Portrait of Priya Chaudhari">
+                                    <img class="w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./priya-headshot.jpg" alt="Portrait of Priya Chaudhari">
                                     <div>
                                         <h4 class="font-bold text-white text-lg">Priya Chaudhari</h4>
                                         <p class="text-xs text-cyan-400 font-medium mt-1">UGA Class of 2027 · Interdisciplinary Studies</p>
@@ -3171,7 +3247,7 @@
                         <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Reading List · June 2026</p>
 
                         <div class="blog-post-content">
-                            <p>Over the past year, as an avid reader by heart I have delved into over 50 books relating
+                            <p>Over the past year, as an avid reader by heart I have delved into over 35 books relating
                                 to American healthcare.</p>
                             <p>I wish I could pull up on my library records all of their titles to deliver a proper book
                                 recommendation post, but I am only able to go back to this April.</p>
@@ -3892,7 +3968,7 @@
                     <article id="podcast-ep6-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 6 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/atjQhrMYH9c"
+                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/LDlWsl8vJgg"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
@@ -3948,7 +4024,7 @@
                                     </svg>
                                     Apple Podcasts
                                 </a>
-                                <a href="https://youtu.be/atjQhrMYH9c"
+                                <a href="https://youtu.be/LDlWsl8vJgg"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
                                     style="background: rgba(239,68,68,0.1); color: rgb(252, 165, 165); text-decoration: none;">
@@ -4465,88 +4541,150 @@
                         </p>
 
                         <!-- Specialized Thread: Disability -->
-                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mt-3 mb-2">
+                        <div class="thread-dropdown-card">
                             <button
-                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer py-1"
                                 data-target="thread-disability-content" aria-expanded="false"
                                 aria-controls="thread-disability-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Disability
-                                    Thread</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-cyan-400" aria-hidden="true"></span>
+                                    <span class="text-sm font-bold text-slate-200 hover:text-cyan-300 transition-colors">Disability Thread</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/50">Specialized Option</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" class="text-cyan-400 transition-transform duration-300" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
                             </button>
-                            <div id="thread-disability-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Examines the social, legal, and
-                                    systemic frameworks shaping the lived experiences of individuals with disabilities —
-                                    including disability rights legislation, accessibility in digital health platforms,
-                                    and advocacy for cognitive and physical diversity within healthcare delivery.</p>
+                            <div id="thread-disability-content" class="accordion-content mt-3" role="region" aria-label="Disability Thread Details">
+                                <p class="text-xs leading-relaxed text-slate-300 mb-3">
+                                    Examines the social, legal, and systemic frameworks shaping the lived experiences of individuals with disabilities — including disability rights legislation, accessibility in digital health platforms, and advocacy for cognitive and physical diversity within healthcare delivery.
+                                </p>
+                                <div class="p-3 rounded-lg bg-black/40 border border-white/5 mb-3">
+                                    <p class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider mb-2">Approved Coursework Options (Choose 1–2):</p>
+                                    <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-cyan-500">
+                                        <li><span class="font-medium text-white">IHDD 4002/S:</span> Disability Issues in Adulthood</li>
+                                        <li><span class="font-medium text-white">IHDD 4005/S:</span> Disability Issues in Childhood and Adolescence</li>
+                                        <li><span class="font-medium text-white">IHDD 4050:</span> Critical Issues in Disability Studies</li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center gap-2 text-[11px] text-cyan-200/90 bg-cyan-500/10 px-3 py-1.5 rounded-md border border-cyan-500/20">
+                                    <i data-lucide="award" style="width: 14px; height: 14px; flex-shrink: 0;" aria-hidden="true"></i>
+                                    <span>Complete 2 courses in this thread (along with ANTH 3540) to earn a formal <strong>Specialized Thread</strong> transcript distinction.</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Specialized Thread: Global Migration & Ethnic Diversity -->
-                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
+                        <div class="thread-dropdown-card">
                             <button
-                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer py-1"
                                 data-target="thread-migration-content" aria-expanded="false"
                                 aria-controls="thread-migration-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Global
-                                    Migration &amp; Ethnic Diversity Thread</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-cyan-400" aria-hidden="true"></span>
+                                    <span class="text-sm font-bold text-slate-200 hover:text-cyan-300 transition-colors">Global Migration &amp; Ethnic Diversity Thread</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/50">Specialized Option</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" class="text-cyan-400 transition-transform duration-300" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
                             </button>
-                            <div id="thread-migration-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Explores how displacement,
-                                    immigration policy, and ethnic identity intersect with healthcare access — analyzing
-                                    the cultural, linguistic, and structural barriers that migrant and ethnically
-                                    diverse populations face when navigating institutional medical systems.</p>
+                            <div id="thread-migration-content" class="accordion-content mt-3" role="region" aria-label="Global Migration and Ethnic Diversity Thread Details">
+                                <p class="text-xs leading-relaxed text-slate-300 mb-3">
+                                    Explores how displacement, immigration policy, and ethnic identity intersect with healthcare access — analyzing the cultural, linguistic, and structural barriers that migrant and ethnically diverse populations face when navigating institutional medical systems.
+                                </p>
+                                <div class="p-3 rounded-lg bg-black/40 border border-white/5 mb-3">
+                                    <p class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider mb-2">Approved Coursework Options (Choose 1–2):</p>
+                                    <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-cyan-500">
+                                        <li><span class="font-medium text-white">GLOB 4300:</span> Refugee and Immigrant Health <span class="text-amber-300/90 text-[10px] ml-1">(Core recommendation)</span></li>
+                                        <li><span class="font-medium text-white">ENGL 4860:</span> Multicultural Topics in American Literature <span class="text-slate-400 text-[10px] ml-1">(Sub-topic: Refugee Narratives)</span></li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center gap-2 text-[11px] text-cyan-200/90 bg-cyan-500/10 px-3 py-1.5 rounded-md border border-cyan-500/20">
+                                    <i data-lucide="award" style="width: 14px; height: 14px; flex-shrink: 0;" aria-hidden="true"></i>
+                                    <span>Complete 2 courses in this thread (along with ANTH 3540) to earn a formal <strong>Specialized Thread</strong> transcript distinction.</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Specialized Thread: Gerontechnology & Health Communication -->
-                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
+                        <div class="thread-dropdown-card">
                             <button
-                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer py-1"
                                 data-target="thread-gerontech-content" aria-expanded="false"
                                 aria-controls="thread-gerontech-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Gerontechnology
-                                    &amp; Health Communication Thread</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-cyan-400" aria-hidden="true"></span>
+                                    <span class="text-sm font-bold text-slate-200 hover:text-cyan-300 transition-colors">Gerontechnology &amp; Health Communication Thread</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/50">Specialized Option</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" class="text-cyan-400 transition-transform duration-300" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
                             </button>
-                            <div id="thread-gerontech-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Investigates the design and
-                                    deployment of assistive technologies for aging populations and the communication
-                                    strategies that bridge health literacy gaps — focusing on how smart technology,
-                                    telemedicine, and patient-provider messaging must adapt for elderly and underserved
-                                    communities.</p>
+                            <div id="thread-gerontech-content" class="accordion-content mt-3" role="region" aria-label="Gerontechnology and Health Communication Thread Details">
+                                <p class="text-xs leading-relaxed text-slate-300 mb-3">
+                                    Investigates the design and deployment of assistive technologies for aging populations and the communication strategies that bridge health literacy gaps — focusing on how smart technology, telemedicine, and patient-provider messaging must adapt for elderly and underserved communities.
+                                </p>
+                                <div class="p-3 rounded-lg bg-black/40 border border-white/5 mb-3">
+                                    <p class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider mb-2">Approved Coursework Options (Choose 1–2):</p>
+                                    <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-cyan-500">
+                                        <li><span class="font-medium text-white">GRNT 3300/E:</span> Health Communication and Aging</li>
+                                        <li><span class="font-medium text-white">GRNT 3500:</span> Smart Technology in an Aging Society</li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center gap-2 text-[11px] text-cyan-200/90 bg-cyan-500/10 px-3 py-1.5 rounded-md border border-cyan-500/20">
+                                    <i data-lucide="award" style="width: 14px; height: 14px; flex-shrink: 0;" aria-hidden="true"></i>
+                                    <span>Complete 2 courses in this thread (along with ANTH 3540) to earn a formal <strong>Specialized Thread</strong> transcript distinction.</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Specialized Thread: Mental Health -->
-                        <div class="ml-4 border-l-2 border-cyan-800 pl-4 mb-2">
+                        <div class="thread-dropdown-card">
                             <button
-                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none"
+                                class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer py-1"
                                 data-target="thread-mental-content" aria-expanded="false"
                                 aria-controls="thread-mental-content">
-                                <span class="text-xs font-semibold" style="color: rgb(203, 213, 225);">↳ Mental Health
-                                    Thread</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" class="text-cyan-400" aria-hidden="true">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-cyan-400" aria-hidden="true"></span>
+                                    <span class="text-sm font-bold text-slate-200 hover:text-cyan-300 transition-colors">Mental Health Thread</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800/50">Specialized Option</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" class="text-cyan-400 transition-transform duration-300" aria-hidden="true">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
                             </button>
-                            <div id="thread-mental-content" class="accordion-content mt-2" role="region">
-                                <p class="text-xs" style="color: rgb(100, 116, 139);">Analyzes the psychological,
-                                    sociological, and institutional dimensions of mental health care — examining stigma,
-                                    access disparities, crisis intervention frameworks, and how digital health
-                                    innovations are reshaping behavioral health services for marginalized populations.
+                            <div id="thread-mental-content" class="accordion-content mt-3" role="region" aria-label="Mental Health Thread Details">
+                                <p class="text-xs leading-relaxed text-slate-300 mb-3">
+                                    Analyzes the psychological, sociological, and institutional dimensions of mental health care — examining stigma, access disparities, crisis intervention frameworks, and how digital health innovations are reshaping behavioral health services for marginalized populations.
                                 </p>
+                                <div class="p-3 rounded-lg bg-black/40 border border-white/5 mb-3">
+                                    <p class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider mb-2">Approved Coursework Options (Choose 1–2):</p>
+                                    <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-cyan-500">
+                                        <li><span class="font-medium text-white">JURI 3627:</span> Mental Health Law</li>
+                                        <li><span class="font-medium text-white">SOCI 3105:</span> Sociology of Rural Health</li>
+                                        <li><span class="font-medium text-white">PSYC 3230:</span> Psychopathology</li>
+                                        <li><span class="font-medium text-white">ECHD 4380:</span> Human Development and Mental Health</li>
+                                        <li><span class="font-medium text-white">ECHD(LACS) 4660/6660:</span> U.S. Latino/a Mental Health: An Introduction</li>
+                                    </ul>
+                                </div>
+                                <div class="flex items-center gap-2 text-[11px] text-cyan-200/90 bg-cyan-500/10 px-3 py-1.5 rounded-md border border-cyan-500/20">
+                                    <i data-lucide="award" style="width: 14px; height: 14px; flex-shrink: 0;" aria-hidden="true"></i>
+                                    <span>Complete 2 courses in this thread (along with ANTH 3540) to earn a formal <strong>Specialized Thread</strong> transcript distinction.</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -4556,38 +4694,130 @@
                 <p class="text-sm mb-6" style="color: rgb(148, 163, 184);">Optional specializations marks recognized on
                     your official transcript.</p>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                    <div class="focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
-                        <h4 class="font-semibold mb-2" style="color: rgb(245, 158, 11); font-size: 16px;">Public Health
-                        </h4>
-                        <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">Examines health management, policy
-                            legalities, and comparative systems to analyze how underserved and rural communities
-                            navigate institutional healthcare barriers.</p>
-                        <p class="text-xs" style="color: rgb(148, 163, 184);">9 credit hours</p>
+                <!-- Focus Area: Public Health -->
+                <div class="focus-card rounded-lg p-5 mb-4" style="background: rgba(245, 158, 11, 0.05);">
+                    <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
+                        data-target="focus-public-health-content" aria-expanded="false"
+                        aria-controls="focus-public-health-content">
+                        <span class="font-bold" style="color: rgb(245, 158, 11); font-size: 16px;">Public Health</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" class="text-amber-400" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="focus-public-health-content" class="accordion-content mt-3" role="region" aria-label="Public Health Focus Area Details">
+                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                            Examines health management, policy legalities, and comparative systems to analyze how underserved and rural communities navigate institutional healthcare barriers.
+                        </p>
+                        <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">9 credit hours · Choose 3 courses</p>
+                        <div class="p-3.5 rounded-lg bg-black/40 border border-white/5">
+                            <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-2">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-amber-500">
+                                <li><span class="font-medium text-white">PBHL 3100:</span> Introduction to Public Health</li>
+                                <li><span class="font-medium text-white">HPAM 3500:</span> Introduction to Healthcare Management</li>
+                                <li><span class="font-medium text-white">HPAM 3600:</span> Introduction to Health Policy <span class="text-slate-400 text-[10px] ml-1">(P/C: PBHL 3100)</span></li>
+                                <li><span class="font-medium text-white">HPAM 4150:</span> Health Policy Law and Ethics <span class="text-slate-400 text-[10px] ml-1">(PR: HPAM 3600)</span></li>
+                                <li><span class="font-medium text-white">HPAM 4300:</span> Essentials of Health Care Administration</li>
+                                <li><span class="font-medium text-white">HPAM 4410:</span> Introduction to Health Informatics and Analytics</li>
+                                <li><span class="font-medium text-white">HPAM 4600:</span> Advanced Health Policy</li>
+                                <li><span class="font-medium text-white">GLOB 3100:</span> Introduction to Global Health</li>
+                                <li><span class="font-medium text-white">GLOB 4300:</span> Refugee and Immigrant Health</li>
+                                <li><span class="font-medium text-white">HPAM 3650/E:</span> Comparative Health Systems</li>
+                                <li><span class="font-medium text-white">HPRB 3300/E:</span> Rural and Frontier Health</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
-                        <h4 class="font-semibold mb-2" style="color: rgb(245, 158, 11); font-size: 16px;">Artificial
-                            Intelligence</h4>
-                        <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">Explores data analytics, user
-                            experience integration, and ethical governance to understand how emerging computing
-                            technologies impact societal systems and compliance.</p>
-                        <p class="text-xs" style="color: rgb(148, 163, 184);">9 credit hours</p>
+                </div>
+
+                <!-- Focus Area: Artificial Intelligence -->
+                <div class="focus-card rounded-lg p-5 mb-4" style="background: rgba(245, 158, 11, 0.05);">
+                    <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
+                        data-target="focus-ai-content" aria-expanded="false"
+                        aria-controls="focus-ai-content">
+                        <span class="font-bold" style="color: rgb(245, 158, 11); font-size: 16px;">Artificial Intelligence</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" class="text-amber-400" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="focus-ai-content" class="accordion-content mt-3" role="region" aria-label="Artificial Intelligence Focus Area Details">
+                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                            Explores data analytics, user experience integration, and ethical governance to understand how emerging computing technologies impact societal systems and compliance.
+                        </p>
+                        <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">9 credit hours · Choose 3 courses</p>
+                        <p class="text-xs text-slate-400 mb-3 italic">
+                            ARTI 2550: Thinking Machines and ARTI(PHIL) 2130: AI for Humans may count towards this focus area.
+                        </p>
+                        <div class="p-3.5 rounded-lg bg-black/40 border border-white/5 mb-3">
+                            <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-2">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-amber-500">
+                                <li><span class="font-medium text-white">ARTI(PHIL) 4340:</span> Ethics and Artificial Intelligence</li>
+                                <li><span class="font-medium text-white">MIST 4600 / MIST 4610:</span> Computer Programming in Business OR Data Management and Analytics</li>
+                                <li><span class="font-medium text-white">MIST 5400:</span> Foundations of Artificial Intelligence in Business</li>
+                                <li><span class="font-medium text-white">MIST 5440:</span> AI in Business and Society</li>
+                                <li><span class="font-medium text-white">MIST 5450:</span> Generative Artificial Intelligence</li>
+                                <li><span class="font-medium text-white">MIST 5460:</span> Agentic AI for Business Applications</li>
+                                <li><span class="font-medium text-white">MIST 5470:</span> The Science and Business of Conversational Agents</li>
+                                <li><span class="font-medium text-white">MIST 5540:</span> User Experience and AI Integration</li>
+                                <li><span class="font-medium text-white">INTS 4990R:</span> Undergraduate Research Thesis or Final Project <span class="text-slate-400 text-[10px] ml-1">(1–3 hrs)</span></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
-                        <h4 class="font-semibold mb-2" style="color: rgb(245, 158, 11); font-size: 16px;">Substance
-                            Abuse</h4>
-                        <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">6 credit hours</p>
-                        <p class="text-xs" style="color: rgb(148, 163, 184);">Investigates the biological, social, and
-                            historical forces of addiction to inform the development of ethical, culturally responsive
-                            digital health interventions.</p>
+                </div>
+
+                <!-- Focus Area: Substance Abuse -->
+                <div class="focus-card rounded-lg p-5 mb-4" style="background: rgba(245, 158, 11, 0.05);">
+                    <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
+                        data-target="focus-substance-content" aria-expanded="false"
+                        aria-controls="focus-substance-content">
+                        <span class="font-bold" style="color: rgb(245, 158, 11); font-size: 16px;">Substance Abuse</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" class="text-amber-400" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="focus-substance-content" class="accordion-content mt-3" role="region" aria-label="Substance Abuse Focus Area Details">
+                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                            Investigates the biological, social, and historical forces that drive addiction to better inform the development of inclusive healthtech. Foundational for designing digital health interventions that are ethically grounded and culturally responsive.
+                        </p>
+                        <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">6 credit hours · Choose 2–3 courses</p>
+                        <div class="p-3.5 rounded-lg bg-black/40 border border-white/5">
+                            <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-2">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-amber-500">
+                                <li><span class="font-medium text-white">ECHD 3170:</span> Drug and Alcohol Abuse Issues</li>
+                                <li><span class="font-medium text-white">HDFS 3200:</span> Substance Use and Other Addictive Behaviors within Family Systems</li>
+                                <li><span class="font-medium text-white">SOCI 3860:</span> Sociology of Alcohol and Drug Use</li>
+                                <li><span class="font-medium text-white">SOCI 4100:</span> Social Control and Behavior Disorders</li>
+                                <li><span class="font-medium text-white">HIST 4445:</span> A Global History of Drugs</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="focus-card rounded-lg p-5" style="background: rgb(30, 41, 59);">
-                        <h4 class="font-semibold mb-2" style="color: rgb(245, 158, 11); font-size: 16px;">Companion
-                            Animals</h4>
-                        <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">6 credit hours</p>
-                        <p class="text-xs" style="color: rgb(148, 163, 184);">Examines the therapeutic, legal, and
-                            biological bonds between humans and animals to effectively integrate animal-centered support
-                            into digital care models.</p>
+                </div>
+
+                <!-- Focus Area: Companion Animals -->
+                <div class="focus-card rounded-lg p-5 mb-10" style="background: rgba(245, 158, 11, 0.05);">
+                    <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
+                        data-target="focus-companion-content" aria-expanded="false"
+                        aria-controls="focus-companion-content">
+                        <span class="font-bold" style="color: rgb(245, 158, 11); font-size: 16px;">Companion Animals</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" class="text-amber-400" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div id="focus-companion-content" class="accordion-content mt-3" role="region" aria-label="Companion Animals Focus Area Details">
+                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                            Examines the therapeutic, legal, and biological bonds between humans and animals to effectively integrate animal-centered support into digital care models. Provides regulatory and physiological context for animal welfare and accessibility.
+                        </p>
+                        <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">6 credit hours · Choose 2 courses</p>
+                        <div class="p-3.5 rounded-lg bg-black/40 border border-white/5">
+                            <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-2">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-amber-500">
+                                <li><span class="font-medium text-white">HDFS 4890S:</span> More than a Four-Legged Friend: The Benefits of Animal-Assisted Interventions</li>
+                                <li><span class="font-medium text-white">ADSC 2520:</span> Animal Welfare</li>
+                                <li><span class="font-medium text-white">JURI 3278:</span> Special Topics in Animal Welfare</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -4793,36 +5023,16 @@
             </section>
 
             <section id="section-about" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-about">
-                <h2 class="mb-2 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">About Me</h2>
-                <p class="text-sm mb-8 text-slate-400">My journey, research focus, and post-grad vision.</p>
+                <h2 class="mb-8 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">About Me</h2>
                 <div class="flex flex-col lg:flex-row gap-8 items-start">
-                    <div class="flex-1 flex flex-col gap-6 text-slate-300 leading-relaxed text-base" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">
+                    <div class="flex-1 text-slate-300 leading-relaxed text-base" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">
                         <p>
-                            After navigating an unexpected chronic illness journey during my freshman year, I
-                            experienced firsthand the systemic fractures within the American healthcare system.
-                        </p>
-                        <p>
-                            This exposure shifted my focus from clinical pre-health tracks toward a deeper calling:
-                            reshaping the legal, regulatory, and business frameworks that dictate how care is delivered.
-                        </p>
-                        <p>
-                            This inspired me to design an Interdisciplinary Studies major at the University of Georgia,
-                            focusing on Healthcare Technology Law and Regulation. I will be graduating from this program
-                            this spring.
-                        </p>
-                        <p>
-                            My focus sits at the intersection of emerging AI, healthcare, and compliance frameworks.
-                            I am dedicated to moving beyond mere legal compliance to advocate for patient welfare and
-                            advance accessible technology rights.
-                        </p>
-                        <p>
-                            My long-term visions are to become a law professor specializing in healthtech law and to be
-                            an administrative law judge for the Health and Human Services agency.
+                            After navigating an unexpected chronic illness during my freshman year, I experienced firsthand the systemic fractures within the American healthcare system. This exposure shifted my focus from clinical pre-health tracks toward a deeper calling: reshaping the legal, regulatory, and business frameworks that dictate how care is delivered. This inspired me to design an Interdisciplinary Studies major at the University of Georgia, focusing on Healthcare Technology Law and Regulation. I will be graduating from this program this spring. My focus sits at the intersection of emerging AI, healthcare, and compliance frameworks. I am dedicated to moving beyond mere legal compliance to advocate for patient welfare and advance accessible technology rights. My long-term visions are to become a law professor specializing in healthtech law and to be an administrative law judge for the Health and Human Services agency.
                         </p>
                     </div>
                     <div class="flex-shrink-0 flex flex-col items-center gap-4 w-full lg:w-64">
-                        <img class="w-64 h-80 rounded-2xl object-cover border-2 border-white/5 shadow-2xl" style="object-position: center 10%;"
-                            src="./IMG_2072.jpg" alt="Portrait of Priya Chaudhari">
+                        <img class="w-64 h-80 rounded-2xl object-cover border-2 border-white/5 shadow-2xl" style="object-position: center 20%;"
+                            src="./priya-portrait.jpg" alt="Portrait of Priya Chaudhari">
                         <a href="https://www.linkedin.com/in/priya-chaudhari-8798b2398/" target="_blank"
                             rel="noopener noreferrer"
                             class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold transition-all w-full bg-[#1e293b] text-white hover:bg-[#334155] border border-white/5 text-sm"
@@ -5074,7 +5284,7 @@
                 });
             });
 
-            // Accordion Toggle Logic (For Areas of Emphases)
+            // Accordion Toggle Logic (For Areas of Emphases & Specialized Threads)
             document.querySelectorAll('.accordion-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -5092,7 +5302,17 @@
                         content.classList.add('open');
                         btn.classList.add('active');
                         btn.setAttribute('aria-expanded', 'true');
+                        if (typeof lucide !== 'undefined') lucide.createIcons();
                     }
+                });
+            });
+
+            // Card click expands if collapsed
+            document.querySelectorAll('.emphasis-card, .focus-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('.accordion-btn') || e.target.closest('a') || e.target.closest('.accordion-content.open') || e.target.closest('.thread-dropdown-card')) return;
+                    const btn = card.querySelector('.accordion-btn');
+                    if (btn) btn.click();
                 });
             });
 
