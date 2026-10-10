@@ -40,7 +40,7 @@
         }
 
         .brand-title {
-            font-family: 'Space Grotesk', sans-serif !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
             font-weight: 700 !important;
             letter-spacing: -0.02em !important;
         }
@@ -53,66 +53,13 @@
             letter-spacing: -0.011em;
         }
 
-        /* Heartbeat logo animation */
         .pulse-logo polyline {
             stroke: var(--pulse-cyan);
             stroke-width: 5;
             fill: none;
             stroke-linecap: round;
             stroke-linejoin: round;
-            stroke-dasharray: 260;
-            stroke-dashoffset: 260;
-            animation: heartbeat 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
-
-        /* Specific animation behavior for the welcome screen overlay logo */
-        #intro-overlay .pulse-logo polyline {
-            animation: none;
-        }
-
-        #intro-overlay .pulse-logo polyline.welcome-pulse-active {
-            animation: heartbeat 2.0s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards !important;
-        }
-
-        /* Prevent welcome animation from re-triggering during fade-out */
-        #intro-overlay.intro-fade .pulse-logo polyline {
-            animation: none !important;
-        }
-
-        .intro-fade {
-            animation: fade-out 0.6s ease forwards;
-            will-change: opacity;
-        }
-
-        @keyframes fade-out {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-            }
-        }
-
-        @keyframes heartbeat {
-            0% {
-                stroke-dashoffset: 260;
-                opacity: 0.3;
-            }
-            40% {
-                stroke-dashoffset: 0;
-                opacity: 1;
-            }
-            80% {
-                stroke-dashoffset: 0;
-                opacity: 0.8;
-                filter: none;
-            }
-            100% {
-                stroke-dashoffset: -260;
-                opacity: 0.3;
-            }
-        }
-
         /* Glassmorphic header & tabs navigation */
         .glass-header {
             background: rgba(8, 11, 17, 0.8);
@@ -246,7 +193,7 @@
             font-size: 1.2rem !important;
             line-height: 1.9 !important;
             color: #f8fafc !important;
-            border-left: 4px solid var(--pulse-cyan) !important;
+            border: 1px solid var(--border-subtle) !important;
             background: linear-gradient(90deg, rgba(6, 182, 212, 0.04) 0%, transparent 100%) !important;
             padding: 1.25rem 1.75rem !important;
             margin: 2.5rem 0 !important;
@@ -328,34 +275,7 @@
             background: #22d3ee;
         }
 
-        .audio-wave {
-            display: flex;
-            align-items: flex-end;
-            gap: 2.5px;
-            height: 16px;
-            margin-left: auto;
-        }
 
-        .audio-wave-bar {
-            width: 3px;
-            height: 4px;
-            background-color: var(--pulse-cyan);
-            border-radius: 9999px;
-        }
-
-        .audio-wave.playing .audio-wave-bar {
-            animation: wave 1s ease-in-out infinite alternate;
-        }
-
-        .audio-wave.playing .audio-wave-bar:nth-child(2) { animation-delay: 0.15s; }
-        .audio-wave.playing .audio-wave-bar:nth-child(3) { animation-delay: 0.3s; }
-        .audio-wave.playing .audio-wave-bar:nth-child(4) { animation-delay: 0.45s; }
-        .audio-wave.playing .audio-wave-bar:nth-child(5) { animation-delay: 0.6s; }
-
-        @keyframes wave {
-            0% { height: 4px; }
-            100% { height: 16px; }
-        }
 
         /* FAQ Tab Premium Collapsible Cards */
         .faq-card {
@@ -386,7 +306,7 @@
         }
 
         .faq-trigger:hover {
-            color: var(--pulse-cyan);
+            color: #fff;
         }
 
         .faq-trigger svg {
@@ -396,7 +316,7 @@
 
         .faq-card.open .faq-trigger svg {
             transform: rotate(180deg);
-            color: var(--pulse-cyan);
+            color: #fff;
         }
 
         .faq-content {
@@ -414,7 +334,7 @@
 
         /* Areas of Emphasis Accordion Dropdowns */
         .emphasis-card {
-            border-left: 3px solid var(--pulse-cyan) !important;
+            border: 1px solid var(--border-subtle) !important;
             transition: all 0.3s ease;
         }
 
@@ -463,7 +383,7 @@
 
         .thread-dropdown-card {
             background: rgba(11, 14, 20, 0.7);
-            border: 1px solid rgba(6, 182, 212, 0.2);
+            border: 1px solid var(--border-subtle);
             border-radius: 0.75rem;
             padding: 0.875rem 1.125rem;
             margin-bottom: 0.75rem;
@@ -471,12 +391,12 @@
         }
 
         .thread-dropdown-card:hover {
-            border-color: rgba(6, 182, 212, 0.45);
+            border-color: var(--border-glow);
             background: rgba(11, 14, 20, 0.95);
         }
 
         .focus-card {
-            border-left: 3px solid #f59e0b !important;
+            border: 1px solid var(--border-subtle) !important;
             transition: all 0.3s ease;
         }
 
@@ -535,8 +455,8 @@
             display: inline-flex !important;
             align-items: center !important;
             gap: 12px !important;
-            background: rgba(6, 182, 212, 0.08) !important;
-            border: 1px solid var(--pulse-cyan-border) !important;
+            background: rgba(255,255,255,0.05) !important;
+            border: 1px solid var(--border-subtle) !important;
             padding: 8px 16px !important;
             border-radius: 9999px !important;
             color: var(--pulse-cyan) !important;
@@ -548,7 +468,7 @@
         }
 
         .audio-player:hover {
-            background: rgba(6, 182, 212, 0.15) !important;
+            background: rgba(255,255,255,0.08) !important;
             border-color: var(--pulse-cyan) !important;
             box-shadow: 0 0 10px rgba(6, 182, 212, 0.1) !important;
         }
@@ -609,11 +529,6 @@
         }
 
 
-        /* Dynamic logo animation speed */
-        .pulse-logo.playing polyline {
-            animation-duration: 1.0s !important;
-        }
-
         /* Floating Audio Bar Scrubber & Custom Styling */
         .floating-audio-bar {
             display: flex;
@@ -629,8 +544,8 @@
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.25rem;
-            padding: 0.85rem 1.5rem;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
             transition: bottom 0.40s cubic-bezier(0.175, 0.885, 0.32, 1.15);
             z-index: 100;
@@ -710,7 +625,7 @@
         }
         .course-card:hover {
             background: var(--bg-obsidian-card-premium);
-            border-color: rgba(6, 182, 212, 0.25);
+            border-color: var(--border-glow);
             transform: translateY(-2px);
         }
         .course-detail {
@@ -777,9 +692,9 @@
             background: rgba(255, 255, 255, 0.03);
         }
         .nav-link-vertical.active {
-            color: var(--pulse-cyan);
-            background: var(--pulse-cyan-glow);
-            border-color: rgba(6, 182, 212, 0.2);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
             box-shadow: none;
         }
 
@@ -819,8 +734,8 @@
             cursor: pointer;
         }
         .mobile-dock-btn.active {
-            color: var(--pulse-cyan);
-            text-shadow: 0 0 8px var(--pulse-cyan-glow);
+            color: #fff;
+            
         }
 
         @media (max-width: 1024px) {
@@ -1036,26 +951,9 @@
 </head>
 
 <body class="min-h-screen min-h-[100dvh] bg-[#080b11]">
-    <script>
-        (function() {
-            const hash = window.location.hash;
-            if (hash && hash !== '#blog' && hash !== '#') {
-                document.write('<style>#intro-overlay { display: none !important; } #main-content { opacity: 1 !important; transition: none !important; }</style>');
-            }
-        })();
-    </script>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <div id="intro-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#080b11]" aria-hidden="true">
-        <svg width="240" height="240" viewBox="0 0 160 160" fill="none" aria-hidden="true" class="pulse-logo mb-6">
-            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
-                stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            </polyline>
-        </svg>
-        <div class="intro-title text-center brand-title text-3xl md:text-5xl" style="color: rgb(255, 255, 255); font-size: 48px;">The Regulated Pulse</div>
-    </div>
-
-    <div id="main-content" class="opacity-0 transition-opacity duration-500" tabindex="-1">
+    <div id="main-content" tabindex="-1">
         <div class="dashboard-container">
             <!-- Fixed Left Sidebar for desktop navigation -->
             <aside class="dashboard-sidebar">
@@ -1066,7 +964,7 @@
                             <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
                         </svg>
                         <div>
-                            <div class="text-[9px] tracking-[0.2em] font-mono text-cyan-400 font-semibold uppercase leading-none mb-1">Health &amp; Tech Law</div>
+                            <div class="text-[10px] tracking-[0.18em] text-slate-400 font-semibold uppercase leading-none mb-1">Health &amp; Tech Law</div>
                             <h1 class="text-white text-lg leading-none brand-title">The Regulated Pulse</h1>
                         </div>
                     </button>
@@ -1137,15 +1035,16 @@
                         <!-- Main Content (Left Column) -->
                         <div class="lg:col-span-8 flex flex-col gap-12">
                             <!-- Premium Welcome Hero Section -->
-                            <div class="welcome-hero rounded-2xl p-8 md:p-12 text-left">
+                            <div class="welcome-hero rounded-2xl p-8 md:p-10 text-left">
                                 <div class="max-w-3xl">
-                                    <h2 class="text-white font-extrabold text-2xl md:text-4xl tracking-tight mb-4" style="font-family: 'Plus Jakarta Sans', sans-serif;">Welcome to The Regulated Pulse</h2>
-                                    <p class="text-base leading-relaxed mb-6 text-slate-300" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">
-                                        This blog navigates the legal frameworks and ethical guardrails shaping the future of healthcare technology, bridging the gap between complex academic research and practical industry impact.
+                                    <p class="text-[11px] tracking-[0.18em] uppercase text-slate-400 font-semibold mb-3">Healthcare technology, law, and regulation</p>
+                                    <h2 class="text-white font-extrabold text-2xl md:text-3xl tracking-tight mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse</h2>
+                                    <p class="leading-relaxed mb-6 text-slate-300" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">
+                                        Essays and interviews on how health technology is regulated, and what that means for patients and clinicians.
                                     </p>
-                                    <div class="flex flex-wrap gap-4">
-                                        <button onclick="navigateTo('#post-welcome')" class="px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm bg-cyan-500 hover:bg-cyan-400 text-[#080b11]">Read Welcome Note</button>
-                                        <button onclick="navigateTo('#about')" class="px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white" style="background: transparent;">About the Editor</button>
+                                    <div class="flex flex-wrap gap-3">
+                                        <button onclick="navigateTo('#post-welcome')" class="px-5 py-2.5 rounded-lg font-semibold focus:outline-none cursor-pointer text-sm bg-slate-100 hover:bg-white text-[#0a0e14]">Read Welcome Note</button>
+                                        <button onclick="navigateTo('#about')" class="px-5 py-2.5 rounded-lg font-semibold focus:outline-none cursor-pointer text-sm border border-white/10 hover:border-white/20 text-slate-300 hover:text-white" style="background: transparent;">About the Editor</button>
                                     </div>
                                 </div>
                             </div>
@@ -1315,7 +1214,7 @@
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
                                 <div class="flex flex-row md:flex-col items-center gap-4 text-left md:text-center mt-2">
-                                    <img class="w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./IMG_5048.jpg" alt="Portrait of Priya Chaudhari">
+                                    <img class="w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border border-white/10" style="object-position: center;" src="./IMG_5048.jpg" alt="Portrait of Priya Chaudhari">
                                     <div>
                                         <h4 class="font-bold text-white text-lg">Priya Chaudhari</h4>
                                         <p class="text-xs text-cyan-400 font-medium mt-1">UGA Class of 2027 · Interdisciplinary Studies</p>
@@ -1385,7 +1284,7 @@
                                                     </div>
                                                     <input type="hidden" name="ml-submit" value="1">
                                                     <div class="ml-form-embedSubmit mt-3">
-                                                        <button type="submit" class="w-full py-3 rounded-xl font-bold text-sm bg-cyan-500 hover:bg-cyan-400 text-[#080b11] transition-all cursor-pointer">Subscribe</button>
+                                                        <button type="submit" class="w-full py-3 rounded-lg font-semibold text-sm bg-slate-100 hover:bg-white text-[#0a0e14] cursor-pointer">Subscribe</button>
                                                         <button disabled="disabled" style="display: none;" type="button" class="loading">
                                                             <div class="ml-form-embedSubmitLoad"></div>
                                                             <span class="sr-only">Loading...</span>
@@ -1546,7 +1445,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(220, 38, 38); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -1721,7 +1620,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(5, 150, 105); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -1797,7 +1696,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(245, 158, 11); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -1985,7 +1884,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(15, 118, 110); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -2267,7 +2166,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(225, 29, 72); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -2482,7 +2381,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(14, 165, 233); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -2690,7 +2589,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(217, 70, 239); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -2981,7 +2880,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(8, 145, 178); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -3075,7 +2974,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(76, 29, 149); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -3260,7 +3159,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(180, 83, 9); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -3326,7 +3225,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(13, 148, 136); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -3409,7 +3308,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(37, 99, 235); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -3497,7 +3396,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(220, 38, 38); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -3551,7 +3450,7 @@
                                         style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
                                 </div>
                                 <button type="submit"
-                                    class="w-full font-bold transition-transform hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    class="w-full font-semibold focus:outline-none cursor-pointer"
                                     style="background: rgb(76, 29, 149); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
@@ -4950,43 +4849,9 @@
                 }
             });
 
-            // Intro Animation & Initialization
             const currentHash = window.location.hash;
-            const isDeepLink = currentHash && currentHash !== '#blog' && currentHash !== '#';
-
-            if (isDeepLink) {
-                // Bypass animation: immediately hide overlay and show target section
-                const overlay = document.getElementById('intro-overlay');
-                if (overlay) overlay.remove();
-                document.getElementById('main-content').classList.remove('opacity-0');
-                navigateTo(currentHash);
-                setTimeout(() => { hasLoaded = true; }, 500);
-            } else {
-                // Play intro animation normally for default home view
-                setTimeout(() => {
-                    const welcomePolyline = document.querySelector('#intro-overlay .pulse-logo polyline');
-                    if (welcomePolyline) {
-                        welcomePolyline.classList.add('welcome-pulse-active');
-                    }
-                }, 150);
-
-                setTimeout(() => {
-                    const overlay = document.getElementById('intro-overlay');
-                    if (overlay) {
-                        overlay.classList.add('intro-fade');
-                        document.getElementById('main-content').classList.remove('opacity-0');
-                        setTimeout(() => {
-                            if (overlay.parentNode) overlay.remove();
-                            navigateTo(currentHash || '#blog'); // Route on load
-                            setTimeout(() => { hasLoaded = true; }, 500);
-                        }, 600);
-                    } else {
-                        document.getElementById('main-content').classList.remove('opacity-0');
-                        navigateTo(currentHash || '#blog');
-                        setTimeout(() => { hasLoaded = true; }, 500);
-                    }
-                }, 2250);
-            }
+            navigateTo(currentHash || '#blog');
+            setTimeout(() => { hasLoaded = true; }, 200);
 
             // UI Event Listeners (Sidebar and Mobile bottom dock links)
             ['blog', 'podcast', 'major', 'faq', 'about'].forEach(tabName => {
@@ -5118,18 +4983,7 @@
             const floatingPlayBtn = document.getElementById('floating-play-btn');
             const floatingTitle = document.getElementById('floating-audio-title');
             const floatingTime = document.getElementById('floating-audio-time');
-            const floatingWave = document.getElementById('floating-audio-wave');
-
             const floatingScrubber = document.getElementById('floating-scrubber');
-            const floatingTimeCurrent = document.getElementById('floating-time-current');
-            const floatingTimeDuration = document.getElementById('floating-time-duration');
-            const floatingSpeedBtn = document.getElementById('floating-speed-btn');
-            const floatingSkipForward = document.getElementById('floating-skip-forward');
-            const floatingSkipBackward = document.getElementById('floating-skip-backward');
-
-            const speedRates = [1.0, 1.25, 1.5, 2.0];
-            let currentSpeedIdx = 0;
-
             const audioInstances = new Map();
 
             function formatTime(timeInSeconds) {
@@ -5140,51 +4994,20 @@
             }
 
             function updateScrubberSync() {
-                if (!currentAudio) return;
+                if (!currentAudio || !floatingScrubber) return;
                 const cur = currentAudio.currentTime;
                 const dur = currentAudio.duration || 0;
-                
                 floatingScrubber.max = dur || 100;
                 floatingScrubber.value = cur;
-                
-                floatingTimeCurrent.textContent = formatTime(cur);
-                floatingTimeDuration.textContent = formatTime(dur);
             }
 
-            // Bind input range scrubbing
-            floatingScrubber.addEventListener('input', () => {
-                if (currentAudio) {
-                    currentAudio.currentTime = parseFloat(floatingScrubber.value);
-                }
-            });
-
-            // Bind skip actions
-            floatingSkipForward.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (currentAudio) {
-                    currentAudio.currentTime = Math.min(currentAudio.currentTime + 15, currentAudio.duration || 0);
-                    updateScrubberSync();
-                }
-            });
-
-            floatingSkipBackward.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (currentAudio) {
-                    currentAudio.currentTime = Math.max(currentAudio.currentTime - 15, 0);
-                    updateScrubberSync();
-                }
-            });
-
-            // Bind playback speed cycle
-            floatingSpeedBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (currentAudio) {
-                    currentSpeedIdx = (currentSpeedIdx + 1) % speedRates.length;
-                    const nextRate = speedRates[currentSpeedIdx];
-                    currentAudio.playbackRate = nextRate;
-                    floatingSpeedBtn.textContent = `${nextRate.toFixed(2).replace('.00', '')}x`;
-                }
-            });
+            if (floatingScrubber) {
+                floatingScrubber.addEventListener('input', () => {
+                    if (currentAudio) {
+                        currentAudio.currentTime = parseFloat(floatingScrubber.value);
+                    }
+                });
+            }
 
             document.querySelectorAll('.audio-player').forEach(player => {
                 const src = player.getAttribute('data-src');
@@ -5234,19 +5057,10 @@
                     // Update Floating Bottom Bar UI
                     floatingBar.classList.add('active');
                     floatingPlayBtn.innerHTML = '<i data-lucide="pause" style="width: 20px; height: 20px; fill: currentColor;"></i>';
-                    floatingWave.classList.add('playing');
-                    
-                    // Sync playback rate
-                    const activeRate = speedRates[currentSpeedIdx];
-                    audio.playbackRate = activeRate;
-                    floatingSpeedBtn.textContent = `${activeRate.toFixed(2).replace('.00', '')}x`;
-
-                    // Speed up heartbeat speed
-                    document.querySelectorAll('.pulse-logo').forEach(logo => logo.classList.add('playing'));
 
                     // Guess the title
                     const titleEl = player.closest('article')?.querySelector('h2, h3') || player.closest('section')?.querySelector('h2') || player.closest('.card-premium')?.querySelector('h3');
-                    floatingTitle.textContent = titleEl ? titleEl.textContent.trim() : "Audio Dispatch";
+                    floatingTitle.textContent = titleEl ? titleEl.textContent.trim() : "Audio";
                     
                     if (typeof lucide !== 'undefined') lucide.createIcons();
                 });
@@ -5261,8 +5075,6 @@
                     resetUI();
                     if (currentAudio === audio) {
                         floatingPlayBtn.innerHTML = '<i data-lucide="play" style="width: 20px; height: 20px; fill: currentColor;"></i>';
-                        floatingWave.classList.remove('playing');
-                        document.querySelectorAll('.pulse-logo').forEach(logo => logo.classList.remove('playing'));
                         if (typeof lucide !== 'undefined') lucide.createIcons();
                     }
                 });
@@ -5274,8 +5086,6 @@
                         currentAudio = null;
                         currentAudioPlayer = null;
                         floatingBar.classList.remove('active');
-                        floatingWave.classList.remove('playing');
-                        document.querySelectorAll('.pulse-logo').forEach(logo => logo.classList.remove('playing'));
                     }
                 });
             });
@@ -5447,40 +5257,15 @@
     </script>
     <!-- Floating Audio Player Bar -->
     <div id="floating-audio-bar" class="floating-audio-bar">
-        <div class="flex items-center gap-2">
-            <button id="floating-skip-backward" class="text-slate-400 hover:text-white p-1 transition-colors" aria-label="Skip backward 15 seconds">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20L9 12l10-8v16z"/><path d="M5 19V5"/></svg>
-            </button>
-            <button id="floating-play-btn" class="play-btn-circle" aria-label="Play or pause audio">
-                <i data-lucide="play" style="width: 20px; height: 20px; fill: currentColor;"></i>
-            </button>
-            <button id="floating-skip-forward" class="text-slate-400 hover:text-white p-1 transition-colors" aria-label="Skip forward 15 seconds">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l10 8-10 8V4z"/><path d="M19 5v14"/></svg>
-            </button>
+        <button id="floating-play-btn" class="play-btn-circle" aria-label="Play or pause audio">
+            <i data-lucide="play" style="width: 20px; height: 20px; fill: currentColor;"></i>
+        </button>
+        <div class="flex-grow min-w-0">
+            <p id="floating-audio-title" class="text-xs font-semibold text-white truncate">Audio</p>
+            <p id="floating-audio-time" class="text-[11px] text-slate-400 mt-0.5">0:00</p>
         </div>
-        
-        <div class="flex-grow min-w-0 flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-            <div class="flex-shrink-0 min-w-[120px] max-w-[200px]">
-                <p id="floating-audio-title" class="text-xs font-bold text-white truncate">Audio Dispatch</p>
-                <p id="floating-audio-time" class="text-[10px] text-slate-400 mt-0.5">-0:00 remaining</p>
-            </div>
-            
-            <div class="flex-grow flex items-center gap-3">
-                <span id="floating-time-current" class="text-[10px] text-slate-400 select-none">0:00</span>
-                <input type="range" id="floating-scrubber" class="audio-scrubber" min="0" value="0" step="0.1" aria-label="Scrub audio playback position">
-                <span id="floating-time-duration" class="text-[10px] text-slate-400 select-none">0:00</span>
-            </div>
-        </div>
-
-        <div class="flex items-center gap-3 flex-shrink-0">
-            <button id="floating-speed-btn" class="text-[10px] font-extrabold text-slate-400 hover:text-white px-2 py-1 rounded bg-white/5 border border-white/10 transition-colors" aria-label="Toggle playback speed">1.0x</button>
-            <div id="floating-audio-wave" class="audio-wave">
-                <div class="audio-wave-bar"></div>
-                <div class="audio-wave-bar"></div>
-                <div class="audio-wave-bar"></div>
-                <div class="audio-wave-bar"></div>
-                <div class="audio-wave-bar"></div>
-            </div>
+        <div class="flex-grow flex items-center gap-3" style="flex-basis: 50%;">
+            <input type="range" id="floating-scrubber" class="audio-scrubber" min="0" value="0" step="0.1" aria-label="Audio position">
         </div>
     </div>
 </body>
