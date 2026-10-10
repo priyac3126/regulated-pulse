@@ -190,6 +190,24 @@
         .blog-post-content p {
             margin-bottom: 1.6rem !important;
         }
+        #blog-list-view h2, #section-podcast h2, #section-major h2, #section-faq h2, #section-about h2 {
+            font-family: 'Source Serif 4', Georgia, serif !important;
+            letter-spacing: -0.01em !important;
+        }
+        .card-premium h3, .card-premium h4 {
+            font-family: 'Source Serif 4', Georgia, serif !important;
+            font-weight: 600 !important;
+            line-height: 1.35 !important;
+        }
+        .faq-card {
+            background: #fff !important;
+            border: 1px solid #e7e3d9 !important;
+        }
+        .profile-container {
+            background: #fff !important;
+            border: 1px solid #e7e3d9 !important;
+            box-shadow: 0 1px 2px rgba(27,35,44,0.04) !important;
+        }
 
         .blog-post-content blockquote {
             font-family: 'Source Serif 4', Georgia, serif !important;
@@ -928,7 +946,7 @@
         }
 
         #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
-            background: linear-gradient(135deg, rgb(49, 46, 129), rgb(124, 58, 237)) !important;
+            background: #1b232c !important;
             border-radius: 12px !important;
             font-family: 'DM Sans', sans-serif !important;
             font-size: 16px !important;
@@ -941,14 +959,14 @@
             border-radius: 12px !important;
             font-family: 'DM Sans', sans-serif !important;
             padding: 14px !important;
-            background-color: rgb(15, 23, 42) !important;
-            border: 1px solid rgb(51, 65, 85) !important;
-            color: white !important;
+            background-color: #fff !important;
+            border: 1px solid #d3cec1 !important;
+            color: #1b232c !important;
             text-align: center;
         }
 
         #mlb2-42510540.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input::placeholder {
-            color: rgb(100, 116, 139) !important;
+            color: #8b95a1 !important;
         }
     </style>
 </head>
@@ -1061,7 +1079,7 @@
                                     <!-- Column 1 -->
                                     <div class="flex flex-col gap-6">
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-law text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-law text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-malpractice-click"
                                             aria-label="Read post: State Medical Malpractice Laws Comparison">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-law">Law &amp; Policy</span>
@@ -1071,7 +1089,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-book text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-book text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-book-recs-click" aria-label="Read post: Book Recommendations">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Reading List</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">Book Recommendations</h3>
@@ -1080,7 +1098,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-inspiration text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-inspiration text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-na-click" aria-label="Read post: If You Knew the Conditions">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-inspiration">History &amp; Policy</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">"If You Knew the Conditions"</h3>
@@ -1089,7 +1107,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-slate text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-slate text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-giant-leap-click"
                                             aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-slate">Book Insights</span>
@@ -1099,7 +1117,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-personal text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-personal text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-story-click" aria-label="Read post: The Realities of Chronic Illness">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-personal">Personal</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">The Realities of Chronic Illness</h3>
@@ -1111,7 +1129,7 @@
                                     <!-- Column 2 -->
                                     <div class="flex flex-col gap-6">
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-interview text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-interview text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-cdc-interview-click"
                                             aria-label="Read post: From Anatomy Labs to Biosafety Laws">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-interview">Interview</span>
@@ -1121,7 +1139,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-violet text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-violet text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-migration-click" aria-label="Read post: Healing Without Borders">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">Healing Without Borders</h3>
@@ -1130,7 +1148,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-fuchsia text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-fuchsia text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-fuchsia">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">The Case for Compassionate Care</h3>
@@ -1139,7 +1157,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-education text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-education text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-ai-access-click"
                                             aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-education">AI &amp; Policy</span>
@@ -1149,7 +1167,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-welcome text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-welcome text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
                                             id="card-welcome-click" aria-label="Read post: Welcome to The Regulated Pulse">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-welcome">Welcome</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">Welcome to The Regulated Pulse</h3>
@@ -1163,13 +1181,13 @@
                             <!-- Vital Signs Area -->
                             <div>
                                 <h2 class="mb-2 text-slate-900 font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Vital Signs</h2>
-                                <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Under one-page takes on the full spectrum of healthcare trends, law, and medical technology</p>
+                                <p class="text-sm mb-8" style="color: #5c6773;">Under one-page takes on the full spectrum of healthcare trends, law, and medical technology</p>
                                 
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <!-- Column 1 -->
                                     <div class="flex flex-col gap-6">
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-book text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-book text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-pain-brokers-click" aria-label="Read post: The Pain Brokers">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Reading List</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">The Pain Brokers</h3>
@@ -1178,7 +1196,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-med-ed text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-med-ed text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-med-ed-click" aria-label="Read post: The State of Medical Education">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-med-ed">Education</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">The State of Medical Education</h3>
@@ -1190,7 +1208,7 @@
                                     <!-- Column 2 -->
                                     <div class="flex flex-col gap-6">
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-epic text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-epic text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-epic-click" aria-label="Read post: Stifled Innovation">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-epic">Industry</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">Stifled Innovation</h3>
@@ -1199,7 +1217,7 @@
                                         </button>
 
                                         <button
-                                            class="rounded-2xl p-7 card-premium card-quote text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                                            class="rounded-2xl p-6 card-premium card-quote text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-quote-spotlight-click" aria-label="Read post: Quote Spotlight">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-quote">Inspiration</span>
                                             <h3 class="font-bold mb-2 text-slate-900 text-lg leading-snug">Quote Spotlight</h3>
@@ -1328,9 +1346,9 @@
 
                     <!-- State Medical Malpractice Laws Comparison -->
                     <article id="post-malpractice-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">State
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">State
                             Medical Malpractice Laws Comparison</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">Texas and
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">Texas and
                             Arizona</h3>
                         <p class="text-sm mb-8" style="color: rgb(254, 202, 202);">Law &amp; Policy · July 2026 · 3 min
                             read</p>
@@ -1418,38 +1436,38 @@
                             </ul>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-malpractice')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
-                                    style="background: rgb(220, 38, 38); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
+                                    style="background: #0f766e; border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
                             <div id="post-malpractice-comments-list"></div>
@@ -1458,9 +1476,9 @@
 
                     <!-- From Anatomy Labs to Biosafety Laws -->
                     <article id="post-cdc-interview-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">From
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">From
                             Anatomy Labs to Biosafety Laws</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">An
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">An
                             Interview with CDC Attorney Taylor Revenew</h3>
                         <p class="text-sm mb-8" style="color: rgb(167, 243, 208);">Interview · July 2026 · 5 min read
                         </p>
@@ -1593,34 +1611,34 @@
                             </ul>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-cdc-interview')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -1633,9 +1651,9 @@
 
                     <!-- Welcome Post -->
                     <article id="post-welcome-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Welcome
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">Welcome
                             to The Regulated Pulse</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">What to
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">What to
                             expect from the blog</h3>
                         <p class="text-sm mb-8" style="color: rgb(254, 215, 170);">Welcome · June 2026</p>
 
@@ -1669,34 +1687,34 @@
                                 reviews, and interviews.</p>
                             <p>Welcome to the pulse.</p>
                         </div>
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-welcome')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -1709,9 +1727,9 @@
 
                     <!-- Healing Without Borders -->
                     <article id="post-migration-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Healing
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">Healing
                             Without Borders</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">Bridging
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">Bridging
                             gaps in migrant health through innovation and policy</h3>
                         <p class="text-sm mb-8" style="color: #0f766e;">Book Insights · June 2026 · 5 min
                             read</p>
@@ -1857,34 +1875,34 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-migration')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -1897,9 +1915,9 @@
 
                     <!-- The Case for Compassionate Care -->
                     <article id="post-compassion-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Case
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">The Case
                             for Compassionate Care</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">The
                             medical necessity of compassionate care</h3>
                         <p class="text-sm mb-8" style="color: #0f766e;">Book Insights · June 2026 · 6 min
                             read</p>
@@ -2139,34 +2157,34 @@
                                     Services LLC, 2019.</li>
                             </ul>
                         </div>
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-compassion')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -2179,7 +2197,7 @@
 
                     <!-- A Giant Leap -->
                     <article id="post-giant-leap-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">A Giant
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">A Giant
                             Leap: Trust and Oversight in Healthcare AI</h2>
                         <p class="text-sm mb-8" style="color: #0f766e;">Book Insights · June 2026 · 5 min
                             read</p>
@@ -2354,34 +2372,34 @@
                                     House LLC, 2026.</li>
                             </ul>
                         </div>
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-giant-leap')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -2394,9 +2412,9 @@
 
                     <!-- Beyond Compliance -->
                     <article id="post-ai-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Beyond
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">Beyond
                             Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">How we
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">How we
                             build ethical, inclusive design</h3>
                         <p class="text-sm mb-8" style="color: #0f766e;">AI & Policy · June 2026 · 4 min read
                         </p>
@@ -2562,34 +2580,34 @@
                                     Accessed 23 May 2026.</li>
                             </ul>
                         </div>
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-ai')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -2602,9 +2620,9 @@
 
                     <!-- The Realities of Chronic Illness -->
                     <article id="post-chronic-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">The
                             Realities of Chronic Illness</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">The
                             hidden epidemic of autoimmune disease and my chronic illness journey</h3>
                         <p class="text-sm mb-8" style="color: #0f766e;">Personal · June 2026 · 7 min read</p>
 
@@ -2853,34 +2871,34 @@
                                         clinicians</em> vol. 74,1 (2024): 12-49. doi:10.3322/caac.21820</li>
                             </ul>
                         </div>
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
                             <form onsubmit="submitComment(event, 'post-chronic')"
                                 class="text-left space-y-4 max-w-2xl mx-auto">
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -2893,9 +2911,9 @@
 
                     <!-- Book Recommendations View -->
                     <article id="post-book-recs-container" class="hidden max-w-3xl mx-auto relative">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Book
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">Book
                             Recommendations</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">My top 11
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">My top 11
                             healthcare reads</h3>
                         <p class="text-sm mb-8" style="color: #0f766e;">Reading List · June 2026</p>
 
@@ -2946,10 +2964,10 @@
                                 recommendation post, I used generative AI to summarize the contents of each book.</p>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
 
                             <form onsubmit="submitComment(event, 'post-book-recs')"
@@ -2957,24 +2975,24 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -2987,9 +3005,9 @@
                     </article>
 
                     <article id="post-na-container" class="hidden max-w-3xl mx-auto relative">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">"If You
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">"If You
                             Knew the Conditions"</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The
+                        <h3 class="mb-3" style="color: #475569; font-weight: 600; font-size: 20px;">The
                             evolution of Native American health care</h3>
                         <p class="text-sm mb-4" style="color: #0f766e;">History & Policy · June 2026 · 4 min
                             read</p>
@@ -3131,10 +3149,10 @@
                              </ul>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
 
                             <form onsubmit="submitComment(event, 'post-na')"
@@ -3142,24 +3160,24 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -3172,7 +3190,7 @@
                     </article>
 
                     <article id="post-quote-spotlight-container" class="hidden max-w-3xl mx-auto relative">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Quote
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">Quote
                             Spotlight</h2>
                         <p class="text-sm mb-4" style="color: #0f766e;">Inspiration · June 2026</p>
 
@@ -3197,10 +3215,10 @@
                             </ul>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
 
                             <form onsubmit="submitComment(event, 'post-quote-spotlight')"
@@ -3208,24 +3226,24 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -3238,7 +3256,7 @@
                     </article>
 
                     <article id="post-med-ed-container" class="hidden max-w-3xl mx-auto relative">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The State
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">The State
                             of Medical Education</h2>
                         <p class="text-sm mb-4" style="color: #0f766e;">Education · June 2026</p>
 
@@ -3280,10 +3298,10 @@
                             </ul>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
 
                             <form onsubmit="submitComment(event, 'post-med-ed')"
@@ -3291,24 +3309,24 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -3321,7 +3339,7 @@
                     </article>
 
                     <article id="post-epic-container" class="hidden max-w-3xl mx-auto relative">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Stifled
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">Stifled
                             Innovation</h2>
                         <p class="text-sm mb-4" style="color: #0f766e;">Industry · June 2026</p>
 
@@ -3368,10 +3386,10 @@
                             </ul>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
 
                             <form onsubmit="submitComment(event, 'post-epic')"
@@ -3379,28 +3397,28 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
-                                    style="background: rgb(220, 38, 38); border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
+                                    style="background: #0f766e; border-radius: 12px; font-size: 16px; color: #ffffff; padding: 14px; margin-top: 10px;">Post
                                     Comment</button>
                             </form>
 
@@ -3409,7 +3427,7 @@
                     </article>
 
                     <article id="post-pain-brokers-container" class="hidden max-w-3xl mx-auto relative">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Pain Brokers</h2>
+                        <h2 class="mb-1" style="color: #1b232c; font-weight: 700; font-size: 32px;">The Pain Brokers</h2>
                         <p class="text-sm mb-4" style="color: #0f766e;">Reading List · July 30, 2026</p>
 
                         <div class="blog-post-content">
@@ -3422,10 +3440,10 @@
                             <p>As readers turn every page, they become ever-more horrified by the injustices that women underwent in the 21st century, revealing how cracks in medical device regulation can lead to lifelong injury and disability for women that simply took the advice of their doctors to have pelvic mesh input to treat pelvic organ prolapse and reduce incontinence.</p>
                         </div>
 
-                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                        <div class="mt-16 rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2 text-center" style="color: #1b232c; font-size: 19px;">
                                 Leave a Comment</h3>
-                            <p class="text-sm mb-6 text-center" style="color: rgb(148, 163, 184);">Join the discussion.
+                            <p class="text-sm mb-6 text-center" style="color: #5c6773;">Join the discussion.
                                 Your email will not be published.</p>
 
                             <form onsubmit="submitComment(event, 'post-pain-brokers')"
@@ -3433,24 +3451,24 @@
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Name</label>
+                                            style="color: #1b232c;">Name</label>
                                         <input type="text" required placeholder="Your Name" class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                     <div class="flex flex-col">
                                         <label class="text-sm font-bold mb-2"
-                                            style="color: rgb(226, 232, 240);">Email</label>
+                                            style="color: #1b232c;">Email</label>
                                         <input type="email" required placeholder="Enter your email address"
                                             class="w-full"
-                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                            style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c; text-align: center;">
                                     </div>
                                 </div>
                                 <div class="flex flex-col">
                                     <label class="text-sm font-bold mb-2"
-                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                        style="color: #1b232c;">Comment</label>
                                     <textarea required rows="4" placeholder="Join the discussion..."
                                         class="w-full resize-y"
-                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                        style="border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; padding: 12px 14px; background-color: #fff; border: 1px solid #d3cec1; color: #1b232c;"></textarea>
                                 </div>
                                 <button type="submit"
                                     class="w-full font-semibold focus:outline-none cursor-pointer"
@@ -3515,93 +3533,93 @@
 
                 <!-- Podcast List View (Episode Cards) -->
                 <div id="podcast-list-view">
-                    <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Episodes</h3>
+                    <h3 class="font-bold mb-6" style="color: #1b232c; font-size: 22px;">Episodes</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
 
                         <!-- Episode 6 Card -->
                         <button
-                            class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            class="rounded-2xl p-6 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep6-click"
                             aria-label="View episode: The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan"
                             >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
                                 style="background: rgba(27,35,44,0.06); color: #3f4a56;">Season 1 ·
                                 Episode 6</span>
-                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h4>
-                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 5m</p>
+                            <h4 class="font-bold mb-2" style="color: #1b232c; font-size: 19px;">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h4>
+                            <p class="text-sm mb-4 flex-grow" style="color: #1b232c;">1h 5m</p>
                             <p class="text-xs" style="color: rgb(167, 243, 208);">September 2026</p>
                         </button>
 
                         <!-- Episode 5 Card -->
                         <button
-                            class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            class="rounded-2xl p-6 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep5-click"
                             aria-label="View episode: How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song"
                             >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
                                 style="background: rgba(27,35,44,0.06); color: #3f4a56;">Season 1 ·
                                 Episode 5</span>
-                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h4>
-                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 12m</p>
+                            <h4 class="font-bold mb-2" style="color: #1b232c; font-size: 19px;">How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h4>
+                            <p class="text-sm mb-4 flex-grow" style="color: #1b232c;">1h 12m</p>
                             <p class="text-xs" style="color: rgb(253, 230, 138);">August 2026</p>
                         </button>
 
                         <!-- Episode 4 Card -->
                         <button
-                            class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            class="rounded-2xl p-6 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep4-click"
                             aria-label="View episode: From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy"
                             >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
                                 style="background: rgba(27,35,44,0.06); color: #3f4a56;">Season 1 ·
                                 Episode 4</span>
-                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h4>
-                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 45m</p>
+                            <h4 class="font-bold mb-2" style="color: #1b232c; font-size: 19px;">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h4>
+                            <p class="text-sm mb-4 flex-grow" style="color: #1b232c;">1h 45m</p>
                             <p class="text-xs" style="color: rgb(253, 164, 175);">August 2026</p>
                         </button>
 
                         <!-- Episode 3 Card -->
                         <button
-                            class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            class="rounded-2xl p-6 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep3-click"
                             aria-label="View episode: Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together"
                             >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
                                 style="background: rgba(27,35,44,0.06); color: #3f4a56;">Season 1 ·
                                 Episode 3</span>
-                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Breaking
+                            <h4 class="font-bold mb-2" style="color: #1b232c; font-size: 19px;">Breaking
                                 the Tech Silos: Bringing Clinicians, Policy, and Data Together</h4>
-                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 44m</p>
+                            <p class="text-sm mb-4 flex-grow" style="color: #1b232c;">1h 44m</p>
                             <p class="text-xs" style="color: rgb(216, 180, 254);">July 2026</p>
                         </button>
 
                         <!-- Episode 2 Card -->
                         <button
-                            class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            class="rounded-2xl p-6 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep2-click"
                             aria-label="View episode: Clinical Advocacy: Bridging Climate, Policy, and Rural Health"
                             >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
                                 style="background: rgba(27,35,44,0.06); color: #3f4a56;">Season 1 ·
                                 Episode 2</span>
-                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Clinical
+                            <h4 class="font-bold mb-2" style="color: #1b232c; font-size: 19px;">Clinical
                                 Advocacy: Bridging Climate, Policy, and Rural Health</h4>
-                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 33m</p>
+                            <p class="text-sm mb-4 flex-grow" style="color: #1b232c;">1h 33m</p>
                             <p class="text-xs" style="color: rgb(153, 246, 228);">July 2025</p>
                         </button>
 
                         <!-- Episode 1 Card -->
                         <button
-                            class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
+                            class="rounded-2xl p-6 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep1-click"
                             aria-label="View episode: Decoding Digital Accessibility: Authentic Leadership in UX"
                             >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
                                 style="background: rgba(27,35,44,0.06); color: #3f4a56;">Season 1 ·
                                 Episode 1</span>
-                            <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Decoding
+                            <h4 class="font-bold mb-2" style="color: #1b232c; font-size: 19px;">Decoding
                                 Digital Accessibility: Authentic Leadership in UX</h4>
-                            <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">55m</p>
+                            <p class="text-sm mb-4 flex-grow" style="color: #1b232c;">55m</p>
                             <p class="text-xs" style="color: rgb(186, 230, 253);">July 2025</p>
                         </button>
 
@@ -3628,26 +3646,26 @@
                                 title="The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan"></iframe>
                         </div>
 
-                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h3>
+                        <div class="rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2" style="color: #1b232c; font-size: 22px;">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h3>
                             <p class="text-sm mb-6" style="color: #0f766e;">Season 1 · Episode 6 · 1h 5m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 6 summary">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode Summary</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Episode Summary</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     In this episode of The Regulated Pulse, Dr. Fazal Khan—dual-degree JD/MD and Department Chair of Political Determinants of Health at Meharry School of Global Health—joins us to unpack the intersection of emerging technology, health equity, and legal oversight. We explore his journey from Jenner &amp; Block to classified Jason Group advisory briefings, detailing the risks of unconstrained frontier AI models and the negative community footprint of regional data centers. Dr. Khan also examines private equity’s push toward clinical labor automation, using AI to achieve healthcare's &quot;Triple Aim,&quot; and career strategies for joint JD and PhD academic tracks.
                                 </p>
                             </div>
 
                             <!-- Key Takeaways -->
                             <div class="mb-6" role="region" aria-label="Episode 6 key takeaways">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways</h4>
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Key Takeaways</h4>
                                 <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Upstream Determinants &amp; Power Dynamics:</strong> How political determinants of health dictate systemic resource allocation and downstream health equity.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Frontier AI &amp; Critical Infrastructure:</strong> Early warnings from classified federal briefings regarding unconstrained AI models and the environmental drain of local data centers.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Private Equity vs. The Triple Aim:</strong> Balancing the risk of automated labor replacement against using AI scribes to restore physician-patient connection.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">The JD/MD Advantage:</strong> Dr. Khan’s advice on leveraging interdisciplinary dual degrees in tech-focused legal and academic careers.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Upstream Determinants &amp; Power Dynamics:</strong> How political determinants of health dictate systemic resource allocation and downstream health equity.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Frontier AI &amp; Critical Infrastructure:</strong> Early warnings from classified federal briefings regarding unconstrained AI models and the environmental drain of local data centers.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Private Equity vs. The Triple Aim:</strong> Balancing the risk of automated labor replacement against using AI scribes to restore physician-patient connection.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">The JD/MD Advantage:</strong> Dr. Khan’s advice on leveraging interdisciplinary dual degrees in tech-focused legal and academic careers.</li>
                                 </ul>
                             </div>
 
@@ -3701,33 +3719,33 @@
                                 title="How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song"></iframe>
                         </div>
 
-                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">How Intelligent Dots is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h3>
+                        <div class="rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2" style="color: #1b232c; font-size: 22px;">How Intelligent Dots is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h3>
                             <p class="text-sm mb-6" style="color: #0f766e;">Season 1 · Episode 5 · 1h 12m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 5 summary">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode Summary</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Episode Summary</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     In this episode of The Regulated Pulse, Dr. WenZhan Song, a Georgia Power Mickey A. Brown Professor in Computer Engineering at UGA, joins us to break down the science behind Intelligent Dots. We explore his journey from SensorWeb Lab research to commercializing BedDot, an FDA-cleared device using seismic sensing and AI to track vitals with zero patient compliance burden. Dr. Song details navigating UGA’s Innovation Gateway, securing Class II FDA clearance, and expanding contactless monitoring to infants.
                                 </p>
                             </div>
 
                             <!-- Key Takeaways -->
                             <div class="mb-6" role="region" aria-label="Episode 5 key takeaways">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways</h4>
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Key Takeaways</h4>
                                 <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">From Campus R&D to Spin-Off:</strong> How Dr. Song translated lab research into Intelligent Dots via UGA's Innovation Gateway.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Passive Sensing &amp; AI:</strong> How BedDot uses tri-axis seismometers and custom AI to analyze continuous vitals from microscopic vibrations.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Navigating FDA Clearance:</strong> The regulatory journey to Class II 510(k) clearance using clinical validation across 300+ subjects.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Servant Leadership:</strong> Dr. Song’s approach to leading cross-disciplinary teams and managing multi-institutional partnerships.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">From Campus R&D to Spin-Off:</strong> How Dr. Song translated lab research into Intelligent Dots via UGA's Innovation Gateway.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Passive Sensing &amp; AI:</strong> How BedDot uses tri-axis seismometers and custom AI to analyze continuous vitals from microscopic vibrations.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Navigating FDA Clearance:</strong> The regulatory journey to Class II 510(k) clearance using clinical validation across 300+ subjects.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Servant Leadership:</strong> Dr. Song’s approach to leading cross-disciplinary teams and managing multi-institutional partnerships.</li>
                                 </ul>
                             </div>
 
                             <!-- Links -->
                             <div class="mb-6" role="region" aria-label="Episode 5 report">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Intelligent Dots</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Intelligent Dots</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     <a href="https://www.intelligentdots.com/" target="_blank" rel="noopener noreferrer" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-teal-700">
                                         https://www.intelligentdots.com/
                                     </a>
@@ -3775,33 +3793,33 @@
                                 title="From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy"></iframe>
                         </div>
 
-                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h3>
+                        <div class="rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2" style="color: #1b232c; font-size: 22px;">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h3>
                             <p class="text-sm mb-6" style="color: #0f766e;">Season 1 · Episode 4 · 1h 45m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 4 summary">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode Summary</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Episode Summary</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     In this episode of The Regulated Pulse, Chief Magistrate Judge of Cobb County Brendan Murphy reflects on his journey from studying history and political science at the University of Georgia to leading a 90-member court staff team in the "People’s Court." We explore his career trajectory across both civil practice and criminal prosecution—handling everything from school board representation to high-stakes felony and drug trafficking cases—and dive into the core principles of judicial leadership. Judge Murphy shares an inside look at how Cobb County adapted during the COVID-19 pandemic, highlighting the court’s partnership with local non-profits to distribute over $50 million in federal emergency rental assistance and his work on the Supreme Court Study Committee on Legal Regulatory Reform to expand access to justice.
                                 </p>
                             </div>
 
                             <!-- Key Takeaways -->
                             <div class="mb-6" role="region" aria-label="Episode 4 key takeaways">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways</h4>
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Key Takeaways</h4>
                                 <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">From Campus to the Bench:</strong> Learn how Judge Murphy’s early experiences as a Foundation Fellow, Mock Trial president, and Student Bar Association president at UGA built the foundation for his career in public service and law.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Insights into Prosecution & Practice:</strong> Discover how transitioning from private civil litigation to misdemeanor traffic court and felony prosecution shaped his understanding of trial work, domestic violence prevention, and community-centered justice.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Emergency Leadership in Action:</strong> Explore how Cobb County Magistrate Court remained fully operational during the pandemic, utilizing innovative "mediation with money" partnerships to keep families housed and landlords solvent.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-700">Expanding Access to Justice:</strong> Understand the findings of the Supreme Court Study Committee on Legal Regulatory Reform and how proposed "limited legal practitioners" could bridge the legal representation gap for underserved communities in civil matters.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">From Campus to the Bench:</strong> Learn how Judge Murphy’s early experiences as a Foundation Fellow, Mock Trial president, and Student Bar Association president at UGA built the foundation for his career in public service and law.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Insights into Prosecution & Practice:</strong> Discover how transitioning from private civil litigation to misdemeanor traffic court and felony prosecution shaped his understanding of trial work, domestic violence prevention, and community-centered justice.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Emergency Leadership in Action:</strong> Explore how Cobb County Magistrate Court remained fully operational during the pandemic, utilizing innovative "mediation with money" partnerships to keep families housed and landlords solvent.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;"><strong class="font-bold text-slate-700">Expanding Access to Justice:</strong> Understand the findings of the Supreme Court Study Committee on Legal Regulatory Reform and how proposed "limited legal practitioners" could bridge the legal representation gap for underserved communities in civil matters.</li>
                                 </ul>
                             </div>
 
                             <!-- Report & Recommendations -->
                             <div class="mb-6" role="region" aria-label="Episode 4 report">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Report &amp; Recommendations</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Report &amp; Recommendations</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     <a href="https://www.gasupreme.us/wp-content/uploads/2025/07/LRRCmteFinalReport_6-30-25.pdf" target="_blank" rel="noopener noreferrer" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-teal-700">
                                         The Georgia Supreme Court Study Committee on Legal Regulatory Reform Report and Recommendations (June 2025)
                                     </a>
@@ -3845,32 +3863,32 @@
                                 title="Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together"></iframe>
                         </div>
 
-                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together</h3>
+                        <div class="rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2" style="color: #1b232c; font-size: 22px;">Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together</h3>
                             <p class="text-sm mb-6" style="color: #0f766e;">Season 1 · Episode 3 · 1h 44m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 3 summary">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode Summary</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Episode Summary</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     In this episode, Nadine Peever details her journey from launching a grassroots healthtech nonprofit (Bonne Fire) to founding Ember Consulting Group. We dive into the critical intersections of healthcare: how TEFCA and data interoperability impact the patient experience, the balance between nonprofit community building and for-profit consulting strategy, and why inclusive design—from ASL accessibility to community-driven policy—is vital for the future of healthcare.
                                 </p>
                             </div>
 
                             <!-- Key Takeaways -->
                             <div class="mb-6" role="region" aria-label="Episode 3 key takeaways">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways</h4>
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Key Takeaways</h4>
                                 <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Learn how to organically scale a professional tech community into a structured 501c3 non-profit while maintaining strategic boundaries with a for-profit consulting firm.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Gain actionable insights into navigating complex healthtech regulations, establishing TEFCA readiness, and bridging the divide between public health expertise and technology integration.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Understand how digital health interoperability acts as essential medical infrastructure, directly minimizing redundant clinical work and respecting the diverse communication needs of patients.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;">Learn how to organically scale a professional tech community into a structured 501c3 non-profit while maintaining strategic boundaries with a for-profit consulting firm.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;">Gain actionable insights into navigating complex healthtech regulations, establishing TEFCA readiness, and bridging the divide between public health expertise and technology integration.</li>
+                                    <li style="color: #5c6773; line-height: 1.7;">Understand how digital health interoperability acts as essential medical infrastructure, directly minimizing redundant clinical work and respecting the diverse communication needs of patients.</li>
                                 </ul>
                             </div>
 
                             <!-- Organization Link -->
                             <div class="mb-6" role="region" aria-label="Bonne Fire ATL">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Learn more about Bonne Fire ATL</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Learn more about Bonne Fire ATL</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     <a href="https://www.bonnefireatl.com/" target="_blank" rel="noopener noreferrer" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-teal-700">
                                         https://www.bonnefireatl.com/
                                     </a>
@@ -3914,8 +3932,8 @@
                                 title="Clinical Advocacy: Bridging Climate, Policy, and Rural Health"></iframe>
                         </div>
 
-                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Clinical
+                        <div class="rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2" style="color: #1b232c; font-size: 22px;">Clinical
                                 Advocacy: Bridging
                                 Climate, Policy, and Rural Health</h3>
                             <p class="text-sm mb-6" style="color: #0f766e;">Season 1 · Episode 2 · 1h 33m
@@ -3923,9 +3941,9 @@
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 2 summary">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Episode
                                     Summary</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     In this episode of The Regulated Pulse Podcast, we sit down with Dr. Ethan
                                     Sims, an emergency physician and Executive Director of Idaho Clinicians for
                                     Climate and Health. We explore how climate change is reshaping rural health
@@ -3939,18 +3957,18 @@
 
                             <!-- Key Takeaways -->
                             <div class="mb-6" role="region" aria-label="Episode 2 key takeaways">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Key
                                     Takeaways</h4>
                                 <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Understand how climate
+                                    <li style="color: #5c6773; line-height: 1.7;">Understand how climate
                                         change is directly impacting rural health outcomes and emergency medicine.
                                     </li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Learn about the
+                                    <li style="color: #5c6773; line-height: 1.7;">Learn about the
                                         real-world consequences of restrictive reproductive laws on emergency
                                         physicians and patient care.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Discover the critical
+                                    <li style="color: #5c6773; line-height: 1.7;">Discover the critical
                                         role of sustainability initiatives in modern hospital administration.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Gain practical advice
+                                    <li style="color: #5c6773; line-height: 1.7;">Gain practical advice
                                         on navigating medical training and maintaining work-life balance in a
                                         demanding field.</li>
                                 </ul>
@@ -3958,8 +3976,8 @@
 
                             <!-- Organization Link -->
                             <div class="mb-6" role="region" aria-label="Idaho Clinicians for Climate and Health">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Learn more about Idaho Clinicians for Climate and Health</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Learn more about Idaho Clinicians for Climate and Health</h4>
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     <a href="https://www.idahocliniciansforclimateandhealth.org/" target="_blank" rel="noopener noreferrer" style="color: rgb(56, 189, 248); font-weight: 500;" class="hover:underline transition-colors hover:text-teal-700">
                                         https://www.idahocliniciansforclimateandhealth.org/
                                     </a>
@@ -4003,8 +4021,8 @@
                                 title="Decoding Digital Accessibility: Authentic Leadership in UX"></iframe>
                         </div>
 
-                        <div class="rounded-2xl p-7" style="background: rgb(30, 41, 59);">
-                            <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Decoding
+                        <div class="rounded-2xl p-7" style="background: #fff; border: 1px solid #e7e3d9;">
+                            <h3 class="font-bold mb-2" style="color: #1b232c; font-size: 22px;">Decoding
                                 Digital Accessibility:
                                 Authentic Leadership in UX</h3>
                             <p class="text-sm mb-6" style="color: #0f766e;">Season 1 · Episode 1 · 55m
@@ -4012,9 +4030,9 @@
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 1 summary">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Episode
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Episode
                                     Summary</h4>
-                                <p class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.8;">
+                                <p class="text-sm leading-relaxed" style="color: #5c6773; line-height: 1.8;">
                                     Explore the intersection of inclusive UI/UX design, digital accessibility, and
                                     empathetic leadership on this episode of The Regulated Pulse. Discover how a
                                     background in French and Studio Art led our guest to pioneer the first formal
@@ -4027,16 +4045,16 @@
 
                             <!-- Key Takeaways -->
                             <div class="mb-6" role="region" aria-label="Episode 1 key takeaways">
-                                <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key
+                                <h4 class="font-bold mb-3" style="color: #1b232c; font-size: 17px;">Key
                                     Takeaways</h4>
                                 <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Learn how to translate
+                                    <li style="color: #5c6773; line-height: 1.7;">Learn how to translate
                                         a non-technical background—like Studio Art—into a successful career in
                                         digital accessibility.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Gain actionable
+                                    <li style="color: #5c6773; line-height: 1.7;">Gain actionable
                                         strategies for &quot;leading from behind&quot; to empower teams during
                                         high-stakes corporate transitions.</li>
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;">Understand how to
+                                    <li style="color: #5c6773; line-height: 1.7;">Understand how to
                                         foster authentic leadership by guiding diverse teams through complex
                                         professional and personal obstacles.</li>
                                 </ul>
@@ -4110,7 +4128,7 @@
                         </svg>
                     </button>
                     <div id="aoe-disability-content" class="accordion-content mt-3" role="region">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Investigates the social, legal, and
+                        <p class="text-sm mb-2" style="color: #5c6773;">Investigates the social, legal, and
                             systemic frameworks that define the experiences of individuals with disabilities. Focuses on
                             neuro-inclusion, disability rights legislation, and advocacy for cognitive and physical
                             diversity within healthcare.</p>
@@ -4118,7 +4136,7 @@
                         <div class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4">
                             <p class="text-sm font-semibold mb-1" style="color: rgb(165, 243, 252);">↳ Concentration:
                                 Neuro-Inclusive Education (6 hrs)</p>
-                            <p class="text-xs" style="color: rgb(100, 116, 139);">Examines disability studies, legal
+                            <p class="text-xs" style="color: #5c6773;">Examines disability studies, legal
                                 frameworks, and special education to develop equitable learning environments for
                                 students with diverse cognitive profiles.</p>
                         </div>
@@ -4135,16 +4153,16 @@
                         </svg>
                     </button>
                     <div id="aoe-ethics-content" class="accordion-content mt-3" role="region">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Investigates moral and philosophical
+                        <p class="text-sm mb-2" style="color: #5c6773;">Investigates moral and philosophical
                             frameworks used to evaluate emerging technologies and systemic policy decisions — biomedical
                             ethics, AI governance, and intercultural justice.</p>
-                        <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">Required: PHIL 3220: Biomedical
+                        <p class="text-xs mb-2" style="color: #5c6773;">Required: PHIL 3220: Biomedical
                             Ethics</p>
                         <p class="text-xs" style="color: #0f766e;">10–12 credit hours</p>
                         <div class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4">
                             <p class="text-sm font-semibold mb-1" style="color: rgb(165, 243, 252);">↳ Concentration:
                                 Ethics of Intercultural Law & Healthcare (9 hrs)</p>
-                            <p class="text-xs" style="color: rgb(100, 116, 139);">Investigates moral obligations of
+                            <p class="text-xs" style="color: #5c6773;">Investigates moral obligations of
                                 legal and medical institutions within pluralistic societies — displacement, colonialism,
                                 and equitable culturally responsive health policy.</p>
                         </div>
@@ -4162,7 +4180,7 @@
                         </svg>
                     </button>
                     <div id="aoe-admin-content" class="accordion-content mt-3" role="region">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Investigates operational, financial,
+                        <p class="text-sm mb-2" style="color: #5c6773;">Investigates operational, financial,
                             and legal structures governing the modern healthcare industry — business law, risk
                             management, institutional policy, and how corporate regulations and technological
                             innovations are managed.</p>
@@ -4182,7 +4200,7 @@
                         </svg>
                     </button>
                     <div id="aoe-envhealth-content" class="accordion-content mt-3" role="region">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Explores how environmental policy,
+                        <p class="text-sm mb-2" style="color: #5c6773;">Explores how environmental policy,
                             health regulations, and legal compliance shape environmental and health outcomes.</p>
                     </div>
                 </div>
@@ -4197,10 +4215,10 @@
                         </svg>
                     </button>
                     <div id="aoe-geron-content" class="accordion-content mt-3" role="region">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Investigates multidisciplinary
+                        <p class="text-sm mb-2" style="color: #5c6773;">Investigates multidisciplinary
                             challenges associated with an aging population — biological, social, and economic aspects of
                             the lifespan and how health technology and policy must adapt for elderly populations.</p>
-                        <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">Required: GRNT 3500: Smart Technology
+                        <p class="text-xs mb-2" style="color: #5c6773;">Required: GRNT 3500: Smart Technology
                             in an Aging Society</p>
                         <p class="text-xs" style="color: #0f766e;">7–9 credit hours</p>
                     </div>
@@ -4218,12 +4236,12 @@
                         </svg>
                     </button>
                     <div id="aoe-equity-content" class="accordion-content mt-3" role="region">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Investigates systemic, cultural, and
+                        <p class="text-sm mb-2" style="color: #5c6773;">Investigates systemic, cultural, and
                             legal barriers that diverse and vulnerable populations encounter within the healthcare
                             system. ANTH 3540: Multicultural Healthcare is required for Specialized distinction.</p>
                         <p class="text-xs" style="color: #0f766e;">12 credit hours · 4 Specialized Threads
                             available</p>
-                        <p class="text-xs mt-2 mb-3" style="color: rgb(148, 163, 184); font-style: italic;">
+                        <p class="text-xs mt-2 mb-3" style="color: #5c6773; font-style: italic;">
                             A thread becomes <span
                                 style="color: rgb(165, 243, 252); font-weight: 600;">Specialized</span> when a student
                             completes two courses within that thread, earning a formal distinction on their transcript.
@@ -4379,8 +4397,8 @@
                     </div>
                 </div>
 
-                <h3 class="font-bold mb-4" style="color: rgb(241, 245, 249); font-size: 22px;">Focus Areas</h3>
-                <p class="text-sm mb-6" style="color: rgb(148, 163, 184);">Optional specializations marks recognized on
+                <h3 class="font-bold mb-4" style="color: #1b232c; font-size: 22px;">Focus Areas</h3>
+                <p class="text-sm mb-6" style="color: #5c6773;">Optional specializations marks recognized on
                     your official transcript.</p>
 
                 <!-- Focus Area: Public Health -->
@@ -4395,7 +4413,7 @@
                         </svg>
                     </button>
                     <div id="focus-public-health-content" class="accordion-content mt-3" role="region" aria-label="Public Health Focus Area Details">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                        <p class="text-sm mb-2" style="color: #5c6773;">
                             Examines health management, policy legalities, and comparative systems to analyze how underserved and rural communities navigate institutional healthcare barriers.
                         </p>
                         <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">9 credit hours · Choose 3 courses</p>
@@ -4430,7 +4448,7 @@
                         </svg>
                     </button>
                     <div id="focus-ai-content" class="accordion-content mt-3" role="region" aria-label="Artificial Intelligence Focus Area Details">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                        <p class="text-sm mb-2" style="color: #5c6773;">
                             Explores data analytics, user experience integration, and ethical governance to understand how emerging computing technologies impact societal systems and compliance.
                         </p>
                         <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">9 credit hours · Choose 3 courses</p>
@@ -4466,7 +4484,7 @@
                         </svg>
                     </button>
                     <div id="focus-substance-content" class="accordion-content mt-3" role="region" aria-label="Substance Abuse Focus Area Details">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                        <p class="text-sm mb-2" style="color: #5c6773;">
                             Investigates the biological, social, and historical forces that drive addiction to better inform the development of inclusive healthtech. Foundational for designing digital health interventions that are ethically grounded and culturally responsive.
                         </p>
                         <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">6 credit hours · Choose 2–3 courses</p>
@@ -4495,7 +4513,7 @@
                         </svg>
                     </button>
                     <div id="focus-companion-content" class="accordion-content mt-3" role="region" aria-label="Companion Animals Focus Area Details">
-                        <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
+                        <p class="text-sm mb-2" style="color: #5c6773;">
                             Examines the therapeutic, legal, and biological bonds between humans and animals to effectively integrate animal-centered support into digital care models. Provides regulatory and physiological context for animal welfare and accessibility.
                         </p>
                         <p class="text-xs mb-3" style="color: rgb(251, 191, 36);">6 credit hours · Choose 2 courses</p>
@@ -4510,12 +4528,12 @@
                     </div>
                 </div>
 
-                <h3 class="font-bold mb-4" style="color: rgb(241, 245, 249); font-size: 22px;">Major Electives</h3>
-                <p class="text-sm mb-6" style="color: rgb(148, 163, 184);">Enriches the degree with unique coursework
+                <h3 class="font-bold mb-4" style="color: #1b232c; font-size: 22px;">Major Electives</h3>
+                <p class="text-sm mb-6" style="color: #5c6773;">Enriches the degree with unique coursework
                     outside the standard curriculum, spanning Native American history, entrepreneurial thinking,
                     comparative health systems, and tech innovation.</p>
 
-                <h3 class="font-bold mb-4 mt-12" style="color: rgb(241, 245, 249); font-size: 22px;">Learn More</h3>
+                <h3 class="font-bold mb-4 mt-12" style="color: #1b232c; font-size: 22px;">Learn More</h3>
 
                 <div class="emphasis-card rounded-lg p-5 mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                     style="background:rgba(6,182,212,0.05);">
@@ -4525,9 +4543,9 @@
                                 aria-hidden="true"></i>
                             <h4 class="font-bold text-slate-900 text-lg">Official Major Curriculum</h4>
                         </div>
-                        <p class="text-sm mb-1" style="color: rgb(148, 163, 184);">Interdisciplinary Studies Major
+                        <p class="text-sm mb-1" style="color: #5c6773;">Interdisciplinary Studies Major
                             (A.B.) Focus in Healthcare Technology Law and Regulation</p>
-                        <p class="text-xs" style="color: rgb(100, 116, 139);">Created in collaboration with Priya
+                        <p class="text-xs" style="color: #5c6773;">Created in collaboration with Priya
                             Chaudhari and her Faculty Advisory Committee. The coursework prepares students for a variety
                             of jobs and graduate programs such as a Masters in Health Administration, a Juris Doctorate,
                             and PhD.</p>
@@ -4535,7 +4553,7 @@
                     <a href="https://docs.google.com/document/d/1yOpl0o7ZyRwELF5bgy1lpsjcOr3vcORM/edit?usp=sharing"
                         target="_blank" rel="noopener noreferrer"
                         class="px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2 whitespace-nowrap"
-                        style="background: rgb(6, 182, 212); color: rgb(255, 255, 255); font-size: 14px;"
+                        style="background: rgb(6, 182, 212); color: #1b232c; font-size: 14px;"
                         aria-label="View the official major curriculum document in a new tab">
                         <i data-lucide="external-link" style="width: 16px; height: 16px;" aria-hidden="true"></i> View
                         Document
@@ -4543,7 +4561,7 @@
                 </div>
 
                 <div class="emphasis-card rounded-lg p-5 mb-8" style="background:rgba(6,182,212,0.05);">
-                    <p style="color: rgb(148, 163, 184); font-size: 16px;">
+                    <p style="color: #5c6773; font-size: 16px;">
                         To learn how Interdisciplinary Studies works or to officially declare this major focus, reach
                         out to
                         <a href="https://osas.franklin.uga.edu/directory/people/jessica-couch" target="_blank"
@@ -5242,15 +5260,15 @@
                       <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">${initials}</div>
                         <div>
-                          <p class="font-semibold text-sm" style="color: rgb(226, 232, 240);">${data.name}</p>
-                          <p class="text-xs" style="color: rgb(100, 116, 139);">${dateStr}</p>
+                          <p class="font-semibold text-sm" style="color: #1b232c;">${data.name}</p>
+                          <p class="text-xs" style="color: #5c6773;">${dateStr}</p>
                         </div>
                       </div>
                       <button type="button" class="${activeColorClass} transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Like comment" onclick="window.likeComment('${data.id}')">
                         <i data-lucide="heart" style="width: 16px; height: 16px;"></i> <span class="font-medium">${data.likes || 0}</span>
                       </button>
                     </div>
-                    <p class="text-sm leading-relaxed mt-2 break-words" style="color: rgb(148, 163, 184);">${data.text}</p>
+                    <p class="text-sm leading-relaxed mt-2 break-words" style="color: #5c6773;">${data.text}</p>
                   </div>
                 `;
                     container.insertAdjacentHTML('beforeend', commentHTML);
