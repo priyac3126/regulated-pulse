@@ -25,18 +25,18 @@
 
     <style>
         :root {
-            --bg-obsidian: #080b11;
-            --bg-obsidian-card: #0f131a;
-            --bg-obsidian-card-premium: #151b26;
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --pulse-cyan: #06b6d4;
-            --pulse-cyan-glow: rgba(6, 182, 212, 0.15);
-            --pulse-cyan-border: rgba(6, 182, 212, 0.25);
-            --pulse-cyan-border-hover: rgba(6, 182, 212, 0.6);
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --border-glow: rgba(255, 255, 255, 0.12);
+            --bg-obsidian: #0a0e14;
+            --bg-obsidian-card: #11161e;
+            --bg-obsidian-card-premium: #151c26;
+            --text-primary: #e8edf3;
+            --text-secondary: #9aa6b8;
+            --text-muted: #6b7789;
+            --pulse-cyan: #38b6c9;
+            --pulse-cyan-glow: rgba(56, 182, 201, 0.08);
+            --pulse-cyan-border: rgba(56, 182, 201, 0.22);
+            --pulse-cyan-border-hover: rgba(56, 182, 201, 0.45);
+            --border-subtle: rgba(255, 255, 255, 0.07);
+            --border-glow: rgba(255, 255, 255, 0.14);
         }
 
         .brand-title {
@@ -105,7 +105,7 @@
             80% {
                 stroke-dashoffset: 0;
                 opacity: 0.8;
-                filter: drop-shadow(0 0 8px var(--pulse-cyan));
+                filter: none;
             }
             100% {
                 stroke-dashoffset: -260;
@@ -148,7 +148,7 @@
             width: 100%;
             height: 2px;
             background: var(--pulse-cyan);
-            box-shadow: 0 0 8px var(--pulse-cyan);
+            box-shadow: none;
             transform: scaleX(0);
             transition: transform 0.25s ease;
         }
@@ -162,202 +162,54 @@
             transform: scaleX(1);
         }
 
-        /* Bento grid cards style */
         .card-premium {
-            background: linear-gradient(135deg, var(--bg-obsidian-card), rgba(15, 19, 26, 0.7)) !important;
+            background: var(--bg-obsidian-card) !important;
             border: 1px solid var(--border-subtle) !important;
-            border-radius: 1rem !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            border-radius: 0.75rem !important;
+            transition: border-color 0.2s ease, background 0.2s ease !important;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
             padding: 1.25rem !important;
         }
         @media (min-width: 640px) {
             .card-premium {
-                padding: 1.75rem !important;
+                padding: 1.5rem !important;
             }
         }
         .card-premium h3 {
             overflow-wrap: break-word !important;
             word-wrap: break-word !important;
             word-break: break-word !important;
+            letter-spacing: -0.01em !important;
         }
-
-        .card-premium::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.03) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .card-premium:hover::before {
-            opacity: 1;
-        }
-
         .card-premium:hover {
             border-color: var(--border-glow) !important;
-            transform: translateY(-4px) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.05) !important;
             background: var(--bg-obsidian-card-premium) !important;
         }
 
-        /* Category Card styles with bright-dark gradients and neon accents */
-        .card-law { 
-            border-left: 4px solid #f87171 !important; 
-            background: linear-gradient(135deg, #1d0c0d 0%, #080b11 100%) !important;
-        }
-        .card-law:hover { 
-            border-color: #ef4444 !important; 
-            background: linear-gradient(135deg, #2a1012 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.25) !important; 
-        }
-        .tag-law { background: rgba(239, 68, 68, 0.15) !important; color: #fca5a5 !important; }
-
-        .card-interview { 
-            border-left: 4px solid #34d399 !important; 
-            background: linear-gradient(135deg, #051a12 0%, #080b11 100%) !important;
-        }
-        .card-interview:hover { 
-            border-color: #10b981 !important; 
-            background: linear-gradient(135deg, #0a271c 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.25) !important; 
-        }
-        .tag-interview { background: rgba(16, 185, 129, 0.15) !important; color: #6ee7b7 !important; }
-
-        .card-book { 
-            border-left: 4px solid #c084fc !important; 
-            background: linear-gradient(135deg, #140a24 0%, #080b11 100%) !important;
-        }
-        .card-book:hover { 
-            border-color: #8b5cf6 !important; 
-            background: linear-gradient(135deg, #1c0e33 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.25) !important; 
-        }
-        .tag-book { background: rgba(139, 92, 246, 0.15) !important; color: #c4b5fd !important; }
-
-        .card-violet { 
-            border-left: 4px solid #22d3ee !important; 
-            background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
-        }
-        .card-violet:hover { 
-            border-color: #06b6d4 !important; 
-            background: linear-gradient(135deg, #082635 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.25) !important; 
-        }
-        .tag-violet { background: rgba(13, 148, 136, 0.15) !important; color: #99f6e4 !important; }
-
-        .card-inspiration { 
-            border-left: 4px solid #fbbf24 !important; 
-            background: linear-gradient(135deg, #201505 0%, #080b11 100%) !important;
-        }
-        .card-inspiration:hover { 
-            border-color: #f59e0b !important; 
-            background: linear-gradient(135deg, #2f1f0a 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.25) !important; 
-        }
-        .tag-inspiration { background: rgba(245, 158, 11, 0.15) !important; color: #fde047 !important; }
-
-        .card-fuchsia { 
-            border-left: 4px solid #f472b6 !important; 
-            background: linear-gradient(135deg, #22081c 0%, #080b11 100%) !important;
-        }
-        .card-fuchsia:hover { 
-            border-color: #d946ef !important; 
-            background: linear-gradient(135deg, #330b2a 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(217, 70, 239, 0.25) !important; 
-        }
-        .tag-fuchsia { background: rgba(217, 70, 239, 0.15) !important; color: #f5d0fe !important; }
-
-        .card-slate { 
-            border-left: 4px solid #60a5fa !important; 
-            background: linear-gradient(135deg, #071329 0%, #080b11 100%) !important;
-        }
-        .card-slate:hover { 
-            border-color: #3b82f6 !important; 
-            background: linear-gradient(135deg, #0b1e3f 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.25) !important; 
-        }
-        .tag-slate { background: rgba(59, 130, 246, 0.15) !important; color: #93c5fd !important; }
-
-        .card-education { 
-            border-left: 4px solid #22d3ee !important; 
-            background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
-        }
-        .card-education:hover { 
-            border-color: #06b6d4 !important; 
-            background: linear-gradient(135deg, #082635 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.25) !important; 
-        }
-        .tag-education { background: rgba(6, 182, 212, 0.15) !important; color: #67e8f9 !important; }
-
-        .card-personal { 
-            border-left: 4px solid #f472b6 !important; 
-            background: linear-gradient(135deg, #22081c 0%, #080b11 100%) !important;
-        }
-        .card-personal:hover { 
-            border-color: #ec4899 !important; 
-            background: linear-gradient(135deg, #330b2a 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(236, 72, 153, 0.25) !important; 
-        }
-        .tag-personal { background: rgba(236, 72, 153, 0.15) !important; color: #fbcfe8 !important; }
-
-        .card-welcome { 
-            border-left: 4px solid #2dd4bf !important; 
-            background: linear-gradient(135deg, #031c19 0%, #080b11 100%) !important;
-        }
-        .card-welcome:hover { 
-            border-color: #14b8a6 !important; 
-            background: linear-gradient(135deg, #062b26 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(20, 184, 166, 0.25) !important; 
-        }
-        .tag-welcome { background: rgba(20, 184, 166, 0.15) !important; color: #99f6e4 !important; }
-
-        .card-epic { 
-            border-left: 4px solid #f87171 !important; 
-            background: linear-gradient(135deg, #1d0c0d 0%, #080b11 100%) !important;
-        }
-        .card-epic:hover { 
-            border-color: #ef4444 !important; 
-            background: linear-gradient(135deg, #2a1012 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(239, 68, 68, 0.25) !important; 
-        }
-        .tag-epic { background: rgba(239, 68, 68, 0.15) !important; color: #fca5a5 !important; }
-
-        .card-med-ed { 
-            border-left: 4px solid #22d3ee !important; 
-            background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
-        }
-        .card-med-ed:hover { 
-            border-color: #06b6d4 !important; 
-            background: linear-gradient(135deg, #082635 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.25) !important; 
-        }
-        .tag-med-ed { background: rgba(6, 182, 212, 0.15) !important; color: #67e8f9 !important; }
-
-        .card-quote { 
-            border-left: 4px solid #c084fc !important; 
-            background: linear-gradient(135deg, #140a24 0%, #080b11 100%) !important;
-        }
-        .card-quote:hover { 
-            border-color: #8b5cf6 !important; 
-            background: linear-gradient(135deg, #1c0e33 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.25) !important; 
-        }
-        .tag-quote { background: rgba(139, 92, 246, 0.15) !important; color: #c4b5fd !important; }
-
-        /* Welcome hero redesign */
-        .welcome-hero {
-            background: radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%), linear-gradient(135deg, var(--bg-obsidian-card), rgba(15, 19, 26, 0.6)) !important;
+        .card-law, .card-interview, .card-book, .card-violet, .card-inspiration, .card-fuchsia, .card-slate, .card-education, .card-personal, .card-welcome, .card-epic, .card-med-ed, .card-quote {
             border: 1px solid var(--border-subtle) !important;
-            border-radius: 1.25rem !important;
+            background: var(--bg-obsidian-card) !important;
+        }
+        .card-law:hover, .card-interview:hover, .card-book:hover, .card-violet:hover, .card-inspiration:hover, .card-fuchsia:hover, .card-slate:hover, .card-education:hover, .card-personal:hover, .card-welcome:hover, .card-epic:hover, .card-med-ed:hover, .card-quote:hover {
+            border-color: var(--border-glow) !important;
+            background: var(--bg-obsidian-card-premium) !important;
+        }
+        .tag-law, .tag-interview, .tag-book, .tag-violet, .tag-inspiration, .tag-fuchsia, .tag-slate, .tag-education, .tag-personal, .tag-welcome, .tag-epic, .tag-med-ed, .tag-quote {
+            background: rgba(255, 255, 255, 0.06) !important;
+            color: #b6c2d2 !important;
+            font-size: 0.7rem !important;
+            letter-spacing: 0.06em !important;
+            text-transform: uppercase !important;
+            font-weight: 600 !important;
+        }
+        .welcome-hero {
+            background: var(--bg-obsidian-card) !important;
+            border: 1px solid var(--border-subtle) !important;
+            border-radius: 0.75rem !important;
             position: relative !important;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
         }
 
         /* Journalistic typography for blog content */
@@ -437,7 +289,7 @@
             backdrop-filter: blur(16px) saturate(180%);
             -webkit-backdrop-filter: blur(16px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.15);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
             border-radius: 1.25rem;
             padding: 12px 20px;
             display: flex;
@@ -467,12 +319,12 @@
             transition: all 0.2s ease;
             cursor: pointer;
             flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);
+            box-shadow: none;
         }
 
         .floating-audio-bar .play-btn-circle:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 16px rgba(6, 182, 212, 0.5);
+            box-shadow: none;
             background: #22d3ee;
         }
 
@@ -666,14 +518,14 @@
             height: 10px;
             border-radius: 50%;
             background: var(--pulse-cyan);
-            box-shadow: 0 0 6px var(--pulse-cyan);
+            box-shadow: none;
         }
 
         /* Sidebar profile container */
         .profile-container {
             border: 1px solid var(--border-subtle) !important;
-            border-radius: 1.25rem !important;
-            background: linear-gradient(135deg, var(--bg-obsidian-card), rgba(15, 19, 26, 0.7)) !important;
+            border-radius: 0.75rem !important;
+            background: var(--bg-obsidian-card) !important;
             padding: 24px !important;
             text-align: center;
         }
@@ -779,7 +631,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 1.25rem;
             padding: 0.85rem 1.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
             transition: bottom 0.40s cubic-bezier(0.175, 0.885, 0.32, 1.15);
             z-index: 100;
         }
@@ -807,7 +659,7 @@
             height: 12px;
             border-radius: 50%;
             background: var(--pulse-cyan);
-            box-shadow: 0 0 6px var(--pulse-cyan);
+            box-shadow: none;
             transition: transform 0.15s ease;
         }
         .audio-scrubber::-webkit-slider-thumb:hover {
@@ -845,7 +697,7 @@
             border-radius: 50%;
             background: var(--pulse-cyan);
             border: 3px solid var(--bg-obsidian);
-            box-shadow: 0 0 8px var(--pulse-cyan);
+            box-shadow: none;
             z-index: 5;
         }
         .course-card {
@@ -928,7 +780,7 @@
             color: var(--pulse-cyan);
             background: var(--pulse-cyan-glow);
             border-color: rgba(6, 182, 212, 0.2);
-            box-shadow: 0 0 12px var(--pulse-cyan-glow);
+            box-shadow: none;
         }
 
         .mobile-tab-dock {
@@ -3769,9 +3621,9 @@
                             class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep6-click"
                             aria-label="View episode: The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan"
-                            style="background: linear-gradient(135deg, rgb(16, 185, 129), rgb(30, 58, 95));">
+                            >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
-                                style="background: rgba(255,255,255,0.15); color: rgb(209, 250, 229);">Season 1 ·
+                                style="background: rgba(255,255,255,0.06); color: #b6c2d2;">Season 1 ·
                                 Episode 6</span>
                             <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h4>
                             <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 5m</p>
@@ -3783,9 +3635,9 @@
                             class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep5-click"
                             aria-label="View episode: How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song"
-                            style="background: linear-gradient(135deg, rgb(217, 119, 6), rgb(30, 58, 95));">
+                            >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
-                                style="background: rgba(255,255,255,0.15); color: rgb(254, 243, 199);">Season 1 ·
+                                style="background: rgba(255,255,255,0.06); color: #b6c2d2;">Season 1 ·
                                 Episode 5</span>
                             <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h4>
                             <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 12m</p>
@@ -3797,9 +3649,9 @@
                             class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep4-click"
                             aria-label="View episode: From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy"
-                            style="background: linear-gradient(135deg, rgb(225, 29, 72), rgb(30, 58, 95));">
+                            >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
-                                style="background: rgba(255,255,255,0.15); color: rgb(254, 205, 211);">Season 1 ·
+                                style="background: rgba(255,255,255,0.06); color: #b6c2d2;">Season 1 ·
                                 Episode 4</span>
                             <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h4>
                             <p class="text-sm mb-4 flex-grow" style="color: rgb(226, 232, 240);">1h 45m</p>
@@ -3811,9 +3663,9 @@
                             class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep3-click"
                             aria-label="View episode: Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together"
-                            style="background: linear-gradient(135deg, rgb(109, 40, 217), rgb(30, 58, 95));">
+                            >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
-                                style="background: rgba(255,255,255,0.15); color: rgb(233, 213, 255);">Season 1 ·
+                                style="background: rgba(255,255,255,0.06); color: #b6c2d2;">Season 1 ·
                                 Episode 3</span>
                             <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Breaking
                                 the Tech Silos: Bringing Clinicians, Policy, and Data Together</h4>
@@ -3826,9 +3678,9 @@
                             class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep2-click"
                             aria-label="View episode: Clinical Advocacy: Bridging Climate, Policy, and Rural Health"
-                            style="background: linear-gradient(135deg, rgb(13, 148, 136), rgb(30, 58, 95));">
+                            >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
-                                style="background: rgba(255,255,255,0.15); color: rgb(204, 251, 241);">Season 1 ·
+                                style="background: rgba(255,255,255,0.06); color: #b6c2d2;">Season 1 ·
                                 Episode 2</span>
                             <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Clinical
                                 Advocacy: Bridging Climate, Policy, and Rural Health</h4>
@@ -3841,9 +3693,9 @@
                             class="rounded-2xl p-7 card-premium text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
                             id="card-ep1-click"
                             aria-label="View episode: Decoding Digital Accessibility: Authentic Leadership in UX"
-                            style="background: linear-gradient(135deg, rgb(30, 64, 175), rgb(14, 165, 233));">
+                            >
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-medium self-start"
-                                style="background: rgba(255,255,255,0.15); color: rgb(186, 230, 253);">Season 1 ·
+                                style="background: rgba(255,255,255,0.06); color: #b6c2d2;">Season 1 ·
                                 Episode 1</span>
                             <h4 class="font-bold mb-2" style="color: rgb(255, 255, 255); font-size: 19px;">Decoding
                                 Digital Accessibility: Authentic Leadership in UX</h4>
