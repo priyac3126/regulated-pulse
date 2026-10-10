@@ -751,25 +751,11 @@
 
         /* --- HIGH-FIDELITY SUBSTANTIAL REDESIGN OVERRIDES --- */
 
-        /* Cursor Glow Mouse Mapping */
         .card-premium, .emphasis-card, .faq-card, .course-card {
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .card-premium::after, .emphasis-card::after, .faq-card::after, .course-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(350px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(6, 182, 212, 0.08), transparent 80%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            z-index: 2;
-        }
-        .card-premium:hover::after, .emphasis-card:hover::after, .faq-card:hover::after, .course-card:hover::after {
-            opacity: 1;
-        }
+
 
         /* Dynamic logo animation speed */
         .pulse-logo.playing polyline {
@@ -828,62 +814,7 @@
             transform: scale(1.3);
         }
 
-        /* Article Reader Mode Features */
-        .reader-progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--pulse-cyan);
-            box-shadow: 0 0 8px var(--pulse-cyan);
-            z-index: 100;
-            width: 0%;
-        }
-        .reader-settings-panel {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(21, 27, 38, 0.5);
-            border-radius: 0.75rem;
-            padding: 0.5rem 1rem;
-            margin-bottom: 2rem;
-        }
-        .font-scale-sm .blog-post-content { font-size: 0.95rem !important; }
-        .font-scale-md .blog-post-content { font-size: 1.1rem !important; }
-        .font-scale-lg .blog-post-content { font-size: 1.25rem !important; }
-        .font-scale-xl .blog-post-content { font-size: 1.4rem !important; }
 
-        /* Reader mode themes */
-        .reader-theme-sepia {
-            background-color: #f5eedc !important;
-            color: #4a3c31 !important;
-        }
-        .reader-theme-sepia .blog-post-content,
-        .reader-theme-sepia h2,
-        .reader-theme-sepia h3,
-        .reader-theme-sepia p,
-        .reader-theme-sepia li {
-            color: #4a3c31 !important;
-        }
-        .reader-theme-sepia .blog-post-content a {
-            color: #b45309 !important;
-        }
-        .reader-theme-cream {
-            background-color: #fafaf6 !important;
-            color: #2b2b2a !important;
-        }
-        .reader-theme-cream .blog-post-content,
-        .reader-theme-cream h2,
-        .reader-theme-cream h3,
-        .reader-theme-cream p,
-        .reader-theme-cream li {
-            color: #2b2b2a !important;
-        }
-        .reader-theme-cream .blog-post-content a {
-            color: #0f766e !important;
-        }
 
         /* Coursework Visual Semester Timeline */
         .timeline-track {
@@ -939,39 +870,7 @@
             max-height: 350px;
         }
 
-        /* FAQ Filters */
-        .filter-tag {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 9999px;
-            padding: 0.35rem 0.95rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .filter-tag:hover, .filter-tag.active {
-            background: var(--pulse-cyan-glow);
-            border-color: var(--pulse-cyan);
-            color: #fff;
-            box-shadow: 0 0 6px var(--pulse-cyan-glow);
-        }
-        .faq-search-input {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 0.75rem;
-            padding: 0.75rem 1rem;
-            color: #fff;
-            width: 100%;
-            max-width: 400px;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-        .faq-search-input:focus {
-            border-color: var(--pulse-cyan);
-            background: rgba(255, 255, 255, 0.04);
-            box-shadow: 0 0 8px var(--pulse-cyan-glow);
-        }
+
 
         /* --- DASHBOARD SIDEBAR OVERLAID LAYOUT STYLES --- */
         .dashboard-container {
@@ -1284,7 +1183,7 @@
     </style>
 </head>
 
-<body class="min-h-screen min-h-[100dvh] bg-[#080b11]"><div id="reader-progress" class="reader-progress-bar"></div>
+<body class="min-h-screen min-h-[100dvh] bg-[#080b11]">
     <script>
         (function() {
             const hash = window.location.hash;
@@ -4907,21 +4806,11 @@
                 <h2 class="mb-2 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Frequently Asked Questions</h2>
                 <p class="text-sm mb-8 text-slate-400">Questions about the blog, podcast, my major, and post-grad plans.</p>
 
-                <!-- Search & Filters Container -->
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 max-w-4xl mx-auto">
-                    <input type="text" id="faq-search" class="faq-search-input" placeholder="Search questions &amp; answers...">
-                    <div class="flex flex-wrap gap-2" id="faq-filter-tags">
-                        <button class="filter-tag active" data-category="all">All</button>
-                        <button class="filter-tag" data-category="general">General</button>
-                        <button class="filter-tag" data-category="academic">Academics</button>
-                        <button class="filter-tag" data-category="podcast">Podcast</button>
-                        <button class="filter-tag" data-category="career">Career &amp; Volunteering</button>
-                    </div>
-                </div>
+
 
                 <div class="flex flex-col gap-4 max-w-4xl mx-auto">
                     <!-- Q1 -->
-                    <div class="faq-card" data-category="general">
+                    <div class="faq-card" data-legacy-category="general">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>What inspired you to create The Regulated Pulse Blog and Podcast?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -4934,7 +4823,7 @@
                     </div>
 
                     <!-- Q2 -->
-                    <div class="faq-card" data-category="general">
+                    <div class="faq-card" data-legacy-category="general">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>Where did the name “The Regulated Pulse” come from?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -4947,7 +4836,7 @@
                     </div>
 
                     <!-- Q3 -->
-                    <div class="faq-card" data-category="general">
+                    <div class="faq-card" data-legacy-category="general">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>How did you create the website?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -4960,7 +4849,7 @@
                     </div>
 
                     <!-- Q4 -->
-                    <div class="faq-card" data-category="career">
+                    <div class="faq-card" data-legacy-category="career">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>What are your plans post-grad?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -4973,7 +4862,7 @@
                     </div>
 
                     <!-- Q5 -->
-                    <div class="faq-card" data-category="academic">
+                    <div class="faq-card" data-legacy-category="academic">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>Are you receiving course credit through The Regulated Pulse?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -4986,7 +4875,7 @@
                     </div>
 
                     <!-- Q6 -->
-                    <div class="faq-card" data-category="academic">
+                    <div class="faq-card" data-legacy-category="academic">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>What was the process like creating your major’s curriculum?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -4999,7 +4888,7 @@
                     </div>
 
                     <!-- Q7 -->
-                    <div class="faq-card" data-category="podcast">
+                    <div class="faq-card" data-legacy-category="podcast">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>How often can I expect new content from the blog and podcast? Is there an uploading schedule?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -5012,7 +4901,7 @@
                     </div>
 
                     <!-- Q8 -->
-                    <div class="faq-card" data-category="podcast">
+                    <div class="faq-card" data-legacy-category="podcast">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>I would like to, or know someone that would like to be on The Regulated Pulse Podcast. How can I contact you?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -5025,7 +4914,7 @@
                     </div>
 
                     <!-- Q9 -->
-                    <div class="faq-card" data-category="career">
+                    <div class="faq-card" data-legacy-category="career">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
                             <span>I am passionate about reducing health inequities and inequalities and wanted nonprofit recommendations to give my time. Do you have any?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
@@ -5363,144 +5252,7 @@
                 });
             });
 
-            // FAQ Search & Filter logic
-            const faqSearchInput = document.getElementById('faq-search');
-            const faqFilterTags = document.getElementById('faq-filter-tags');
-            let activeFaqCategory = 'all';
 
-            function filterFAQ() {
-                const queryText = faqSearchInput.value.toLowerCase().trim();
-                document.querySelectorAll('.faq-card').forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    const question = card.querySelector('.faq-trigger span').textContent.toLowerCase();
-                    const answer = card.querySelector('.faq-content-inner').textContent.toLowerCase();
-                    
-                    const matchCategory = (activeFaqCategory === 'all' || category === activeFaqCategory);
-                    const matchQuery = (question.includes(queryText) || answer.includes(queryText));
-                    
-                    if (matchCategory && matchQuery) {
-                        card.style.display = '';
-                    } else {
-                        card.style.display = 'none';
-                        card.classList.remove('open');
-                        card.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
-                        card.querySelector('.faq-content').style.maxHeight = null;
-                    }
-                });
-            }
-
-            faqSearchInput.addEventListener('input', filterFAQ);
-
-            faqFilterTags.querySelectorAll('.filter-tag').forEach(tag => {
-                tag.addEventListener('click', () => {
-                    faqFilterTags.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
-                    tag.classList.add('active');
-                    activeFaqCategory = tag.getAttribute('data-category');
-                    filterFAQ();
-                });
-            });
-
-            // Reader Progress Bar
-            const readerProgress = document.getElementById('reader-progress');
-            window.addEventListener('scroll', () => {
-                const postView = document.getElementById('blog-post-view');
-                if (!postView.classList.contains('hidden')) {
-                    const scrollTop = window.scrollY;
-                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                    readerProgress.style.width = scrollPercent + '%';
-                } else {
-                    readerProgress.style.width = '0%';
-                }
-            });
-
-            // Reader Theme controls
-            const blogPostView = document.getElementById('blog-post-view');
-            const themeDark = document.getElementById('theme-dark');
-            const themeSepia = document.getElementById('theme-sepia');
-            const themeCream = document.getElementById('theme-cream');
-            const themeButtons = [themeDark, themeSepia, themeCream].filter(Boolean);
-
-            function setActiveThemeButton(activeBtn) {
-                if (!activeBtn) return;
-                themeButtons.forEach(btn => btn.classList.remove('active-theme-btn', 'border-cyan-400', 'border-white/20'));
-                activeBtn.classList.add('active-theme-btn');
-                if (activeBtn === themeDark) {
-                    activeBtn.classList.add('border-white/20');
-                } else {
-                    activeBtn.classList.add('border-cyan-400');
-                }
-            }
-
-            if (themeDark) {
-                themeDark.addEventListener('click', () => {
-                    blogPostView.className = 'hidden'; // Base class hidden is applied routing, strip theme
-                    document.body.className = 'min-h-screen min-h-[100dvh] bg-[#080b11]';
-                    setActiveThemeButton(themeDark);
-                });
-            }
-
-            if (themeSepia) {
-                themeSepia.addEventListener('click', () => {
-                    blogPostView.className = 'reader-theme-sepia';
-                    document.body.className = 'min-h-screen min-h-[100dvh] reader-theme-sepia';
-                    setActiveThemeButton(themeSepia);
-                });
-            }
-
-            if (themeCream) {
-                themeCream.addEventListener('click', () => {
-                    blogPostView.className = 'reader-theme-cream';
-                    document.body.className = 'min-h-screen min-h-[100dvh] reader-theme-cream';
-                    setActiveThemeButton(themeCream);
-                });
-            }
-
-            // Text scaling controls
-            const scaleClasses = ['font-scale-sm', 'font-scale-md', 'font-scale-lg', 'font-scale-xl'];
-            let currentScaleIdx = 1; // default to md
-
-            const btnDec = document.getElementById('btn-font-dec');
-            const btnInc = document.getElementById('btn-font-inc');
-
-            function applyFontScale() {
-                if (blogPostView) {
-                    blogPostView.classList.remove(...scaleClasses);
-                    blogPostView.classList.add(scaleClasses[currentScaleIdx]);
-                }
-            }
-
-            if (btnDec) {
-                btnDec.addEventListener('click', () => {
-                    if (currentScaleIdx > 0) {
-                        currentScaleIdx--;
-                        applyFontScale();
-                    }
-                });
-            }
-
-            if (btnInc) {
-                btnInc.addEventListener('click', () => {
-                    if (currentScaleIdx < scaleClasses.length - 1) {
-                        currentScaleIdx++;
-                        applyFontScale();
-                    }
-                });
-            }
-
-            // Mouse-tracker radial card glow
-            const trackClasses = ['.card-premium', '.emphasis-card', '.faq-card', '.course-card'];
-            document.addEventListener('mousemove', (e) => {
-                trackClasses.forEach(cls => {
-                    document.querySelectorAll(cls).forEach(card => {
-                        const rect = card.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        card.style.setProperty('--mouse-x', `${x}px`);
-                        card.style.setProperty('--mouse-y', `${y}px`);
-                    });
-                });
-            });
 
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
