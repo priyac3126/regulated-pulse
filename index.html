@@ -112,15 +112,16 @@
         }
 
         .card-premium {
-            background: var(--bg-obsidian-card) !important;
-            border: 1px solid var(--border-subtle) !important;
-            border-radius: 0.75rem !important;
-            transition: border-color 0.2s ease, background 0.2s ease !important;
+            background: #fff !important;
+            border: 1px solid #e7e3d9 !important;
+            border-radius: 14px !important;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             padding: 1.25rem !important;
+            box-shadow: 0 1px 2px rgba(27,35,44,0.04) !important;
         }
         @media (min-width: 640px) {
             .card-premium {
@@ -134,8 +135,8 @@
             letter-spacing: -0.01em !important;
         }
         .card-premium:hover {
-            border-color: var(--border-glow) !important;
-            background: #f0ede6 !important;
+            border-color: #d3cec1 !important;
+            box-shadow: 0 4px 14px rgba(27,35,44,0.08) !important;
         }
 
         .card-law, .card-interview, .card-book, .card-violet, .card-inspiration, .card-fuchsia, .card-slate, .card-education, .card-personal, .card-welcome, .card-epic, .card-med-ed, .card-quote {
@@ -155,9 +156,9 @@
             font-weight: 600 !important;
         }
         .welcome-hero {
-            background: var(--bg-obsidian-card) !important;
-            border: 1px solid var(--border-subtle) !important;
-            border-radius: 0.75rem !important;
+            background: #fff !important;
+            border: 1px solid #e7e3d9 !important;
+            border-radius: 16px !important;
             position: relative !important;
         }
 
@@ -445,9 +446,9 @@
 
         /* Sidebar profile container */
         .profile-container {
-            border: 1px solid var(--border-subtle) !important;
-            border-radius: 0.75rem !important;
-            background: var(--bg-obsidian-card) !important;
+            border: 1px solid #e7e3d9 !important;
+            border-radius: 14px !important;
+            background: #fff !important;
             padding: 24px !important;
             text-align: center;
         }
@@ -641,119 +642,119 @@
 
 
 
-        /* --- DASHBOARD SIDEBAR OVERLAID LAYOUT STYLES --- */
         .dashboard-container {
-            display: flex;
+            display: block;
             min-height: 100vh;
             width: 100%;
-            background-color: var(--bg-obsidian);
+            background-color: #f7f6f2;
         }
-
         .dashboard-sidebar {
-            position: fixed;
+            position: sticky;
             top: 0;
-            left: 0;
-            bottom: 0;
-            width: 280px;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-right: 1px solid #e7e3d9;
-            padding: 2.5rem 1.5rem;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e7e3d9;
+            padding: 0.7rem 1.5rem;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
             justify-content: space-between;
+            gap: 1rem;
             z-index: 90;
         }
-
+        .dashboard-sidebar > div:first-child {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+        }
+        .dashboard-sidebar nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.25rem;
+            margin-left: auto;
+            overflow-x: auto;
+        }
+        .dashboard-sidebar .border-t {
+            display: none;
+        }
         .dashboard-content {
-            flex-grow: 1;
-            margin-left: 280px;
-            padding: 3rem 4rem;
-            width: calc(100% - 280px);
-            min-height: 100vh;
+            width: 100%;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+            min-height: 70vh;
             box-sizing: border-box;
         }
-
         .nav-link-vertical {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 1rem;
-            color: var(--text-secondary);
-            padding: 0.85rem 1.25rem;
-            border-radius: 0.85rem;
+            gap: 0.45rem;
+            color: #5c6773;
+            padding: 0.5rem 0.8rem;
+            border-radius: 9999px;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.25s ease;
-            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            line-height: 1;
+            white-space: nowrap;
             border: 1px solid transparent;
             text-decoration: none !important;
         }
+        .nav-link-vertical svg, .nav-link-vertical i {
+            width: 16px;
+            height: 16px;
+        }
         .nav-link-vertical:hover {
             color: #1b232c;
-            background: rgba(27, 35, 44, 0.04);
+            background: rgba(27, 35, 44, 0.05);
         }
         .nav-link-vertical.active {
             color: #0f766e;
             background: rgba(15, 118, 110, 0.10);
-            border-color: rgba(15, 118, 110, 0.25);
+            border-color: rgba(15, 118, 110, 0.22);
             box-shadow: none;
         }
-
         .mobile-tab-dock {
-            display: none;
-            position: fixed;
-            bottom: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 2rem);
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid #e7e3d9;
-            border-radius: 9999px;
-            padding: 0.5rem 1rem;
-            box-shadow: 0 12px 28px rgba(27, 35, 44, 0.12);
-            z-index: 95;
-            align-items: center;
-            justify-content: space-around;
+            display: none !important;
         }
-        .mobile-dock-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.25rem;
-            color: var(--text-secondary);
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.2s ease;
-            padding: 0.4rem;
-            background: none;
-            border: none;
-            cursor: pointer;
+        .site-footer {
+            border-top: 1px solid #e7e3d9;
+            background: #fff;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: #5c6773;
+            font-size: 0.85rem;
         }
-        .mobile-dock-btn.active {
-            color: #0f766e;
-            
-        }
-
-        @media (max-width: 1024px) {
+        @media (max-width: 860px) {
             .dashboard-sidebar {
-                display: none !important;
+                padding: 0.6rem 1rem;
+            }
+            .dashboard-sidebar > div:first-child {
+                gap: 1rem;
+            }
+            .dashboard-sidebar nav {
+                gap: 0;
+            }
+            .nav-link-vertical {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.85rem;
+            }
+            .nav-link-vertical span {
+                display: none;
+            }
+            .nav-link-vertical svg, .nav-link-vertical i {
+                width: 18px;
+                height: 18px;
+            }
+            #logo-home-btn h1 {
+                font-size: 1rem;
             }
             .dashboard-content {
-                margin-left: 0 !important;
-                width: 100% !important;
-                padding: 2rem 1.25rem 7.5rem 1.25rem !important;
-            }
-            .mobile-tab-dock {
-                display: flex;
-            }
-            .floating-audio-bar.active {
-                bottom: 7rem !important;
+                padding: 1.75rem 1rem 4rem;
             }
         }
     </style>
@@ -963,7 +964,7 @@
                     <!-- Brand / Logo header -->
                     <button id="logo-home-btn" class="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none cursor-pointer text-left" aria-label="Return to Blog Home">
                         <svg width="40" height="40" viewBox="0 0 160 160" fill="none" aria-hidden="true" class="pulse-logo">
-                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#0f766e" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
                         </svg>
                         <div>
                             <div class="text-[10px] tracking-[0.18em] text-slate-500 font-semibold uppercase leading-none mb-1">Health &amp; Tech Law</div>
@@ -1037,16 +1038,16 @@
                         <!-- Main Content (Left Column) -->
                         <div class="lg:col-span-8 flex flex-col gap-12">
                             <!-- Premium Welcome Hero Section -->
-                            <div class="welcome-hero rounded-2xl p-8 md:p-10 text-left">
+                            <div class="welcome-hero rounded-2xl p-8 md:p-10 text-left" style="background:#fff;">
                                 <div class="max-w-3xl">
-                                    <p class="text-[11px] tracking-[0.18em] uppercase text-slate-500 font-semibold mb-3">Healthcare technology, law, and regulation</p>
-                                    <h2 class="text-slate-900 font-extrabold text-2xl md:text-3xl tracking-tight mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse</h2>
-                                    <p class="leading-relaxed mb-6 text-slate-600" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">
-                                        Essays and interviews on how health technology is regulated, and what that means for patients and clinicians.
+                                    <p class="text-[11px] tracking-[0.18em] uppercase text-teal-700 font-semibold mb-3">A blog on health technology law · UGA</p>
+                                    <h2 class="text-slate-900 font-extrabold tracking-tight mb-3" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 2.4rem; line-height: 1.15;">The Regulated Pulse</h2>
+                                    <p class="leading-relaxed mb-6 text-slate-600" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem;">
+                                        Essays, interviews, and reading notes on how health technology is regulated — and what that means for patients and clinicians.
                                     </p>
-                                    <div class="flex flex-wrap gap-3">
-                                        <button onclick="navigateTo('#post-welcome')" class="px-5 py-2.5 rounded-lg font-semibold focus:outline-none cursor-pointer text-sm bg-slate-100 hover:bg-white text-slate-900">Read Welcome Note</button>
-                                        <button onclick="navigateTo('#about')" class="px-5 py-2.5 rounded-lg font-semibold focus:outline-none cursor-pointer text-sm border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-slate-900" style="background: transparent;">About the Editor</button>
+                                    <div class="flex flex-wrap items-center gap-3">
+                                        <button onclick="navigateTo('#post-welcome')" class="px-5 py-2.5 rounded-full font-semibold focus:outline-none cursor-pointer text-sm bg-slate-900 hover:bg-slate-700 text-white">Start with the welcome note</button>
+                                        <button onclick="navigateTo('#about')" class="px-5 py-2.5 rounded-full font-semibold focus:outline-none cursor-pointer text-sm border border-slate-300 hover:border-slate-400 text-slate-600 hover:text-slate-900" style="background: transparent;">About Priya →</button>
                                     </div>
                                 </div>
                             </div>
@@ -4713,6 +4714,10 @@
                 </div>
             </section>
             </main>
+            <footer class="site-footer">
+                <p class="font-semibold text-slate-900 mb-1">The Regulated Pulse</p>
+                <p>By Priya Chaudhari · Healthcare technology law &amp; regulation · <a href="mailto:hello@theregulatedpulse.com" class="text-teal-700 underline">hello@theregulatedpulse.com</a></p>
+            </footer>
         </div>
     </div>
 
