@@ -223,6 +223,44 @@
         }
         .tag-law { background: rgba(239, 68, 68, 0.15) !important; color: #fca5a5 !important; }
 
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 1.5rem 0;
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .comparison-table th {
+            background: rgba(239, 68, 68, 0.12);
+            color: #f1f5f9;
+            padding: 10px 14px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.09);
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .comparison-table td {
+            padding: 12px 14px;
+            vertical-align: top;
+            border: 1px solid rgba(255,255,255,0.09);
+            color: #cbd5e1;
+            font-size: 13.5px;
+            white-space: normal;
+        }
+        .comparison-table .group-row td {
+            background: rgba(255,255,255,0.04);
+            color: #e2e8f0;
+            font-weight: 700;
+            font-size: 12.5px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .comparison-table p { margin: 0 0 0.75rem 0; }
+        .comparison-table p:last-child { margin-bottom: 0; }
+        .table-note { font-size: 12.5px; color: #94a3b8; margin-top: 0.75rem; }
+
         .card-interview { 
             border-left: 4px solid #34d399 !important; 
             background: linear-gradient(135deg, #051a12 0%, #080b11 100%) !important;
@@ -1966,11 +2004,11 @@
                                 requires plaintiffs to file a preliminary expert affidavit by a medical expert,
                                 "Detailing the provider's deviation from the standard of care and how it caused the
                                 patient's injuries" (Hastings).</p>
-                            <p>Furthermore, one Arizona statute makes the state very plaintiff-favorable in comparison
+                            <p>Furthermore, one Arizona constitutional provision makes the state very plaintiff-favorable in comparison
                                 to most states when concerning medical malpractice cases: Article 2 Section 31
                                 ("Article"). This statute states "No law shall be enacted in this state limiting the
-                                amount of damages to be recovered for causing the death or injury of any person
-                                ("Article"). Damages can come in the form of economic damages, emotional ones such as
+                                amount of damages to be recovered for causing the death or injury of any person”
+                                (“Article”). Damages can come in the form of economic damages, emotional ones such as
                                 pain and suffering, and total recovery (Hastings).</p>
                             <p>This statute is significant because it means these cases are fully judged on their legal
                                 and factual merits, not limited by artificial jury award limitations (Hastings).
@@ -1978,6 +2016,56 @@
                                 conservative in making large awards than those of other jurisdictions (Hastings).</p>
                             <p>Overall, Texas and Arizona are both known for having unique laws that are important in
                                 those practicing and affected by medical malpractice law (everyone).</p>
+
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr><th>Arizona</th><th>Texas</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="group-row"><td colspan="2">Limitations</td></tr>
+                                    <tr>
+                                        <td>
+                                            <p>A two-year time frame between when the health care services were rendered or failed to be rendered and the case filing deadline (Tavrn).</p>
+                                            <p>The Arizona Supreme Court case established that the limitations period ends when the plaintiff knows, or in the exercise of reasonable diligence, should have known the fact of injury and the negligent cause of that injury (Tavrn).</p>
+                                            <p>Emergency medical services are covered under the scope of professional negligence in medical malpractice (Tavrn).</p>
+                                        </td>
+                                        <td>
+                                            <p>“Willful and wanton negligence” standard for emergency care under Civil Practice and Remedies Code Section 74.153 (2003), interpreted by the Texas Supreme Court as gross negligence (Hastings).</p>
+                                            <p>Exemption when non-emergency treatment is provided in an ER setting; a 2019 amendment added the exemption when negligent care causes a stable patient to require emergency care (1).</p>
+                                            <p>Fetal death claims are complicated by the wrongful death act’s definitions (Hastings).</p>
+                                            <p>A two-year time frame between when the medical malpractice occurred and case filing deadline (3). There is an exception for children under 12, as they have two years to file the case beginning at age 12.</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="group-row"><td colspan="2">Repose</td></tr>
+                                    <tr>
+                                        <td>No statute of repose for medical malpractice cases. This means that if a patient can provide evidence that he/she could not have reasonably known he/she was a victim of negligent medical care until many years later, they can still file a claim (Hastings).</td>
+                                        <td>A ten-year time frame between “The date of the act or omission that gives rise to the claim” and when the health care liability claim can be filed.</td>
+                                    </tr>
+                                    <tr class="group-row"><td colspan="2">Notice-of-claim</td></tr>
+                                    <tr>
+                                        <td>A strict deadline of 180 days if the potential defendant is a government entity or public employee (Hastings).</td>
+                                        <td>The government should receive notice of a claim against it within six months of the incident that gave rise to the claim (6).</td>
+                                    </tr>
+                                    <tr class="group-row"><td colspan="2">Expert-certification</td></tr>
+                                    <tr>
+                                        <td>Plaintiffs are required to file a preliminary expert affidavit by a medical expert, “Detailing the provider’s deviation from the standard of care and how it caused the patient’s injuries” (Hastings).</td>
+                                        <td>
+                                            <p>Plaintiffs are required to serve an expert report with their curriculum vitæ on each defendant by the 120th day after the date each defendant’s original answer was filed (4).</p>
+                                            <p>The defendant health care provider whose conduct is implicated must file and serve any objection no later than the 21st day after the date the defendant’s answer is filed (4).</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="group-row"><td colspan="2">Damages rules</td></tr>
+                                    <tr>
+                                        <td>No law shall be enacted in this state limiting the amount of damages to be recovered for causing the death or injury of any person (“Article”). Damages can come in the form of economic damages, emotional ones such as pain and suffering, and total recovery (Hastings).</td>
+                                        <td>
+                                            <p>A limit of $250k for non-economic damages for each claimant for a health care provider or health care institution (5).</p>
+                                            <p>Where a final judgement is rendered against more than one healthcare institution, it is capped to 250k per institution (5).</p>
+                                            <p>The claimant cannot receive more than 500k total regardless of the amount of institutions implied (5).</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="table-note">Note: This table is meant to provide a brief overview of the main qualities and differences between these two states’ medical malpractice law landscape. See Texas Civil Practice and Remedies Code Sec. 74.302 for further information on limitations of noneconomic damages.</p>
 
                             <h3>References</h3>
                             <p class="works-cited-note">
