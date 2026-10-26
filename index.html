@@ -1730,7 +1730,7 @@
                     <!-- The Fifth Pillar: Why the Arts Belong in Clinical Care -->
                     <article id="post-art-cure-container" class="hidden max-w-3xl mx-auto relative mb-16">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Fifth Pillar: Why the Arts Belong in Clinical Care</h2>
-                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Book Insights · July 2026 · 4 min read</p>
+                        <p class="text-sm mb-11" style="color: rgb(103, 232, 249);">Book Insights · July 2026 · 4 min read</p>
 
                         <div class="text-center mb-10">
                             <img src="./ArtCurebook.webp" alt="Art Cure book cover"
@@ -5946,18 +5946,62 @@
 
         window.likeComment = async function (commentId) {
             const likedKey = `liked_${commentId}`;
-            if (localStorage.getItem(likedKey)) {
-                return;
-            }
+            const wasLiked = localStorage.getItem(likedKey);
 
             try {
                 const commentRef = doc(db, "comments", commentId);
                 await updateDoc(commentRef, {
-                    likes: increment(1)
+                    likes: increment(wasLiked ? -1 : 1)
                 });
-                localStorage.setItem(likedKey, "true");
+                if (wasLiked) {
+                    localStorage.removeItem(likedKey);
+                } else {
+                    localStorage.setItem(likedKey, "true");
+                }
             } catch (e) {
                 console.error("Error liking comment: ", e);
+                alert("Could not update the like. Make sure your Firebase database rules allow updating comments.");
+            }
+        };
+
+        window.toggleReply = function (commentId) {
+            const form = document.getElementById(`reply-form-${commentId}`);
+            if (form) form.classList.toggle('hidden');
+        };
+
+        window.submitReply = async function (event, replyToId) {
+            event.preventDefault();
+            const form = event.target;
+            const nameInput = form.querySelector('input[type="text"]');
+            const emailInput = form.querySelector('input[type="email"]');
+            const textInput = form.querySelector('textarea');
+            const btn = form.querySelector('button[type="submit"]');
+            const originalBtnText = btn.innerText;
+
+            try {
+                btn.innerText = "Posting...";
+                btn.disabled = true;
+
+                await addDoc(collection(db, "comments"), {
+                    postId: form.dataset.postId,
+                    name: nameInput.value,
+                    email: emailInput.value,
+                    text: textInput.value,
+                    createdAt: serverTimestamp(),
+                    likes: 0,
+                    replyTo: replyToId,
+                    replyToName: form.dataset.parentName || ""
+                });
+
+                form.reset();
+                const wrapper = document.getElementById(`reply-form-${replyToId}`);
+                if (wrapper) wrapper.classList.add('hidden');
+            } catch (e) {
+                console.error("Error adding reply: ", e);
+                alert("Something went wrong! Make sure your Firebase database rules are set up correctly.");
+            } finally {
+                btn.innerText = originalBtnText;
+                btn.disabled = false;
             }
         };
 
@@ -5977,43 +6021,99 @@
                     return;
                 }
 
+                const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
                 let commentsData = [];
                 snapshot.forEach((doc) => commentsData.push({ id: doc.id, ...doc.data() }));
-                commentsData.sort((a, b) => {
-                    let timeA = a.createdAt ? a.createdAt.toMillis() : Date.now();
-                    let timeB = b.createdAt ? b.createdAt.toMillis() : Date.now();
-                    return timeB - timeA;
-                });
+                const timeOf = (c) => c.createdAt ? c.createdAt.toMillis() : Date.now();
+                commentsData.sort((a, b) => timeOf(b) - timeOf(a));
 
-                commentsData.forEach((data) => {
+                const topLevel = commentsData.filter(c => !c.replyTo);
+                const replies = commentsData.filter(c => c.replyTo);
+                const topLevelIds = new Set(topLevel.map(c => c.id));
+
+                const repliesByParent = {};
+                const orphans = [];
+                replies.forEach(r => {
+                    if (topLevelIds.has(r.replyTo)) {
+                        (repliesByParent[r.replyTo] = repliesByParent[r.replyTo] || []).push(r);
+                    } else {
+                        orphans.push(r);
+                    }
+                });
+                Object.values(repliesByParent).forEach(arr => arr.sort((a, b) => timeOf(a) - timeOf(b)));
+                orphans.sort((a, b) => timeOf(b) - timeOf(a));
+
+                const likeBadge = (data) => {
+                    const isLiked = localStorage.getItem(`liked_${data.id}`) ? true : false;
+                    const colorClass = isLiked ? "text-cyan-400" : "text-slate-400 hover:text-cyan-400";
+                    return `<button type="button" class="${colorClass} transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Like comment" onclick="window.likeComment('${data.id}')"><i data-lucide="heart" style="width: 15px; height: 15px;"></i> <span class="font-medium">${data.likes || 0}</span></button>`;
+                };
+
+                const replyFormHTML = (c) => `
+                  <div id="reply-form-${c.id}" class="hidden mt-4 ml-6 bg-slate-900/60 border border-slate-700 rounded-xl p-4">
+                    <form data-post-id="${esc(postId)}" data-parent-name="${esc(c.name)}" onsubmit="window.submitReply(event, '${c.id}')" class="space-y-3">
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input type="text" required placeholder="Your name" class="w-full text-sm" style="border-radius: 10px; padding: 10px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;">
+                        <input type="email" required placeholder="Email (not published)" class="w-full text-sm" style="border-radius: 10px; padding: 10px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;">
+                      </div>
+                      <textarea required rows="2" placeholder="Reply to ${esc(c.name)}..." class="w-full resize-y text-sm" style="border-radius: 10px; padding: 10px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                      <button type="submit" class="text-xs font-bold px-4 py-2 rounded-lg transition-all hover:-translate-y-0.5 focus:outline-none cursor-pointer" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); border: 1px solid rgba(248, 113, 113, 0.35); color: #ffffff;">Post Reply</button>
+                    </form>
+                  </div>`;
+
+                const renderReply = (r, parentName) => {
+                    const initials = r.name ? r.name.substring(0, 2).toUpperCase() : "RP";
+                    const dateStr = r.createdAt ? r.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now";
+                    return `
+                  <div class="mt-5 ml-2 sm:ml-10 pl-4 border-l-2 border-slate-700">
+                    <div class="flex items-center justify-between mb-1">
+                      <div class="flex items-center gap-2">
+                        <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-[10px]" style="background: rgb(30, 58, 95); color: rgb(125, 211, 252);">${esc(initials)}</div>
+                        <div>
+                          <p class="font-semibold text-xs" style="color: rgb(226, 232, 240);">${esc(r.name)}</p>
+                          <p class="text-[10px]" style="color: rgb(100, 116, 139);">Replying to ${esc(parentName || r.replyToName || "comment")} &middot; ${dateStr}</p>
+                        </div>
+                      </div>
+                      ${likeBadge(r)}
+                    </div>
+                    <p class="text-sm leading-relaxed mt-1 break-words" style="color: rgb(148, 163, 184);">${esc(r.text)}</p>
+                  </div>`;
+                };
+
+                const renderTopLevel = (data, showForm) => {
                     const initials = data.name ? data.name.substring(0, 2).toUpperCase() : "RP";
                     const dateStr = data.createdAt ? data.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now";
-                    const isLiked = localStorage.getItem(`liked_${data.id}`) ? true : false;
-                    const activeColorClass = isLiked ? "text-cyan-400" : "text-slate-400 hover:text-cyan-400";
-
-                    const commentHTML = `
+                    const kids = repliesByParent[data.id] || [];
+                    const actionButtons = showForm
+                        ? `${likeBadge(data)}<button type="button" class="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Reply to comment" onclick="window.toggleReply('${data.id}')"><i data-lucide="corner-up-left" style="width: 15px; height: 15px; transform: scaleX(-1);"></i> <span class="font-medium">Reply</span></button>`
+                        : likeBadge(data);
+                    return `
                   <div class="mt-8 pt-8 border-t border-slate-700 text-left max-w-2xl mx-auto">
                     <div class="flex items-center justify-between mb-2">
                       <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">${initials}</div>
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">${esc(initials)}</div>
                         <div>
-                          <p class="font-semibold text-sm" style="color: rgb(226, 232, 240);">${data.name}</p>
+                          <p class="font-semibold text-sm" style="color: rgb(226, 232, 240);">${esc(data.name)}</p>
                           <p class="text-xs" style="color: rgb(100, 116, 139);">${dateStr}</p>
                         </div>
                       </div>
-                      <button type="button" class="${activeColorClass} transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Like comment" onclick="window.likeComment('${data.id}')">
-                        <i data-lucide="heart" style="width: 16px; height: 16px;"></i> <span class="font-medium">${data.likes || 0}</span>
-                      </button>
+                      <div class="flex items-center gap-4">${actionButtons}</div>
                     </div>
-                    <p class="text-sm leading-relaxed mt-2 break-words" style="color: rgb(148, 163, 184);">${data.text}</p>
-                  </div>
-                `;
-                    container.insertAdjacentHTML('beforeend', commentHTML);
-                });
+                    <p class="text-sm leading-relaxed mt-2 break-words" style="color: rgb(148, 163, 184);">${esc(data.text)}</p>
+                    ${showForm ? replyFormHTML(data) : ''}
+                    ${kids.map((r) => renderReply(r, data.name)).join('')}
+                  </div>`;
+                };
+
+                topLevel.forEach((data) => { container.insertAdjacentHTML('beforeend', renderTopLevel(data, true)); });
+                orphans.forEach((data) => { container.insertAdjacentHTML('beforeend', renderTopLevel(data, false)); });
 
                 if (typeof lucide !== 'undefined') {
                     lucide.createIcons();
                 }
+            });
+        };
             });
         };
     </script>
