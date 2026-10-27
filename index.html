@@ -6121,7 +6121,7 @@
                 const likeBadge = (data) => {
                     const isLiked = localStorage.getItem(`liked_${data.id}`) ? true : false;
                     const colorClass = isLiked ? "text-cyan-400" : "text-slate-400 hover:text-cyan-400";
-                    return `<button type="button" class="${colorClass} transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Like comment" onclick="window.likeComment('${data.id}')"><i data-lucide="heart" style="width: 15px; height: 15px;"></i> <span class="font-medium">${data.likes || 0}</span></button>`;
+                    return `<button type="button" class="${colorClass} transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Like comment" onclick="window.likeComment('${data.id}')"><i data-lucide="heart" style="width: 15px; height: 15px;${isLiked ? ' fill: currentColor;' : ''}"></i> <span class="font-medium">${data.likes || 0}</span></button>`;
                 };
 
                 const replyButton = (id, small) => `<button type="button" class="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1 ${small ? 'text-xs' : 'text-xs'} focus:outline-none" aria-label="Reply to comment" onclick="window.toggleReply('${id}')"><i data-lucide="corner-up-left" style="width: ${small ? 13 : 15}px; height: ${small ? 13 : 15}px; transform: scaleX(-1);"></i> <span class="font-medium">Reply</span></button>`;
