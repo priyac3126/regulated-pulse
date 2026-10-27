@@ -6576,7 +6576,7 @@
                 btns[0].addEventListener('click', function () { copyToClipboard(this.getAttribute('data-url'), this); });
                 btns[1].addEventListener('click', function () {
                     copyToClipboard(url, this);
-                    alert("Link copied! Paste it into your Instagram story, post, or bio - Instagram does not allow direct share links.");
+                    alert("Link copied! Paste it into your Instagram story, post, or bio - Instagram does not support one-tap link sharing.");
                 });
                 btns[2].addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url), '_blank', 'noopener'); });
                 btns[3].addEventListener('click', function () { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(title), '_blank', 'noopener'); });
