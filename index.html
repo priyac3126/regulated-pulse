@@ -5915,6 +5915,63 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // Email notifications for comment replies (EmailJS).
+        // Create a free account at https://www.emailjs.com/, then a template
+        // using the variables: to_email, to_name, replier_name, post_link, reply_text, parent_name
+        const EMAILJS_CONFIG = {
+            serviceId: "",     // e.g. "service_xxxxxxx"
+            templateId: "",    // e.g. "template_xxxxxxx"
+            publicKey: ""      // e.g. "xxxxxxxxxxxxxx"
+        };
+        const CREATOR_NOTIFY_EMAIL = "priyac821@gmail.com";
+
+        window.sendReplyNotification = async function (details) {
+            const { serviceId, templateId, publicKey } = EMAILJS_CONFIG;
+            if (!serviceId || !templateId || !publicKey || !details.toEmail) return;
+            try {
+                const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        service_id: serviceId,
+                        template_id: templateId,
+                        user_id: publicKey,
+                        template_params: {
+                            to_email: details.toEmail,
+                            to_name: details.toName,
+                            parent_name: details.parentName,
+                            replier_name: details.replierName,
+                            reply_text: details.replyText,
+                            post_link: `https://theregulatedpulse.com/#${details.postId}`
+                        }
+                    })
+                });
+                if (!res.ok) console.error("EmailJS send failed:", await res.text());
+                // Also notify the blog creator of every reply
+                if (details.toEmail !== CREATOR_NOTIFY_EMAIL) {
+                    await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            service_id: serviceId,
+                            template_id: templateId,
+                            user_id: publicKey,
+                            template_params: {
+                                to_email: CREATOR_NOTIFY_EMAIL,
+                                to_name: "Priya",
+                                parent_name: details.parentName,
+                                replier_name: details.replierName,
+                                reply_text: details.replyText,
+                                post_link: `https://theregulatedpulse.com/#${details.postId}`
+                            }
+                        })
+                    });
+                }
+            } catch (e) {
+                console.error("Reply email notification failed: ", e);
+            }
+        };
+
         window.submitComment = async function (event, postId) {
             event.preventDefault();
 
@@ -6000,6 +6057,14 @@
                 form.reset();
                 const wrapper = document.getElementById(`reply-form-${replyToId}`);
                 if (wrapper) wrapper.classList.add('hidden');
+                window.sendReplyNotification({
+                    toEmail: form.dataset.parentEmail,
+                    toName: form.dataset.parentName,
+                    parentName: form.dataset.parentName,
+                    replierName: nameInput.value,
+                    replyText: textInput.value,
+                    postId: form.dataset.postId
+                });
             } catch (e) {
                 console.error("Error adding reply: ", e);
                 alert("Something went wrong! Make sure your Firebase database rules are set up correctly.");
@@ -6058,7 +6123,7 @@
 
                 const replyFormHTML = (c) => `
                   <div id="reply-form-${c.id}" class="hidden mt-4 ml-6 bg-slate-900/60 border border-slate-700 rounded-xl p-4">
-                    <form data-post-id="${esc(postId)}" data-parent-name="${esc(c.name)}" onsubmit="window.submitReply(event, '${c.id}')" class="space-y-3">
+                    <form data-post-id="${esc(postId)}" data-parent-name="${esc(c.name)}" data-parent-email="${esc(c.email || "")}" onsubmit="window.submitReply(event, '${c.id}')" class="space-y-3">
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <input type="text" required placeholder="Your name" class="w-full text-sm" style="border-radius: 10px; padding: 10px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;">
                         <input type="email" required placeholder="Email (not published)" class="w-full text-sm" style="border-radius: 10px; padding: 10px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;">
