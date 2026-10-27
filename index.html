@@ -240,7 +240,65 @@
         }
         .site-footer a:hover { text-decoration: underline; }
         ::selection { background: rgba(56, 182, 201, 0.28); color: #f8fafc; }
+        #sel-toolbar, #note-pop, .ann-overlay { display: none; }
+        #sel-toolbar.show { display: flex !important; }
+        #sel-toolbar {
+            position: fixed;
+            z-index: 70;
+            align-items: center;
+            gap: 8px;
+            background: rgba(10, 14, 20, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 8px 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+        }
+        .hl-dot {
+            width: 18px; height: 18px; border-radius: 9999px;
+            border: 2px solid rgba(255,255,255,0.25);
+            cursor: pointer; padding: 0; flex-shrink: 0;
+        }
+        .hl-dot:hover { transform: scale(1.15); }
+        .ann-note-btn {
+            display: inline-flex; align-items: center; gap: 5px;
+            color: #67e8f9; font-size: 12px; font-weight: 600;
+            background: transparent; border: none; cursor: pointer;
+        }
+        mark.ann-hl {
+            color: inherit !important;
+            background: var(--ann-bg) !important;
+            border-radius: 3px; cursor: pointer;
+            padding: 0.5px 0;
+        }
+        .ann-note-pop {
+            position: fixed; z-index: 80;
+            width: 320px; max-width: 92vw;
+            background: #11161e; border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 14px; padding: 14px;
+            box-shadow: 0 12px 34px rgba(0,0,0,0.6);
+        }
+        .ann-note-pop textarea, .ann-note-pop input {
+            width: 100%;
+            border-radius: 10px; padding: 10px;
+            background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85);
+            color: white; font-size: 13px;
+        }
+        .ann-overlay.show {
+            display: flex !important;
+        }
+        .ann-overlay {
+            position: fixed; inset: 0; z-index: 90;
+            align-items: center; justify-content: center;
+            background: rgba(2, 6, 12, 0.7);
+        }
+        .ann-card {
+            width: 400px; max-width: 92vw;
+            background: #11161e; border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 18px; padding: 26px;
+            text-align: center;
+        }
         #print-area { display: none; }
+        @media print {
         @media print {
             @page { margin: 0.75in; }
             body { background: #ffffff !important; }
@@ -5414,6 +5472,13 @@
                                 if (window.loadComments) window.loadComments(postId, commentsContainerId);
                             }, 500);
                         }
+
+                        // Restore annotations (highlights + notes) for this post
+                        if (window.renderAnnotations) {
+                            window.renderAnnotations(postId);
+                        } else {
+                            setTimeout(() => { if (window.renderAnnotations) window.renderAnnotations(postId); }, 500);
+                        }
                     }
                 } else {
                     // Default fallback to blog list
@@ -5906,7 +5971,8 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, increment, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyANxrKdCFT0Sv5lDAvxefTi9XCfBcfG3uc",
@@ -6226,6 +6292,114 @@
                 }
             });
         };
+    
+        // ================= Highlights & Annotations (Firebase + Auth) =================
+        const annCol = collection(db, "annotations");
+
+        window.saveAnnotation = async function (rec) {
+            if (!window.annUser || !rec) return;
+            try {
+                const ref = await addDoc(annCol, {
+                    postId: rec.postId,
+                    paraIdx: rec.paraIdx,
+                    start: rec.start,
+                    end: rec.end,
+                    color: rec.color,
+                    note: rec.note || "",
+                    email: window.annUser.email,
+                    uid: window.annUser.uid,
+                    createdAt: serverTimestamp()
+                });
+                const s = (window.annSessionList || []).find((x) => x.id === rec.id);
+                if (s) s.remoteId = ref.id;
+            } catch (err) { console.error("Failed to save annotation:", err); }
+        };
+
+        window.annDelete = async function (id) {
+            window.annHideNotePop();
+            const rec = (window.annSessionList || []).find((r) => r.id === id);
+            if (rec && rec.remoteId) await window.annDeleteRemote(rec.remoteId);
+            window.annSessionList = (window.annSessionList || []).filter((r) => r.id !== id);
+            const art = document.querySelector('#blog-post-view > article:not(.hidden)');
+            if (art) window.annApplySession(art.id.replace(/-container$/, ""));
+        };
+
+        window.annDeleteRemote = async function (remoteId) {
+            try { await deleteDoc(doc(db, "annotations", remoteId)); } catch (err) { console.error("Failed to delete annotation:", err); }
+        };
+
+        window.renderAnnotations = async function (postId) {
+            const art = document.getElementById(postId + "-container");
+            if (!art) return;
+            window.annSessionList = window.annSessionList || [];
+            art.querySelectorAll('mark.ann-hl').forEach((m) => m.replaceWith(document.createTextNode(m.textContent)));
+            if (!window.annUser) return;
+            try {
+                const snap = await getDocs(query(annCol, where("postId", "==", postId), where("email", "==", window.annUser.email)));
+                snap.forEach((d) => {
+                    const r = d.data();
+                    r.id = d.id;
+                    r.postId = postId;
+                    window.annSessionList.push(r);
+                });
+                window.annApplySession(postId);
+            } catch (err) { console.error("Failed to load annotations:", err); }
+        };
+
+        // ---- passwordless auth ----
+        const annAuth = getAuth(app);
+
+        onAuthStateChanged(annAuth, (u) => {
+            window.annUser = (u && u.email) ? { email: u.email, uid: u.uid } : null;
+            const art = document.querySelector('#blog-post-view > article:not(.hidden)');
+            if (window.annUser && window.__annAfterAuth) {
+                const done = window.__annAfterAuth;
+                window.__annAfterAuth = null;
+                if (art) { window.renderAnnotations(art.id.replace(/-container$/, "")); setTimeout(() => { window.annApplySession(art.id.replace(/-container$/, "")); done(); }, 300); }
+                else done();
+                return;
+            }
+            if (art) window.renderAnnotations(art.id.replace(/-container$/, ""));
+            // refresh modal view if open
+            const modal = document.getElementById('ann-auth-modal');
+            if (modal && modal.classList.contains('show')) window.openAnnAuth();
+        });
+
+        window.annSendLink = async function () {
+            const input = document.getElementById('ann-email-input');
+            const btn = document.getElementById('ann-send-link-btn');
+            const msg = document.getElementById('ann-auth-msg');
+            const email = (input.value || "").trim();
+            if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = "Please enter a valid email address."; return; }
+            btn.disabled = true;
+            btn.textContent = "Sending...";
+            try {
+                await sendSignInLinkToEmail(annAuth, email, { url: "https://theregulatedpulse.com/index.html", handleCodeInApp: true });
+                localStorage.setItem("annEmail", email);
+                msg.textContent = "Check your inbox - click the link in the email to finish signing in.";
+                btn.textContent = "Link sent!";
+            } catch (err) {
+                console.error(err);
+                msg.textContent = "Could not send the link. Email Link sign-in must be enabled in Firebase for this domain.";
+                btn.disabled = false;
+                btn.textContent = "Send me a login link";
+            }
+        };
+
+        window.annDoSignOut = async function () {
+            try { await signOut(annAuth); window.annCloseAuth(); } catch (err) { console.error(err); }
+        };
+
+        // Complete sign-in when user returns via the emailed link
+        if (isSignInWithEmailLink(window.location.href)) {
+            const em = localStorage.getItem("annEmail");
+            if (em) {
+                signInWithEmailLink(annAuth, em).then(() => {
+                    localStorage.removeItem("annEmail");
+                    history.replaceState({}, "", window.location.pathname);
+                }).catch((err) => console.error(err));
+            }
+        }
     </script>
     <!-- Floating Audio Player Bar -->
     <div id="floating-audio-bar" class="floating-audio-bar">
@@ -6285,6 +6459,271 @@
             if (holder) holder.innerHTML = '';
         };
     </script>
+    <script>
+        // ================= Highlight & Annotate =================
+        window.annUser = null; // {email, uid}
+
+        const ANN_COLORS = {
+            yellow: "rgba(250, 224, 104, 0.55)",
+            cyan: "rgba(103, 232, 249, 0.45)",
+            green: "rgba(134, 239, 172, 0.5)",
+            pink: "rgba(249, 168, 212, 0.5)",
+            orange: "rgba(253, 186, 116, 0.5)"
+        };
+
+        const annEsc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
+
+        const visibleBlogArticle = () => {
+            const els = document.querySelectorAll('#blog-post-view > article');
+            for (const el of els) if (!el.classList.contains('hidden')) return el;
+            return null;
+        };
+
+        const currentPostId = () => {
+            const art = visibleBlogArticle();
+            return art ? art.id.replace(/-container$/, "") : null;
+        };
+
+        // --- selection -> offsets in a paragraph ---
+        function captureSelection() {
+            const sel = window.getSelection();
+            if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return null;
+            const range = sel.getRangeAt(0);
+            const paraNode = (range.commonAncestorContainer.nodeType === 3 ? range.commonAncestorContainer.parentElement : range.commonAncestorContainer);
+            const para = paraNode && paraNode.closest ? paraNode.closest('.blog-post-content > p') : null;
+            const art = visibleBlogArticle();
+            if (!para || !art || !art.contains(para)) return null;
+            const paras = Array.from(art.querySelectorAll('.blog-post-content > p'));
+            const paraIdx = paras.indexOf(para);
+            if (paraIdx < 0) return null;
+
+            let start = -1, end = -1, acc = 0;
+            const walker = document.createTreeWalker(para, NodeFilter.SHOW_TEXT);
+            let n;
+            while ((n = walker.nextNode())) {
+                const len = n.textContent.length;
+                if (n === range.startContainer) start = acc + range.startOffset;
+                if (n === range.endContainer) end = acc + range.endOffset;
+                acc += len;
+            }
+            if (start < 0 || end < 0 || end <= start) return null;
+            return { postId: currentPostId(), paraIdx, start, end, para };
+        }
+
+        function showToolbar(x, y) {
+            const tb = document.getElementById('sel-toolbar');
+            if (!tb) return;
+            tb.style.left = Math.max(8, Math.min(x, window.innerWidth - 240)) + 'px';
+            tb.style.top = Math.max(8, y) + 'px';
+            tb.classList.add('show');
+        }
+        const hideToolbar = () => { const tb = document.getElementById('sel-toolbar'); if (tb) tb.classList.remove('show'); };
+
+        document.addEventListener('mouseup', (e) => {
+            if (e.target.closest && e.target.closest('#sel-toolbar, #note-pop, #ann-auth-modal, button, a')) return;
+            setTimeout(() => {
+                if (captureSelection()) {
+                    const sel = window.getSelection();
+                    const rect = sel.getRangeAt(0).getBoundingClientRect();
+                    showToolbar(rect.left + rect.width / 2 - 110, rect.top - 52);
+                } else hideToolbar();
+            }, 10);
+        });
+        document.addEventListener('selectionchange', () => {
+            if (!window.getSelection().isCollapsed) return;
+            if (!captureSelection()) hideToolbar();
+        });
+
+        // --- apply highlight visual ---
+        function applyHighlightsForPara(para, records) {
+            if (!para) return;
+            const nodes = [];
+            const walker = document.createTreeWalker(para, NodeFilter.SHOW_TEXT);
+            let n, acc = 0;
+            while ((n = walker.nextNode())) { nodes.push({ node: n, off: acc }); acc += n.textContent.length; }
+            const total = acc;
+            const cuts = new Set([0, total]);
+            records.forEach((r) => {
+                cuts.add(Math.max(0, Math.min(r.start, total)));
+                cuts.add(Math.max(0, Math.min(r.end, total)));
+            });
+            const sorted = Array.from(cuts).sort((a, b) => a - b);
+            const frag = document.createDocumentFragment();
+            for (let k = 0; k < sorted.length - 1; k++) {
+                const s = sorted[k], e = sorted[k + 1];
+                if (e <= s) continue;
+                let rec = null;
+                for (const r of records) if (r.start <= s && e <= r.end) rec = r;
+                nodes.forEach(({ node, off }) => {
+                    const nEnd = off + node.textContent.length;
+                    const from = Math.max(s, off), to = Math.min(e, nEnd);
+                    if (to <= from) return;
+                    const text = node.textContent.slice(from - off, to - off);
+                    if (rec) {
+                        const mk = document.createElement('mark');
+                        mk.className = 'ann-hl';
+                        mk.dataset.annId = rec.id;
+                        mk.style.setProperty('--ann-bg', ANN_COLORS[rec.color] || ANN_COLORS.yellow);
+                        if (rec.note) mk.addEventListener('click', (ev) => { ev.stopPropagation(); window.annShowNoteCard(mk, rec); });
+                        mk.textContent = text;
+                        frag.appendChild(mk);
+                    } else frag.appendChild(document.createTextNode(text));
+                });
+            }
+            para.innerHTML = "";
+            para.appendChild(frag);
+        }
+
+        window.annApplySession = function (postId) {
+            const art = document.getElementById(postId + "-container");
+            if (!art) return;
+            art.querySelectorAll('mark.ann-hl').forEach((m) => m.replaceWith(document.createTextNode(m.textContent)));
+            const paras = art.querySelectorAll('.blog-post-content > p');
+            const list = (window.annSessionList || []).filter((r) => r.postId === postId);
+            const groups = {};
+            list.forEach((r) => { (groups[r.paraIdx] = groups[r.paraIdx] || []).push(r); });
+            Object.keys(groups).forEach((k) => { window.applyHighlightsForPara(paras[k], groups[k]); });
+        };
+
+        // --- Firebase-side persistence (signed in) ---
+        // window.saveAnnotation is set from the Firebase module; Local-only fallback:
+        const localAnnotations = {};
+        const localKey = (pid) => "ann_" + pid;
+
+        // --- note card popup for existing highlight ---
+        window.annShowNoteCard = function (markEl, rec) {
+            if (!rec.note) return;
+            hideToolbar();
+            const pop = document.getElementById('note-pop');
+            if (!pop) return;
+            pop.dataset.mode = "view";
+            pop.dataset.annId = rec.id || "";
+            pop.innerHTML = '<div style="display: flex; align-items: flex-start; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; line-height: 1.6; flex-grow: 1;">' + annEsc(rec.note).replace(/\n/g, "<br>") + '</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
+            const rect = markEl.getBoundingClientRect();
+            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
+            pop.style.top = (rect.bottom + 8) + 'px';
+            pop.style.display = 'block';
+        };
+        window.annHideNotePop = function () { const p = document.getElementById('note-pop'); if (p) p.style.display = 'none'; };
+
+        // --- pending highlight flow ---
+        window.__annPending = null;
+
+        window.annUseColor = function (color) {
+            const cap = captureSelection();
+            hideToolbar();
+            if (!cap || !cap.postId) return;
+            window.getSelection().removeAllRanges();
+            window.__annPending = { postId: cap.postId, paraIdx: cap.paraIdx, start: cap.start, end: cap.end, color: color, note: "" };
+            window.__annFinishPending();
+        };
+
+        window.annStartNote = function () {
+            const cap = captureSelection();
+            if (!cap || !cap.postId) return;
+            window.getSelection().removeAllRanges();
+            window.__annPending = { postId: cap.postId, paraIdx: cap.paraIdx, start: cap.start, end: cap.end, color: "cyan", note: "" };
+            const pop = document.getElementById('note-pop');
+            const tb = document.getElementById('sel-toolbar');
+            pop.dataset.mode = "create";
+            pop.innerHTML = '<p style="margin: 0 0 8px; color: rgb(226, 232, 240); font-size: 13px; font-weight: 600;">Add a note to this highlight</p>' +
+                '<textarea id="ann-note-input" rows="3" placeholder="Write your note..."></textarea>' +
+                '<div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;">' +
+                '<button onclick="window.annCancelNote()" style="font-size: 12px; padding: 8px 14px; border-radius: 9px; background: rgba(255,255,255,0.06); color: rgb(148, 163, 184); border: none; cursor: pointer;">Cancel</button>' +
+                '<button onclick="window.annSaveNote()" style="font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 9px; background: #38b6c9; color: #06212a; border: none; cursor: pointer;">Save note</button></div>';
+            const rect = tb.getBoundingClientRect();
+            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
+            pop.style.top = (rect.bottom + 8) + 'px';
+            pop.style.display = 'block';
+            tb.classList.remove('show');
+            setTimeout(() => { const ip = document.getElementById('ann-note-input'); if (ip) ip.focus(); }, 50);
+        };
+        window.annCancelNote = function () { window.annHideNotePop(); window.__annPending = null; };
+        window.annSaveNote = function () {
+            const ip = document.getElementById('ann-note-input');
+            const note = ip ? ip.value.trim() : "";
+            if (!note || !window.__annPending) return;
+            window.__annPending.note = note;
+            annHideNotePopLocal();
+            window.__annFinishPending();
+        };
+        function annHideNotePopLocal() { const p = document.getElementById('note-pop'); if (p) p.style.display = 'none'; }
+
+        window.__annFinishPending = function () {
+            const rec = window.__annPending;
+            if (!rec) return;
+            rec.id = "sess-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
+            window.annSessionList = window.annSessionList || [];
+            window.annSessionList.push(rec);
+            window.annApplySession(rec.postId);
+            if (window.annUser) {
+                window.saveAnnotation && window.saveAnnotation(rec);
+            } else {
+                window.openAnnAuth(() => { window.saveAnnotation && window.saveAnnotation(rec); });
+            }
+            window.__annPending = null;
+        };
+
+        // --- annotate (note-only) ---
+        // handled via annStartNote flow above
+
+        // ================= Auth gate (Firebase module wires the rest) =================
+        window.openAnnAuth = function (after) {
+            window.__annAfterAuth = after || null;
+            const modal = document.getElementById('ann-auth-modal');
+            if (!modal) return;
+            modal.classList.add('show');
+            const sv = document.getElementById('ann-signed-out-view'), si = document.getElementById('ann-signed-in-view');
+            if (window.annUser) {
+                document.getElementById('ann-user-email').textContent = window.annUser.email;
+                sv.style.display = 'none'; si.style.display = 'block';
+            } else { sv.style.display = 'block'; si.style.display = 'none'; }
+        };
+        window.annCloseAuth = function () { const modal = document.getElementById('ann-auth-modal'); if (modal) modal.classList.remove('show'); };
+        window.annSignOut = function () { if (window.annDoSignOut) window.annDoSignOut(); };
+
+        // auth overlay click outside closes
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.id === 'ann-auth-modal') window.annCloseAuth();
+        });
+    </script>
+    <div id="sel-toolbar" aria-label="Highlight tools">
+        <button class="hl-dot" data-ann-color="yellow" style="background: rgba(250, 224, 104, 0.95);" title="Highlight yellow" onclick="window.annUseColor('yellow')"></button>
+        <button class="hl-dot" data-ann-color="cyan" style="background: rgba(103, 232, 249, 0.95);" title="Highlight cyan" onclick="window.annUseColor('cyan')"></button>
+        <button class="hl-dot" data-ann-color="green" style="background: rgba(134, 239, 172, 0.95);" title="Highlight green" onclick="window.annUseColor('green')"></button>
+        <button class="hl-dot" data-ann-color="pink" style="background: rgba(249, 168, 212, 0.95);" title="Highlight pink" onclick="window.annUseColor('pink')"></button>
+        <button class="hl-dot" data-ann-color="orange" style="background: rgba(253, 186, 116, 0.95);" title="Highlight orange" onclick="window.annUseColor('orange')"></button>
+        <button class="ann-note-btn" onclick="window.annStartNote()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Add note</button>
+    </div>
+
+    <div id="note-pop" class="ann-note-pop">
+        <p style="margin: 0 0 8px; color: rgb(226, 232, 240); font-size: 13px; font-weight: 600;">Add a note to this highlight</p>
+        <textarea id="ann-note-input" rows="3" placeholder="Write your note..."></textarea>
+        <div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;">
+            <button onclick="window.annCancelNote()" style="font-size: 12px; padding: 8px 14px; border-radius: 9px; background: rgba(255,255,255,0.06); color: rgb(148, 163, 184); border: none; cursor: pointer;">Cancel</button>
+            <button onclick="window.annSaveNote()" style="font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 9px; background: #38b6c9; color: #06212a; border: none; cursor: pointer;">Save note</button>
+        </div>
+    </div>
+
+    <div id="ann-auth-modal" class="ann-overlay">
+        <div class="ann-card">
+            <div id="ann-signed-out-view">
+                <h3 style="margin: 0 0 8px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Sign in to save your highlights</h3>
+                <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Your current highlights stay on this page for now. Sign in and they'll be saved with your account and restored on any device.</p>
+                <input id="ann-email-input" type="email" placeholder="you@example.com" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px; text-align: center;">
+                <button id="ann-send-link-btn" onclick="window.annSendLink()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Send me a login link</button>
+                <p id="ann-auth-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
+                <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Maybe later &mdash; keep highlights for this visit only</button>
+            </div>
+            <div id="ann-signed-in-view" style="display: none;">
+                <p style="margin: 0 0 4px; color: rgb(103, 232, 249); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Signed in</p>
+                <p id="ann-user-email" style="margin: 0 0 16px; color: rgb(241, 245, 249); font-size: 15px; font-weight: 700; word-break: break-all;"></p>
+                <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px;">Your highlights and notes are being saved to your account automatically.</p>
+                <button onclick="window.annSignOut()" style="width: 100%; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Sign out</button>
+                <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Close</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
