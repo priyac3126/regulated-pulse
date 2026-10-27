@@ -6702,7 +6702,7 @@
                         mk.className = 'ann-hl';
                         mk.dataset.annId = rec.id;
                         mk.style.setProperty('--ann-bg', ANN_COLORS[rec.color] || ANN_COLORS.yellow);
-                        if (rec.note) mk.addEventListener('click', (ev) => { ev.stopPropagation(); window.annShowNoteCard(mk, rec); });
+                        mk.addEventListener('click', (ev) => { ev.stopPropagation(); if (rec.note) { window.annShowNoteCard(mk, rec); } else { window.annShowDeleteCard(mk, rec); } });
                         mk.textContent = text;
                         frag.appendChild(mk);
                     } else frag.appendChild(document.createTextNode(text));
@@ -6729,6 +6729,18 @@
         const localKey = (pid) => "ann_" + pid;
 
         // --- note card popup for existing highlight ---
+        window.annShowDeleteCard = function (markEl, rec) {
+            hideToolbar();
+            const pop = document.getElementById('note-pop');
+            if (!pop) return;
+            pop.dataset.mode = "view";
+            pop.dataset.annId = rec.id || "";
+            pop.innerHTML = '<div style="display: flex; align-items: center; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; flex-grow: 1;">Remove this highlight?</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annHideNotePop()" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); color: rgb(148, 163, 184); border: none; cursor: pointer;">Keep it</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
+            const rect = markEl.getBoundingClientRect();
+            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
+            pop.style.top = (rect.bottom + 8) + 'px';
+            pop.style.display = 'block';
+        };
         window.annShowNoteCard = function (markEl, rec) {
             if (!rec.note) return;
             hideToolbar();
