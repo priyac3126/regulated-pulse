@@ -301,6 +301,8 @@
         body.light-mode img, body.light-mode video, body.light-mode iframe { filter: invert(1) hue-rotate(180deg); }
         .light-back { display: none; }
         body.light-mode .light-back { display: inline; }
+        .dark-link { display: inline; }
+        body.light-mode .dark-link { display: none; }
         #print-area { display: none; }
         @media print {
             @page { margin: 0.75in; }
@@ -6450,7 +6452,7 @@
         </div>
     </div>
     <footer class="site-footer">
-        <p>&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a><span class="light-back"> &middot; <a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span></p>
+        <p>&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a> &middot; <a class="dark-link" href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a><span class="light-back"> &middot; <a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span></p>
     </footer>
     <div id="print-area"></div>
     <script>
