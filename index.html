@@ -5523,6 +5523,10 @@
             });
 
             // Intro Animation & Initialization
+            const sharePostParam = new URLSearchParams(window.location.search).get('post');
+            if (sharePostParam && !window.location.hash) {
+                history.replaceState({}, '', window.location.pathname + '#post-' + sharePostParam);
+            }
             const currentHash = window.location.hash;
             const isDeepLink = currentHash && currentHash !== '#blog' && currentHash !== '#';
 
@@ -6562,25 +6566,26 @@
                 if (!metaEl) return;
                 const titleH2 = art.querySelector('h2');
                 const title = titleH2 ? titleH2.textContent.trim() : 'The Regulated Pulse';
-                const url = origin + '/#' + art.id.replace(/-container$/, "");
+                const url = origin + '/?post=' + art.id.replace(/-container$/, "");
                 const bar = document.createElement('div');
                 bar.className = 'share-bar';
                 bar.innerHTML =
                     '<span style="font-size: 12px; font-weight: 600; color: rgb(148, 163, 184);">Share</span>' +
                     '<button title="Copy article link" aria-label="Copy article link" class="share-link-btn" data-url="' + annShareEsc(url) + '">' + SVG_LINK + '</button>' +
-                    '<button title="Share to Instagram" aria-label="Share to Instagram" data-kind="ig">' + SVG_IG + '</button>' +
                     '<button title="Share on X" aria-label="Share on X" data-kind="x">' + SVG_X + '</button>' +
                     '<button title="Share on Facebook" aria-label="Share on Facebook" data-kind="fb">' + SVG_FB + '</button>' +
                     '<button title="Share on LinkedIn" aria-label="Share on LinkedIn" data-kind="li">' + SVG_LI + '</button>';
                 const btns = bar.querySelectorAll('button');
                 btns[0].addEventListener('click', function () { copyToClipboard(this.getAttribute('data-url'), this); });
-                btns[1].addEventListener('click', function () {
-                    copyToClipboard(url, this);
-                    alert("Link copied! Paste it into your Instagram story, post, or bio - Instagram does not support one-tap link sharing.");
+                btns[1].addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url), '_blank', 'noopener'); });
+                btns[2].addEventListener('click', function () {
+                    copyToClipboard(title + ' \u2014 ' + url, this);
+                    window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&quote=' + encodeURIComponent(title), '_blank', 'noopener');
                 });
-                btns[2].addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url), '_blank', 'noopener'); });
-                btns[3].addEventListener('click', function () { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(title), '_blank', 'noopener'); });
-                btns[4].addEventListener('click', function () { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank', 'noopener'); });
+                btns[3].addEventListener('click', function () {
+                    copyToClipboard(title + ' \u2014 ' + url, this);
+                    window.open('https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title) + '&summary=' + encodeURIComponent(title), '_blank', 'noopener');
+                });
                 metaEl.after(bar);
             });
         }
