@@ -6183,7 +6183,7 @@
                       </div>
                       ${buttons}
                     </div>
-                    <p class="text-sm leading-relaxed mt-1 break-words" style="color: rgb(148, 163, 184);">${esc(r.text)}</p>
+                    <p class="text-sm leading-relaxed mt-1 break-words" style="color: rgb(148, 163, 184); white-space: pre-line;">${esc(r.text)}</p>
                     ${canReply ? replyFormHTML(r) : ''}
                     ${depth <= 2 ? kids2.map((r2) => renderReply(r2, r.name || "", depth + 1)).join('') : ''}
                   </div>`;
@@ -6206,7 +6206,7 @@
                       </div>
                       ${actionButtons}
                     </div>
-                    <p class="text-sm leading-relaxed mt-2 break-words" style="color: rgb(148, 163, 184);">${esc(data.text)}</p>
+                    <p class="text-sm leading-relaxed mt-2 break-words" style="color: rgb(148, 163, 184); white-space: pre-line;">${esc(data.text)}</p>
                     ${showForm ? replyFormHTML(data) : ''}
                     ${kids.map((r) => renderReply(r, data.name || "", 1)).join('')}
                   </div>`;
