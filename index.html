@@ -6449,6 +6449,18 @@
             if (!art || !holder) { window.print(); return; }
             holder.innerHTML = art.outerHTML;
             holder.querySelectorAll('form, button, [id$="-comments-list"], .audio-player').forEach(el => el.remove());
+            const cloneH2 = holder.querySelector('h2');
+            let metaEl = null;
+            for (const child of holder.children) {
+                if (child.tagName === 'P' && /(^|\\s)text-sm(\\s|$)/.test(child.className) && child.textContent.indexOf('·') !== -1) { metaEl = child; break; }
+            }
+            if (metaEl) {
+                metaEl.style.marginBottom = '4px';
+                const byline = document.createElement('p');
+                byline.textContent = 'By Priya Chaudhari';
+                byline.setAttribute('style', 'font-style: italic; font-size: 15px; margin: 0 0 2rem;');
+                metaEl.after(byline);
+            }
             document.body.classList.add('printing');
             window.print();
         };
