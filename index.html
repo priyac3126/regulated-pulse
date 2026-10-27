@@ -309,6 +309,12 @@
             #print-area .comparison-table th, #print-area .comparison-table td { border: 1px solid #374151 !important; }
             #print-area .comparison-table th { background: #f3f4f6 !important; color: #111827 !important; }
             #print-area .works-cited li { margin-bottom: 0.5rem !important; }
+            #print-area.pdf-mode-dark, #print-area.pdf-mode-dark * { color: #e2e8f0 !important; background: transparent !important; }
+            #print-area.pdf-mode-dark { background: #080b11 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; padding: 24px !important; }
+            #print-area.pdf-mode-dark h2, #print-area.pdf-mode-dark h3, #print-area.pdf-mode-dark strong { color: #f8fafc !important; }
+            #print-area.pdf-mode-dark a { color: #67e8f9 !important; }
+            #print-area.pdf-mode-dark .comparison-table th, #print-area.pdf-mode-dark .comparison-table td { border: 1px solid #475569 !important; }
+            #print-area.pdf-mode-dark .comparison-table th { background: #1e293b !important; color: #f8fafc !important; }
         }
         .comparison-table {
             width: 100%;
@@ -1814,7 +1820,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
                         <span>Back to Posts</span>
                     </button>
-                    <button onclick="window.printArticle()" class="ml-4 inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-semibold focus:outline-none cursor-pointer transition-colors" aria-label="Download this article as PDF">
+                    <button onclick="window.askPdfMode()" class="ml-4 inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-semibold focus:outline-none cursor-pointer transition-colors" aria-label="Download this article as PDF">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
                         <span>Download PDF</span>
                     </button>
@@ -6443,16 +6449,26 @@
     </footer>
     <div id="print-area"></div>
     <script>
-        window.printArticle = function () {
+        window.askPdfMode = function () {
+            const modal = document.getElementById('pdf-mode-modal');
+            if (modal) modal.classList.add('show');
+        };
+        window.closePdfModal = function () {
+            const modal = document.getElementById('pdf-mode-modal');
+            if (modal) modal.classList.remove('show');
+        };
+        window.printArticle = function (mode) {
+            window.closePdfModal();
             const art = document.querySelector('#blog-post-view article:not(.hidden)');
             const holder = document.getElementById('print-area');
             if (!art || !holder) { window.print(); return; }
             holder.innerHTML = art.outerHTML;
+            holder.classList.toggle('pdf-mode-dark', mode === 'dark');
             holder.querySelectorAll('form, button, [id$="-comments-list"], .audio-player').forEach(el => el.remove());
             const cloneH2 = holder.querySelector('h2');
             let metaEl = null;
             for (const child of holder.children) {
-                if (child.tagName === 'P' && /(^|\\s)text-sm(\\s|$)/.test(child.className) && child.textContent.indexOf('·') !== -1) { metaEl = child; break; }
+                if (child.tagName === 'P' && /(^|\s)text-sm(\s|$)/.test(child.className) && child.textContent.indexOf('·') !== -1) { metaEl = child; break; }
             }
             if (metaEl) {
                 metaEl.style.marginBottom = '4px';
@@ -6716,6 +6732,17 @@
         </div>
     </div>
 
+    <div id="pdf-mode-modal" class="ann-overlay">
+        <div class="ann-card">
+            <h3 style="margin: 0 0 6px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Download PDF</h3>
+            <p style="margin: 0 0 20px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Which style would you like?</p>
+            <div style="display: flex; gap: 12px;">
+                <button onclick="window.printArticle('light')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #f8fafc; color: #0f172a;">Light<br><span style="font-weight: 400; font-size: 11px; color: #475569;">Ink on paper</span></button>
+                <button onclick="window.printArticle('dark')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #101623; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.14);">Dark<br><span style="font-weight: 400; font-size: 11px; color: #94a3b8;">Like the website</span></button>
+            </div>
+            <button onclick="window.closePdfModal()" style="margin-top: 14px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Cancel</button>
+        </div>
+    </div>
     <div id="ann-auth-modal" class="ann-overlay">
         <div class="ann-card">
             <div id="ann-signed-out-view">
