@@ -297,8 +297,8 @@
             border-radius: 18px; padding: 26px;
             text-align: center;
         }
-        body.light-mode { filter: invert(1) hue-rotate(180deg); }
-        body.light-mode img, body.light-mode video, body.light-mode iframe, body.light-mode .site-footer::after { filter: invert(1) hue-rotate(180deg); }
+        html:has(body.light-mode) { filter: invert(1) hue-rotate(180deg); background: #e9edf2 !important; }
+        body.light-mode img, body.light-mode video, body.light-mode iframe { filter: invert(1) hue-rotate(180deg); }
         .light-back { display: none; }
         body.light-mode .light-back { display: inline; }
         #print-area { display: none; }
