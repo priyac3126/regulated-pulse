@@ -303,6 +303,20 @@
         body.light-mode .light-back { display: inline; }
         .dark-link { display: inline; }
         body.light-mode .dark-link { display: none; }
+        .share-bar {
+            display: flex; align-items: center; gap: 8px;
+            margin: 6px 0 2.25rem;
+        }
+        .share-bar button {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 30px; height: 30px; border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgb(203, 213, 225); cursor: pointer; padding: 0;
+            transition: all 0.15s ease;
+        }
+        .share-bar button:hover { color: #38b6c9; border-color: rgba(56, 182, 201, 0.5); }
+        .share-bar button.share-copied { color: #38b6c9 !important; border-color: rgba(56, 182, 201, 0.7) !important; }
         #print-area { display: none; }
         @media print {
             @page { margin: 0.75in; }
@@ -310,7 +324,7 @@
             body.printing > *:not(#print-area) { display: none !important; }
             #print-area { display: block !important; }
             #print-area * { color: #111827 !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
-            #print-area form, #print-area button, #print-area [id$="-comments-list"], #print-area .audio-player { display: none !important; }
+            #print-area form, #print-area button, #print-area [id$="-comments-list"], #print-area .audio-player, #print-area .share-bar { display: none !important; }
             #print-area img { max-width: 55% !important; }
             #print-area .comparison-table th, #print-area .comparison-table td { border: 1px solid #374151 !important; }
             #print-area .comparison-table th { background: #f3f4f6 !important; color: #111827 !important; }
@@ -2435,7 +2449,7 @@
                                 critical ethical guidelines alongside interviews with the innovators and leaders driving
                                 progress on the ground.</p>
                             <p>Subscribe to the newsletter to stay updated on upcoming research deep-dives, book
-                                reviews, and interviews.</p>
+                                insights, and interviews.</p>
                             <p>Welcome to the pulse.</p>
                         </div>
                         <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
@@ -6510,6 +6524,70 @@
         try {
             if (localStorage.getItem('lightModeOn') === '1') document.body.classList.add('light-mode');
         } catch (e) {}
+
+        // ---------- Article share bars ----------
+        const SVG_LINK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+        const SVG_IG = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>';
+        const SVG_X = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
+        const SVG_FB = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
+        const SVG_LI = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>';
+
+        function copyToClipboard(text, btn) {
+            const done = () => {
+                btn.classList.add('share-copied');
+                btn.title = 'Copied!';
+                setTimeout(() => { btn.classList.remove('share-copied'); btn.title = 'Copy article link'; }, 1800);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(done).catch(() => { promptCopyFallback(text, done); });
+            } else promptCopyFallback(text, done);
+        }
+        function promptCopyFallback(text, done) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); done(); } catch (e) { window.prompt('Copy this link:', text); }
+            ta.remove();
+        }
+
+        function buildShareBars() {
+            const origin = location.origin && location.origin.startsWith('http') ? location.origin : 'https://theregulatedpulse.com';
+            document.querySelectorAll('#blog-post-view > article').forEach((art) => {
+                if (art.querySelector('.share-bar')) return;
+                let metaEl = null;
+                for (const child of art.children) {
+                    if (child.tagName === 'P' && /(^|\s)text-sm(\s|$)/.test(child.className) && child.textContent.indexOf('·') !== -1) { metaEl = child; break; }
+                }
+                if (!metaEl) return;
+                const titleH2 = art.querySelector('h2');
+                const title = titleH2 ? titleH2.textContent.trim() : 'The Regulated Pulse';
+                const url = origin + '/#' + art.id.replace(/-container$/, "");
+                const bar = document.createElement('div');
+                bar.className = 'share-bar';
+                bar.innerHTML =
+                    '<span style="font-size: 12px; font-weight: 600; color: rgb(148, 163, 184);">Share</span>' +
+                    '<button title="Copy article link" aria-label="Copy article link" class="share-link-btn" data-url="' + annShareEsc(url) + '">' + SVG_LINK + '</button>' +
+                    '<button title="Share to Instagram" aria-label="Share to Instagram" data-kind="ig">' + SVG_IG + '</button>' +
+                    '<button title="Share on X" aria-label="Share on X" data-kind="x">' + SVG_X + '</button>' +
+                    '<button title="Share on Facebook" aria-label="Share on Facebook" data-kind="fb">' + SVG_FB + '</button>' +
+                    '<button title="Share on LinkedIn" aria-label="Share on LinkedIn" data-kind="li">' + SVG_LI + '</button>';
+                const btns = bar.querySelectorAll('button');
+                btns[0].addEventListener('click', function () { copyToClipboard(this.getAttribute('data-url'), this); });
+                btns[1].addEventListener('click', function () {
+                    copyToClipboard(url, this);
+                    alert("Link copied! Paste it into your Instagram story, post, or bio - Instagram does not allow direct share links.");
+                });
+                btns[2].addEventListener('click', function () { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url), '_blank', 'noopener'); });
+                btns[3].addEventListener('click', function () { window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url) + '&t=' + encodeURIComponent(title), '_blank', 'noopener'); });
+                btns[4].addEventListener('click', function () { window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank', 'noopener'); });
+                metaEl.after(bar);
+            });
+        }
+        function annShareEsc(v) {
+            return String(v).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+        }
+        buildShareBars();
         setTimeout(() => {
             try {
                 if (localStorage.getItem('lightModeOn') === '1' || sessionStorage.getItem('lightPromptShown') === '1') return;
@@ -6769,8 +6847,7 @@
         <div class="ann-card">
             <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#38b6c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 12px;" aria-hidden="true"><rect x="1" y="6" width="22" height="12" rx="6"></rect><circle cx="16" cy="12" r="4" fill="rgba(56, 182, 201, 0.35)"></circle><path d="M5.5 9.5v5M8.5 9.5v5"></path></svg>
             <h3 style="margin: 0 0 6px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Prefer light mode?</h3>
-            <p style="margin: 0 0 20px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">You've been reading for a while. Switch the whole blog to a bright, easy-on-the-eyes theme if you'd like.</p>
-            <div style="display: flex; gap: 12px;">
+            <div style="display: flex; gap: 12px; margin-top: 18px;">
                 <button onclick="window.enterLightMode()" style="flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Switch to light</button>
                 <button onclick="window.closeThemePop()" style="flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: rgba(255,255,255,0.05); color: rgb(226, 232, 240);">Keep dark</button>
             </div>
