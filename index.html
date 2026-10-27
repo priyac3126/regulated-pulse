@@ -6026,6 +6026,8 @@
                 }
 
                 const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+                const CREATOR_EMAIL = "priyac821@gmail.com";
+                const verifiedBadge = (data) => (data.email === CREATOR_EMAIL ? '<i data-lucide="badge-check" style="width: 14px; height: 14px; color: #67e8f9; display: inline-block; vertical-align: -2px;" aria-label="Blog creator"></i>' : '');
 
                 let commentsData = [];
                 snapshot.forEach((doc) => commentsData.push({ id: doc.id, ...doc.data() }));
@@ -6075,7 +6077,7 @@
                       <div class="flex items-center gap-2">
                         <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-[10px]" style="background: rgb(30, 58, 95); color: rgb(125, 211, 252);">${esc(initials)}</div>
                         <div>
-                          <p class="font-semibold text-xs" style="color: rgb(226, 232, 240);">${esc(r.name)}</p>
+                          <p class="font-semibold text-xs flex items-center gap-1" style="color: rgb(226, 232, 240);">${esc(r.name)}${verifiedBadge(r)}</p>
                           <p class="text-[10px]" style="color: rgb(100, 116, 139);">Replying to ${esc(parentName || r.replyToName || "comment")} &middot; ${dateStr}</p>
                         </div>
                       </div>
@@ -6098,7 +6100,7 @@
                       <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">${esc(initials)}</div>
                         <div>
-                          <p class="font-semibold text-sm" style="color: rgb(226, 232, 240);">${esc(data.name)}</p>
+                          <p class="font-semibold text-sm flex items-center gap-1" style="color: rgb(226, 232, 240);">${esc(data.name)}${verifiedBadge(data)}</p>
                           <p class="text-xs" style="color: rgb(100, 116, 139);">${dateStr}</p>
                         </div>
                       </div>
