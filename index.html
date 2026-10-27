@@ -6130,12 +6130,12 @@
 
                 const topLevel = commentsData.filter(c => !c.replyTo);
                 const replies = commentsData.filter(c => c.replyTo);
-                const topLevelIds = new Set(topLevel.map(c => c.id));
+                const knownIds = new Set(commentsData.map(c => c.id));
 
                 const repliesByParent = {};
                 const orphans = [];
                 replies.forEach(r => {
-                    if (topLevelIds.has(r.replyTo)) {
+                    if (knownIds.has(r.replyTo)) {
                         (repliesByParent[r.replyTo] = repliesByParent[r.replyTo] || []).push(r);
                     } else {
                         orphans.push(r);
@@ -6152,6 +6152,8 @@
                     return `<button type="button" class="${colorClass} transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Like comment" onclick="window.likeComment('${data.id}')"><i data-lucide="heart" style="width: 15px; height: 15px;"></i> <span class="font-medium">${data.likes || 0}</span></button>`;
                 };
 
+                const replyButton = (id, small) => `<button type="button" class="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1 ${small ? 'text-xs' : 'text-xs'} focus:outline-none" aria-label="Reply to comment" onclick="window.toggleReply('${id}')"><i data-lucide="corner-up-left" style="width: ${small ? 13 : 15}px; height: ${small ? 13 : 15}px; transform: scaleX(-1);"></i> <span class="font-medium">Reply</span></button>`;
+
                 const replyFormHTML = (c) => `
                   <div id="reply-form-${c.id}" class="hidden mt-4 ml-6 bg-slate-900/60 border border-slate-700 rounded-xl p-4">
                     <form data-post-id="${esc(postId)}" data-parent-name="${esc(c.name)}" data-parent-email="${esc(c.email || "")}" onsubmit="window.submitReply(event, '${c.id}')" class="space-y-3">
@@ -6164,22 +6166,26 @@
                     </form>
                   </div>`;
 
-                const renderReply = (r, parentName) => {
-                    const initials = r.name ? r.name.substring(0, 2).toUpperCase() : "RP";
-                    const dateStr = r.createdAt ? r.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now";
+                const renderReply = (r, parentName, depth) => {
+                    const canReply = depth < 2;
+                    const kids2 = repliesByParent[r.id] || [];
+                    const indent = depth === 1 ? "ml-2 sm:ml-12 pl-4 border-l-2 border-slate-600/70" : "ml-2 sm:ml-20 pl-4 border-l-2 border-slate-600/50";
+                    const buttons = `<div class="flex items-center gap-3">${likeBadge(r)}${deleteBadge(r)}${canReply ? replyButton(r.id, true) : ''}</div>`;
                     return `
-                  <div class="mt-5 ml-2 sm:ml-10 pl-4 border-l-2 border-slate-700">
-                    <div class="flex items-center justify-between mb-1">
+                  <div class="mt-5 ${indent}">
+                    <div class="flex items-center justify-between mb-1 gap-3 flex-wrap">
                       <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-[10px]" style="background: rgb(30, 58, 95); color: rgb(125, 211, 252);">${esc(initials)}</div>
+                        <div class="w-7 h-7 rounded-full flex items-center justify-center font-bold text-[10px] flex-shrink-0" style="background: rgb(30, 58, 95); color: rgb(125, 211, 252);">${esc(r.name ? r.name.substring(0, 2).toUpperCase() : "RP")}</div>
                         <div>
                           <p class="font-semibold text-xs flex items-center gap-1" style="color: rgb(226, 232, 240);">${esc(r.name)}${verifiedBadge(r)}</p>
-                          <p class="text-[10px]" style="color: rgb(100, 116, 139);">Replying to ${esc(parentName || r.replyToName || "comment")} &middot; ${dateStr}</p>
+                          <p class="text-[10px]" style="color: rgb(100, 116, 139);">Replying to ${esc(parentName || r.replyToName || "comment")} &middot; ${r.createdAt ? r.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now"}</p>
                         </div>
                       </div>
-                      <div class="flex items-center gap-3">${likeBadge(r)}${deleteBadge(r)}</div>
+                      ${buttons}
                     </div>
                     <p class="text-sm leading-relaxed mt-1 break-words" style="color: rgb(148, 163, 184);">${esc(r.text)}</p>
+                    ${canReply ? replyFormHTML(r) : ''}
+                    ${depth <= 2 ? kids2.map((r2) => renderReply(r2, r.name || "", depth + 1)).join('') : ''}
                   </div>`;
                 };
 
@@ -6187,25 +6193,22 @@
                     const initials = data.name ? data.name.substring(0, 2).toUpperCase() : "RP";
                     const dateStr = data.createdAt ? data.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now";
                     const kids = repliesByParent[data.id] || [];
-                    const actionButtons = showForm
-                        ? `${likeBadge(data)}<button type="button" class="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Reply to comment" onclick="window.toggleReply('${data.id}')"><i data-lucide="corner-up-left" style="width: 15px; height: 15px; transform: scaleX(-1);"></i> <span class="font-medium">Reply</span></button>
-                        ${deleteBadge(data)}`
-                        : `${likeBadge(data)}${deleteBadge(data)}`;
+                    const actionButtons = `<div class="flex items-center gap-3">${likeBadge(data)}${deleteBadge(data)}${replyButton(data.id, false)}</div>`;
                     return `
                   <div class="mt-8 pt-8 border-t border-slate-700 text-left max-w-2xl mx-auto">
-                    <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center justify-between mb-2 gap-3 flex-wrap">
                       <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">${esc(initials)}</div>
+                        <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0" style="background: rgb(76, 29, 149); color: rgb(196, 181, 253);">${esc(initials)}</div>
                         <div>
                           <p class="font-semibold text-sm flex items-center gap-1" style="color: rgb(226, 232, 240);">${esc(data.name)}${verifiedBadge(data)}</p>
                           <p class="text-xs" style="color: rgb(100, 116, 139);">${dateStr}</p>
                         </div>
                       </div>
-                      <div class="flex items-center gap-4">${actionButtons}</div>
+                      ${actionButtons}
                     </div>
                     <p class="text-sm leading-relaxed mt-2 break-words" style="color: rgb(148, 163, 184);">${esc(data.text)}</p>
                     ${showForm ? replyFormHTML(data) : ''}
-                    ${kids.map((r) => renderReply(r, data.name)).join('')}
+                    ${kids.map((r) => renderReply(r, data.name || "", 1)).join('')}
                   </div>`;
                 };
 
