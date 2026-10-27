@@ -240,23 +240,18 @@
         }
         .site-footer a:hover { text-decoration: underline; }
         ::selection { background: rgba(56, 182, 201, 0.28); color: #f8fafc; }
+        #print-area { display: none; }
         @media print {
             @page { margin: 0.75in; }
             body { background: #ffffff !important; }
-            body > *:not(#blog-post-view),
-            #blog-post-view > button#back-to-blog,
-            #blog-post-view > button[aria-label="Download this article as PDF"],
-            header, nav, .mobile-tab-dock, #floating-audio-bar, .site-footer { display: none !important; }
-            #blog-post-view > article { display: none !important; }
-            #blog-post-view > article:not(.hidden) { display: block !important; max-width: 100% !important; }
-            #blog-post-view > article:not(.hidden) * { color: #111827 !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
-            #blog-post-view > article:not(.hidden) form,
-            #blog-post-view > article:not(.hidden) [id$="-comments-list"],
-            #blog-post-view > article:not(.hidden) .audio-player { display: none !important; }
-            #blog-post-view > article:not(.hidden) img { max-width: 55% !important; }
-            .comparison-table th, .comparison-table td { border: 1px solid #374151 !important; }
-            .comparison-table th { background: #f3f4f6 !important; color: #111827 !important; }
-            .works-cited li { margin-bottom: 0.5rem !important; }
+            body.printing > *:not(#print-area) { display: none !important; }
+            #print-area { display: block !important; }
+            #print-area * { color: #111827 !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
+            #print-area form, #print-area button, #print-area [id$="-comments-list"], #print-area .audio-player { display: none !important; }
+            #print-area img { max-width: 55% !important; }
+            #print-area .comparison-table th, #print-area .comparison-table td { border: 1px solid #374151 !important; }
+            #print-area .comparison-table th { background: #f3f4f6 !important; color: #111827 !important; }
+            #print-area .works-cited li { margin-bottom: 0.5rem !important; }
         }
         .comparison-table {
             width: 100%;
@@ -1762,7 +1757,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
                         <span>Back to Posts</span>
                     </button>
-                    <button onclick="window.print()" class="ml-4 inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-semibold focus:outline-none cursor-pointer transition-colors" aria-label="Download this article as PDF">
+                    <button onclick="window.printArticle()" class="ml-4 inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-semibold focus:outline-none cursor-pointer transition-colors" aria-label="Download this article as PDF">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
                         <span>Download PDF</span>
                     </button>
@@ -6273,6 +6268,23 @@
     <footer class="site-footer">
         <p>&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></p>
     </footer>
+    <div id="print-area"></div>
+    <script>
+        window.printArticle = function () {
+            const art = document.querySelector('#blog-post-view article:not(.hidden)');
+            const holder = document.getElementById('print-area');
+            if (!art || !holder) { window.print(); return; }
+            holder.innerHTML = art.outerHTML;
+            holder.querySelectorAll('form, button, [id$="-comments-list"], .audio-player').forEach(el => el.remove());
+            document.body.classList.add('printing');
+            window.print();
+        };
+        window.onafterprint = function () {
+            document.body.classList.remove('printing');
+            const holder = document.getElementById('print-area');
+            if (holder) holder.innerHTML = '';
+        };
+    </script>
 </body>
 
 </html>
