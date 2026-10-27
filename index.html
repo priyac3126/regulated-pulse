@@ -6410,7 +6410,14 @@
                 btn.textContent = "Link sent!";
             } catch (err) {
                 console.error(err);
-                msg.textContent = "Could not send the link. Email Link sign-in must be enabled in Firebase for this domain.";
+                const code = (err && (err.code || err.errorCode)) || "unknown";
+                const hints = {
+                    "auth/operation-not-allowed": "Email Link sign-in is not enabled in the Firebase console (Authentication > Sign-in method > Email/Password > enable 'Email link').",
+                    "auth/unauthorized-domain": "This domain is not in Firebase Authorized domains (Authentication > Settings > Authorized domains).",
+                    "auth/invalid-email": "The email address is not valid.",
+                    "auth/network-request-failed": "Network error - check your connection and try again."
+                };
+                msg.textContent = "Could not send the link (" + code + "). " + (hints[code] || "Check the browser console for details.");
                 btn.disabled = false;
                 btn.textContent = "Send me a login link";
             }
