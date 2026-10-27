@@ -5900,7 +5900,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyANxrKdCFT0Sv5lDAvxefTi9XCfBcfG3uc",
@@ -5924,6 +5924,33 @@
             publicKey: "s48Lzg1WERgMcMVCq"
         };
         const CREATOR_NOTIFY_EMAIL = "priyac821@gmail.com";
+
+        const rememberCommenterEmail = (email) => {
+            if (!email) return;
+            try {
+                const key = "my_comment_emails";
+                const list = new Set(JSON.parse(localStorage.getItem(key) || "[]"));
+                list.add(email.toLowerCase());
+                localStorage.setItem(key, JSON.stringify([...list]));
+            } catch (e) { /* ignore */ }
+        };
+        const myEmails = () => {
+            try { return (JSON.parse(localStorage.getItem("my_comment_emails") || "[]")).map(e => String(e).toLowerCase()); }
+            catch (e) { return []; }
+        };
+        window.isMyComment = (data) => !!(data.email && myEmails().includes(String(data.email).toLowerCase()));
+
+        window.deleteComment = async function (commentId) {
+            if (!confirm("Delete this comment? Replies under it stay visible but become standalone.")) return;
+            try {
+                await deleteDoc(doc(db, "comments", commentId));
+                // forget its like-state so a repost could be liked fresh
+                localStorage.removeItem(`liked_${commentId}`);
+            } catch (e) {
+                console.error("Error deleting comment: ", e);
+                alert("Could not delete this comment. Your Firebase database rules need to allow deleting comments.");
+            }
+        };
 
         window.sendReplyNotification = async function (details) {
             const { serviceId, templateId, publicKey } = EMAILJS_CONFIG;
@@ -5995,6 +6022,7 @@
                     likes: 0
                 });
 
+                rememberCommenterEmail(nameInput && emailInput ? emailInput.value : "");
                 form.reset();
             } catch (e) {
                 console.error("Error adding document: ", e);
@@ -6054,6 +6082,7 @@
                     replyToName: form.dataset.parentName || ""
                 });
 
+                rememberCommenterEmail(emailInput ? emailInput.value : "");
                 form.reset();
                 const wrapper = document.getElementById(`reply-form-${replyToId}`);
                 if (wrapper) wrapper.classList.add('hidden');
@@ -6115,6 +6144,8 @@
                 Object.values(repliesByParent).forEach(arr => arr.sort((a, b) => timeOf(a) - timeOf(b)));
                 orphans.sort((a, b) => timeOf(b) - timeOf(a));
 
+                const deleteBadge = (data) => (window.isMyComment(data) ? `<button type="button" class="text-slate-400 hover:text-red-400 transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Delete comment" onclick="window.deleteComment('${data.id}')"><i data-lucide="trash-2" style="width: 15px; height: 15px;"></i> <span class="font-medium">Delete</span></button>` : '');
+
                 const likeBadge = (data) => {
                     const isLiked = localStorage.getItem(`liked_${data.id}`) ? true : false;
                     const colorClass = isLiked ? "text-cyan-400" : "text-slate-400 hover:text-cyan-400";
@@ -6146,7 +6177,7 @@
                           <p class="text-[10px]" style="color: rgb(100, 116, 139);">Replying to ${esc(parentName || r.replyToName || "comment")} &middot; ${dateStr}</p>
                         </div>
                       </div>
-                      ${likeBadge(r)}
+                      <div class="flex items-center gap-3">${likeBadge(r)}${deleteBadge(r)}</div>
                     </div>
                     <p class="text-sm leading-relaxed mt-1 break-words" style="color: rgb(148, 163, 184);">${esc(r.text)}</p>
                   </div>`;
@@ -6157,8 +6188,9 @@
                     const dateStr = data.createdAt ? data.createdAt.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : "Just now";
                     const kids = repliesByParent[data.id] || [];
                     const actionButtons = showForm
-                        ? `${likeBadge(data)}<button type="button" class="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Reply to comment" onclick="window.toggleReply('${data.id}')"><i data-lucide="corner-up-left" style="width: 15px; height: 15px; transform: scaleX(-1);"></i> <span class="font-medium">Reply</span></button>`
-                        : likeBadge(data);
+                        ? `${likeBadge(data)}<button type="button" class="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-1 text-xs focus:outline-none" aria-label="Reply to comment" onclick="window.toggleReply('${data.id}')"><i data-lucide="corner-up-left" style="width: 15px; height: 15px; transform: scaleX(-1);"></i> <span class="font-medium">Reply</span></button>
+                        ${deleteBadge(data)}`
+                        : `${likeBadge(data)}${deleteBadge(data)}`;
                     return `
                   <div class="mt-8 pt-8 border-t border-slate-700 text-left max-w-2xl mx-auto">
                     <div class="flex items-center justify-between mb-2">
