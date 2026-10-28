@@ -6496,6 +6496,30 @@
             btn.textContent = "Sign in";
         };
 
+        window.annSkipPassword = function () {
+            window.__annPasswordSkipped = true;
+            window.openAnnAuth();
+        };
+        window.annSavePassword = async function () {
+            const input = document.getElementById('ann-password-input');
+            const msg = document.getElementById('ann-password-msg');
+            const btn = document.getElementById('ann-save-password-btn');
+            const pw = (input && input.value) || "";
+            if (pw.length < 6) { msg.textContent = "Please use at least 6 characters."; return; }
+            btn.disabled = true;
+            try {
+                await updatePassword(annAuth.currentUser, pw);
+                window.__annPasswordSaved = true;
+                msg.textContent = "";
+                input.value = "";
+                window.openAnnAuth();
+            } catch (err) {
+                console.error(err);
+                msg.textContent = "Could not set password (" + ((err && err.code) || "unknown") + ").";
+            }
+            btn.disabled = false;
+        };
+
         window.annGoogleSignIn = async function () {
             const msg = document.getElementById('ann-auth-msg');
             try {
@@ -6992,29 +7016,6 @@
             } else {
                 sv.style.display = 'none'; si.style.display = 'block'; sp.style.display = 'none';
             }
-        };
-        window.annSkipPassword = function () {
-            window.__annPasswordSkipped = true;
-            window.openAnnAuth();
-        };
-        window.annSavePassword = async function () {
-            const input = document.getElementById('ann-password-input');
-            const msg = document.getElementById('ann-password-msg');
-            const btn = document.getElementById('ann-save-password-btn');
-            const pw = (input && input.value) || "";
-            if (pw.length < 6) { msg.textContent = "Please use at least 6 characters."; return; }
-            btn.disabled = true;
-            try {
-                await updatePassword(annAuth.currentUser, pw);
-                window.__annPasswordSaved = true;
-                msg.textContent = "";
-                input.value = "";
-                window.openAnnAuth();
-            } catch (err) {
-                console.error(err);
-                msg.textContent = "Could not set password (" + ((err && err.code) || "unknown") + ").";
-            }
-            btn.disabled = false;
         };
         window.annCloseAuth = function () { const modal = document.getElementById('ann-auth-modal'); if (modal) modal.classList.remove('show'); };
         window.annSignOut = function () { if (window.annDoSignOut) window.annDoSignOut(); };
