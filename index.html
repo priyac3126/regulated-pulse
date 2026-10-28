@@ -6056,28 +6056,34 @@
 
         window.sendReplyNotification = async function (details) {
             const { serviceId, templateId, publicKey } = EMAILJS_CONFIG;
-            if (!serviceId || !templateId || !publicKey || !details.toEmail) return;
-            try {
-                const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        service_id: serviceId,
-                        template_id: templateId,
-                        user_id: publicKey,
-                        template_params: {
-                            to_email: details.toEmail,
-                            to_name: details.toName,
-                            parent_name: details.parentName,
-                            replier_name: details.replierName,
-                            reply_text: details.replyText,
-                            post_link: `https://theregulatedpulse.com/#${details.postId}`
-                        }
-                    })
-                });
-                if (!res.ok) console.error("EmailJS send failed:", await res.text());
-                // Also notify the blog creator of every reply
-                if (details.toEmail !== CREATOR_NOTIFY_EMAIL) {
+            const replierIsCreator = details.replierEmail && details.replierEmail.trim().toLowerCase() === CREATOR_NOTIFY_EMAIL.toLowerCase();
+            if (details.toEmail && details.toEmail.trim().toLowerCase() !== CREATOR_NOTIFY_EMAIL.toLowerCase() && !replierIsCreator) {
+                try {
+                    const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            service_id: serviceId,
+                            template_id: templateId,
+                            user_id: publicKey,
+                            template_params: {
+                                to_email: details.toEmail,
+                                to_name: details.toName,
+                                parent_name: details.parentName,
+                                replier_name: details.replierName,
+                                reply_text: details.replyText,
+                                post_link: `https://theregulatedpulse.com/#${details.postId}`
+                            }
+                        })
+                    });
+                    if (!res.ok) console.error("EmailJS send failed:", await res.text());
+                } catch (e) {
+                    console.error("Reply email notification failed: ", e);
+                }
+            }
+            // Notify the blog creator of every comment/reply left by someone else
+            if (!replierIsCreator) {
+                try {
                     await fetch("https://api.emailjs.com/api/v1.0/email/send", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
@@ -6088,16 +6094,16 @@
                             template_params: {
                                 to_email: CREATOR_NOTIFY_EMAIL,
                                 to_name: "Priya",
-                                parent_name: details.parentName,
+                                parent_name: details.parentName || "",
                                 replier_name: details.replierName,
                                 reply_text: details.replyText,
                                 post_link: `https://theregulatedpulse.com/#${details.postId}`
                             }
                         })
                     });
+                } catch (e) {
+                    console.error("Creator notification failed: ", e);
                 }
-            } catch (e) {
-                console.error("Reply email notification failed: ", e);
             }
         };
 
@@ -6126,6 +6132,12 @@
 
                 rememberCommenterEmail(nameInput && emailInput ? emailInput.value : "");
                 form.reset();
+                window.sendReplyNotification({
+                    replierName: nameInput.value,
+                    replierEmail: emailInput ? emailInput.value : "",
+                    replyText: textInput.value,
+                    postId: postId
+                });
             } catch (e) {
                 console.error("Error adding document: ", e);
                 alert("Something went wrong! Make sure your Firebase database rules are set up correctly.");
@@ -6197,6 +6209,7 @@
                     toName: form.dataset.parentName,
                     parentName: form.dataset.parentName,
                     replierName: nameInput.value,
+                    replierEmail: emailInput ? emailInput.value : "",
                     replyText: textInput.value,
                     postId: form.dataset.postId
                 });
