@@ -6443,16 +6443,26 @@
         };
 
         // Complete sign-in when user returns via the emailed link
+        function annToast(text, ms) {
+            const t = document.createElement('div');
+            t.textContent = text;
+            t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;background:#0f172a;border:1px solid #1e293b;color:#f1f5f9;padding:12px 20px;border-radius:12px;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.5);max-width:90vw;';
+            document.body.appendChild(t);
+            if (ms) setTimeout(() => t.remove(), ms);
+        }
         if (isSignInWithEmailLink(window.location.href)) {
             const em = localStorage.getItem("annEmail");
+            annToast("Sign-in link detected - completing sign-in" + (em ? " for " + em : "") + "...");
             if (em) {
                 signInWithEmailLink(annAuth, em).then(() => {
                     localStorage.removeItem("annEmail");
                     history.replaceState({}, "", window.location.pathname);
+                    annToast("You are signed in as " + em, 5000);
                 }).catch((err) => {
                     console.error("Sign-in link completion failed:", err);
                     localStorage.removeItem("annEmail");
                     history.replaceState({}, "", window.location.pathname);
+                    annToast("Sign-in failed: " + ((err && err.code) || "unknown"), 8000);
                     window.__annPendingLink = true;
                     window.openAnnAuth();
                     const msg = document.getElementById('ann-auth-msg');
