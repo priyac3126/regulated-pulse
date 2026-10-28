@@ -6403,6 +6403,21 @@
             if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = "Please enter a valid email address."; return; }
             btn.disabled = true;
             btn.textContent = "Sending...";
+            // If we arrived via a sign-in link but lost the stored email, complete sign-in with what the user types now.
+            if (window.__annPendingLink) {
+                try {
+                    await signInWithEmailLink(annAuth, email);
+                    window.__annPendingLink = false;
+                    msg.textContent = "Signed in!";
+                    btn.textContent = "Signed in";
+                } catch (err) {
+                    console.error(err);
+                    msg.textContent = "Sign-in link didn't work (" + ((err && err.code) || "unknown") + "). Request a new link instead.";
+                    btn.disabled = false;
+                    btn.textContent = "Send me a login link";
+                }
+                return;
+            }
             try {
                 await sendSignInLinkToEmail(annAuth, email, { url: "https://theregulatedpulse.com/index.html", handleCodeInApp: true });
                 localStorage.setItem("annEmail", email);
@@ -6434,7 +6449,21 @@
                 signInWithEmailLink(annAuth, em).then(() => {
                     localStorage.removeItem("annEmail");
                     history.replaceState({}, "", window.location.pathname);
-                }).catch((err) => console.error(err));
+                }).catch((err) => {
+                    console.error("Sign-in link completion failed:", err);
+                    localStorage.removeItem("annEmail");
+                    history.replaceState({}, "", window.location.pathname);
+                    window.__annPendingLink = true;
+                    window.openAnnAuth();
+                    const msg = document.getElementById('ann-auth-msg');
+                    if (msg) msg.textContent = "Sign-in link didn't work (" + ((err && err.code) || "unknown") + "). Enter your email below to finish signing in.";
+                });
+            } else {
+                // Link clicked, but we don't know which email it was for (different browser/cleared storage).
+                window.__annPendingLink = true;
+                window.openAnnAuth();
+                const msg = document.getElementById('ann-auth-msg');
+                if (msg) msg.textContent = "Almost there! Enter your email below to finish signing in - no new email needed.";
             }
         }
     </script>
