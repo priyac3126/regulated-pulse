@@ -6002,7 +6002,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, increment, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider, OAuthProvider, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider, OAuthProvider, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBZAIllVSGE-kC6MZhL6SFXtohv1OGPAvE",
@@ -6452,6 +6452,48 @@
                 btn.disabled = false;
                 btn.textContent = "Send me a login link";
             }
+        };
+
+        window.annTogglePasswordSignIn = function (show) {
+            const emailRow = document.getElementById('ann-email-input');
+            const sendBtn = document.getElementById('ann-send-link-btn');
+            const hint = document.getElementById('ann-auth-msg');
+            const toggleBtn = sendBtn && sendBtn.nextElementSibling && sendBtn.nextElementSibling.nextElementSibling;
+            const pswView = document.getElementById('ann-password-signin-view');
+            if (!pswView) return;
+            pswView.style.display = show ? 'block' : 'none';
+            if (emailRow) emailRow.style.display = show ? 'none' : 'block';
+            if (sendBtn) sendBtn.style.display = show ? 'none' : 'block';
+            if (toggleBtn) toggleBtn.style.display = show ? 'none' : 'block';
+            if (hint && show) hint.textContent = "";
+        };
+
+        window.annPasswordSignIn = async function () {
+            const emailInput = document.getElementById('ann-psw-email-input');
+            const pswInput = document.getElementById('ann-psw-input');
+            const msg = document.getElementById('ann-psw-msg');
+            const btn = document.getElementById('ann-psw-signin-btn');
+            const email = (emailInput.value || "").trim();
+            if (!email || !pswInput.value) { msg.textContent = "Enter your email and password."; return; }
+            btn.disabled = true;
+            btn.textContent = "Signing in...";
+            try {
+                await signInWithEmailAndPassword(annAuth, email, pswInput.value);
+                // onAuthStateChanged refreshes the modal
+            } catch (err) {
+                console.error(err);
+                const code = (err && err.code) || "unknown";
+                const hints = {
+                    "auth/invalid-credential": "Wrong email or password.",
+                    "auth/invalid-login-credentials": "Wrong email or password.",
+                    "auth/user-not-found": "No account with that email yet - use a login link to create one.",
+                    "auth/wrong-password": "Wrong password.",
+                    "auth/too-many-requests": "Too many attempts - try again in a moment."
+                };
+                msg.textContent = hints[code] || "Sign-in failed (" + code + ").";
+            }
+            btn.disabled = false;
+            btn.textContent = "Sign in";
         };
 
         window.annGoogleSignIn = async function () {
@@ -6944,6 +6986,7 @@
             if (window.__annPasswordSaved || window.__annPasswordSkipped) firstTime = false;
             if (!u) {
                 sv.style.display = 'block'; si.style.display = 'none'; sp.style.display = 'none';
+                window.annTogglePasswordSignIn(false);
             } else if (firstTime) {
                 sv.style.display = 'none'; si.style.display = 'none'; sp.style.display = 'block';
             } else {
@@ -7028,6 +7071,14 @@
                 <input id="ann-email-input" type="email" placeholder="you@example.com" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px; text-align: center;">
                 <button id="ann-send-link-btn" onclick="window.annSendLink()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Send me a login link</button>
                 <p id="ann-auth-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
+                <button onclick="window.annTogglePasswordSignIn(true)" style="margin-top: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 12px; cursor: pointer; text-decoration: underline;">Have a password? Sign in with it instead</button>
+                <div id="ann-password-signin-view" style="display: none;">
+                    <input id="ann-psw-email-input" type="email" placeholder="Email" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                    <input id="ann-psw-input" type="password" placeholder="Password" style="width: 100%; margin-top: 10px; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                    <button id="ann-psw-signin-btn" onclick="window.annPasswordSignIn()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Sign in</button>
+                    <p id="ann-psw-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
+                    <button onclick="window.annTogglePasswordSignIn(false)" style="margin-top: 6px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Back to email link</button>
+                </div>
                 <div style="display: flex; align-items: center; gap: 10px; margin: 14px 0;">
                     <span style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></span>
                     <span style="color: rgb(100, 116, 139); font-size: 11px;">or continue with</span>
