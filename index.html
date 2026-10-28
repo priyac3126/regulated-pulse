@@ -6137,20 +6137,24 @@
 
         window.likeComment = async function (commentId) {
             const likedKey = `liked_${commentId}`;
-            const wasLiked = localStorage.getItem(likedKey);
-
+            const wasLiked = !!localStorage.getItem(likedKey);
             try {
-                const commentRef = doc(db, "comments", commentId);
-                await updateDoc(commentRef, {
-                    likes: increment(wasLiked ? -1 : 1)
-                });
                 if (wasLiked) {
                     localStorage.removeItem(likedKey);
                 } else {
                     localStorage.setItem(likedKey, "true");
                 }
+                const commentRef = doc(db, "comments", commentId);
+                await updateDoc(commentRef, {
+                    likes: increment(wasLiked ? -1 : 1)
+                });
             } catch (e) {
                 console.error("Error liking comment: ", e);
+                if (wasLiked) {
+                    localStorage.setItem(likedKey, "true");
+                } else {
+                    localStorage.removeItem(likedKey);
+                }
                 alert("Could not update the like. Make sure your Firebase database rules allow updating comments.");
             }
         };
