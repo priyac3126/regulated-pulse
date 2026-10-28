@@ -6430,7 +6430,7 @@
             if (modal && modal.classList.contains('show')) {
                 document.getElementById('ann-user-email').textContent = window.annUser ? window.annUser.email : "";
                 window.openAnnAuth();
-            } else if (needsPassword) {
+            } else if (needsPassword && window.__annJustSignedIn) {
                 window.openAnnAuth();
             }
         });
@@ -6524,6 +6524,13 @@
             window.__annPasswordSkipped = true;
             window.openAnnAuth();
         };
+        window.annTogglePwVisibility = function (inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const show = input.type === 'password';
+            input.type = show ? 'text' : 'password';
+            btn.textContent = show ? 'Hide' : 'Show';
+        };
         window.annSavePassword = async function () {
             const input = document.getElementById('ann-password-input');
             const msg = document.getElementById('ann-password-msg');
@@ -6613,6 +6620,7 @@
                         try { pendingPw = sessionStorage.getItem('annPendingPw'); } catch (e) {}
                         if (pendingPw) {
                             try { sessionStorage.removeItem('annPendingPw'); } catch (e) {}
+                            window.__annJustSignedIn = true;
                             firebase.auth().currentUser.updatePassword(pendingPw).then(function () {
                                 toast('You are signed in as ' + em + ' - password saved! You can now sign in with email + password.', 7000);
                             }).catch(function (err) {
@@ -7121,13 +7129,14 @@
             <div id="ann-signed-out-view">
                 <h3 style="margin: 0 0 8px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Sign in to save your highlights</h3>
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Your current highlights stay on this page for now. Sign in and they'll be saved with your account and restored on any device.</p>
-                <input id="ann-email-input" type="email" placeholder="you@example.com" onkeydown="if (event.key === 'Enter') window.annSendLink() style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px; text-align: center;">
+                <input id="ann-email-input" type="email" placeholder="you@example.com" onkeydown="if (event.key === 'Enter') window.annSendLink()" autocomplete="email" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px; text-align: center;">
                 <button id="ann-send-link-btn" onclick="window.annSendLink()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Send me a login link</button>
                 <p id="ann-auth-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
                 <button onclick="window.annTogglePasswordSignIn(true)" style="margin-top: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 12px; cursor: pointer; text-decoration: underline;">Have a password? Sign in with it instead</button>
                 <div id="ann-password-signin-view" style="display: none;">
-                    <input id="ann-psw-email-input" type="email" placeholder="Email" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn() style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
-                    <input id="ann-psw-input" type="password" placeholder="Password" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn() style="width: 100%; margin-top: 10px; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                    <input id="ann-psw-email-input" type="email" placeholder="Email" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn()" autocomplete="email" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                    <input id="ann-psw-input" type="password" placeholder="Password" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn()" autocomplete="current-password" style="width: 100%; margin-top: 10px; border-radius: 12px; padding: 12px 60px 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                    <button type="button" onclick="window.annTogglePwVisibility('ann-psw-input', this)" style="position: absolute; right: 10px; margin-top: -30px; background: none; border: none; color: rgb(148, 163, 184); font-size: 11px; font-weight: 700; cursor: pointer; padding: 4px;">Show</button>
                     <button id="ann-psw-signin-btn" onclick="window.annPasswordSignIn()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Sign in</button>
                     <p id="ann-psw-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
                     <button onclick="window.annTogglePasswordSignIn(false)" style="margin-top: 6px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Back to email link</button>
@@ -7146,7 +7155,8 @@
             <div id="ann-set-password-view" style="display: none;">
                 <h3 style="margin: 0 0 8px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Set a password</h3>
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">You signed in with an email link. Add a password so you can also sign in with just your email and password next time.</p>
-                <input id="ann-password-input" type="password" placeholder="Choose a password (6+ characters)" onkeydown="if (event.key === 'Enter') window.annSavePassword() style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                <input id="ann-password-input" type="password" placeholder="Choose a password (6+ characters)" onkeydown="if (event.key === 'Enter') window.annSavePassword()" autocomplete="new-password" style="width: 100%; border-radius: 12px; padding: 12px 60px 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                <button type="button" onclick="window.annTogglePwVisibility('ann-password-input', this)" style="float: right; margin-top: -30px; margin-right: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 11px; font-weight: 700; cursor: pointer; padding: 4px;">Show</button>
                 <button id="ann-save-password-btn" onclick="window.annSavePassword()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Save password</button>
                 <p id="ann-password-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
                 <button onclick="window.annSkipPassword()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Not now &mdash; email links still work</button>
