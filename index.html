@@ -6406,7 +6406,7 @@
             try {
                 await sendSignInLinkToEmail(annAuth, email, { url: "https://theregulatedpulse.com/index.html", handleCodeInApp: true });
                 localStorage.setItem("annEmail", email);
-                msg.textContent = "Check your inbox - click the link in the email to finish signing in.";
+                msg.textContent = "Check your inbox - and your spam folder. The link email often lands in spam, so mark it \"not spam\" to find it next time.";
                 btn.textContent = "Link sent!";
             } catch (err) {
                 console.error(err);
