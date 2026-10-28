@@ -7006,7 +7006,7 @@
             modal.classList.add('show');
             const sv = document.getElementById('ann-signed-out-view'), si = document.getElementById('ann-signed-in-view'), sp = document.getElementById('ann-set-password-view');
             const u = window.annUser;
-            let firstTime = u && u.__firstSignIn && !(u.__externalProvider);
+            let firstTime = u && ((u.__firstSignIn && !(u.__externalProvider)) || window.__annForcePasswordUI);
             if (window.__annPasswordSaved || window.__annPasswordSkipped) firstTime = false;
             if (!u) {
                 sv.style.display = 'block'; si.style.display = 'none'; sp.style.display = 'none';
@@ -7103,7 +7103,8 @@
                 <p style="margin: 0 0 4px; color: rgb(103, 232, 249); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Signed in</p>
                 <p id="ann-user-email" style="margin: 0 0 16px; color: rgb(241, 245, 249); font-size: 15px; font-weight: 700; word-break: break-all;"></p>
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px;">Your highlights and notes are being saved to your account automatically.</p>
-                <button onclick="window.annSignOut()" style="width: 100%; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Sign out</button>
+                <button onclick="window.__annPasswordSkipped = false; window.__annPasswordSaved = false; window.__annForcePasswordUI = true; window.openAnnAuth()" style="width: 100%; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Set or change password</button>
+                <button onclick="window.annSignOut()" style="width: 100%; margin-top: 10px; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Sign out</button>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Close</button>
             </div>
         </div>
