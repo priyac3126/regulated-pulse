@@ -6628,6 +6628,7 @@
                                 toast('Signed in as ' + em + ', but password save failed: ' + ((err && err.code) || 'unknown'), 8000);
                             });
                         } else {
+                            window.__annJustSignedIn = true;
                             toast('You are signed in as ' + em, 5000);
                         }
                     }).catch(function (err) {
