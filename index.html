@@ -6456,7 +6456,7 @@
                 document.body.appendChild(t);
                 if (ms) setTimeout(function () { t.remove(); }, ms);
             }
-            toast('Sign-in link detected - finishing sign-in...');
+            toast('Sign-in link detected - finishing sign-in...', 6000);
             var em = null;
             try { em = localStorage.getItem('annEmail'); } catch (e) {}
             function attempt() {
