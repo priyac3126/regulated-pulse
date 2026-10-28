@@ -1580,7 +1580,7 @@
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Fifth Pillar: Why the Arts Belong in Clinical Care</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">How arts engagement can improve patient outcomes</p>
-                                            <p class="text-xs text-slate-500 font-medium">July 2026 · 4 min read</p>
+                                            <p class="text-xs text-slate-500 font-medium">October 2026 · 4 min read</p>
                                         </button>
 
                                         <button
@@ -1850,7 +1850,7 @@
                     <!-- The Fifth Pillar: Why the Arts Belong in Clinical Care -->
                     <article id="post-art-cure-container" class="hidden max-w-3xl mx-auto relative mb-16">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Fifth Pillar: Why the Arts Belong in Clinical Care</h2>
-                        <p class="text-sm mb-11" style="color: rgb(103, 232, 249);">Book Insights · July 2026 · 4 min read</p>
+                        <p class="text-sm mb-11" style="color: rgb(103, 232, 249);">Book Insights · October 2026 · 4 min read</p>
 
                         <div class="text-center mb-10">
                             <img src="./ArtCurebook.webp" alt="Art Cure book cover"
@@ -6443,57 +6443,63 @@
         };
 
     </script>
-    <script type="module">
-        // Self-contained email-link sign-in completion; runs independently of the main script.
-        import { getApps, initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, isSignInWithEmailLink, signInWithEmailLink } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBZAIllVSGE-kC6MZhL6SFXtohv1OGPAvE",
-            authDomain: "regulated-pulse.firebaseapp.com",
-            projectId: "regulated-pulse",
-            storageBucket: "regulated-pulse.firebasestorage.app",
-            messagingSenderId: "386384989644",
-            appId: "1:386384989644:web:4e962b8ea20ffaf621e169",
-            measurementId: "G-226FYER9J4"
-        };
-        const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        function annToast(text, ms) {
-            const t = document.createElement('div');
-            t.textContent = text;
-            t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;background:#0f172a;border:1px solid #1e293b;color:#f1f5f9;padding:12px 20px;border-radius:12px;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.5);max-width:90vw;';
-            document.body.appendChild(t);
-            if (ms) setTimeout(() => t.remove(), ms);
-        }
-
-        if (isSignInWithEmailLink(window.location.href)) {
-            const em = localStorage.getItem("annEmail");
-            annToast("Sign-in link detected - completing sign-in" + (em ? " for " + em : "") + "...");
-            if (em) {
-                signInWithEmailLink(auth, em).then(() => {
-                    localStorage.removeItem("annEmail");
-                    history.replaceState({}, "", window.location.pathname);
-                    annToast("You are signed in as " + em, 5000);
-                }).catch((err) => {
-                    console.error("Sign-in link completion failed:", err);
-                    localStorage.removeItem("annEmail");
-                    history.replaceState({}, "", window.location.pathname);
-                    annToast("Sign-in failed: " + ((err && err.code) || "unknown"), 8000);
+    <script>
+        // Email-link sign-in completion. Classic JS, no module imports; loads Firebase compat
+        // build on demand only when the URL actually carries a sign-in link.
+        (function () {
+            var q = new URLSearchParams(window.location.search);
+            if (!(q.get('oobCode') && q.get('mode') === 'signIn')) return;
+            function toast(text, ms) {
+                var t = document.createElement('div');
+                t.textContent = text;
+                t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:99999;background:#0f172a;border:1px solid #1e293b;color:#f1f5f9;padding:12px 20px;border-radius:12px;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.5);max-width:90vw;';
+                document.body.appendChild(t);
+                if (ms) setTimeout(function () { t.remove(); }, ms);
+            }
+            toast('Sign-in link detected - finishing sign-in...');
+            var em = null;
+            try { em = localStorage.getItem('annEmail'); } catch (e) {}
+            function attempt() {
+                if (!window.firebase || !firebase.auth) { toast('Sign-in failed: Firebase did not load', 8000); return; }
+                if (em) {
+                    firebase.auth().signInWithEmailLink(em).then(function () {
+                        try { localStorage.removeItem('annEmail'); } catch (e) {}
+                        history.replaceState({}, '', window.location.pathname);
+                        toast('You are signed in as ' + em, 5000);
+                    }).catch(function (err) {
+                        console.error('Sign-in link completion failed:', err);
+                        toast('Sign-in failed: ' + ((err && err.code) || 'unknown'), 8000);
+                        window.__annPendingLink = true;
+                        if (window.openAnnAuth) window.openAnnAuth();
+                        var msg = document.getElementById('ann-auth-msg');
+                        if (msg) msg.textContent = "Sign-in link didn't work (" + ((err && err.code) || 'unknown') + '). Enter your email below to finish signing in.';
+                    });
+                } else {
                     window.__annPendingLink = true;
                     if (window.openAnnAuth) window.openAnnAuth();
-                    const msg = document.getElementById('ann-auth-msg');
-                    if (msg) msg.textContent = "Sign-in link didn't work (" + ((err && err.code) || "unknown") + "). Enter your email below to finish signing in.";
-                });
-            } else {
-                // Link clicked, but we don't know which email it was for (different browser/cleared storage).
-                window.__annPendingLink = true;
-                if (window.openAnnAuth) window.openAnnAuth();
-                const msg = document.getElementById('ann-auth-msg');
-                if (msg) msg.textContent = "Almost there! Enter your email below to finish signing in - no new email needed.";
+                    var msg = document.getElementById('ann-auth-msg');
+                    if (msg) msg.textContent = 'Almost there! Enter your email below to finish signing in - no new email needed.';
+                }
             }
-        }
+            function loadCompat() {
+                var s1 = document.createElement('script');
+                s1.src = 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';
+                s1.onload = function () {
+                    var s2 = document.createElement('script');
+                    s2.src = 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js';
+                    s2.onload = function () {
+                        try { firebase.initializeApp({ apiKey: "AIzaSyBZAIllVSGE-kC6MZhL6SFXtohv1OGPAvE", authDomain: "regulated-pulse.firebaseapp.com", projectId: "regulated-pulse", storageBucket: "regulated-pulse.firebasestorage.app", messagingSenderId: "386384989644", appId: "1:386384989644:web:4e962b8ea20ffaf621e169", measurementId: "G-226FYER9J4" }); } catch (e) {}
+                        attempt();
+                    };
+                    s2.onerror = function () { toast('Sign-in failed: could not load Firebase', 8000); };
+                    document.head.appendChild(s2);
+                };
+                s1.onerror = function () { toast('Sign-in failed: could not load Firebase', 8000); };
+                document.head.appendChild(s1);
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadCompat);
+            else loadCompat();
+        })();
     </script>
     <!-- Floating Audio Player Bar -->
     <div id="floating-audio-bar" class="floating-audio-bar">
