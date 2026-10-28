@@ -6515,7 +6515,21 @@
                 window.openAnnAuth();
             } catch (err) {
                 console.error(err);
-                msg.textContent = "Could not set password (" + ((err && err.code) || "unknown") + ").";
+                const code = (err && err.code) || "unknown";
+                if (code === "auth/requires-recent-login") {
+                    try {
+                        const em = annAuth.currentUser.email;
+                        await sendSignInLinkToEmail(annAuth, em, { url: "https://theregulatedpulse.com/index.html", handleCodeInApp: true });
+                        try { localStorage.setItem("annEmail", em); } catch (e) {}
+                        try { sessionStorage.setItem("annPendingPw", pw); } catch (e) {}
+                        msg.textContent = "For security, please confirm it's you: we sent a fresh sign-in link to your email. Click it and your password will be saved automatically.";
+                    } catch (e2) {
+                        console.error(e2);
+                        msg.textContent = "Could not send confirmation link (" + ((e2 && e2.code) || "unknown") + ").";
+                    }
+                } else {
+                    msg.textContent = "Could not set password (" + code + ").";
+                }
             }
             btn.disabled = false;
         };
@@ -6571,7 +6585,19 @@
                     firebase.auth().signInWithEmailLink(em).then(function () {
                         try { localStorage.removeItem('annEmail'); } catch (e) {}
                         history.replaceState({}, '', window.location.pathname);
-                        toast('You are signed in as ' + em, 5000);
+                        var pendingPw = null;
+                        try { pendingPw = sessionStorage.getItem('annPendingPw'); } catch (e) {}
+                        if (pendingPw) {
+                            try { sessionStorage.removeItem('annPendingPw'); } catch (e) {}
+                            firebase.auth().currentUser.updatePassword(pendingPw).then(function () {
+                                toast('You are signed in as ' + em + ' - password saved! You can now sign in with email + password.', 7000);
+                            }).catch(function (err) {
+                                console.error(err);
+                                toast('Signed in as ' + em + ', but password save failed: ' + ((err && err.code) || 'unknown'), 8000);
+                            });
+                        } else {
+                            toast('You are signed in as ' + em, 5000);
+                        }
                     }).catch(function (err) {
                         console.error('Sign-in link completion failed:', err);
                         toast('Sign-in failed: ' + ((err && err.code) || 'unknown'), 8000);
