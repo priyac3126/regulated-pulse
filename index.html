@@ -6001,7 +6001,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, increment, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, increment, getDocs, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
         import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider, OAuthProvider, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         const firebaseConfig = {
@@ -6379,6 +6379,25 @@
         // ---- passwordless auth ----
         const annAuth = getAuth(app);
 
+        // Save/restore theme preference for signed-in readers
+        window.__annSaveThemePref = async function (lightOn) {
+            if (!window.annUser) return;
+            try {
+                await setDoc(doc(db, "userPrefs", window.annUser.uid), { lightMode: !!lightOn }, { merge: true });
+            } catch (err) { console.error("Failed to save theme preference:", err); }
+        };
+        async function annRestoreThemePref(uid) {
+            try {
+                const snap = await getDoc(doc(db, "userPrefs", uid));
+                if (!snap.exists()) return;
+                const wantLight = snap.data().lightMode;
+                if (typeof wantLight !== "boolean") return;
+                const isLight = document.body.classList.contains('light-mode');
+                if (wantLight && !isLight) window.enterLightMode();
+                if (!wantLight && isLight) window.exitLightMode();
+            } catch (err) { console.error("Failed to restore theme preference:", err); }
+        }
+
         onAuthStateChanged(annAuth, (u) => {
             const prevEmail = window.annUser && window.annUser.email;
             if (u && u.email) {
@@ -6386,6 +6405,7 @@
                 const firstSignIn = u.metadata && u.metadata.creationTime && u.metadata.lastSignInTime
                     && Math.abs(new Date(u.metadata.creationTime) - new Date(u.metadata.lastSignInTime)) < 5000;
                 window.annUser = { email: u.email, uid: u.uid, __firstSignIn: firstSignIn && !external, __externalProvider: external };
+                annRestoreThemePref(u.uid);
             } else {
                 window.annUser = null;
                 window.__annPasswordSaved = false;
@@ -6717,11 +6737,13 @@
         window.enterLightMode = function () {
             document.body.classList.add('light-mode');
             try { localStorage.setItem('lightModeOn', '1'); } catch (e) {}
+            if (window.__annSaveThemePref) window.__annSaveThemePref(true);
             window.closeThemePop();
         };
         window.exitLightMode = function () {
             document.body.classList.remove('light-mode');
             try { localStorage.removeItem('lightModeOn'); } catch (e) {}
+            if (window.__annSaveThemePref) window.__annSaveThemePref(false);
         };
         window.closeThemePop = function () {
             const modal = document.getElementById('theme-pop');
