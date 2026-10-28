@@ -6002,7 +6002,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getFirestore, collection, addDoc, query, where, onSnapshot, serverTimestamp, doc, updateDoc, deleteDoc, increment, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-        import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, isSignInWithEmailLink, sendSignInLinkToEmail, signInWithEmailLink, onAuthStateChanged, signOut, signInWithPopup, GoogleAuthProvider, OAuthProvider, updatePassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBZAIllVSGE-kC6MZhL6SFXtohv1OGPAvE",
@@ -6380,7 +6380,17 @@
         const annAuth = getAuth(app);
 
         onAuthStateChanged(annAuth, (u) => {
-            window.annUser = (u && u.email) ? { email: u.email, uid: u.uid } : null;
+            const prevEmail = window.annUser && window.annUser.email;
+            if (u && u.email) {
+                const external = (u.providerData || []).some(p => p.providerId === 'google.com' || p.providerId === 'apple.com');
+                const firstSignIn = u.metadata && u.metadata.creationTime && u.metadata.lastSignInTime
+                    && Math.abs(new Date(u.metadata.creationTime) - new Date(u.metadata.lastSignInTime)) < 5000;
+                window.annUser = { email: u.email, uid: u.uid, __firstSignIn: firstSignIn && !external, __externalProvider: external };
+            } else {
+                window.annUser = null;
+                window.__annPasswordSaved = false;
+                window.__annPasswordSkipped = false;
+            }
             const art = document.querySelector('#blog-post-view > article:not(.hidden)');
             if (window.annUser && window.__annAfterAuth) {
                 const done = window.__annAfterAuth;
@@ -6390,9 +6400,15 @@
                 return;
             }
             if (art) window.renderAnnotations(art.id.replace(/-container$/, ""));
-            // refresh modal view if open
+            // refresh modal view if open; pop it open if the reader should set a password
             const modal = document.getElementById('ann-auth-modal');
-            if (modal && modal.classList.contains('show')) window.openAnnAuth();
+            const needsPassword = window.annUser && window.annUser.__firstSignIn && !window.annUser.__externalProvider;
+            if (modal && modal.classList.contains('show')) {
+                document.getElementById('ann-user-email').textContent = window.annUser ? window.annUser.email : "";
+                window.openAnnAuth();
+            } else if (needsPassword) {
+                window.openAnnAuth();
+            }
         });
 
         window.annSendLink = async function () {
@@ -6435,6 +6451,30 @@
                 msg.textContent = "Could not send the link (" + code + "). " + (hints[code] || "Check the browser console for details.");
                 btn.disabled = false;
                 btn.textContent = "Send me a login link";
+            }
+        };
+
+        window.annGoogleSignIn = async function () {
+            const msg = document.getElementById('ann-auth-msg');
+            try {
+                await signInWithPopup(annAuth, new GoogleAuthProvider());
+            } catch (err) {
+                console.error(err);
+                const code = (err && err.code) || "unknown";
+                if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") return;
+                msg.textContent = "Google sign-in failed (" + code + "). " + (code === "auth/unauthorized-domain" ? "Add this domain in Firebase > Authentication > Settings > Authorized domains." : code === "auth/operation-not-allowed" ? "Enable the Google provider in Firebase console." : "");
+            }
+        };
+
+        window.annAppleSignIn = async function () {
+            const msg = document.getElementById('ann-auth-msg');
+            try {
+                await signInWithPopup(annAuth, new OAuthProvider("apple.com"));
+            } catch (err) {
+                console.error(err);
+                const code = (err && err.code) || "unknown";
+                if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") return;
+                msg.textContent = "Apple sign-in failed (" + code + "). " + (code === "auth/operation-not-allowed" || code === "auth/configuration-not-found" ? "Apple sign-in needs to be enabled in Firebase with an Apple Developer account." : "");
             }
         };
 
@@ -6898,11 +6938,40 @@
             const modal = document.getElementById('ann-auth-modal');
             if (!modal) return;
             modal.classList.add('show');
-            const sv = document.getElementById('ann-signed-out-view'), si = document.getElementById('ann-signed-in-view');
-            if (window.annUser) {
-                document.getElementById('ann-user-email').textContent = window.annUser.email;
-                sv.style.display = 'none'; si.style.display = 'block';
-            } else { sv.style.display = 'block'; si.style.display = 'none'; }
+            const sv = document.getElementById('ann-signed-out-view'), si = document.getElementById('ann-signed-in-view'), sp = document.getElementById('ann-set-password-view');
+            const u = window.annUser;
+            let firstTime = u && u.__firstSignIn && !(u.__externalProvider);
+            if (window.__annPasswordSaved || window.__annPasswordSkipped) firstTime = false;
+            if (!u) {
+                sv.style.display = 'block'; si.style.display = 'none'; sp.style.display = 'none';
+            } else if (firstTime) {
+                sv.style.display = 'none'; si.style.display = 'none'; sp.style.display = 'block';
+            } else {
+                sv.style.display = 'none'; si.style.display = 'block'; sp.style.display = 'none';
+            }
+        };
+        window.annSkipPassword = function () {
+            window.__annPasswordSkipped = true;
+            window.openAnnAuth();
+        };
+        window.annSavePassword = async function () {
+            const input = document.getElementById('ann-password-input');
+            const msg = document.getElementById('ann-password-msg');
+            const btn = document.getElementById('ann-save-password-btn');
+            const pw = (input && input.value) || "";
+            if (pw.length < 6) { msg.textContent = "Please use at least 6 characters."; return; }
+            btn.disabled = true;
+            try {
+                await updatePassword(annAuth.currentUser, pw);
+                window.__annPasswordSaved = true;
+                msg.textContent = "";
+                input.value = "";
+                window.openAnnAuth();
+            } catch (err) {
+                console.error(err);
+                msg.textContent = "Could not set password (" + ((err && err.code) || "unknown") + ").";
+            }
+            btn.disabled = false;
         };
         window.annCloseAuth = function () { const modal = document.getElementById('ann-auth-modal'); if (modal) modal.classList.remove('show'); };
         window.annSignOut = function () { if (window.annDoSignOut) window.annDoSignOut(); };
@@ -6959,7 +7028,24 @@
                 <input id="ann-email-input" type="email" placeholder="you@example.com" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px; text-align: center;">
                 <button id="ann-send-link-btn" onclick="window.annSendLink()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Send me a login link</button>
                 <p id="ann-auth-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
+                <div style="display: flex; align-items: center; gap: 10px; margin: 14px 0;">
+                    <span style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></span>
+                    <span style="color: rgb(100, 116, 139); font-size: 11px;">or continue with</span>
+                    <span style="flex: 1; height: 1px; background: rgba(255,255,255,0.1);"></span>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button onclick="window.annGoogleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #f8fafc; color: #0f172a; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.4a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.6-5.2 3.6-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg>Google</button>
+                    <button onclick="window.annAppleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="15" height="17" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-4zM11.7 3.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.8-1.5z"/></svg>Apple</button>
+                </div>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Maybe later &mdash; keep highlights for this visit only</button>
+            </div>
+            <div id="ann-set-password-view" style="display: none;">
+                <h3 style="margin: 0 0 8px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Set a password</h3>
+                <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">You signed in with an email link. Add a password so you can also sign in with just your email and password next time.</p>
+                <input id="ann-password-input" type="password" placeholder="Choose a password (6+ characters)" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                <button id="ann-save-password-btn" onclick="window.annSavePassword()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Save password</button>
+                <p id="ann-password-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
+                <button onclick="window.annSkipPassword()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Not now &mdash; email links still work</button>
             </div>
             <div id="ann-signed-in-view" style="display: none;">
                 <p style="margin: 0 0 4px; color: rgb(103, 232, 249); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Signed in</p>
