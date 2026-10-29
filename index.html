@@ -6403,6 +6403,10 @@
                 await setDoc(doc(db, "userPrefs", window.annUser.uid), { lightMode: !!lightOn }, { merge: true });
             } catch (err) { console.error("Failed to save theme preference:", err); }
         };
+        window.updateFooterLogout = function () {
+            const el = document.getElementById('footer-logout');
+            if (el) el.style.display = window.annUser ? 'inline' : 'none';
+        };
         async function annRestoreThemePref(uid) {
             try {
                 const snap = await getDoc(doc(db, "userPrefs", uid));
@@ -6423,10 +6427,12 @@
                     && Math.abs(new Date(u.metadata.creationTime) - new Date(u.metadata.lastSignInTime)) < 5000;
                 window.annUser = { email: u.email, uid: u.uid, __firstSignIn: firstSignIn && !external, __externalProvider: external };
                 annRestoreThemePref(u.uid);
+                window.updateFooterLogout();
             } else {
                 window.annUser = null;
                 window.__annPasswordSaved = false;
                 window.__annPasswordSkipped = false;
+                window.updateFooterLogout();
             }
             const art = document.querySelector('#blog-post-view > article:not(.hidden)');
             if (window.annUser && window.__annAfterAuth) {
@@ -6718,7 +6724,7 @@
         </div>
     </div>
     <footer class="site-footer">
-        <p>&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a> &middot; <a class="dark-link" href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a><span class="light-back"> &middot; <a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span></p>
+        <p style="position: relative; padding-right: 200px;">&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a><span class="light-back"> &middot; <a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span><span id="footer-logout" style="display: none;"> &middot; <a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span><span style="position: absolute; right: 0; top: 0;" class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span></p>
     </footer>
     <div id="print-area"></div>
     <script>
