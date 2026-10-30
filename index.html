@@ -6396,9 +6396,25 @@
         async function annRestoreThemePref(uid) {
             try {
                 const snap = await getDoc(doc(db, "userPrefs", uid));
-                if (!snap.exists()) return;
+                const localLight = (function () { try { return localStorage.getItem('lightModeOn') === '1'; } catch (e) { return false; } })();
+                if (!snap.exists()) {
+                    // No account preference yet: adopt the pre-sign-in device choice so it's remembered on all future devices
+                    if (localLight) await setDoc(doc(db, "userPrefs", uid), { lightMode: true }, { merge: true });
+                    try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
+                    return;
+                }
                 const wantLight = snap.data().lightMode;
-                if (typeof wantLight !== "boolean") return;
+                if (typeof wantLight !== "boolean") {
+                    if (localLight) await setDoc(doc(db, "userPrefs", uid), { lightMode: true }, { merge: true });
+                    try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
+                    return;
+                }
+                try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
+                // Mirror the account preference onto this device so the prompt never shows here either
+                try {
+                    if (wantLight) localStorage.setItem('lightModeOn', '1');
+                    else localStorage.removeItem('lightModeOn');
+                } catch (e) {}
                 const isLight = document.body.classList.contains('light-mode');
                 if (wantLight && !isLight) window.enterLightMode();
                 if (!wantLight && isLight) window.exitLightMode();
@@ -6754,18 +6770,22 @@
         // ---------- Light mode prompt (15s) ----------
         window.enterLightMode = function () {
             document.body.classList.add('light-mode');
-            try { localStorage.setItem('lightModeOn', '1'); } catch (e) {}
+            try { localStorage.setItem('lightModeOn', '1'); localStorage.setItem('lightPromptAnswered', '1'); localStorage.setItem('lightModeChoice', 'light'); } catch (e) {}
             if (window.__annSaveThemePref) window.__annSaveThemePref(true);
             window.closeThemePop();
         };
         window.exitLightMode = function () {
             document.body.classList.remove('light-mode');
-            try { localStorage.removeItem('lightModeOn'); } catch (e) {}
+            try { localStorage.removeItem('lightModeOn'); localStorage.setItem('lightPromptAnswered', '1'); localStorage.setItem('lightModeChoice', 'dark'); } catch (e) {}
             if (window.__annSaveThemePref) window.__annSaveThemePref(false);
         };
         window.closeThemePop = function () {
             const modal = document.getElementById('theme-pop');
             if (modal) modal.classList.remove('show');
+        };
+        window.keepDarkChoice = function () {
+            try { localStorage.setItem('lightPromptAnswered', '1'); localStorage.setItem('lightModeChoice', 'dark'); } catch (e) {}
+            window.closeThemePop();
         };
         try {
             if (localStorage.getItem('lightModeOn') === '1') document.body.classList.add('light-mode');
@@ -6837,7 +6857,8 @@
         buildShareBars();
         setTimeout(() => {
             try {
-                if (localStorage.getItem('lightModeOn') === '1' || sessionStorage.getItem('lightPromptShown') === '1') return;
+                if (localStorage.getItem('lightPromptAnswered') === '1') return;
+                if (window.annUser) return; // signed in - account preference applies, never ask
                 sessionStorage.setItem('lightPromptShown', '1');
             } catch (e) {}
             const pop = document.getElementById('theme-pop');
@@ -7114,7 +7135,7 @@
             <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#38b6c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto 12px;" aria-hidden="true"><rect x="1" y="6" width="22" height="12" rx="6"></rect><circle cx="16" cy="12" r="4" fill="rgba(56, 182, 201, 0.35)"></circle><path d="M5.5 9.5v5M8.5 9.5v5"></path></svg>
             <h3 style="margin: 0 0 6px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Prefer light mode?</h3>
             <div style="display: flex; gap: 12px; margin-top: 18px;">
-                <button onclick="window.closeThemePop()" style="flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: rgba(255,255,255,0.05); color: rgb(226, 232, 240);">Keep dark</button>
+                <button onclick="window.keepDarkChoice()" style="flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: rgba(255,255,255,0.05); color: rgb(226, 232, 240);">Keep dark</button>
                 <button onclick="window.enterLightMode()" style="flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Switch to light</button>
             </div>
         </div>
