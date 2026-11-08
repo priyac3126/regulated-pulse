@@ -497,24 +497,8 @@
             border-color: var(--ep-accent, #448bff) !important;
             box-shadow: 0 6px 18px rgba(21, 40, 64, 0.22) !important;
         }
-        /* Light mode: subtle tinted accents on sidebar post links */
-        body.light-mode .shelf-book-btn {
-            background: rgba(68, 139, 255, 0.08);
-            border: 1px solid rgba(68, 139, 255, 0.28);
-            padding: 0.45rem 0.65rem;
-            margin: -0.45rem;
-        }
-        body.light-mode .shelf-book-btn:hover {
-            background: rgba(68, 139, 255, 0.18);
-            border-color: rgba(68, 139, 255, 0.75);
-            box-shadow: 0 2px 10px rgba(68, 139, 255, 0.15);
-        }
-        body.light-mode .shelf-book-btn.shelf-active {
-            background: rgba(31, 166, 154, 0.16);
-            border-color: rgba(31, 166, 154, 0.85);
-            box-shadow: 0 2px 10px rgba(31, 166, 154, 0.18);
-        }
-        body.light-mode .shelf-book-btn.shelf-active .text-sm { color: #4fb6ae !important; }
+        /* Light mode: plain "On the Shelf" links, no card look */
+        body.light-mode .shelf-book-btn { border: none; }
         /* Light mode: bright blue heartbeat pulse on the loading screen */
         body.light-mode #intro-overlay .pulse-logo polyline { stroke: #93c5fd !important; }
         /* Light mode: navy & bright blue accents on navigation and branding */
