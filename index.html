@@ -453,19 +453,19 @@
         }
         body.light-mode :focus { outline-color: #81b2ff; }
         body.light-mode :focus-visible { outline-color: #81b2ff; }
-        /* Light mode: color-coded accents on article cards (pastel values render true color under the invert filter) */
+        /* Light mode: richer tinted gradients on article cards */
         body.light-mode .card-violet,
         body.light-mode .card-education,
-        body.light-mode .card-med-ed { border-left-color: #67e8f9 !important; }
+        body.light-mode .card-med-ed { background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0.05) 60%, rgba(6, 182, 212, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
         body.light-mode .card-book,
-        body.light-mode .card-quote { border-left-color: #c4b5fd !important; }
+        body.light-mode .card-quote { background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(139, 92, 246, 0.05) 60%, rgba(139, 92, 246, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
         body.light-mode .card-law,
-        body.light-mode .card-epic { border-left-color: #fca5a5 !important; }
-        body.light-mode .card-interview { border-left-color: #6ee7b7 !important; }
-        body.light-mode .card-fuchsia { border-left-color: #f5d0fe !important; }
-        body.light-mode .card-welcome { border-left-color: #99f6e4 !important; }
-        body.light-mode .card-inspiration { border-left-color: #fde047 !important; }
-        body.light-mode .card-slate { border-left-color: #93c5fd !important; }
+        body.light-mode .card-epic { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.05) 60%, rgba(239, 68, 68, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
+        body.light-mode .card-interview { background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.05) 60%, rgba(16, 185, 129, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
+        body.light-mode .card-fuchsia { background: linear-gradient(135deg, rgba(217, 70, 239, 0.2) 0%, rgba(217, 70, 239, 0.05) 60%, rgba(217, 70, 239, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
+        body.light-mode .card-welcome { background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(20, 184, 166, 0.05) 60%, rgba(20, 184, 166, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
+        body.light-mode .card-inspiration { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.05) 60%, rgba(245, 158, 11, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
+        body.light-mode .card-slate { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.05) 60%, rgba(59, 130, 246, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
         body.light-mode .card-violet:hover,
         body.light-mode .card-education:hover,
         body.light-mode .card-med-ed:hover { border-color: #67e8f9 !important; box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px rgba(103, 232, 249, 0.2) !important; }
@@ -519,16 +519,16 @@
         body.light-mode #intro-overlay .pulse-logo polyline { stroke: #ef4444 !important; }
         /* Light mode: navy & bright blue accents on navigation and branding */
         body.light-mode .pulse-logo polyline { stroke: #448bff !important; }
-        body.light-mode .nav-link-vertical { color: #5b87e6; }
+        body.light-mode .nav-link-vertical { color: #164fa2; }
         body.light-mode .nav-link-vertical:hover {
-            color: #448bff;
+            color: #0c3a80;
             background: rgba(68, 139, 255, 0.1);
         }
         body.light-mode .nav-link-vertical.active,
         body.light-mode .mobile-dock-btn.active {
-            color: #2f6bff !important;
-            background: rgba(68, 139, 255, 0.22) !important;
-            border-color: rgba(68, 139, 255, 0.5) !important;
+            color: #0c3a80 !important;
+            background: rgba(68, 139, 255, 0.28) !important;
+            border-color: rgba(68, 139, 255, 0.55) !important;
             box-shadow: 0 0 14px rgba(68, 139, 255, 0.28) !important;
         }
         .light-back { display: none; }
