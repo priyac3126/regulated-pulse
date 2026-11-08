@@ -500,7 +500,12 @@
         }
         /* Light mode: plain "On the Shelf" links, no card look */
         body.light-mode .shelf-book-btn { border: none; }
-        /* Light mode: warm true-blue heartbeat pulse on the loading screen */
+        /* Light mode: un-filtered loading screen so the pulse renders true blues */
+        body.light-mode #intro-overlay {
+            background: #dfe8f4 !important;
+            filter: invert(1) hue-rotate(180deg);
+        }
+        body.light-mode #intro-overlay .intro-title { color: #0d1523 !important; }
         body.light-mode #intro-overlay .pulse-logo polyline { stroke: url(#intro-pulse-grad) !important; }
         /* Light mode: navy & bright blue accents on navigation and branding */
         body.light-mode .pulse-logo polyline { stroke: #93c5fd !important; }
@@ -1721,8 +1726,8 @@
         <svg width="240" height="240" viewBox="0 0 160 160" fill="none" aria-hidden="true" class="pulse-logo mb-6">
             <defs>
                 <linearGradient id="intro-pulse-grad" gradientUnits="userSpaceOnUse" x1="20" y1="80" x2="140" y2="80">
-                    <stop offset="0" stop-color="#06b6d4"></stop>
-                    <stop offset="1" stop-color="#4f74a8"></stop>
+                    <stop offset="0" stop-color="#1f56d3"></stop>
+                    <stop offset="1" stop-color="#2b57a8"></stop>
                 </linearGradient>
             </defs>
             <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
