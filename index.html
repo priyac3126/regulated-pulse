@@ -513,6 +513,11 @@
         }
         /* Light mode: plain "On the Shelf" links, no card look */
         body.light-mode .shelf-book-btn { border: none; }
+        /* Light mode: pale white fade toward right edge on all postcards */
+        body.light-mode .card-premium::before {
+            background: linear-gradient(270deg, rgba(206, 222, 246, 0.45) 0%, rgba(206, 222, 246, 0.14) 38%, transparent 62%);
+            opacity: 1;
+        }
         /* Light mode: un-filtered loading screen so the pulse renders true blues */
         body.light-mode #intro-overlay {
             background: #dfe8f4 !important;
