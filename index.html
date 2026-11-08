@@ -255,6 +255,16 @@
         .site-footer a {
             overflow-wrap: anywhere;
         }
+        .site-footer .footer-mode-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .site-footer .footer-mode-toggle > span {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
         @media (max-width: 1024px) {
             .site-footer .footer-meta-row {
                 flex-direction: column;
@@ -6836,7 +6846,7 @@
         };
         window.updateFooterLogout = function () {
             const el = document.getElementById('footer-logout');
-            if (el) el.style.display = window.annUser ? 'inline' : 'none';
+            if (el) el.style.display = window.annUser ? '' : 'none';
         };
         async function annRestoreThemePref(uid) {
             try {
@@ -7173,7 +7183,7 @@
     <footer class="site-footer">
         <p class="footer-line footer-meta-row">
             <span class="footer-copy">&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
-            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span><span id="footer-logout" style="display: none;"> &middot; <a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
+            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
         </p>
     </footer>
     <div id="print-area"></div>
