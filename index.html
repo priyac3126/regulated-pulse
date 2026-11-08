@@ -73,6 +73,16 @@
         #intro-overlay .pulse-logo polyline {
             animation: none;
         }
+        #intro-overlay .pulse-logo {
+            width: 320px;
+            height: 320px;
+        }
+        @media (max-width: 767px) {
+            #intro-overlay .pulse-logo {
+                width: 210px;
+                height: 210px;
+            }
+        }
 
         #intro-overlay .pulse-logo polyline.welcome-pulse-active {
             animation: heartbeat 2.0s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards !important;
@@ -405,11 +415,11 @@
         body.light-mode .site-footer p { color: #7b93b1; }
         body.light-mode .text-cyan-400,
         body.light-mode .text-cyan-300,
-        body.light-mode .text-cyan-500 { color: #079bc1 !important; }
+        body.light-mode .text-cyan-500 { color: #06b6d4 !important; }
         body.light-mode .bg-cyan-500,
-        body.light-mode .bg-cyan-400 { background-color: #079bc1 !important; }
+        body.light-mode .bg-cyan-400 { background-color: #06b6d4 !important; }
         body.light-mode .bg-cyan-500:hover,
-        body.light-mode .bg-cyan-400:hover { background-color: #4cb2ce !important; }
+        body.light-mode .bg-cyan-400:hover { background-color: #448bff !important; }
         body.light-mode .site-footer a { color: #4fb6ae !important; }
         body.light-mode .blog-post-content blockquote {
             border-left-color: #448bff !important;
@@ -438,7 +448,7 @@
         body.light-mode .text-slate-500 { color: #7b93b1 !important; }
         body.light-mode #blog-post-view article h2 { color: #bedaff !important; }
         body.light-mode #blog-post-view article form button[type="submit"] {
-            background: linear-gradient(135deg, #448bff, #81b2ff) !important;
+            background: linear-gradient(135deg, #06b6d4, #448bff) !important;
             box-shadow: 0 4px 14px rgba(68, 139, 255, 0.25) !important;
         }
         body.light-mode :focus { outline-color: #81b2ff; }
@@ -1728,7 +1738,7 @@
                 stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
         </svg>
-        <div class="intro-title text-center text-white font-bold text-4xl md:text-6xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse</div>
+        <div class="intro-title text-center text-white font-bold text-4xl md:text-7xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse</div>
     </div>
 
     <div id="main-content" class="opacity-0 transition-opacity duration-500" tabindex="-1">
