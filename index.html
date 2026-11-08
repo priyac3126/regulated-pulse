@@ -488,18 +488,22 @@
         body.light-mode #card-ep4-click { background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.05) 60%, rgba(239, 68, 68, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
         body.light-mode #card-ep5-click { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.05) 60%, rgba(245, 158, 11, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
         body.light-mode #card-ep6-click { background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.05) 60%, rgba(16, 185, 129, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
-        body.light-mode #card-ep1-click { --ep-glow: rgba(59, 130, 246, 0.25); }
-        body.light-mode #card-ep2-click { --ep-glow: rgba(103, 232, 249, 0.22); }
+        body.light-mode #card-ep1-click { --ep-overlay: rgba(59, 130, 246, 0.26); --ep-accent: #93c5fd; --ep-glow: rgba(59, 130, 246, 0.25); }
+        body.light-mode #card-ep2-click { --ep-overlay: rgba(6, 182, 212, 0.26); --ep-accent: #67e8f9; --ep-glow: rgba(103, 232, 249, 0.22); }
         body.light-mode #card-ep3-click,
-        body.light-mode #card-ep7-click { --ep-glow: rgba(196, 181, 253, 0.25); }
-        body.light-mode #card-ep4-click { --ep-glow: rgba(252, 165, 165, 0.22); }
-        body.light-mode #card-ep5-click { --ep-glow: rgba(253, 224, 71, 0.22); }
-        body.light-mode #card-ep6-click { --ep-glow: rgba(110, 231, 183, 0.22); }
+        body.light-mode #card-ep7-click { --ep-overlay: rgba(139, 92, 246, 0.26); --ep-accent: #c4b5fd; --ep-glow: rgba(196, 181, 253, 0.25); }
+        body.light-mode #card-ep4-click { --ep-overlay: rgba(239, 68, 68, 0.26); --ep-accent: #fca5a5; --ep-glow: rgba(252, 165, 165, 0.22); }
+        body.light-mode #card-ep5-click { --ep-overlay: rgba(245, 158, 11, 0.26); --ep-accent: #fde047; --ep-glow: rgba(253, 224, 71, 0.22); }
+        body.light-mode #card-ep6-click { --ep-overlay: rgba(16, 185, 129, 0.26); --ep-accent: #6ee7b7; --ep-glow: rgba(110, 231, 183, 0.22); }
+        body.light-mode [id^="card-ep"]:not(:hover):not(:focus-visible) {
+            border-width: 0 0 0 0 !important;
+            background: linear-gradient(135deg, transparent 0%, transparent 100%) !important;
+        }
         body.light-mode [id^="card-ep"]:hover,
         body.light-mode [id^="card-ep"]:focus-visible {
             border-width: 1px !important;
             border-color: var(--ep-accent, #448bff) !important;
-            background: linear-gradient(135deg, var(--ep-bg-hover, rgba(68, 139, 255, 0.16)) 0%, var(--ep-bg-hover-mid, rgba(68, 139, 255, 0.04)) 60%, rgba(68, 139, 255, 0) 100%), linear-gradient(135deg, #04080c, #0f1824) !important;
+            background: linear-gradient(135deg, var(--ep-overlay, rgba(68, 139, 255, 0.16)) 0%, var(--ep-overlay, rgba(68, 139, 255, 0.16)) 0%) !important;
             box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px var(--ep-glow, rgba(68, 139, 255, 0.2)) !important;
         }
         body.light-mode [id^="card-ep"]:active {
@@ -4397,7 +4401,7 @@
             </section>
 
             <section id="section-podcast" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-podcast">
-                <h2 class="mb-2 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse Podcast</h2>
+                <h2 class="mb-2 text-white font-semibold text-2xl md:text-3xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse Podcast</h2>
                 <p class="text-sm mb-8 text-slate-400">Conversations at the intersection of healthcare, technology, law, and leadership.</p>
 
                 <!-- Streaming Platform Links -->
