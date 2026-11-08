@@ -1,0 +1,171 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // This security rules file assumes the following data structures:
+    //
+    // Collection: comments
+    // Document ID: Auto-generated Firestore document ID
+    // Fields:
+    //   - postId: string (required, 1-100 chars, immutable) - Slug or identifier of the article
+    //   - name: string (required, 1-100 chars, immutable) - Commenter display name
+    //   - email: string (required, 3-254 chars, valid email format, immutable) - Commenter email
+    //   - text: string (required, 1-5000 chars, immutable) - Comment text body
+    //   - createdAt: timestamp (required, serverTimestamp or recent, immutable) - Timestamp when created
+    //   - likes: int / number (required, starts at 0, mutable via atomic +/-1) - Total likes counter
+    //   - replyTo: string (optional, 1-100 chars, immutable) - Document ID of parent comment
+    //   - replyToName: string (optional, 0-100 chars, immutable) - Display name of parent author
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Standard Helper Functions
+    // ===============================================================
+
+    // Check if the user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if user owns the resource (for user-owned documents)
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Check if user is owner based on document's uid field
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.uid;
+    }
+
+    // Verify UID hasn't been tampered with on create
+    function uidUnchanged() {
+      return !('uid' in request.resource.data) ||
+        request.resource.data.uid == request.auth.uid;
+    }
+
+    // Ensure uid field is not modified on update
+    function uidNotModified() {
+      return !('uid' in request.resource.data) ||
+        request.resource.data.uid == resource.data.uid;
+    }
+
+    // Validate required fields exist
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    // Validate allowed fields
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    // Validate string length
+    function validStringLength(field, minLen, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() >= minLen &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    // Validate email format
+    function isValidEmail(email) {
+      return email is string &&
+        email.size() >= 3 &&
+        email.size() <= 254 &&
+        email.matches('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,}$');
+    }
+
+    // Validate immutable fields remain unchanged
+    function areImmutableFieldsUnchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    // Validate that a timestamp is recent (within 5 minutes, allowing 1 minute forward clock skew)
+    function isRecent(time) {
+      return time is timestamp &&
+        time > request.time - duration.value(5, 'm') &&
+        time <= request.time + duration.value(1, 'm');
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    // Validate full comment document structure (used in both create and update)
+    function isValidComment(data) {
+      let requiredFields = ['postId', 'name', 'email', 'text', 'createdAt', 'likes'];
+      let allowedFields = ['postId', 'name', 'email', 'text', 'createdAt', 'likes', 'replyTo', 'replyToName'];
+
+      return data.keys().hasAll(requiredFields) &&
+        data.keys().hasOnly(allowedFields) &&
+        data.postId is string &&
+        data.postId.size() > 0 &&
+        data.postId.size() <= 100 &&
+        data.name is string &&
+        data.name.size() > 0 &&
+        data.name.size() <= 100 &&
+        data.email is string &&
+        isValidEmail(data.email) &&
+        data.text is string &&
+        data.text.size() > 0 &&
+        data.text.size() <= 5000 &&
+        data.createdAt is timestamp &&
+        (data.likes is int || data.likes is number) &&
+        data.likes >= 0 &&
+        (!('replyTo' in data) || (data.replyTo is string && data.replyTo.size() > 0 && data.replyTo.size() <= 100)) &&
+        (!('replyToName' in data) || (data.replyToName is string && data.replyToName.size() <= 100));
+    }
+
+    // Validate creation timestamp
+    function isValidCreatedAt(time) {
+      return time is timestamp &&
+        (time == request.time || isRecent(time));
+    }
+
+    // Validate atomic like updates (+1 or -1) while locking all other fields
+    function isLikeUpdate() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes']) &&
+        (request.resource.data.likes is int || request.resource.data.likes is number) &&
+        (resource.data.likes is int || resource.data.likes is number) &&
+        math.abs(request.resource.data.likes - resource.data.likes) == 1 &&
+        request.resource.data.likes >= 0 &&
+        areImmutableFieldsUnchanged(['postId', 'name', 'email', 'text', 'createdAt']);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    match /comments/{commentId} {
+      // Anyone can read blog comments (public discussion)
+      allow read: if true;
+
+      // Anyone can submit a new comment as long as it conforms to the strict schema
+      allow create: if isValidComment(request.resource.data) &&
+                       isValidCreatedAt(request.resource.data.createdAt) &&
+                       request.resource.data.likes == 0;
+
+      // HARDENED UPDATE (Recommended):
+      // Allows unauthenticated users to like or unlike a comment (+1 / -1)
+      // while preventing modification to text, name, email, postId, or createdAt.
+      allow update: if isValidComment(request.resource.data) && isLikeUpdate();
+
+      // OPTION B: PERMISSIVE GENERAL UPDATE (Alternative)
+      // If you intentionally want visitors to edit their comment text/name without authentication,
+      // you could use the following rule instead of the hardened rule above:
+      //
+      // allow update: if isValidComment(request.resource.data) &&
+      //                  areImmutableFieldsUnchanged(['postId', 'createdAt']);
+      //
+      // (WARNING: Without authentication, anyone could edit any visitor's comment.
+      //  The hardened isLikeUpdate() rule above is strongly recommended).
+
+      // Comments cannot be deleted by clients
+      allow delete: if false;
+    }
+  }
+}

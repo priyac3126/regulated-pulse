@@ -239,6 +239,39 @@
             text-decoration: none;
         }
         .site-footer a:hover { text-decoration: underline; }
+        .site-footer .footer-line { padding: 0; }
+        .site-footer .footer-line + .footer-line { margin-top: 0.25rem; }
+        .site-footer .footer-meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        @media (max-width: 1024px) {
+            .site-footer .footer-meta-row {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+        }
+        @media (max-width: 1024px) {
+            .site-footer {
+                padding-bottom: 8.25rem;
+            }
+            .site-footer p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .site-footer a {
+                display: inline-block;
+                padding: 0.6rem 0.95rem;
+                margin: 0.15rem 0;
+                font-size: 1rem;
+                border-radius: 0.5rem;
+            }
+            .site-footer .footer-line + .footer-line {
+                margin-top: 0;
+            }
+        }
         ::selection { background: rgba(56, 182, 201, 0.28); color: #f8fafc; }
         #sel-toolbar, #note-pop, .ann-overlay { display: none; }
         #sel-toolbar.show { display: flex !important; }
@@ -298,7 +331,96 @@
             text-align: center;
         }
         html:has(body.light-mode) { filter: invert(1) hue-rotate(180deg); background: #e9edf2 !important; }
+        body.light-mode .section-heading { font-weight: 600 !important; letter-spacing: 0 !important; }
         body.light-mode img, body.light-mode video, body.light-mode iframe { filter: invert(1) hue-rotate(180deg); }
+        /* Light mode blue rebrand: overrides use pre-image colors so the invert filter renders on-brand blues */
+        body.light-mode {
+            --pulse-cyan: #448bff;
+            --pulse-cyan-glow: rgba(68, 139, 255, 0.16);
+            --pulse-cyan-border: rgba(68, 139, 255, 0.4);
+            --pulse-cyan-border-hover: rgba(68, 139, 255, 0.85);
+        }
+        html:has(body.light-mode) { background: #dbe7f5 !important; }
+        body.light-mode {
+            background-color: #09111a !important;
+        }
+        body.light-mode ::selection { background: rgba(31, 166, 154, 0.3); }
+        body.light-mode .glass-header { background: rgba(18, 33, 53, 0.85) !important; }
+        body.light-mode .dashboard-sidebar {
+            background: rgba(21, 40, 64, 0.82) !important;
+            border-right-color: rgba(31, 166, 154, 0.18) !important;
+        }
+        body.light-mode .mobile-tab-dock { background: rgba(21, 40, 64, 0.88) !important; }
+        body.light-mode .card-premium {
+            background: linear-gradient(135deg, #04080c, #0f1824) !important;
+            border-color: #0f1824 !important;
+            box-shadow: 0 4px 20px rgba(21, 40, 64, 0.16) !important;
+        }
+        body.light-mode .card-premium:hover {
+            background: #04080c !important;
+            border-color: #008f7d !important;
+            box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28) !important;
+        }
+        body.light-mode .profile-container {
+            background: linear-gradient(135deg, #0f1824, #04080c) !important;
+            border-color: #0f1824 !important;
+        }
+        body.light-mode .podcast-detail-card {
+            background: linear-gradient(135deg, #0f1824, #04080c) !important;
+            border-color: #0f1824 !important;
+        }
+        body.light-mode .faq-card {
+            background: #04080c !important;
+            border-color: #0f1824 !important;
+        }
+        body.light-mode .floating-audio-bar {
+            background: rgba(15, 27, 41, 0.9) !important;
+            border-color: rgba(101, 163, 255, 0.15) !important;
+        }
+        body.light-mode .section-heading { color: #bedaff !important; }
+        body.light-mode .card-premium h3,
+        body.light-mode .blog-post-content h2,
+        body.light-mode .blog-post-content h3,
+        body.light-mode .welcome-hero h2 { color: #bedaff !important; }
+        body.light-mode .blog-post-content { color: #a9bdd4; }
+        body.light-mode .site-footer p { color: #7b93b1; }
+        body.light-mode .text-cyan-400,
+        body.light-mode .text-cyan-300,
+        body.light-mode .text-cyan-500 { color: #079bc1 !important; }
+        body.light-mode .bg-cyan-500,
+        body.light-mode .bg-cyan-400 { background-color: #079bc1 !important; }
+        body.light-mode .bg-cyan-500:hover,
+        body.light-mode .bg-cyan-400:hover { background-color: #4cb2ce !important; }
+        body.light-mode .site-footer a { color: #4fb6ae !important; }
+        body.light-mode .blog-post-content blockquote {
+            border-left-color: #1fa69a !important;
+            background: linear-gradient(90deg, rgba(31, 166, 154, 0.1) 0%, transparent 100%) !important;
+        }
+        body.light-mode .audio-player {
+            background: rgba(31, 166, 154, 0.12) !important;
+            border-color: rgba(31, 166, 154, 0.45) !important;
+            color: #4fb6ae !important;
+        }
+        body.light-mode .audio-player .play-btn { background: #1fa69a !important; }
+        body.light-mode .ml-block-form button[type="submit"] {
+            background-color: #1fa69a !important;
+        }
+        body.light-mode .welcome-hero {
+            background: radial-gradient(circle at 100% 0%, rgba(31, 166, 154, 0.14) 0%, transparent 60%),
+                linear-gradient(135deg, #0f1824, #0f1b29) !important;
+            border-color: #0f1824 !important;
+            box-shadow: 0 10px 40px rgba(21, 40, 64, 0.2) !important;
+        }
+        body.light-mode .text-slate-300 { color: #8ba1bd !important; }
+        body.light-mode .text-slate-400 { color: #a9bdd4 !important; }
+        body.light-mode .text-slate-500 { color: #7b93b1 !important; }
+        body.light-mode #blog-post-view article h2 { color: #bedaff !important; }
+        body.light-mode #blog-post-view article form button[type="submit"] {
+            background: linear-gradient(135deg, #448bff, #81b2ff) !important;
+            box-shadow: 0 4px 14px rgba(68, 139, 255, 0.25) !important;
+        }
+        body.light-mode :focus { outline-color: #81b2ff; }
+        body.light-mode :focus-visible { outline-color: #81b2ff; }
         .light-back { display: none; }
         body.light-mode .light-back { display: inline; }
         .dark-link { display: inline; }
@@ -516,9 +638,32 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
         }
 
+        /* Sidebar On the Shelf book links */
+        .shelf-book-btn {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 0.6rem;
+            padding: 0.35rem;
+            margin: -0.35rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .shelf-book-btn:hover {
+            background: rgba(255, 255, 255, 0.04);
+            transform: translateX(2px);
+        }
+        .shelf-book-btn:hover .text-sm {
+            color: #22d3ee !important;
+        }
+        .shelf-book-btn:focus-visible {
+            outline: 2px solid var(--pulse-cyan);
+            outline-offset: 2px;
+        }
+
         /* Journalistic typography for blog content */
-        .blog-post-content {
-            font-family: 'Source Serif 4', Georgia, serif !important;
+        .blog-post-content {            font-family: 'Source Serif 4', Georgia, serif !important;
             font-size: 1.15rem !important;
             line-height: 1.85 !important;
             color: #cbd5e1 !important;
@@ -1467,7 +1612,7 @@
                 stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
         </svg>
-        <div class="intro-title text-center brand-title text-3xl md:text-5xl" style="color: rgb(255, 255, 255); font-size: 48px;">The Regulated Pulse</div>
+        <div class="intro-title text-center text-white font-bold text-2xl md:text-4xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse</div>
     </div>
 
     <div id="main-content" class="opacity-0 transition-opacity duration-500" tabindex="-1">
@@ -1567,160 +1712,169 @@
 
                             <!-- Articles Area -->
                             <div>
-                                <h2 class="mb-2 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recent Articles</h2>
+                                <h2 class="mb-2 text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recent Articles</h2>
                                 <p class="text-sm mb-8 text-slate-400">Deep-dive analyses of healthcare law, systemic health disparities, and the evolving landscape of medical technology.</p>
                                 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <!-- Column 1 -->
-                                    <div class="flex flex-col gap-6">
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-violet text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                <div class="flex flex-col gap-6">
+                                    <!-- Beyond the Battlefield -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-violet text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                            id="card-battlefield-click"
+                                            aria-label="Read post: Beyond the Battlefield">
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
+                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Beyond the Battlefield</h3>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">The Effects of PTSD and the Evolution of Veteran Care</p>
+                                            <p class="text-xs text-slate-500 font-medium">November 2026 · 5 min read</p>
+                                    </button>
+
+                                    <!-- The Fifth Pillar -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-book text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-art-cure-click"
                                             aria-label="Read post: The Fifth Pillar: Why the Arts Belong in Clinical Care">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Fifth Pillar: Why the Arts Belong in Clinical Care</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">How arts engagement can improve patient outcomes</p>
-                                            <p class="text-xs text-slate-500 font-medium">October 25, 2026 · 4 min read</p>
-                                        </button>
+                                            <p class="text-xs text-slate-500 font-medium">October 2026 · 4 min read</p>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-law text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                    <!-- Medical Malpractice -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-law text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-malpractice-click"
                                             aria-label="Read post: State Medical Malpractice Laws Comparison">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-law">Law &amp; Policy</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">State Medical Malpractice Laws Comparison</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">Texas and Arizona</p>
                                             <p class="text-xs text-slate-500 font-medium">July 2026 · 6 min read</p>
-                                        </button>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-book text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-book-recs-click" aria-label="Read post: Book Recommendations">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Reading List</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Book Recommendations</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">My top 11 healthcare reads</p>
-                                            <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
-
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-inspiration text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-na-click" aria-label="Read post: If You Knew the Conditions">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-inspiration">History &amp; Policy</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">"If You Knew the Conditions"</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">The evolution of Native American health care</p>
-                                            <p class="text-xs text-slate-500 font-medium">June 2026 · 4 min read</p>
-                                        </button>
-
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-slate text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-giant-leap-click"
-                                            aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-slate">Book Insights</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">A Giant Leap: Trust and Oversight in Healthcare AI</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">AI will transform healthcare. This book explains why and what it means for healthtech regulation</p>
-                                            <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
-                                    </div>
-
-                                    <!-- Column 2 -->
-                                    <div class="flex flex-col gap-6">
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-interview text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                    <!-- CDC Interview -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-interview text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-cdc-interview-click"
                                             aria-label="Read post: From Anatomy Labs to Biosafety Laws">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-interview">Interview</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">From Anatomy Labs to Biosafety Laws</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">An Interview with CDC Attorney Taylor Revenew</p>
                                             <p class="text-xs text-slate-500 font-medium">July 2026 · 5 min read</p>
-                                        </button>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-violet text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-migration-click" aria-label="Read post: Healing Without Borders">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Healing Without Borders</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">Bridging gaps in migrant health through innovation and policy</p>
+                                    <!-- Book Recommendations -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-book text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                            id="card-book-recs-click" aria-label="Read post: Book Recommendations">
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Reading List</span>
+                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Book Recommendations</h3>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">My top 11 healthcare reads</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-fuchsia text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                    <!-- The Case for Compassionate Care -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-fuchsia text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-fuchsia">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Case for Compassionate Care</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">The medical necessity of compassionate care.</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-education text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                    <!-- Healing Without Borders -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-welcome text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                            id="card-migration-click" aria-label="Read post: Healing Without Borders">
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-welcome">Book Insights</span>
+                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Healing Without Borders</h3>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">Bridging gaps in migrant health through innovation and policy</p>
+                                            <p class="text-xs text-slate-500 font-medium">June 2026</p>
+                                    </button>
+
+                                    <!-- If You Knew the Conditions -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-inspiration text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                            id="card-na-click" aria-label="Read post: If You Knew the Conditions">
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-inspiration">History &amp; Policy</span>
+                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">"If You Knew the Conditions"</h3>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">The evolution of Native American health care</p>
+                                            <p class="text-xs text-slate-500 font-medium">June 2026 · 4 min read</p>
+                                    </button>
+
+                                    <!-- A Giant Leap -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-slate text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                            id="card-giant-leap-click"
+                                            aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI">
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-slate">Book Insights</span>
+                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">A Giant Leap: Trust and Oversight in Healthcare AI</h3>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">AI will transform healthcare. This book explains why and what it means for healthtech regulation</p>
+                                            <p class="text-xs text-slate-500 font-medium">June 2026</p>
+                                    </button>
+
+                                    <!-- Beyond Compliance -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-education text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-ai-access-click"
                                             aria-label="Read post: Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-education">AI &amp; Policy</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">How we build ethical, inclusive design</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-welcome text-left w-full flex-1 focus:outline-none cursor-pointer flex flex-col"
+                                    <!-- Welcome -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-welcome text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-welcome-click" aria-label="Read post: Welcome to The Regulated Pulse">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-welcome">Welcome</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">Welcome to The Regulated Pulse</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">What to expect from the blog</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
 
                             <!-- Vital Signs Area -->
                             <div>
-                                <h2 class="mb-2 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Vital Signs</h2>
+                                <h2 class="mb-2 text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Vital Signs</h2>
                                 <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Under one-page takes on healthcare trends, law, and medical technology</p>
                                 
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <!-- Column 1 -->
-                                    <div class="flex flex-col gap-6">
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-book text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-pain-brokers-click" aria-label="Read post: The Pain Brokers">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Reading List</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Pain Brokers</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">Defective healthcare technology and legal corruption</p>
-                                            <p class="text-xs text-slate-500 font-medium">July 2026</p>
-                                        </button>
+                                <div class="flex flex-col gap-6">
+                                    <button
+                                        class="rounded-2xl p-7 card-premium card-book text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                        id="card-pain-brokers-click" aria-label="Read post: The Pain Brokers">
+                                        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Reading List</span>
+                                        <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Pain Brokers</h3>
+                                        <p class="text-sm mb-4 flex-grow text-slate-400">Defective healthcare technology and legal corruption</p>
+                                        <p class="text-xs text-slate-500 font-medium">July 2026</p>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-med-ed text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-med-ed-click" aria-label="Read post: The State of Medical Education">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-med-ed">Education</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">The State of Medical Education</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">Medical knowledge doubles every couple months</p>
-                                            <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
-                                    </div>
+                                    <button
+                                        class="rounded-2xl p-7 card-premium card-med-ed text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                        id="card-med-ed-click" aria-label="Read post: The State of Medical Education">
+                                        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-med-ed">Education</span>
+                                        <h3 class="font-bold mb-2 text-white text-lg leading-snug">The State of Medical Education</h3>
+                                        <p class="text-sm mb-4 flex-grow text-slate-400">Medical knowledge doubles every couple months</p>
+                                        <p class="text-xs text-slate-500 font-medium">June 2026</p>
+                                    </button>
 
-                                    <!-- Column 2 -->
-                                    <div class="flex flex-col gap-6">
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-epic text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-epic-click" aria-label="Read post: Stifled Innovation">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-epic">Industry</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Stifled Innovation</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">The Cost of Monopolized Electronic Health Records</p>
-                                            <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
+                                    <button
+                                        class="rounded-2xl p-7 card-premium card-epic text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                        id="card-epic-click" aria-label="Read post: Stifled Innovation">
+                                        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-epic">Industry</span>
+                                        <h3 class="font-bold mb-2 text-white text-lg leading-snug">Stifled Innovation</h3>
+                                        <p class="text-sm mb-4 flex-grow text-slate-400">The Cost of Monopolized Electronic Health Records</p>
+                                        <p class="text-xs text-slate-500 font-medium">June 2026</p>
+                                    </button>
 
-                                        <button
-                                            class="rounded-2xl p-7 card-premium card-quote text-left w-full h-full focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-quote-spotlight-click" aria-label="Read post: Quote Spotlight">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-quote">Inspiration</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Quote Spotlight</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">“Any sufficiently advanced technology is indistinguishable from magic.”</p>
-                                            <p class="text-xs text-slate-500 font-medium">June 2026</p>
-                                        </button>
-                                    </div>
+                                    <button
+                                        class="rounded-2xl p-7 card-premium card-quote text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                        id="card-quote-spotlight-click" aria-label="Read post: Quote Spotlight">
+                                        <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-quote">Inspiration</span>
+                                        <h3 class="font-bold mb-2 text-white text-lg leading-snug">Quote Spotlight</h3>
+                                        <p class="text-sm mb-4 flex-grow text-slate-400">“Any sufficiently advanced technology is indistinguishable from magic.”</p>
+                                        <p class="text-xs text-slate-500 font-medium">June 2026</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1745,43 +1899,50 @@
                             <!-- On the Shelf widget -->
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">On the Shelf</h3>
-                                <p class="text-xs text-slate-400 -mt-2">Current reads shaping The Pulse's tech-law coverage.</p>
+                                <p class="text-xs text-slate-400 -mt-2">Current reads shaping The Pulse's coverage.</p>
                                 <div class="space-y-4 mt-2">
-                                    <div class="flex items-center gap-3 min-w-0">
+                                    <button onclick="navigateTo('#post-battlefield')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Fields of Combat: Beyond the Battlefield">
+                                        <img src="./FieldsofCombat.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Fields of Combat Cover">
+                                        <div class="min-w-0">
+                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Fields of Combat</div>
+                                            <div class="text-xs text-slate-400 truncate">Dr. Erin P. Finley</div>
+                                        </div>
+                                    </button>
+                                    <button onclick="navigateTo('#post-art-cure')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Art Cure: The Fifth Pillar">
                                         <img src="./art-cure.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Art Cure Cover">
                                         <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words">Art Cure</div>
-                                            <div class="text-xs text-slate-400 truncate">Daisy Fancourt</div>
+                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Art Cure</div>
+                                            <div class="text-xs text-slate-400 truncate">Dr. Daisy Fancourt</div>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center gap-3 min-w-0">
+                                    </button>
+                                    <button onclick="navigateTo('#post-giant-leap')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on A Giant Leap">
                                         <img src="./A Giant Leap.jpeg" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="A Giant Leap Cover">
                                         <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words">A Giant Leap</div>
-                                            <div class="text-xs text-slate-400 truncate">Robert Wachter</div>
+                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">A Giant Leap</div>
+                                            <div class="text-xs text-slate-400 truncate">Dr. Robert Wachter</div>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center gap-3 min-w-0">
+                                    </button>
+                                    <button onclick="navigateTo('#post-compassion')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Compassionomics: The Case for Compassionate Care">
                                         <img src="./Compassionomics.jpeg" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Compassionomics Cover">
                                         <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words">Compassionomics</div>
-                                            <div class="text-xs text-slate-400 truncate">Trzeciak &amp; Mazzarelli</div>
+                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Compassionomics</div>
+                                            <div class="text-xs text-slate-400 truncate">Drs. Trzeciak &amp; Mazzarelli</div>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center gap-3 min-w-0">
+                                    </button>
+                                    <button onclick="navigateTo('#post-migration')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Migration and Health: Healing Without Borders">
                                         <img src="./migration.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Migration and Health Cover">
                                         <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words">Migration and Health</div>
+                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Migration and Health</div>
                                             <div class="text-xs text-slate-400 truncate">Galea, Ettman, Zaman</div>
                                         </div>
-                                    </div>
-                                    <div class="flex items-center gap-3 min-w-0">
+                                    </button>
+                                    <button onclick="navigateTo('#post-na')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my review: If You Knew the Conditions">
                                         <img src="./NAbook.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="If You Knew the Conditions Cover">
                                         <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words">"If You Knew the Conditions"</div>
+                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">"If You Knew the Conditions"</div>
                                             <div class="text-xs text-slate-400 truncate">David H. DeJong</div>
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
 
@@ -1846,6 +2007,184 @@
                         <span>Download PDF</span>
                     </button>
 
+
+                    <!-- Beyond the Battlefield -->
+                    <article id="post-battlefield-container" class="hidden max-w-3xl mx-auto relative mb-16">
+                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Beyond the Battlefield</h2>
+                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The Effects of PTSD and the Evolution of Veteran Care</h3>
+                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Book Insights · November 7, 2026 · 5 min read</p>
+
+                        <div class="text-center mb-10">
+                            <img src="./FieldsofCombat.webp" alt="Fields of Combat book cover"
+                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                            <p class="text-slate-400 text-sm mt-3 italic">Published in 2011</p>
+                        </div>
+
+                        <div class="blog-post-content">
+                            <blockquote>
+                                <p>“‘They thought she was a terrorist and it was a little girl bouncing a ball in the
+                                    dark.’ Although he had nothing to do with the event, Carlos visited the girl
+                                    repeatedly in the hospital, hiding behind a curtain so she wouldn’t know he was
+                                    there. After he returned home, he began seeing visions in which she was ‘injured or
+                                    dead or staring at me or pointing at me.’”</p>
+                                <cite style="font-size: 0.85rem; color: #64748b;">— Erin P. Finley, <em>Fields of
+                                        Combat</em> (58)</cite>
+                            </blockquote>
+                            <p>Those that serve in the U.S. military face unspeakable horrors and injuries that they
+                                often cannot leave at the war zone. Instead, veterans may be negatively affected by
+                                their time in service for decades to come.</p>
+                            <h3>PTSD by service era</h3>
+                            <p>According to a 2022 cross-sectional study, one of the most common mental health
+                                conditions veterans are afflicted by is PTSD (Tedla et al.). Additionally, the
+                                Department of Veterans Affairs’ National Center for PTSD reports the following,
+                                showing that PTSD occurrence in veterans differs widely by their service era (“How
+                                Common”):</p>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr><th>Service era</th><th>PTSD in a given year</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Operations Iraqi Freedom (OIF) &amp; Enduring Freedom (OEF)</td>
+                                        <td>11–20 out of every 100 veterans (11–20%) have PTSD in a given year</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gulf War (Desert Storm)</td>
+                                        <td>12 out of every 100 Gulf War veterans (12%) have PTSD in a given year</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vietnam War</td>
+                                        <td>15 out of every 100 Vietnam veterans (15%) were diagnosed with PTSD in the late 1980s (National Vietnam Veterans Readjustment Study)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="table-note">Rates hinge on each study’s methodology, and many veterans do not
+                                report their symptoms (“How Common”).</p>
+                            <p>Having PTSD can greatly affect important areas of one’s life such as relationships with
+                                family, friends, romantic partners, work, and sleep.</p>
+                            <p>For instance, several studies emerged after the Vietnam War showing that families of
+                                veterans were hit harder by divorce, substance abuse, and family violence than civilian
+                                families (Finley 70). Moreover, spouses of veterans of the Iraq and Afghanistan wars
+                                (OIF/OEF) that had PTSD reported more emotional distress, somatic and sleep disorders,
+                                less social support, and less marital satisfaction (Finley 70).</p>
+                            <p>Additionally, although rates of partner violence are comparable between active-duty
+                                military personnel and the civilian population, rates are 2-3x higher than the national
+                                average among veterans with PTSD (Finley 80). In fact, the National Vietnam
+                                Veterans Readjustment Study found that 33% of veterans with PTSD reported having been
+                                violent with a partner or spouse in the last year– a stark contrast with the 13.5% that
+                                was reported among veterans without PTSD (Finley 80). In addition to this, PTSD has
+                                also been found to predict violent behavior among WWII veterans that were prisoners of
+                                war, and more recent veterans with other severe mental illnesses (Finley 80).</p>
+                            <p>Another area of life in which PTSD can affect veterans negatively is work. For example,
+                                a study in San Antonio, TX reported that half of the veterans surveyed reported being
+                                unemployed for at least three months since separating from the service (Finley 65). In
+                                the same study by Dr. Finley, ~74% of the sample reported having difficulty
+                                concentrating for more than ten minutes at a time– a struggle that can prove
+                                challenging in school or work. Due to this, ⅓ of the sample had lost at least one job
+                                since separating from the military (Finley 65).</p>
+                            <p>Moreover, a recent VA study had shocking results: OEF/OIF veterans with PTSD were 4x
+                                more likely to describe thoughts of suicide than were those with no PTSD (Finley 73).
+                                Rates were even higher for those with PTSD and another mental illness such as
+                                depression or alcohol or drug use (Finley 73).</p>
+                            <p>In addition to this, Latino veterans have significantly greater rates of PTSD even when
+                                controlling for strong risk predictors such as cumulative exposure to life stressors
+                                (Finley 83). For instance, one study among Vietnam veterans showed that the rate of
+                                PTSD was only 13.7% among white veterans in comparison to the 27.9% that was faced by
+                                Latinos (Finley 83). This is especially interesting considering that research shows
+                                that Latinos generally have better mental health than their non-Latino white
+                                counterparts (Finley 83).</p>
+                            <p>One of the greatest obstacles servicemen and veterans face in seeking and receiving
+                                mental health services is stigma.</p>
+                            <p>A 2003 report released by the Army’s Mental Health Advisory Team (MHAT) revealed that
+                                59% of soldiers surveyed worried that seeking mental health care would result in their
+                                being seen as weak, 49% expressed concern that their unit would have less confidence in
+                                them, and 46% feared their leaders would blame them for having a problem
+                                (“Operation;” Finley 103). Mental health providers also expressed frustration at the
+                                lack of antidepressants and other pharmaceutical medications they could prescribe and
+                                the inconsistent accessible care to units posted in remote areas of Iraq (Finley
+                                103).</p>
+                            <p>Furthermore, the Army’s extension of deployments from 12 to 15 months in April 2007
+                                caused concern over how this would affect servicemen and their families long-term
+                                (Finley 110; Tyson and White). The tour extension affected active-duty soldiers that
+                                were currently deployed or going to Iraq and Afghanistan and was seen as a “difficult
+                                but necessary” step by President George W. Bush (Tyson and White).</p>
+                            <p>In 2008, the VA rolled out the use of prolonged exposure therapy (PE), a therapy that
+                                was shown to prove significant improvements in many veterans struggling with PTSD
+                                (Finley 124). The VA’s standardized rollout of PE that included nationwide workshops
+                                teaching VA providers how to utilize these strategies in their work with PTSD paid off
+                                in expanding the types of therapies mental health providers had in their toolkit,
+                                especially for helping those that psychodynamic therapy was not showing benefits
+                                (Finley 124). Integrating exposure therapy into the VA’s standard of care for PTSD has
+                                helped transform the mental health condition from how it used to be seen as: “A
+                                lifelong disorder, to be managed rather than cured” (Finley 121).</p>
+                            <p>Although less than 10% of OEF/OIF veterans with a new PTSD diagnosis completed the
+                                recommended number of treatment sessions within the first year following their
+                                diagnosis, it is still the Department of Veterans Affairs’ job to provide high-quality
+                                healthcare to those that served our country and the department is accomplishing this
+                                mission excellently as of 2026. This year’s Centers for Medicare &amp; Medicaid Services
+                                annual report showed record-high quality ratings, outperforming non-VA facilities as VA
+                                hospitals earned four or five stars 78% of the time (Lawrence). This is a significant
+                                increase from 2024 when the Overall Hospital Quality Star Rating was only 58%
+                                (Lawrence).</p>
+                            <h3 style="text-align: center;">Works Cited</h3>
+                            <ul class="works-cited list-none pl-0">
+                                <li>Finley, Erin P. <em>Fields of Combat: Understanding PTSD among Veterans of Iraq and
+                                        Afghanistan</em>. Cornell University Press, 2011.</li>
+                                <li>“How Common Is PTSD in Veterans?”, U.S. Department of Veterans Affairs, 24 July
+                                    2018, www.ptsd.va.gov/understand/common/common_veterans.asp.</li>
+                                <li>Lawrence, Quil. “VA Hospitals Are Outperforming Private Hospitals, Latest Medicare
+                                    Survey Shows.” NPR, NPR, 14 June 2023,
+                                    www.npr.org/2023/06/14/1181827077/va-hospitals-health-care.</li>
+                                <li>Tedla, A., et al. “Post-traumatic stress disorder among military personnel admitted
+                                    at the Northwest Command Level Three Military Hospital, Bahir Dar, Ethiopia, 2022:
+                                    an institution-based cross-sectional study.” Frontiers in Psychiatry, 17 September
+                                    2024, doi: 10.3389/fpsyt.2024.1410630.</li>
+                                <li>Tyson, Ann Scott, and Josh White. “Strained Army Extends Tours to 15 Months.”
+                                    Washington Post, The Washington Post Company, 12 Apr. 2007,
+                                    www.washingtonpost.com/wp-dyn/content/article/2007/04/11/AR2007041100615.html.</li>
+                                <li>United States, Department of the Army, Operation Iraqi Freedom Mental Health
+                                    Advisory Team. Operation Iraqi Freedom (OIF) Mental Health Advisory Team (MHAT)
+                                    Report. Office of the Surgeon General / HQDA G-1, 16 Dec. 2003. FRONTLINE, PBS,
+                                    www.pbs.org/wgbh/pages/frontline/shows/heart/readings/mhat.pdf.</li>
+                                <li>“VA Hospitals Earn Record-High Quality Ratings in 2026 CMS Report.” VA News, VA
+                                    News, 18 May 2026,
+                                    news.va.gov/press-room/va-hospitals-earn-record-high-quality-ratings-in-2026-cms-report/.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-16 rounded-2xl p-7" style="background: rgb(30, 41, 59);">
+                            <h3 class="font-bold mb-2 text-center" style="color: rgb(241, 245, 249); font-size: 19px;">
+                                Leave a Comment</h3>
+                            <form onsubmit="submitComment(event, 'post-battlefield')"
+                                class="text-left space-y-4 max-w-2xl mx-auto">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="flex flex-col">
+                                        <label class="text-sm font-bold mb-2"
+                                            style="color: rgb(226, 232, 240);">Name</label>
+                                        <input type="text" required placeholder="Your Name" class="w-full"
+                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <label class="text-sm font-bold mb-2"
+                                            style="color: rgb(226, 232, 240);">Email</label>
+                                        <input type="email" required placeholder="Enter your email address"
+                                            class="w-full"
+                                            style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; text-align: center;">
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <label class="text-sm font-bold mb-2"
+                                        style="color: rgb(226, 232, 240);">Comment</label>
+                                    <textarea required rows="4" placeholder="Join the discussion..."
+                                        class="w-full resize-y"
+                                        style="border-radius: 12px; font-family: 'DM Sans', sans-serif; padding: 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white;"></textarea>
+                                </div>
+                                <button type="submit"
+                                    class="w-full font-bold transition-all duration-300 hover:-translate-y-1 focus:outline-none cursor-pointer"
+                                    style="background: linear-gradient(135deg, #38b6c9 0%, #2a7f8f 100%); border: none; border-radius: 12px; font-size: 16px; color: #06212a; padding: 14px; margin-top: 10px; box-shadow: 0 4px 14px rgba(56, 182, 201, 0.18);">Post Comment</button>
+                            </form>
+                            <div id="post-battlefield-comments-list"></div>
+                        </div>
+                    </article>
 
                     <!-- The Fifth Pillar: Why the Arts Belong in Clinical Care -->
                     <article id="post-art-cure-container" class="hidden max-w-3xl mx-auto relative mb-16">
@@ -5389,7 +5728,7 @@
                 
                 document.getElementById('blog-list-view').classList.add('hidden');
                 document.getElementById('blog-post-view').classList.add('hidden');
-                ['post-art-cure-container', 'post-ai-container', 'post-giant-leap-container', 'post-welcome-container', 'post-migration-container', 'post-compassion-container', 'post-book-recs-container', 'post-na-container', 'post-quote-spotlight-container', 'post-med-ed-container', 'post-epic-container', 'post-pain-brokers-container', 'post-malpractice-container', 'post-cdc-interview-container'].forEach(id => {
+                ['post-battlefield-container', 'post-art-cure-container', 'post-ai-container', 'post-giant-leap-container', 'post-welcome-container', 'post-migration-container', 'post-compassion-container', 'post-book-recs-container', 'post-na-container', 'post-quote-spotlight-container', 'post-med-ed-container', 'post-epic-container', 'post-pain-brokers-container', 'post-malpractice-container', 'post-cdc-interview-container'].forEach(id => {
                     const el = document.getElementById(id);
                     if (el) el.classList.add('hidden');
                 });
@@ -5586,6 +5925,7 @@
             document.getElementById('card-ep2-click').addEventListener('click', () => navigateTo('#episode-ep2'));
             document.getElementById('card-ep1-click').addEventListener('click', () => navigateTo('#episode-ep1'));
 
+            document.getElementById('card-battlefield-click').addEventListener('click', () => navigateTo('#post-battlefield'));
             document.getElementById('card-art-cure-click').addEventListener('click', () => navigateTo('#post-art-cure'));
             document.getElementById('card-ai-access-click').addEventListener('click', () => navigateTo('#post-ai'));
             document.getElementById('card-giant-leap-click').addEventListener('click', () => navigateTo('#post-giant-leap'));
@@ -6728,7 +7068,10 @@
         </div>
     </div>
     <footer class="site-footer">
-        <p style="position: relative; padding-right: 200px;">&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a><span class="light-back"> &middot; <a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span><span id="footer-logout" style="display: none;"> &middot; <a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span><span style="position: absolute; right: 0; top: 0;" class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span></p>
+        <p class="footer-line footer-meta-row">
+            <span class="footer-copy">&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
+            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch back to dark mode</a></span><span id="footer-logout" style="display: none;"> &middot; <a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
+        </p>
     </footer>
     <div id="print-area"></div>
     <script>

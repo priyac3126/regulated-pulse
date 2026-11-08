@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Regulated Pulse</title>
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14171C;
+    --bg-raised: #1B1F26;
+    --bg-panel: #1E2229;
+    --text: #E9E6DD;
+    --text-soft: #ADB1B8;
+    --text-mute: #74787F;
+    --line: #2B2F37;
+    --line-strong: #3A3F49;
+    --ink-blue: #7FA3B8;
+    --amber: #C98A3E;
+    --red: #D05A54;
+
+    /* category colors — adapted from the original site's tag palette */
+    --c-law: #C98A3E;   /* amber   — Law & Policy   */
+    --c-int: #6FB394;   /* green   — Interviews     */
+    --c-bk:  #A08FD1;   /* violet  — Book Takeaways */
+    --c-per: #D05A54;   /* red     — Personal       */
+    --c-ai:  #7FA3B8;   /* blue    — AI & Policy    */
+
+    --display: 'Fraunces', serif;
+    --body: 'Source Serif 4', Georgia, serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-font-smoothing:antialiased;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  header.masthead{
+    padding:40px 0 0;
+  }
+  .masthead-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  .wordmark{
+    font-family:var(--mono);
+    font-weight:500;
+    font-size:14px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+  }
+  .wordmark span{color:var(--red);}
+  .masthead-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:44px;
+    letter-spacing:-0.01em;
+    margin:6px 0 0;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .pulse-mark{flex-shrink:0;}
+  .pulse-mark polyline{
+    stroke:var(--red);
+    stroke-width:2;
+    fill:none;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:120;
+    stroke-dashoffset:120;
+    animation:pulse-trace 2.8s ease-in-out infinite;
+  }
+  @keyframes pulse-trace{
+    0%{stroke-dashoffset:120;opacity:1;}
+    55%{stroke-dashoffset:0;opacity:1;}
+    80%{stroke-dashoffset:0;opacity:.25;}
+    100%{stroke-dashoffset:0;opacity:1;}
+  }
+
+  nav.primary{
+    display:flex;
+    gap:34px;
+    padding:14px 0;
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--line);
+  }
+  nav.primary a{
+    color:var(--text-mute);
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+  }
+  nav.primary a.active{
+    color:var(--text);
+    border-bottom-color:var(--ink-blue);
+  }
+  nav.primary a:hover{color:var(--text);}
+
+  /* ---------- Preamble ---------- */
+  .preamble{
+    padding:52px 0 32px;
+    display:grid;
+    gap:18px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ink-blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::after{content:"";height:1px;background:var(--line-strong);flex:1;}
+  .preamble blockquote{
+    margin:0;
+    font-family:var(--display);
+    font-weight:500;
+    font-size:clamp(26px,3.4vw,38px);
+    line-height:1.28;
+    max-width:820px;
+    color:var(--text);
+  }
+  .dropcap{
+    float:left;
+    font-family:var(--display);
+    font-size:84px;
+    line-height:.78;
+    font-weight:600;
+    color:var(--ink-blue);
+    padding-right:10px;
+    margin-top:6px;
+  }
+
+  /* ---------- Start Here callout (kept apart from the log) ---------- */
+  .start-here{
+    margin:8px 0 40px;
+    border:1px solid var(--line-strong);
+    border-left:3px solid var(--amber);
+    background:var(--bg-raised);
+    padding:20px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .start-here .label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    color:var(--amber);
+    margin-bottom:6px;
+  }
+  .start-here h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:19px;
+    margin:0 0 4px;
+    color:var(--text);
+  }
+  .start-here p{
+    margin:0;
+    font-size:14px;
+    color:var(--text-soft);
+  }
+  .start-here .go{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--amber);
+    border:1px solid var(--amber);
+    padding:10px 16px;
+    white-space:nowrap;
+  }
+  .start-here .go:hover{background:var(--amber);color:var(--bg);}
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:1fr 300px;
+    gap:56px;
+    padding-bottom:64px;
+    align-items:start;
+  }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:10px;
+    margin-bottom:6px;
+  }
+  .section-head h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:22px;
+    margin:0;
+    color:var(--text);
+  }
+  .section-head .key{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--text-mute);
+  }
+  .codes{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--text-mute);
+    margin:0 0 26px;
+    letter-spacing:.02em;
+  }
+
+  /* ---------- Category filters (double as the color key) ---------- */
+  .filters{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:16px 0 26px;
+  }
+  .filter{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--text-soft);
+    background:transparent;
+    border:1px solid var(--line-strong);
+    padding:6px 12px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:7px;
+  }
+  .filter .dot{width:7px;height:7px;border-radius:50%;background:var(--dot,var(--text-mute));flex-shrink:0;}
+  .filter:hover{color:var(--text);border-color:var(--dot,var(--text-soft));}
+  .filter.active{color:var(--text);border-color:var(--dot,var(--text-soft));background:var(--bg-panel);}
+  .log-row.hidden{display:none;}
+
+  /* per-category coloring */
+  .log-row[data-cat]{--cat:var(--text-mute);}
+  .log-row[data-cat="law"]{--cat:var(--c-law);}
+  .log-row[data-cat="int"]{--cat:var(--c-int);}
+  .log-row[data-cat="bk"]{--cat:var(--c-bk);}
+  .log-row[data-cat="per"]{--cat:var(--c-per);}
+  .log-row[data-cat="ai"]{--cat:var(--c-ai);}
+  .entry-top .code{color:var(--cat);}
+  .log-row:hover .tick svg{stroke:var(--cat);}
+  .log-row:hover h3{color:var(--cat);}
+
+  /* ---------- The Log (pulse-line timeline) ---------- */
+  .log{position:relative;}
+  .log::before{
+    content:"";
+    position:absolute;
+    left:19px;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:var(--line);
+  }
+  .log-row{
+    position:relative;
+    display:grid;
+    grid-template-columns:40px 1fr;
+    gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+    cursor:pointer;
+  }
+  .log-row:last-child{border-bottom:none;}
+  .tick{
+    position:relative;
+    z-index:1;
+    width:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg);
+  }
+  .tick svg{
+    stroke:var(--text-mute);
+    transition:stroke .15s ease;
+  }
+  .entry-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--text-mute);
+    margin-bottom:6px;
+    gap:14px;
+  }
+  .entry-top .code{color:var(--ink-blue);letter-spacing:.04em;}
+  .entry-top .no{color:var(--text-mute);}
+  .log-row h3{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:19px;
+    margin:0 0 6px;
+    color:var(--text);
+    transition:color .15s ease;
+  }
+  .log-row p.dek{
+    margin:0;
+    color:var(--text-soft);
+    font-size:14.5px;
+    line-height:1.5;
+    max-width:560px;
+  }
+
+  /* Vital signs — same log, flatter ticks, tighter rows */
+  .log.thin .log-row{padding:14px 0;grid-template-columns:40px 1fr;}
+  .log.thin h3{font-size:16px;margin:0;}
+  .log.thin .entry-top{margin-bottom:2px;}
+  .log.thin p.dek{display:none;}
+
+  /* ---------- Rail ---------- */
+  .rail-block{
+    border:1px solid var(--line-strong);
+    background:var(--bg-panel);
+    padding:22px;
+    margin-bottom:28px;
+  }
+  .rail-block h4{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--text-mute);
+    margin:0 0 16px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--line);
+  }
+  .shelf-item{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start;}
+  .shelf-item:last-child{margin-bottom:0;}
+  .shelf-item img{
+    width:40px;height:58px;object-fit:cover;
+    border:1px solid var(--line-strong);
+    flex-shrink:0;
+    filter:saturate(.85);
+  }
+  .shelf-item .t{font-family:var(--display);font-size:14px;font-weight:600;line-height:1.3;color:var(--text);}
+  .shelf-item .a{font-family:var(--mono);font-size:10.5px;color:var(--text-mute);margin-top:3px;}
+
+  .about-mini{display:flex;gap:14px;align-items:center;}
+  .about-mini img{
+    width:56px;height:56px;border-radius:50%;object-fit:cover;
+    border:1px solid var(--line-strong);
+  }
+  .about-mini .name{font-family:var(--display);font-weight:600;font-size:15px;color:var(--text);}
+  .about-mini .role{font-family:var(--mono);font-size:10.5px;color:var(--text-mute);margin-top:3px;line-height:1.5;}
+
+  .sub-copy{font-size:13.5px;color:var(--text-soft);margin:0 0 14px;line-height:1.55;}
+  .sub-form{display:flex;border:1px solid var(--line-strong);}
+  .sub-form input{
+    flex:1;border:none;background:transparent;padding:10px 12px;
+    font-family:var(--mono);font-size:12.5px;color:var(--text);
+  }
+  .sub-form input::placeholder{color:var(--text-mute);}
+  .sub-form button{
+    border:none;border-left:1px solid var(--line-strong);background:var(--ink-blue);color:var(--bg);
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+    padding:0 16px;cursor:pointer;
+  }
+  .sub-form button:hover{background:var(--amber);}
+
+  footer{
+    border-top:1px solid var(--line-strong);
+    padding:26px 0 40px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-mute);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  footer a{color:var(--ink-blue);}
+
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;}
+    .masthead-row{flex-direction:column;align-items:flex-start;gap:10px;}
+    .start-here{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+    <header class="masthead">
+      <div class="masthead-row">
+        <div>
+          <div class="wordmark">Health Law <span>&amp;</span> Technology</div>
+          <h1 class="masthead-title">
+            <svg class="pulse-mark" width="58" height="34" viewBox="0 0 58 34" aria-hidden="true">
+              <polyline points="0,17 14,17 20,17 25,4 31,30 36,12 40,17 58,17"/>
+            </svg>
+            The Regulated Pulse
+          </h1>
+        </div>
+      </div>
+      <nav class="primary">
+        <a href="#" class="active">Blog</a>
+        <a href="#">Podcast</a>
+        <a href="#">My Major</a>
+        <a href="#">About Me</a>
+      </nav>
+    </header>
+
+    <section class="preamble">
+      <div class="eyebrow">Preamble</div>
+      <blockquote><span class="dropcap">D</span>emystifying the legal frameworks and ethical guardrails shaping the future of healthcare technology — bridging the gap between academic research and the way care actually gets delivered.</blockquote>
+    </section>
+
+    <div class="start-here">
+      <div>
+        <div class="label">NEW HERE? START HERE</div>
+        <h3>Welcome to The Regulated Pulse</h3>
+        <p>What this blog is, who's writing it, and what to expect from each post.</p>
+      </div>
+      <a href="#" class="go">Read the note →</a>
+    </div>
+
+    <div class="layout">
+      <main>
+        <div class="section-head">
+          <h2>Articles</h2>
+          <span class="key" id="dispatch-count">9 articles</span>
+        </div>
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="all"><span class="dot"></span>All</button>
+          <button class="filter" data-filter="law" style="--dot:var(--c-law)"><span class="dot"></span>Law &amp; Policy</button>
+          <button class="filter" data-filter="int" style="--dot:var(--c-int)"><span class="dot"></span>Interviews</button>
+          <button class="filter" data-filter="bk" style="--dot:var(--c-bk)"><span class="dot"></span>Book Takeaways</button>
+          <button class="filter" data-filter="per" style="--dot:var(--c-per)"><span class="dot"></span>Personal</button>
+          <button class="filter" data-filter="ai" style="--dot:var(--c-ai)"><span class="dot"></span>AI &amp; Policy</button>
+        </div>
+
+        <div class="log" id="dispatch-log">
+          <div class="log-row" data-cat="law">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[LAW]</span><span class="no">No. 009 · Jul 2026 · 3 min</span></div>
+              <h3>State Medical Malpractice Laws Comparison</h3>
+              <p class="dek">Texas and Arizona — how far apart two states can be on the same statute.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="int">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[INT]</span><span class="no">No. 008 · Jul 2026 · 5 min</span></div>
+              <h3>From Anatomy Labs to Biosafety Laws</h3>
+              <p class="dek">An interview with CDC attorney Taylor Revenew.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="bk">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[BK]</span><span class="no">No. 007 · Jun 2026</span></div>
+              <h3>Book Recommendations</h3>
+              <p class="dek">My top 11 healthcare reads.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="bk">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[BK]</span><span class="no">No. 006 · Jun 2026</span></div>
+              <h3>Healing Without Borders</h3>
+              <p class="dek">Bridging gaps in migrant health through innovation and policy.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="law">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[LAW]</span><span class="no">No. 005 · Jun 2026 · 4 min</span></div>
+              <h3>"If You Knew the Conditions"</h3>
+              <p class="dek">The evolution of Native American health care.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="bk">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[BK]</span><span class="no">No. 004 · Jun 2026</span></div>
+              <h3>The Case for Compassionate Care</h3>
+              <p class="dek">The medical necessity of compassionate care.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="bk">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[BK]</span><span class="no">No. 003 · Jun 2026</span></div>
+              <h3>A Giant Leap: Trust &amp; Oversight in Healthcare AI</h3>
+              <p class="dek">Why AI will transform healthcare, and what it means for healthtech regulation.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="ai">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[AI]</span><span class="no">No. 002 · Jun 2026</span></div>
+              <h3>Beyond Compliance</h3>
+              <p class="dek">AI, inclusive UI/UX, and digital rights.</p>
+            </div>
+          </div>
+
+          <div class="log-row" data-cat="per">
+            <div class="tick">
+              <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><polyline points="0,9 7,9 9,3 11,15 13,9 26,9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[PER]</span><span class="no">No. 001 · Jun 2026</span></div>
+              <h3>The Realities of Chronic Illness</h3>
+              <p class="dek">The hidden epidemic of autoimmune disease, and my own journey.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:52px;">
+          <h2>Vital Signs</h2>
+          <span class="key">under-one-page takes</span>
+        </div>
+        <p class="codes">Shorter readings — flat traces instead of a full complex.</p>
+        <div class="log thin">
+          <div class="log-row" data-cat="law">
+            <div class="tick">
+              <svg width="26" height="10" viewBox="0 0 26 10" fill="none"><polyline points="0,5 26,5" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[LAW]</span><span class="no">Jun 2026</span></div>
+              <h3>Stifled Innovation — the cost of monopolized electronic health records</h3>
+            </div>
+          </div>
+          <div class="log-row" data-cat="ai">
+            <div class="tick">
+              <svg width="26" height="10" viewBox="0 0 26 10" fill="none"><polyline points="0,5 26,5" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[AI]</span><span class="no">Jun 2026</span></div>
+              <h3>The State of Medical Education — knowledge that doubles every few months</h3>
+            </div>
+          </div>
+          <div class="log-row" data-cat="bk">
+            <div class="tick">
+              <svg width="26" height="10" viewBox="0 0 26 10" fill="none"><polyline points="0,5 26,5" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="entry-top"><span class="code">[BK]</span><span class="no">Jun 2026</span></div>
+              <h3>Quote Spotlight — "any sufficiently advanced technology..."</h3>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <aside>
+        <div class="rail-block">
+          <h4>The Editor</h4>
+          <div class="about-mini">
+            <img src="./IMG_2072.jpg" alt="Priya Chaudhari">
+            <div>
+              <div class="name">Priya Chaudhari</div>
+              <div class="role">Healthcare Technology Law<br>&amp; Regulation, UGA '27</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rail-block">
+          <h4>On the Shelf</h4>
+          <p class="sub-copy">Insights on recent reads.</p>
+          <div class="shelf-item">
+            <img src="./A_Giant_Leap.jpeg" alt="A Giant Leap cover">
+            <div><div class="t">A Giant Leap</div><div class="a">Robert Wachter, MD</div></div>
+          </div>
+          <div class="shelf-item">
+            <img src="./Compassionomics.jpeg" alt="Compassionomics cover">
+            <div><div class="t">Compassionomics</div><div class="a">Trzeciak &amp; Mazzarelli</div></div>
+          </div>
+          <div class="shelf-item">
+            <img src="./migration.webp" alt="Migration and Health cover">
+            <div><div class="t">Migration and Health</div><div class="a">Galea, Ettman, Zaman</div></div>
+          </div>
+          <div class="shelf-item">
+            <img src="./NAbook.webp" alt="If You Knew the Conditions cover">
+            <div><div class="t">"If You Knew the Conditions"</div><div class="a">David H. DeJong</div></div>
+          </div>
+        </div>
+
+        <div class="rail-block">
+          <h4>Subscribe</h4>
+          <p class="sub-copy">A note when a new article goes up. No spam, unsubscribe anytime.</p>
+          <form class="sub-form" onsubmit="return false;">
+            <input type="email" placeholder="you@email.com">
+            <button type="submit">Join</button>
+          </form>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>
+      <span>© 2026 The Regulated Pulse</span>
+      <span><a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
+    </footer>
+  </div>
+
+<script>
+  // Category filter for the dispatch log
+  const rows = document.querySelectorAll('#dispatch-log .log-row');
+  const count = document.getElementById('dispatch-count');
+  document.getElementById('filters').addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter');
+    if (!btn) return;
+    document.querySelectorAll('#filters .filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    let shown = 0;
+    rows.forEach(r => {
+      const show = f === 'all' || r.dataset.cat === f;
+      r.classList.toggle('hidden', !show);
+      if (show) shown++;
+    });
+    count.textContent = shown + (shown === 1 ? ' article' : ' articles');
+  });
+</script>
+</body>
+</html>

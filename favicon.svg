@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#080b11"/>
+  <!-- Subtle radial glow behind the pulse -->
+  <circle cx="256" cy="256" r="160" fill="#06b6d4" opacity="0.08"/>
+  <!-- Outer glow pulse line -->
+  <polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256"
+            stroke="#06b6d4" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" opacity="0.2" fill="none"/>
+  <!-- Core vibrant pulse line -->
+  <polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256"
+            stroke="#22d3ee" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
