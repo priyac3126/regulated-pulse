@@ -243,13 +243,22 @@
         .site-footer .footer-line + .footer-line { margin-top: 0.25rem; }
         .site-footer .footer-meta-row {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
+            justify-content: center;
+            text-align: center;
+            gap: 0.75rem 1.5rem;
+        }
+        .site-footer .footer-meta-row > span {
+            min-width: 0;
+        }
+        .site-footer a {
+            overflow-wrap: anywhere;
         }
         @media (max-width: 1024px) {
             .site-footer .footer-meta-row {
                 flex-direction: column;
+                align-items: center;
                 gap: 0.25rem;
             }
         }
@@ -344,7 +353,7 @@
         body.light-mode {
             background-color: #09111a !important;
         }
-        body.light-mode ::selection { background: rgba(31, 166, 154, 0.3); }
+        body.light-mode ::selection { background: rgba(23, 76, 199, 0.3); }
         body.light-mode .glass-header { background: rgba(18, 33, 53, 0.85) !important; }
         body.light-mode .dashboard-sidebar {
             background: rgba(21, 40, 64, 0.82) !important;
@@ -395,6 +404,9 @@
         body.light-mode .blog-post-content blockquote {
             border-left-color: #1fa69a !important;
             background: linear-gradient(90deg, rgba(31, 166, 154, 0.1) 0%, transparent 100%) !important;
+        }
+        body.light-mode #blog-post-view article div[style*="rgb(30, 41, 59)"] {
+            background: rgb(17, 24, 38) !important;
         }
         body.light-mode .audio-player {
             background: rgba(31, 166, 154, 0.12) !important;
@@ -457,6 +469,8 @@
             #print-area.pdf-mode-dark a { color: #67e8f9 !important; }
             #print-area.pdf-mode-dark .comparison-table th, #print-area.pdf-mode-dark .comparison-table td { border: 1px solid #475569 !important; }
             #print-area.pdf-mode-dark .comparison-table th { background: #1e293b !important; color: #f8fafc !important; }
+            html:has(body.light-mode) { filter: none !important; }
+            body.light-mode img, body.light-mode video, body.light-mode iframe { filter: none !important; }
             body.light-mode { filter: none !important; }
         }
         .comparison-table {
@@ -1196,6 +1210,12 @@
             color: #0f766e !important;
         }
 
+        /* Portrait: no cyan rim on light reader modes */
+        .reader-theme-sepia .editor-portrait,
+        .reader-theme-cream .editor-portrait {
+            border-color: transparent !important;
+        }
+
         /* Coursework Visual Semester Timeline */
         .timeline-track {
             position: relative;
@@ -1337,10 +1357,15 @@
             background: rgba(255, 255, 255, 0.03);
         }
         .nav-link-vertical.active {
-            color: var(--pulse-cyan);
-            background: var(--pulse-cyan-glow);
-            border-color: rgba(6, 182, 212, 0.2);
-            box-shadow: 0 0 12px var(--pulse-cyan-glow);
+            color: #080b11;
+            background: #06b6d4;
+            border-color: #06b6d4;
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
+        }
+        .nav-link-vertical.active:hover {
+            color: #080b11;
+            background: #22d3ee;
+            border-color: #22d3ee;
         }
 
         .mobile-tab-dock {
@@ -1379,8 +1404,11 @@
             cursor: pointer;
         }
         .mobile-dock-btn.active {
-            color: var(--pulse-cyan);
-            text-shadow: 0 0 8px var(--pulse-cyan-glow);
+            color: #080b11;
+            background: #06b6d4;
+            border-radius: 9999px;
+            padding: 0.4rem 0.8rem;
+            text-shadow: none;
         }
 
         @media (max-width: 1024px) {
@@ -1713,7 +1741,6 @@
                             <!-- Articles Area -->
                             <div>
                                 <h2 class="mb-2 text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recent Articles</h2>
-                                <p class="text-sm mb-8 text-slate-400">Deep-dive analyses of healthcare law, systemic health disparities, and the evolving landscape of medical technology.</p>
                                 
                                 <div class="flex flex-col gap-6">
                                     <!-- Beyond the Battlefield -->
@@ -1880,15 +1907,15 @@
                         </div>
 
                         <!-- Sidebar Content (Right Column) -->
-                        <div class="lg:col-span-4 flex flex-col gap-8 sticky top-28">
+                        <div class="lg:col-span-4 flex flex-col gap-8">
                             <!-- Priya Profile widget -->
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
                                 <div class="flex flex-row md:flex-col items-center gap-4 text-left md:text-center mt-2">
-                                    <img class="w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./IMG_5048.jpg" alt="Portrait of Priya Chaudhari">
+                                    <img class="editor-portrait w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./IMG_5048.jpg" alt="Portrait of Priya Chaudhari">
                                     <div>
                                         <h4 class="font-bold text-white text-lg">Priya Chaudhari</h4>
-                                        <p class="text-xs text-cyan-400 font-medium mt-1">UGA Class of 2028 · Interdisciplinary Studies</p>
+                                        <p class="editor-subtitle text-xs text-cyan-400 font-medium mt-1">UGA Class of 2028 · Interdisciplinary Studies</p>
                                         <p class="text-sm text-slate-400 mt-3 leading-relaxed" style="word-spacing: 0.06em;">
                                             Studying Healthcare Technology Law &amp; Regulation with a Focus Area in Public Health and interests in AI and digital accessibility rights.
                                         </p>
@@ -1933,14 +1960,14 @@
                                         <img src="./migration.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Migration and Health Cover">
                                         <div class="min-w-0">
                                             <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Migration and Health</div>
-                                            <div class="text-xs text-slate-400 truncate">Galea, Ettman, Zaman</div>
+                                            <div class="text-xs text-slate-400 truncate">Dr. Galea, Dr. Ettman, Dr. Zaman</div>
                                         </div>
                                     </button>
                                     <button onclick="navigateTo('#post-na')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my review: If You Knew the Conditions">
                                         <img src="./NAbook.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="If You Knew the Conditions Cover">
                                         <div class="min-w-0">
                                             <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">"If You Knew the Conditions"</div>
-                                            <div class="text-xs text-slate-400 truncate">David H. DeJong</div>
+                                            <div class="text-xs text-slate-400 truncate">Dr. David H. DeJong</div>
                                         </div>
                                     </button>
                                 </div>
@@ -1949,7 +1976,7 @@
                             <!-- Subscribe Form Card -->
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">Subscribe</h3>
-                                <p class="text-xs text-slate-400 -mt-2">Get notified when I publish a new post.</p>
+                                <p class="text-xs text-slate-400 -mt-2">Get notified when I publish.</p>
                                 
                                 <div id="mlb2-42510540" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-42510540 w-full mt-2">
                                     <div class="ml-form-align-center">
@@ -5598,7 +5625,7 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
-                                Yes! Although I didn’t recognize it at first, The Pulse’s posts definitely make sense for my Major's Final Project course through which I can receive up to six credit hours.
+                                Yes! Although I didn’t recognize it at first, The Pulse’s posts definitely make sense for my Major's Final Project course through which I can receive up to eight credit hours.
                             </div>
                         </div>
                     </div>
@@ -5624,7 +5651,7 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
-                                No! Throughout my life, I have always been interested in a variety of careers and majors. Freshman year was no exception. My first semester, I changed my major nearly every week—moderately stressful, do not recommend. However, crossing out the vast majority of professions and academic programs through thorough research and time investment, I can say for certain that what I pursue now is a perfect blend of my interests, passions, strengths, and weaknesses.
+                                No! Throughout my life, I have always been interested in a variety of careers and majors. Freshman year was no exception. My first semester, I changed my major nearly every week—moderately stressful, do not recommend. However, crossing out the vast majority of professions and academic programs through thorough research and time investment, I can say for certain that what I pursue now is a perfect blend of my interests, passions, and strengths.
                                 <br><br>
                                 One interesting fun fact about my major though is that for the first year of it, it was actually called AI, Ethics, and the Future of Health Policy, and the coursework reflected its niche nature. I decided to expand it to Healthcare Technology Law and Regulation in April 2025 as I became more curious as to other areas of healthcare technology law and regulation. However, this area remains one of my top research and professional interests still, and can explain why I've really enjoyed using artificial intelligence to build this website.
                             </div>
@@ -7496,8 +7523,8 @@
             <h3 style="margin: 0 0 6px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Download PDF</h3>
             <p style="margin: 0 0 20px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Which style would you like?</p>
             <div style="display: flex; gap: 12px;">
-                <button onclick="window.printArticle('light')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #f8fafc; color: #0f172a;">Light<br><span style="font-weight: 400; font-size: 11px; color: #475569;">Ink on paper</span></button>
-                <button onclick="window.printArticle('dark')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #101623; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.14);">Dark<br><span style="font-weight: 400; font-size: 11px; color: #94a3b8;">Like the website</span></button>
+                <button onclick="window.printArticle('light')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #f8fafc; color: #0f172a;">Light</button>
+                <button onclick="window.printArticle('dark')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #101623; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.14);">Dark</button>
             </div>
             <button onclick="window.closePdfModal()" style="margin-top: 14px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Cancel</button>
         </div>
