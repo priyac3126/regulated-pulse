@@ -367,7 +367,7 @@
         body.light-mode .glass-header { background: rgba(18, 33, 53, 0.85) !important; }
         body.light-mode .dashboard-sidebar {
             background: rgba(21, 40, 64, 0.82) !important;
-            border-right-color: rgba(31, 166, 154, 0.18) !important;
+            border-right-color: rgba(68, 139, 255, 0.22) !important;
         }
         body.light-mode .mobile-tab-dock { background: rgba(21, 40, 64, 0.88) !important; }
         body.light-mode .card-premium {
@@ -412,23 +412,23 @@
         body.light-mode .bg-cyan-400:hover { background-color: #4cb2ce !important; }
         body.light-mode .site-footer a { color: #4fb6ae !important; }
         body.light-mode .blog-post-content blockquote {
-            border-left-color: #1fa69a !important;
-            background: linear-gradient(90deg, rgba(31, 166, 154, 0.1) 0%, transparent 100%) !important;
+            border-left-color: #448bff !important;
+            background: linear-gradient(90deg, rgba(68, 139, 255, 0.12) 0%, transparent 100%) !important;
         }
         body.light-mode #blog-post-view article div[style*="rgb(30, 41, 59)"] {
             background: rgb(17, 24, 38) !important;
         }
         body.light-mode .audio-player {
-            background: rgba(31, 166, 154, 0.12) !important;
-            border-color: rgba(31, 166, 154, 0.45) !important;
-            color: #4fb6ae !important;
+            background: rgba(68, 139, 255, 0.12) !important;
+            border-color: rgba(68, 139, 255, 0.45) !important;
+            color: #448bff !important;
         }
-        body.light-mode .audio-player .play-btn { background: #1fa69a !important; }
+        body.light-mode .audio-player .play-btn { background: #448bff !important; }
         body.light-mode .ml-block-form button[type="submit"] {
-            background-color: #1fa69a !important;
+            background-color: #448bff !important;
         }
         body.light-mode .welcome-hero {
-            background: radial-gradient(circle at 100% 0%, rgba(31, 166, 154, 0.14) 0%, transparent 60%),
+            background: radial-gradient(circle at 100% 0%, rgba(68, 139, 255, 0.18) 0%, transparent 60%),
                 linear-gradient(135deg, #0f1824, #0f1b29) !important;
             border-color: #0f1824 !important;
             box-shadow: 0 10px 40px rgba(21, 40, 64, 0.2) !important;
@@ -507,6 +507,20 @@
         body.light-mode .shelf-book-btn.shelf-active .text-sm { color: #4fb6ae !important; }
         /* Light mode: red heartbeat pulse on the loading screen */
         body.light-mode #intro-overlay .pulse-logo polyline { stroke: #ef4444 !important; }
+        /* Light mode: navy & bright blue accents on navigation and branding */
+        body.light-mode .pulse-logo polyline { stroke: #448bff !important; }
+        body.light-mode .nav-link-vertical { color: #5b87e6; }
+        body.light-mode .nav-link-vertical:hover {
+            color: #448bff;
+            background: rgba(68, 139, 255, 0.1);
+        }
+        body.light-mode .nav-link-vertical.active,
+        body.light-mode .mobile-dock-btn.active {
+            color: #2f6bff !important;
+            background: rgba(68, 139, 255, 0.22) !important;
+            border-color: rgba(68, 139, 255, 0.5) !important;
+            box-shadow: 0 0 14px rgba(68, 139, 255, 0.28) !important;
+        }
         .light-back { display: none; }
         body.light-mode .light-back { display: inline; }
         .dark-link { display: inline; }
