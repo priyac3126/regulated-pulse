@@ -7512,42 +7512,36 @@
             const fontDecBtn = document.getElementById('reader-font-dec');
             const fontIncBtn = document.getElementById('reader-font-inc');
             const spacingToggleBtn = document.getElementById('reader-spacing-toggle');
-            const a11yScaleClasses = ['', 'reader-scale-lg', 'reader-scale-xl'];
-            let readerScaleIdx = 0;
+            const a11yScaleClasses = ['reader-scale-sm', '', 'reader-scale-lg', 'reader-scale-xl'];
+            let readerScaleIdx = 1;
             let readerWideSpacing = false;
             try {
-                readerScaleIdx = Math.max(0, Math.min(2, parseInt(localStorage.getItem('readerFontScale') || '0', 10) || 0));
+                const savedScale = localStorage.getItem('readerFontScaleV2');
+                if (savedScale !== null) {
+                    readerScaleIdx = Math.max(0, Math.min(3, parseInt(savedScale, 10)));
+                }
                 readerWideSpacing = localStorage.getItem('readerWideSpacing') === '1';
             } catch (e) {}
             const applyReaderA11yPrefs = () => {
                 if (!postViewEl) return;
-                postViewEl.classList.remove('reader-scale-lg', 'reader-scale-xl');
+                postViewEl.classList.remove('reader-scale-sm', 'reader-scale-lg', 'reader-scale-xl');
                 if (a11yScaleClasses[readerScaleIdx]) postViewEl.classList.add(a11yScaleClasses[readerScaleIdx]);
                 postViewEl.classList.toggle('reader-wide-spacing', readerWideSpacing);
+                if (fontDecBtn) fontDecBtn.setAttribute('aria-pressed', readerScaleIdx < 1 ? 'true' : 'false');
+                if (fontIncBtn) fontIncBtn.setAttribute('aria-pressed', readerScaleIdx > 1 ? 'true' : 'false');
                 if (spacingToggleBtn) spacingToggleBtn.setAttribute('aria-pressed', readerWideSpacing ? 'true' : 'false');
             };
+            window.readerAdjustFont = (delta) => {
+                readerScaleIdx = Math.max(0, Math.min(3, readerScaleIdx + delta));
+                try { localStorage.setItem('readerFontScaleV2', String(readerScaleIdx)); } catch (e) {}
+                applyReaderA11yPrefs();
+            };
+            window.readerToggleSpacing = () => {
+                readerWideSpacing = !readerWideSpacing;
+                try { localStorage.setItem('readerWideSpacing', readerWideSpacing ? '1' : '0'); } catch (e) {}
+                applyReaderA11yPrefs();
+            };
             applyReaderA11yPrefs();
-            if (fontDecBtn) {
-                fontDecBtn.addEventListener('click', () => {
-                    readerScaleIdx = Math.max(0, readerScaleIdx - 1);
-                    try { localStorage.setItem('readerFontScale', String(readerScaleIdx)); } catch (e) {}
-                    applyReaderA11yPrefs();
-                });
-            }
-            if (fontIncBtn) {
-                fontIncBtn.addEventListener('click', () => {
-                    readerScaleIdx = Math.min(2, readerScaleIdx + 1);
-                    try { localStorage.setItem('readerFontScale', String(readerScaleIdx)); } catch (e) {}
-                    applyReaderA11yPrefs();
-                });
-            }
-            if (spacingToggleBtn) {
-                spacingToggleBtn.addEventListener('click', () => {
-                    readerWideSpacing = !readerWideSpacing;
-                    try { localStorage.setItem('readerWideSpacing', readerWideSpacing ? '1' : '0'); } catch (e) {}
-                    applyReaderA11yPrefs();
-                });
-            }
 
             // WCAG 3.2.5 External link new-tab announcements for blind screen-reader users
             document.querySelectorAll('a[target="_blank"]').forEach(a => {
