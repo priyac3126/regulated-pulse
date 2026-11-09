@@ -1020,6 +1020,7 @@
 
         .focus-card {
             border-left: 3px solid #d9466e !important;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
             transition: all 0.3s ease;
         }
 
@@ -1032,7 +1033,17 @@
         }
         body.light-mode .focus-card {
             border-left-color: #e899ad !important;
-            background: rgba(185, 70, 90, 0.16) !important;
+            background: linear-gradient(135deg, #16181c 0%, #0b0d10 55%, #020304 100%) !important;
+        }
+        body.light-mode .view-doc-btn {
+            background-color: #2f7cf6 !important;
+            color: #080b11 !important;
+        }
+        body.light-mode .view-doc-btn:hover {
+            background-color: #458af7 !important;
+        }
+        body.light-mode .advisor-link {
+            color: #9ac2ff !important;
         }
 
         /* My Major Redesign */
@@ -5500,7 +5511,7 @@
                 <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Focus Areas</h3>
 
                 <!-- Focus Area: Public Health -->
-                <div class="focus-card rounded-lg p-5 mb-4" style="background: rgba(159, 18, 57, 0.1);">
+                <div class="focus-card rounded-lg p-5 mb-4">
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-public-health-content" aria-expanded="false"
                         aria-controls="focus-public-health-content">
@@ -5535,7 +5546,7 @@
                 </div>
 
                 <!-- Focus Area: Artificial Intelligence -->
-                <div class="focus-card rounded-lg p-5 mb-4" style="background: rgba(159, 18, 57, 0.1);">
+                <div class="focus-card rounded-lg p-5 mb-4">
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-ai-content" aria-expanded="false"
                         aria-controls="focus-ai-content">
@@ -5571,7 +5582,7 @@
                 </div>
 
                 <!-- Focus Area: Substance Abuse -->
-                <div class="focus-card rounded-lg p-5 mb-4" style="background: rgba(159, 18, 57, 0.1);">
+                <div class="focus-card rounded-lg p-5 mb-4">
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-substance-content" aria-expanded="false"
                         aria-controls="focus-substance-content">
@@ -5600,7 +5611,7 @@
                 </div>
 
                 <!-- Focus Area: Companion Animals -->
-                <div class="focus-card rounded-lg p-5 mb-10" style="background: rgba(159, 18, 57, 0.1);">
+                <div class="focus-card rounded-lg p-5 mb-10">
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-companion-content" aria-expanded="false"
                         aria-controls="focus-companion-content">
@@ -5650,7 +5661,7 @@
                     </div>
                     <a href="https://docs.google.com/document/d/1yOpl0o7ZyRwELF5bgy1lpsjcOr3vcORM/edit?usp=sharing"
                         target="_blank" rel="noopener noreferrer"
-                        class="px-4 py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-2 whitespace-nowrap bg-cyan-500 hover:bg-cyan-400 text-[#080b11]"
+                        class="view-doc-btn px-4 py-2 rounded-lg font-bold transition-colors flex items-center justify-center gap-2 whitespace-nowrap bg-cyan-500 hover:bg-cyan-400 text-[#080b11]"
                         style="font-size: 14px;"
                         aria-label="View the official major curriculum document in a new tab">
                         <i data-lucide="external-link" style="width: 16px; height: 16px;" aria-hidden="true"></i> View
@@ -5664,7 +5675,7 @@
                         out to
                         <a href="https://osas.franklin.uga.edu/directory/people/jessica-couch" target="_blank"
                             rel="noopener noreferrer" style="color: rgb(103, 232, 249); font-weight: 500;"
-                            class="hover:underline transition-colors hover:text-cyan-300"
+                            class="advisor-link hover:underline transition-colors hover:text-cyan-300"
                             aria-label="Contact UGA's Interdisciplinary Studies Advisor in a new tab">
                             UGA's Interdisciplinary Studies Advisor
                         </a>.
