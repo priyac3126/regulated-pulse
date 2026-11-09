@@ -6482,11 +6482,13 @@
                 audio.addEventListener('play', () => {
                     // Update Inline UI
                     player.style.color = 'rgb(103, 232, 249)';
-                    playBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+                    playBtn.setAttribute('aria-label', 'Pause article audio');
+                    playBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
                     
                     // Update Floating Bottom Bar UI
                     floatingBar.classList.add('active');
-                    floatingPlayBtn.innerHTML = '<i data-lucide="pause" style="width: 20px; height: 20px; fill: currentColor;"></i>';
+                    floatingPlayBtn.setAttribute('aria-label', 'Pause audio');
+                    floatingPlayBtn.innerHTML = '<i data-lucide="pause" style="width: 20px; height: 20px; fill: currentColor;" aria-hidden="true"></i>';
                     floatingWave.classList.add('playing');
                     
                     // Sync playback rate
@@ -6497,23 +6499,31 @@
                     // Speed up heartbeat speed
                     document.querySelectorAll('.pulse-logo').forEach(logo => logo.classList.add('playing'));
 
-                    // Guess the title
-                    const titleEl = player.closest('article')?.querySelector('h2, h3') || player.closest('section')?.querySelector('h2') || player.closest('.card-premium')?.querySelector('h3');
+                    // Guess the title & wire jump-to-article-text for deaf/low-vision users
+                    const parentArticle = player.closest('article');
+                    const titleEl = parentArticle?.querySelector('h2, h3') || player.closest('section')?.querySelector('h2') || player.closest('.card-premium')?.querySelector('h3');
                     floatingTitle.textContent = titleEl ? titleEl.textContent.trim() : "Audio Dispatch";
+                    if (parentArticle && parentArticle.id) {
+                        const targetHash = '#' + parentArticle.id.replace('-container', '');
+                        floatingTitle.setAttribute('data-post-hash', targetHash);
+                        floatingTitle.setAttribute('title', 'Jump to written article text');
+                    }
                     
                     if (typeof lucide !== 'undefined') lucide.createIcons();
                 });
 
                 const resetUI = () => {
                     player.style.color = '';
-                    playBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+                    playBtn.setAttribute('aria-label', 'Play article audio');
+                    playBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
                     updateDisplay();
                 };
 
                 audio.addEventListener('pause', () => {
                     resetUI();
                     if (currentAudio === audio) {
-                        floatingPlayBtn.innerHTML = '<i data-lucide="play" style="width: 20px; height: 20px; fill: currentColor;"></i>';
+                        floatingPlayBtn.setAttribute('aria-label', 'Play audio');
+                        floatingPlayBtn.innerHTML = '<i data-lucide="play" style="width: 20px; height: 20px; fill: currentColor;" aria-hidden="true"></i>';
                         floatingWave.classList.remove('playing');
                         document.querySelectorAll('.pulse-logo').forEach(logo => logo.classList.remove('playing'));
                         if (typeof lucide !== 'undefined') lucide.createIcons();
