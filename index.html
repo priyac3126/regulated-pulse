@@ -591,6 +591,108 @@
             text-underline-offset: 3px;
             cursor: help;
         }
+
+        /* 1. Editorial Drop Caps & Pull-Quote Watermark */
+        #blog-post-view .blog-post-content > p:first-of-type::first-letter {
+            float: left;
+            font-family: 'Plus Jakarta Sans', Georgia, serif;
+            font-size: calc(3.35rem * var(--reader-scale, 1));
+            line-height: 0.86;
+            font-weight: 800;
+            padding-right: 0.65rem;
+            padding-top: 0.18rem;
+            color: #38bdf8;
+        }
+        body.light-mode #blog-post-view .blog-post-content > p:first-of-type::first-letter {
+            color: #73affb !important;
+        }
+        #blog-post-view .blog-post-content blockquote {
+            position: relative;
+        }
+        #blog-post-view .blog-post-content blockquote::before {
+            content: '\201C';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+            font-size: 3.4rem;
+            line-height: 1;
+            color: rgba(56, 189, 248, 0.16);
+            pointer-events: none;
+        }
+
+        /* 4. Collapsible Table of Contents & 2. Related Articles */
+        .article-toc-box {
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.55);
+            padding: 1rem 1.25rem;
+            margin-bottom: 2rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        body.light-mode .article-toc-box {
+            background: #0b1422;
+            border-color: rgba(68, 139, 255, 0.25);
+        }
+        .related-posts-box {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        body.light-mode .related-posts-box {
+            border-top-color: rgba(68, 139, 255, 0.22);
+        }
+
+        /* 6. Academic Credential Pills on About Me */
+        .credential-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.28);
+            color: #bae6fd;
+        }
+        body.light-mode .credential-pill {
+            background: rgba(59, 130, 246, 0.14);
+            border-color: rgba(68, 139, 255, 0.35);
+            color: #8ab8ff;
+        }
+
+        /* 7. Smooth Page-Transition Fade */
+        @keyframes viewFadeIn {
+            0% { opacity: 0; transform: translateY(6px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .view-fade-enter {
+            animation: viewFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Blog Search Input */
+        .blog-search-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 9999px;
+            padding: 0.45rem 1rem;
+            font-size: 0.85rem;
+            color: #f8fafc;
+            width: 100%;
+            max-width: 240px;
+            transition: border-color 0.2s ease;
+        }
+        .blog-search-input:focus {
+            outline: none;
+            border-color: var(--pulse-cyan);
+        }
+        body.light-mode .blog-search-input {
+            background: #09111d;
+            border-color: rgba(68, 139, 255, 0.28);
+            color: #e2e8f0;
+        }
         .img-a11y-desc {
             display: block;
             margin: 6px auto 0;
@@ -2109,11 +2211,33 @@
                                 </div>
                             </div>
 
+                            <!-- Recommended for You Section (Blog) -->
+                            <div id="blog-recommended-section" class="hidden">
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <div>
+                                        <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Personalized Picks</span>
+                                        <h2 class="text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recommended for You</h2>
+                                    </div>
+                                </div>
+                                <div id="blog-recommended-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+                            </div>
+
                             <!-- Articles Area -->
                             <div>
-                                <h2 class="mb-2 text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recent Articles</h2>
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                                    <h2 class="text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recent Articles</h2>
+                                    <input type="search" id="blog-search-input" class="blog-search-input" placeholder="Search articles..." aria-label="Search blog articles">
+                                </div>
+                                <div class="flex flex-wrap gap-2 mb-7" id="blog-filter-tags" role="tablist" aria-label="Filter blog articles by category">
+                                    <button type="button" class="filter-tag active" data-blog-cat="all" aria-pressed="true">All</button>
+                                    <button type="button" class="filter-tag" data-blog-cat="book" aria-pressed="false">Book Insights</button>
+                                    <button type="button" class="filter-tag" data-blog-cat="law" aria-pressed="false">Law &amp; Policy</button>
+                                    <button type="button" class="filter-tag" data-blog-cat="ai" aria-pressed="false">AI &amp; Tech</button>
+                                    <button type="button" class="filter-tag" data-blog-cat="education" aria-pressed="false">Education &amp; History</button>
+                                    <button type="button" class="filter-tag" data-blog-cat="interview" aria-pressed="false">Interview</button>
+                                </div>
                                 
-                                <div class="flex flex-col gap-6">
+                                <div class="flex flex-col gap-6" id="recent-articles-list">
                                     <!-- Beyond the Battlefield -->
                                     <button
                                             class="rounded-2xl p-7 card-premium card-violet text-left w-full focus:outline-none cursor-pointer flex flex-col"
@@ -4727,6 +4851,13 @@
 
                 <!-- Podcast List View (Episode Cards) -->
                 <div id="podcast-list-view">
+                    <!-- Recommended for You Section (Podcast) -->
+                    <div id="podcast-recommended-section" class="hidden mb-10">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Personalized Picks</span>
+                        <h3 class="font-bold mb-4" style="color: rgb(241, 245, 249); font-size: 22px;">Recommended for You</h3>
+                        <div id="podcast-recommended-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                    </div>
+
                     <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Episodes</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
 
@@ -6127,6 +6258,13 @@
                         <p>
                             My long-term visions are to become a law professor specializing in healthcare technology law and regulation and to be an administrative law judge for the Health and Human Services agency.
                         </p>
+                        <div class="pt-4 flex flex-wrap gap-2.5" aria-label="Academic credentials and certificates">
+                            <span class="credential-pill">A.B. Interdisciplinary Studies: Healthcare Tech Law &amp; Regulation</span>
+                            <span class="credential-pill">Bioethics Minor</span>
+                            <span class="credential-pill">Certificate in Health Humanities: Health, Arts, and Society</span>
+                            <span class="credential-pill">Certificate in Disability Studies</span>
+                            <span class="credential-pill">UGA Class of 2027</span>
+                        </div>
                     </div>
                     <div class="flex-shrink-0 flex flex-col items-center gap-4 w-full lg:w-64">
                         <img class="w-64 h-80 rounded-2xl object-cover border-2 border-white/5 shadow-2xl" style="object-position: center 20%;"
