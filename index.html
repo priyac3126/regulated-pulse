@@ -449,9 +449,13 @@
         body.light-mode .text-slate-300 { color: #8ba1bd !important; }
         body.light-mode .text-slate-400 { color: #b4c8e0 !important; }
         body.light-mode .text-slate-500 { color: #95afd1 !important; }
+        #blog-post-view article form button[type="submit"] {
+            color: #ffffff !important;
+        }
         body.light-mode #blog-post-view article h2 { color: #bedaff !important; }
         body.light-mode #blog-post-view article form button[type="submit"] {
             background: linear-gradient(135deg, #06b6d4, #448bff) !important;
+            color: #000000 !important;
             box-shadow: 0 4px 14px rgba(68, 139, 255, 0.25) !important;
         }
         body.light-mode :focus { outline-color: #81b2ff; }
@@ -1761,9 +1765,16 @@
     </style>
 </head>
 
-<body class="min-h-screen min-h-[100dvh] bg-[#080b11]"><div id="reader-progress" class="reader-progress-bar"></div>
+<body class="light-mode min-h-screen min-h-[100dvh] bg-[#080b11]"><div id="reader-progress" class="reader-progress-bar"></div>
     <script>
         (function() {
+            try {
+                if (localStorage.getItem('lightModeChoice') === 'dark' || localStorage.getItem('lightModeOn') === '0') {
+                    document.body.classList.remove('light-mode');
+                } else {
+                    localStorage.setItem('lightModeOn', '1');
+                }
+            } catch (e) {}
             const hash = window.location.hash;
             if (hash && hash !== '#blog' && hash !== '#') {
                 document.write('<style>#intro-overlay { display: none !important; } #main-content { opacity: 1 !important; transition: none !important; }</style>');
@@ -4172,7 +4183,7 @@
                             <p>Clarke’s third law, a mention to the British science fiction writer and futurist,
                                 describes a timeless ideal relevant to technological innovation’s power and influence to
                                 shape humanity. This quote first appeared in the footnote of his 1973 revision of
-                                *Profiles of the Future*, and is both inspiring and also revealing of the nature of
+                                <em>Profiles of the Future</em>, and is both inspiring and also revealing of the nature of
                                 technology. Artificial intelligence stands out as a technology that we are still
                                 beginning to understand and develop and I am excited to see how healthcare technology
                                 continues to innovate and save lives– all while intentional regulations, laws, and the
@@ -4246,7 +4257,7 @@
                                 director of NYU’s Institute for Innovations in Medical Education) perspective on what
                                 should be taught less of: “Rote memorization and fact regurgitation are just going to be
                                 less important” (202-203; 208).</p>
-                            <p>Funnily enough, there’s only one set of facts that Dr. Watcher, author of *A Giant Leap*
+                            <p>Funnily enough, there’s only one set of facts that Dr. Watcher, author of <em>A Giant Leap</em>
                                 and chair of the department of medicine at the University of California, San Francisco,
                                 found faculty could agree on, after “Countless hours of debate on curricular purging”:
                                 no longer requiring the memorization of the Krebs cycle. He remarks that “This consensus
