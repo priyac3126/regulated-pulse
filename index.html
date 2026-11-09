@@ -458,6 +458,11 @@
             color: #000000 !important;
             box-shadow: 0 4px 14px rgba(68, 139, 255, 0.25) !important;
         }
+        body.light-mode #blog-post-view article form input,
+        body.light-mode #blog-post-view article form textarea {
+            background-color: #060b14 !important;
+            border-color: rgba(68, 139, 255, 0.28) !important;
+        }
         body.light-mode :focus { outline-color: #81b2ff; }
         body.light-mode :focus-visible { outline-color: #81b2ff; }
         /* Light mode: richer tinted gradients on article cards */
@@ -6396,8 +6401,28 @@
             const floatingSkipForward = document.getElementById('floating-skip-forward');
             const floatingSkipBackward = document.getElementById('floating-skip-backward');
 
-            const speedRates = [1.0, 1.25, 1.5, 2.0];
-            let currentSpeedIdx = 0;
+            const speedRates = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
+            let currentSpeedIdx = 2;
+
+            function formatSpeedRate(rate) {
+                return `${Number(rate).toFixed(2).replace(/\.00$/, '.0').replace(/(\.\d)0$/, '$1')}x`;
+            }
+
+            window.__applySavedAudioSpeed = function (savedRate) {
+                const num = parseFloat(savedRate);
+                const idx = speedRates.findIndex(r => Math.abs(r - num) < 0.01);
+                if (idx !== -1) {
+                    currentSpeedIdx = idx;
+                    const rate = speedRates[currentSpeedIdx];
+                    if (floatingSpeedBtn) floatingSpeedBtn.textContent = formatSpeedRate(rate);
+                    if (currentAudio) currentAudio.playbackRate = rate;
+                }
+            };
+
+            try {
+                const storedSpeed = localStorage.getItem('audioPlaybackSpeed');
+                if (storedSpeed !== null) window.__applySavedAudioSpeed(storedSpeed);
+            } catch (e) {}
 
             const audioInstances = new Map();
 
