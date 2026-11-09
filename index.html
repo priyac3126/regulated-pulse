@@ -882,34 +882,61 @@
             word-break: normal !important;
         }
 
-        /* Reader Accessibility Controls overrides (placed after .blog-post-content rules so !important wins) */
-        #blog-post-view.reader-scale-sm .blog-post-content,
-        #blog-post-view.reader-scale-sm .blog-post-content p,
-        #blog-post-view.reader-scale-sm .blog-post-content li { font-size: 1.0rem !important; }
-        #blog-post-view.reader-scale-sm .blog-post-content blockquote,
-        #blog-post-view.reader-scale-sm .blog-post-content blockquote p { font-size: 1.05rem !important; }
-        #blog-post-view.reader-scale-lg .blog-post-content,
-        #blog-post-view.reader-scale-lg .blog-post-content p,
-        #blog-post-view.reader-scale-lg .blog-post-content li { font-size: 1.32rem !important; }
-        #blog-post-view.reader-scale-lg .blog-post-content blockquote,
-        #blog-post-view.reader-scale-lg .blog-post-content blockquote p { font-size: 1.36rem !important; }
-        #blog-post-view.reader-scale-lg .blog-post-content h2 { font-size: 1.95rem !important; }
-        #blog-post-view.reader-scale-lg .blog-post-content h3 { font-size: 1.5rem !important; }
-        #blog-post-view.reader-scale-xl .blog-post-content,
-        #blog-post-view.reader-scale-xl .blog-post-content p,
-        #blog-post-view.reader-scale-xl .blog-post-content li { font-size: 1.5rem !important; }
-        #blog-post-view.reader-scale-xl .blog-post-content blockquote,
-        #blog-post-view.reader-scale-xl .blog-post-content blockquote p { font-size: 1.54rem !important; }
-        #blog-post-view.reader-scale-xl .blog-post-content h2 { font-size: 2.15rem !important; }
-        #blog-post-view.reader-scale-xl .blog-post-content h3 { font-size: 1.68rem !important; }
+        /* Reader Accessibility Controls overrides (proportional --reader-scale across header, metadata, share bar & body) */
+        #blog-post-view {
+            --reader-scale: 1;
+        }
+        #blog-post-view > article > h2 {
+            font-size: calc(32px * var(--reader-scale, 1)) !important;
+            line-height: 1.22 !important;
+        }
+        #blog-post-view > article > h3 {
+            font-size: calc(20px * var(--reader-scale, 1)) !important;
+            line-height: 1.35 !important;
+        }
+        #blog-post-view > article > p.text-sm,
+        #blog-post-view > article .text-center p.text-sm {
+            font-size: calc(0.875rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .share-bar span {
+            font-size: calc(12px * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .share-bar button {
+            width: calc(30px * var(--reader-scale, 1)) !important;
+            height: calc(30px * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .blog-post-content,
+        #blog-post-view .blog-post-content p,
+        #blog-post-view .blog-post-content li {
+            font-size: calc(1.15rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .blog-post-content blockquote,
+        #blog-post-view .blog-post-content blockquote p {
+            font-size: calc(1.2rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .blog-post-content blockquote cite {
+            font-size: calc(0.85rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .blog-post-content h2 {
+            font-size: calc(1.75rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .blog-post-content h3 {
+            font-size: calc(1.35rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .blog-post-content .works-cited li {
+            font-size: calc(0.95rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .comparison-table th,
+        #blog-post-view .comparison-table td {
+            font-size: calc(13.5px * var(--reader-scale, 1)) !important;
+        }
         #blog-post-view.reader-wide-spacing .blog-post-content,
         #blog-post-view.reader-wide-spacing .blog-post-content p,
         #blog-post-view.reader-wide-spacing .blog-post-content li,
         #blog-post-view.reader-wide-spacing .blog-post-content blockquote,
         #blog-post-view.reader-wide-spacing .blog-post-content blockquote p {
             line-height: 2.15 !important;
-            letter-spacing: 0.055em !important;
-            word-spacing: 0.18em !important;
+            word-spacing: 0.22em !important;
         }
         #blog-post-view.reader-wide-spacing .blog-post-content p,
         #blog-post-view.reader-wide-spacing .blog-post-content li {
@@ -2332,8 +2359,9 @@
                         </div>
                         <div class="flex items-center gap-2" role="group" aria-label="Reading accessibility controls">
                             <button type="button" id="reader-font-dec" onclick="window.readerAdjustFont && window.readerAdjustFont(-1)" class="reader-a11y-btn" aria-pressed="false" aria-label="Decrease article text size" title="Decrease text size">A&minus;</button>
+                            <button type="button" id="reader-font-scale-btn" onclick="window.readerCycleFont && window.readerCycleFont()" class="reader-a11y-btn" aria-label="Current text size multiplier (click to cycle)" title="Click to cycle text size">1.0x</button>
                             <button type="button" id="reader-font-inc" onclick="window.readerAdjustFont && window.readerAdjustFont(1)" class="reader-a11y-btn" aria-pressed="false" aria-label="Increase article text size" title="Increase text size">A+</button>
-                            <button type="button" id="reader-spacing-toggle" onclick="window.readerToggleSpacing && window.readerToggleSpacing()" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle dyslexia-friendly wide text spacing" title="Toggle wide line and word spacing">Wide Spacing</button>
+                            <button type="button" id="reader-spacing-toggle" onclick="window.readerToggleSpacing && window.readerToggleSpacing()" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle wide line and word spacing" title="Toggle wide line and word spacing">Wide Spacing</button>
                         </div>
                     </div>
 
