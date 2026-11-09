@@ -7441,6 +7441,82 @@
                     p.innerHTML = p.innerHTML.replace(/\s*·\s*/g, ' <span aria-hidden="true">·</span> ');
                 }
             });
+
+            // WCAG 1.4.4 / 1.4.12 Reading Accessibility Controls (Text Size A-/A+ & Dyslexia-Friendly Wide Spacing)
+            const postViewEl = document.getElementById('blog-post-view');
+            const fontDecBtn = document.getElementById('reader-font-dec');
+            const fontIncBtn = document.getElementById('reader-font-inc');
+            const spacingToggleBtn = document.getElementById('reader-spacing-toggle');
+            const scaleClasses = ['', 'reader-scale-lg', 'reader-scale-xl'];
+            let readerScaleIdx = 0;
+            let readerWideSpacing = false;
+            try {
+                readerScaleIdx = Math.max(0, Math.min(2, parseInt(localStorage.getItem('readerFontScale') || '0', 10) || 0));
+                readerWideSpacing = localStorage.getItem('readerWideSpacing') === '1';
+            } catch (e) {}
+            const applyReaderA11yPrefs = () => {
+                if (!postViewEl) return;
+                postViewEl.classList.remove('reader-scale-lg', 'reader-scale-xl');
+                if (scaleClasses[readerScaleIdx]) postViewEl.classList.add(scaleClasses[readerScaleIdx]);
+                postViewEl.classList.toggle('reader-wide-spacing', readerWideSpacing);
+                if (spacingToggleBtn) spacingToggleBtn.setAttribute('aria-pressed', readerWideSpacing ? 'true' : 'false');
+            };
+            applyReaderA11yPrefs();
+            if (fontDecBtn) {
+                fontDecBtn.addEventListener('click', () => {
+                    readerScaleIdx = Math.max(0, readerScaleIdx - 1);
+                    try { localStorage.setItem('readerFontScale', String(readerScaleIdx)); } catch (e) {}
+                    applyReaderA11yPrefs();
+                });
+            }
+            if (fontIncBtn) {
+                fontIncBtn.addEventListener('click', () => {
+                    readerScaleIdx = Math.min(2, readerScaleIdx + 1);
+                    try { localStorage.setItem('readerFontScale', String(readerScaleIdx)); } catch (e) {}
+                    applyReaderA11yPrefs();
+                });
+            }
+            if (spacingToggleBtn) {
+                spacingToggleBtn.addEventListener('click', () => {
+                    readerWideSpacing = !readerWideSpacing;
+                    try { localStorage.setItem('readerWideSpacing', readerWideSpacing ? '1' : '0'); } catch (e) {}
+                    applyReaderA11yPrefs();
+                });
+            }
+
+            // WCAG 3.2.5 External link new-tab announcements for blind screen-reader users
+            document.querySelectorAll('a[target="_blank"]').forEach(a => {
+                const existingLabel = a.getAttribute('aria-label');
+                const visibleText = a.textContent.replace(/\s+/g, ' ').trim();
+                const baseLabel = existingLabel || visibleText;
+                if (baseLabel && !/new tab/i.test(baseLabel)) {
+                    a.setAttribute('aria-label', `${baseLabel} (opens in new tab)`);
+                }
+            });
+
+            // WCAG 2.1.4 Modifier-based audio keyboard shortcuts (Alt+P play/pause, Alt+F Follow Along, Alt+Left/Right skip 15s)
+            document.addEventListener('keydown', (e) => {
+                if (!e.altKey || e.ctrlKey || e.metaKey) return;
+                const tag = (document.activeElement && document.activeElement.tagName) || '';
+                if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag) || document.activeElement?.isContentEditable) return;
+                if (e.code === 'KeyP' && currentAudioPlayer) {
+                    e.preventDefault();
+                    toggleAudioPlayback(currentAudioPlayer);
+                } else if (e.code === 'KeyF') {
+                    e.preventDefault();
+                    followAlongEnabled = !followAlongEnabled;
+                    try { localStorage.setItem('audioFollowAlong', followAlongEnabled ? '1' : '0'); } catch (err) {}
+                    syncFollowAlongButtons();
+                } else if (e.code === 'ArrowRight' && currentAudio) {
+                    e.preventDefault();
+                    currentAudio.currentTime = Math.min(currentAudio.currentTime + 15, currentAudio.duration || 0);
+                    updateScrubberSync();
+                } else if (e.code === 'ArrowLeft' && currentAudio) {
+                    e.preventDefault();
+                    currentAudio.currentTime = Math.max(currentAudio.currentTime - 15, 0);
+                    updateScrubberSync();
+                }
+            });
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (document.getElementById('pdf-mode-modal')?.classList.contains('show') && window.closePdfModal) window.closePdfModal();
