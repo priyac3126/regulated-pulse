@@ -6746,15 +6746,46 @@
                 });
             }
 
-            // Accessibility: link comment form labels to inputs, add podcast caption/transcript links, and close modals on Escape
+            // Accessibility: link comment form labels to inputs, add autocomplete/aria-required, enhance tables & tablists, and trap/close modals
             document.querySelectorAll('form[onsubmit*="submitComment"]').forEach((form, fIdx) => {
                 form.querySelectorAll('.flex.flex-col').forEach((fieldWrap, iIdx) => {
                     const label = fieldWrap.querySelector('label');
                     const control = fieldWrap.querySelector('input, textarea');
-                    if (label && control && !control.id) {
-                        const id = `comment-field-${fIdx + 1}-${iIdx + 1}`;
-                        control.id = id;
-                        label.setAttribute('for', id);
+                    if (label && control) {
+                        if (!control.id) {
+                            const id = `comment-field-${fIdx + 1}-${iIdx + 1}`;
+                            control.id = id;
+                            label.setAttribute('for', id);
+                        }
+                        if (control.hasAttribute('required')) control.setAttribute('aria-required', 'true');
+                        const labelText = label.textContent.trim().toLowerCase();
+                        if (labelText === 'name' && !control.getAttribute('autocomplete')) control.setAttribute('autocomplete', 'name');
+                        if (labelText === 'email' && !control.getAttribute('autocomplete')) control.setAttribute('autocomplete', 'email');
+                    }
+                });
+            });
+            document.querySelectorAll('.comparison-table').forEach((table, tIdx) => {
+                table.setAttribute('tabindex', '0');
+                table.setAttribute('role', 'region');
+                if (!table.getAttribute('aria-label')) table.setAttribute('aria-label', `Comparison table ${tIdx + 1}`);
+                table.querySelectorAll('thead th, tr:first-child th').forEach(th => {
+                    if (!th.getAttribute('scope')) th.setAttribute('scope', 'col');
+                });
+            });
+            document.querySelectorAll('[role="tablist"]').forEach(tablist => {
+                tablist.addEventListener('keydown', (e) => {
+                    const tabs = Array.from(tablist.querySelectorAll('[role="tab"], .filter-tag'));
+                    const idx = tabs.indexOf(document.activeElement);
+                    if (idx === -1) return;
+                    let nextIdx = -1;
+                    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextIdx = (idx + 1) % tabs.length;
+                    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+                    else if (e.key === 'Home') nextIdx = 0;
+                    else if (e.key === 'End') nextIdx = tabs.length - 1;
+                    if (nextIdx !== -1) {
+                        e.preventDefault();
+                        tabs[nextIdx].focus();
+                        tabs[nextIdx].click();
                     }
                 });
             });
@@ -6774,6 +6805,22 @@
                     if (document.getElementById('ann-auth-modal')?.classList.contains('show') && window.annCloseAuth) window.annCloseAuth();
                     if (document.getElementById('note-pop')?.classList.contains('show') && window.annCancelNote) window.annCancelNote();
                     if (document.getElementById('theme-pop')?.classList.contains('show') && window.keepDarkChoice) window.keepDarkChoice();
+                } else if (e.key === 'Tab') {
+                    const activeModal = document.querySelector('.ann-overlay.show, #note-pop.show');
+                    if (activeModal) {
+                        const focusables = Array.from(activeModal.querySelectorAll('button, [href], input, textarea, [tabindex]:not([tabindex="-1"])')).filter(el => el.offsetParent !== null);
+                        if (focusables.length > 0) {
+                            const first = focusables[0];
+                            const last = focusables[focusables.length - 1];
+                            if (e.shiftKey && document.activeElement === first) {
+                                e.preventDefault();
+                                last.focus();
+                            } else if (!e.shiftKey && document.activeElement === last) {
+                                e.preventDefault();
+                                first.focus();
+                            }
+                        }
+                    }
                 }
             });
 
