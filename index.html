@@ -1736,6 +1736,42 @@
         }
 
         /* Accessibility: screen-reader-only utility, keyboard focus rings, and reduced-motion support */
+        ::highlight(tts-active-word) {
+            background-color: rgba(56, 189, 248, 0.38);
+            color: #ffffff;
+        }
+        body.light-mode ::highlight(tts-active-word) {
+            background-color: rgba(37, 99, 235, 0.32);
+            color: #ffffff;
+        }
+        .follow-along-toggle {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(103, 232, 249, 0.35);
+            background: rgba(6, 182, 212, 0.12);
+            color: rgb(103, 232, 249);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-left: 6px;
+            white-space: nowrap;
+        }
+        .follow-along-toggle[aria-pressed="false"] {
+            border-color: rgba(148, 163, 184, 0.25);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgb(148, 163, 184);
+        }
+        body.light-mode .follow-along-toggle {
+            border-color: rgba(68, 139, 255, 0.45);
+            background: rgba(68, 139, 255, 0.16);
+            color: #8ab8ff;
+        }
+        body.light-mode .follow-along-toggle[aria-pressed="false"] {
+            border-color: rgba(148, 163, 184, 0.3);
+            background: rgba(15, 24, 36, 0.5);
+            color: #95afd1;
+        }
         .sr-only {
             position: absolute !important;
             width: 1px !important;
@@ -7848,6 +7884,7 @@
         </div>
 
         <div class="flex items-center gap-3 flex-shrink-0">
+            <button id="floating-follow-btn" type="button" class="follow-along-toggle" aria-pressed="true" aria-label="Toggle Follow Along word highlighting">Follow Along: On</button>
             <button id="floating-speed-btn" class="text-[10px] font-extrabold text-slate-400 hover:text-white px-2 py-1 rounded bg-white/5 border border-white/10 transition-colors" aria-label="Toggle playback speed">1.0x</button>
             <div id="floating-audio-wave" class="audio-wave" aria-hidden="true">
                 <div class="audio-wave-bar"></div>
