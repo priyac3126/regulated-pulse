@@ -6469,43 +6469,86 @@
                 }
             });
 
-            // Bind playback speed cycle
+            // Bind playback speed cycle (persisted in localStorage and Firebase userPrefs)
             floatingSpeedBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
+                currentSpeedIdx = (currentSpeedIdx + 1) % speedRates.length;
+                const nextRate = speedRates[currentSpeedIdx];
                 if (currentAudio) {
-                    currentSpeedIdx = (currentSpeedIdx + 1) % speedRates.length;
-                    const nextRate = speedRates[currentSpeedIdx];
                     currentAudio.playbackRate = nextRate;
-                    floatingSpeedBtn.textContent = `${nextRate.toFixed(2).replace('.00', '')}x`;
                 }
+                floatingSpeedBtn.textContent = formatSpeedRate(nextRate);
+                try { localStorage.setItem('audioPlaybackSpeed', String(nextRate)); } catch (err) {}
+                if (window.__annSaveAudioSpeedPref) window.__annSaveAudioSpeedPref(nextRate);
             });
 
+            // Pre-warm Web Speech API voices so neural/premium voices are ready
+            if ('speechSynthesis' in window) {
+                try {
+                    window.speechSynthesis.getVoices();
+                    window.speechSynthesis.addEventListener('voiceschanged', () => {
+                        try { window.speechSynthesis.getVoices(); } catch (e) {}
+                    });
+                } catch (e) {}
+            }
+
             // Inject Web Speech API "Listen to Article" buttons on articles that do not have a recorded .m4a file
+            function normalizeForHumanSpeech(text) {
+                return String(text || '')
+                    // Remove parenthetical page/author citations like (201), (202-203; 208), (Fancourt 116–117), (Tedla et al.)
+                    .replace(/\s*\((?:p\.?\s*|pg\.?\s*|pp\.?\s*)?[A-Za-z\s.,&]*\d+[\d\s,;\u2013\u2014-]*\)/g, '')
+                    .replace(/\s*\([A-Z][A-Za-z\s.,&]+et al\.\)/g, '')
+                    .replace(/\s*\(Trzeciak and Mazzarelli[^)]*\)/g, '')
+                    // Remove stray markdown asterisks and normalize dashes for natural prosody pauses
+                    .replace(/\*+/g, '')
+                    .replace(/\s*(?:--|\u2014|\u2013|-–)\s*/g, ', ')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+
             function extractArticleSpeechChunks(articleEl) {
                 if (!articleEl) return [];
                 const chunks = [];
                 const h2 = articleEl.querySelector('h2');
-                if (h2 && h2.textContent.trim()) chunks.push(h2.textContent.replace(/\s+/g, ' ').trim() + '.');
+                if (h2 && h2.textContent.trim()) {
+                    chunks.push({ text: normalizeForHumanSpeech(h2.textContent) + '.', pauseAfter: 380 });
+                }
                 const contentEl = articleEl.querySelector('.blog-post-content');
                 if (contentEl) {
                     const clone = contentEl.cloneNode(true);
-                    clone.querySelectorAll('.works-cited, .table-note, script, style').forEach(el => el.remove());
-                    clone.querySelectorAll('h2, h3, h4').forEach(h => {
-                        if (/works cited/i.test(h.textContent)) h.remove();
-                    });
-                    const rawText = clone.textContent.replace(/\s+/g, ' ').trim();
-                    const sentences = rawText.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [rawText];
-                    sentences.forEach(s => {
-                        const clean = s.trim();
-                        if (clean.length > 1) chunks.push(clean);
-                    });
+                    clone.querySelectorAll('.works-cited, .table-note, .comparison-table, script, style').forEach(el => el.remove());
+                    const blocks = clone.querySelectorAll('h2, h3, h4, blockquote, p, li');
+                    const processBlockText = (rawBlock, isHeading) => {
+                        const cleaned = normalizeForHumanSpeech(rawBlock);
+                        if (!cleaned || /^works cited$/i.test(cleaned)) return;
+                        const sentences = cleaned.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [cleaned];
+                        sentences.forEach((s, idx) => {
+                            let sent = s.trim();
+                            if (sent.length > 1) {
+                                if (!/[.!?]["'\u201d\u2019]?$/.test(sent)) sent += '.';
+                                const isLastInBlock = idx === sentences.length - 1;
+                                chunks.push({
+                                    text: sent,
+                                    pauseAfter: isHeading ? 400 : (isLastInBlock ? 340 : 130)
+                                });
+                            }
+                        });
+                    };
+                    if (blocks.length > 0) {
+                        blocks.forEach(b => {
+                            if (b.closest('blockquote') && b.tagName === 'P') return;
+                            processBlockText(b.textContent, /^H[2-4]$/.test(b.tagName));
+                        });
+                    } else {
+                        processBlockText(clone.textContent, false);
+                    }
                 }
                 return chunks;
             }
 
             function createSpeechAudio(articleEl, fallbackSeconds) {
                 const chunks = extractArticleSpeechChunks(articleEl);
-                const wordCounts = chunks.map(c => Math.max(1, c.split(/\s+/).length));
+                const wordCounts = chunks.map(c => Math.max(1, c.text.split(/\s+/).length));
                 const totalWords = wordCounts.reduce((a, b) => a + b, 0) || 1;
                 const estDuration = fallbackSeconds || Math.max(30, Math.round(totalWords / 2.65));
                 const chunkStartTimes = [];
@@ -6523,14 +6566,22 @@
                 let _rate = 1.0;
                 let _chunkIdx = 0;
                 let _timer = null;
+                let _pauseTimeout = null;
                 let _sessionId = 0;
+
+                const NOVELTY_RE = /(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Wobble|Fred|Good News|Jester|Junior|Organ|Superstar|Ralph|Trinoids|Whisper|Zarvox|Grandma|Grandpa|Rocko|Reed|Shelley|Sandy|Eddy)/i;
 
                 const pickVoice = () => {
                     if (!('speechSynthesis' in window)) return null;
-                    const voices = window.speechSynthesis.getVoices() || [];
-                    return voices.find(v => /en(-|_)(US|GB)/i.test(v.lang) && /(Samantha|Ava|Allison|Natural|Google US English|Aria|Jenny)/i.test(v.name))
-                        || voices.find(v => /^en/i.test(v.lang) && v.localService)
-                        || voices.find(v => /^en/i.test(v.lang))
+                    const voices = (window.speechSynthesis.getVoices() || []).filter(v => /^en/i.test(v.lang) && !NOVELTY_RE.test(v.name));
+                    const usVoices = voices.filter(v => /en(-|_)?(US|GB)/i.test(v.lang));
+                    const pool = usVoices.length ? usVoices : voices;
+                    return pool.find(v => /(Natural|Online|Neural)/i.test(v.name) && /(Ava|Aria|Jenny|Andrew|Emma|Brian|Sonia|Ryan)/i.test(v.name))
+                        || pool.find(v => /(Natural|Online|Neural|Premium|Enhanced)/i.test(v.name))
+                        || pool.find(v => /Google US English/i.test(v.name))
+                        || pool.find(v => /(Ava|Allison|Samantha|Victoria|Karen|Moira|Daniel|Serena)/i.test(v.name))
+                        || pool.find(v => /Flo/i.test(v.name))
+                        || pool[0]
                         || null;
                 };
 
@@ -6543,10 +6594,11 @@
 
                 const stopTimer = () => {
                     if (_timer) { clearInterval(_timer); _timer = null; }
+                    if (_pauseTimeout) { clearTimeout(_pauseTimeout); _pauseTimeout = null; }
                 };
 
                 const startTimer = () => {
-                    stopTimer();
+                    if (_timer) clearInterval(_timer);
                     _timer = setInterval(() => {
                         if (!_paused) {
                             _currentTime = Math.min(estDuration, _currentTime + 0.25 * _rate);
@@ -6568,18 +6620,24 @@
                     _currentTime = chunkStartTimes[idx] || _currentTime;
                     emit('timeupdate');
 
-                    const utter = new SpeechSynthesisUtterance(chunks[idx]);
+                    const item = chunks[idx];
+                    const utter = new SpeechSynthesisUtterance(item.text);
                     const voice = pickVoice();
                     if (voice) utter.voice = voice;
-                    utter.rate = _rate;
-                    utter.onend = () => {
+                    utter.rate = Math.max(0.45, Math.min(2.2, _rate * 0.96));
+                    utter.pitch = 1.02;
+                    const advanceNext = () => {
                         if (session !== _sessionId || _paused) return;
-                        speakFromChunk(idx + 1, session);
+                        const delay = Math.round((item.pauseAfter || 140) / Math.max(0.5, _rate));
+                        _pauseTimeout = setTimeout(() => {
+                            if (session !== _sessionId || _paused) return;
+                            speakFromChunk(idx + 1, session);
+                        }, delay);
                     };
+                    utter.onend = advanceNext;
                     utter.onerror = (e) => {
                         if (e && (e.error === 'interrupted' || e.error === 'canceled')) return;
-                        if (session !== _sessionId || _paused) return;
-                        speakFromChunk(idx + 1, session);
+                        advanceNext();
                     };
                     window.speechSynthesis.speak(utter);
                 };
@@ -6718,7 +6776,7 @@
                     // Sync playback rate
                     const activeRate = speedRates[currentSpeedIdx];
                     audio.playbackRate = activeRate;
-                    floatingSpeedBtn.textContent = `${activeRate.toFixed(2).replace('.00', '')}x`;
+                    floatingSpeedBtn.textContent = formatSpeedRate(activeRate);
 
                     // Speed up heartbeat speed
                     document.querySelectorAll('.pulse-logo').forEach(logo => logo.classList.add('playing'));
