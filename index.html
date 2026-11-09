@@ -6858,6 +6858,7 @@
 
                 const speakFallbackChunk = (idx, session) => {
                     if (!('speechSynthesis' in window) || session !== _sessionId || _paused) return;
+                    try { window.speechSynthesis.cancel(); } catch (e) {}
                     const item = chunks[idx];
                     _chunkPlayStartedAt = performance.now();
                     if (item.words && item.words.length) {
@@ -6881,8 +6882,10 @@
                             emit('timeupdate');
                         }
                     };
+                    let advanced = false;
                     const advanceNext = () => {
-                        if (session !== _sessionId || _paused) return;
+                        if (advanced || session !== _sessionId || _paused) return;
+                        advanced = true;
                         const delay = Math.round((item.pauseAfter || 120) / Math.max(0.5, _rate));
                         _pauseTimeout = setTimeout(() => {
                             if (session !== _sessionId || _paused) return;
@@ -6912,6 +6915,11 @@
                     _chunkPlayStartedAt = performance.now();
                     emit('timeupdate');
 
+                    if (_cloudBlocked) {
+                        speakFallbackChunk(idx, session);
+                        return;
+                    }
+
                     const item = chunks[idx];
                     const cloudAudio = (_preloadedNext && _preloadedNext.idx === idx) ? _preloadedNext.audio : new Audio();
                     if (!_preloadedNext || _preloadedNext.idx !== idx) {
@@ -6924,8 +6932,10 @@
                     // Preload the next chunk while this one speaks for gapless transitions
                     preloadChunk(idx + 1);
 
+                    let advanced = false;
                     const advanceNext = () => {
-                        if (session !== _sessionId || _paused) return;
+                        if (advanced || session !== _sessionId || _paused) return;
+                        advanced = true;
                         const delay = Math.round(Math.min(150, item.pauseAfter || 80) / Math.max(0.5, _rate));
                         _pauseTimeout = setTimeout(() => {
                             if (session !== _sessionId || _paused) return;
@@ -6933,19 +6943,27 @@
                         }, delay);
                     };
 
-                    cloudAudio.onended = advanceNext;
-                    cloudAudio.onerror = () => {
-                        if (session !== _sessionId || _paused) return;
-                        _activeCloudAudio = null;
+                    let fallbackTriggered = false;
+                    const triggerFallbackOnce = () => {
+                        if (fallbackTriggered || session !== _sessionId || _paused) return;
+                        fallbackTriggered = true;
+                        _cloudBlocked = true;
+                        if (_activeCloudAudio === cloudAudio) {
+                            try {
+                                cloudAudio.onended = null;
+                                cloudAudio.onerror = null;
+                                cloudAudio.pause();
+                            } catch (e) {}
+                            _activeCloudAudio = null;
+                        }
                         speakFallbackChunk(idx, session);
                     };
+
+                    cloudAudio.onended = advanceNext;
+                    cloudAudio.onerror = triggerFallbackOnce;
                     const p = cloudAudio.play();
                     if (p && typeof p.catch === 'function') {
-                        p.catch(() => {
-                            if (session !== _sessionId || _paused) return;
-                            _activeCloudAudio = null;
-                            speakFallbackChunk(idx, session);
-                        });
+                        p.catch(triggerFallbackOnce);
                     }
                 };
 
@@ -7123,7 +7141,8 @@
                         }
                     }
                 };
-                collectFromRoot(articleEl.querySelector('h2'));
+                collectFromRoot(articleEl.querySelector(':scope > h2'));
+                collectFromRoot(articleEl.querySelector(':scope > h3'));
                 collectFromRoot(articleEl.querySelector('.blog-post-content'));
                 const totalWeight = entries.reduce((sum, e) => sum + e.weight, 0) || 1;
                 let acc = 0;
