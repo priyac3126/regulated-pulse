@@ -6358,10 +6358,17 @@
 
                 // Route to correct view
                 const srAnnouncer = document.getElementById('sr-route-announcer');
+                const triggerViewFade = (el) => {
+                    if (!el || !hasLoaded) return;
+                    el.classList.remove('view-fade-enter');
+                    void el.offsetWidth;
+                    el.classList.add('view-fade-enter');
+                };
                 const focusSectionHeading = (sectionId, label) => {
                     const sec = document.getElementById(sectionId);
                     if (sec) {
                         sec.classList.remove('hidden');
+                        triggerViewFade(sec);
                         if (hasLoaded) {
                             const h = sec.querySelector('h2');
                             if (h) {
@@ -6385,6 +6392,7 @@
                 } else if (hash === '#podcast') {
                     document.getElementById('podcast-list-view').classList.remove('hidden');
                     focusSectionHeading('section-podcast', 'Podcast episodes section');
+                    if (window.renderRecommendations) window.renderRecommendations();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash && hash.startsWith('#episode-')) {
                     document.getElementById('section-podcast').classList.remove('hidden');
@@ -6396,6 +6404,8 @@
 
                     if (epEl) {
                         epEl.classList.remove('hidden');
+                        triggerViewFade(epEl);
+                        if (window.recordPulseView) window.recordPulseView('episode', epId);
                         window.scrollTo({ top: 0, behavior: 'instant' });
                         let heading = epEl.querySelector('h3');
                         if (heading) {
@@ -6417,6 +6427,8 @@
 
                     if (el) {
                         el.classList.remove('hidden');
+                        triggerViewFade(el);
+                        if (window.recordPulseView) window.recordPulseView('post', postId);
                         window.scrollTo({ top: 0, behavior: 'instant' });
                         const h2 = el.querySelector('h2');
                         if (h2) {
@@ -6448,6 +6460,7 @@
                     // Default fallback to blog list
                     document.getElementById('blog-list-view').classList.remove('hidden');
                     focusSectionHeading('section-blog', 'Blog home');
+                    if (window.renderRecommendations) window.renderRecommendations();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
