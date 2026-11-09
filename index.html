@@ -61,7 +61,7 @@
         /* Heartbeat logo animation */
         .pulse-logo polyline {
             stroke: var(--pulse-cyan);
-            stroke-width: 5;
+            stroke-width: 4 !important;
             fill: none;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -119,8 +119,8 @@
             }
             80% {
                 stroke-dashoffset: 0;
-                opacity: 0.8;
-                filter: drop-shadow(0 0 8px var(--pulse-cyan));
+                opacity: 0.85;
+                filter: drop-shadow(0 0 2.5px rgba(68, 139, 255, 0.25));
             }
             100% {
                 stroke-dashoffset: -260;
