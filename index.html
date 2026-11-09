@@ -2357,7 +2357,7 @@
                             </div>
 
                             <!-- Vital Signs Area -->
-                            <div>
+                            <div id="vital-signs-section">
                                 <h2 class="mb-2 text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Vital Signs</h2>
                                 <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Under one-page takes on healthcare trends, law, and medical technology</p>
                                 
@@ -8033,6 +8033,11 @@
                     const textMatch = !q || item.title.toLowerCase().includes(q) || item.subtitle.toLowerCase().includes(q) || item.tagLabel.toLowerCase().includes(q);
                     cardEl.style.display = (catMatch && textMatch) ? '' : 'none';
                 });
+                const vitalSec = document.getElementById('vital-signs-section');
+                if (vitalSec) {
+                    const anyVitalVisible = Array.from(vitalSec.querySelectorAll('.card-premium')).some(btn => btn.style.display !== 'none');
+                    vitalSec.style.display = anyVitalVisible ? '' : 'none';
+                }
             }
             if (blogFilterTags) {
                 blogFilterTags.querySelectorAll('.filter-tag').forEach(btn => {
