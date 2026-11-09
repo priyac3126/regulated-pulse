@@ -8135,13 +8135,59 @@
                 }
             });
 
-            // 5. Interactive Podcast Episode Card Action Footer ("Watch Episode ->")
+            // 5. Interactive Podcast Episode Card Action Footer ("Watch & Listen ->" opens platform links modal)
+            window.openPodcastPlatformsModal = function (epId) {
+                const ep = PODCAST_EP_CATALOG.find(x => x.id === epId) || PODCAST_EP_CATALOG[0];
+                const modal = document.getElementById('podcast-platforms-modal');
+                if (!modal || !ep) return;
+                const titleEl = document.getElementById('podcast-platforms-modal-ep-title');
+                const linksEl = document.getElementById('podcast-platforms-modal-links');
+                if (titleEl) titleEl.textContent = `${ep.epLabel}: ${ep.title}`;
+                if (linksEl) {
+                    const ytUrl = `https://www.youtube.com/watch?v=${ep.ytId}`;
+                    linksEl.innerHTML = `
+                        <a href="${ytUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#FF0000;display:inline-block;"></span>YouTube</span>
+                            <span class="text-xs text-cyan-400">Watch Video &rarr;</span>
+                        </a>
+                        <a href="${ep.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#1DB954;display:inline-block;"></span>Spotify</span>
+                            <span class="text-xs text-cyan-400">Listen &rarr;</span>
+                        </a>
+                        <a href="${ep.appleUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#9933CC;display:inline-block;"></span>Apple Podcasts</span>
+                            <span class="text-xs text-cyan-400">Listen &rarr;</span>
+                        </a>
+                        <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/the-regulated-pulse-podcast" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#00A8E1;display:inline-block;"></span>Amazon Music</span>
+                            <span class="text-xs text-cyan-400">Listen &rarr;</span>
+                        </a>
+                        <a href="https://pca.st/mws3867u" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#F43E37;display:inline-block;"></span>Pocket Casts</span>
+                            <span class="text-xs text-cyan-400">Listen &rarr;</span>
+                        </a>
+                        <button type="button" onclick="window.closePodcastPlatformsModal(); navigateTo('#episode-${ep.id}');" class="w-full mt-1 px-4 py-2.5 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 text-xs font-bold text-cyan-300 cursor-pointer transition-colors">
+                            View Episode Summary &amp; Key Takeaways on Site
+                        </button>
+                    `;
+                }
+                modal.classList.add('show');
+            };
+            window.closePodcastPlatformsModal = function () {
+                const modal = document.getElementById('podcast-platforms-modal');
+                if (modal) modal.classList.remove('show');
+            };
+
             PODCAST_EP_CATALOG.forEach(ep => {
                 const card = document.getElementById(ep.cardId);
                 if (!card || card.querySelector('.ep-watch-footer')) return;
                 const footer = document.createElement('div');
                 footer.className = 'ep-watch-footer mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400 group';
                 footer.innerHTML = `<span>Watch &amp; Listen</span><span aria-hidden="true">&rarr;</span>`;
+                footer.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.openPodcastPlatformsModal(ep.id);
+                });
                 card.appendChild(footer);
             });
             document.addEventListener('keydown', (e) => {
@@ -9489,6 +9535,14 @@
             </div>
         </div>
     </div>
+    <div id="podcast-platforms-modal" class="ann-overlay" role="dialog" aria-modal="true" aria-labelledby="podcast-platforms-modal-title" onclick="if (event.target === this) window.closePodcastPlatformsModal()">
+        <div class="ann-card" style="max-width: 420px; width: 92vw;">
+            <h3 id="podcast-platforms-modal-title" style="margin: 0 0 6px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Watch &amp; Listen</h3>
+            <p id="podcast-platforms-modal-ep-title" style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 12.5px; line-height: 1.5;"></p>
+            <div id="podcast-platforms-modal-links" class="flex flex-col gap-2.5 text-left"></div>
+            <button type="button" onclick="window.closePodcastPlatformsModal()" style="margin-top: 14px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Close</button>
+        </div>
+    </div>
     <script>
         (function () {
             function buildImageDescriptionCaptions() {
@@ -9496,7 +9550,7 @@
                     const alt = (img.getAttribute('alt') || '').trim();
                     if (!alt || img.nextElementSibling?.classList.contains('img-a11y-desc')) return;
                     const descEl = document.createElement('p');
-                    descEl.className = 'img-a11y-desc text-slate-400 text-sm mt-3';
+                    descEl.className = 'img-a11y-desc mt-2.5';
                     descEl.textContent = alt;
                     img.insertAdjacentElement('afterend', descEl);
                 });
