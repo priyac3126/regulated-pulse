@@ -7244,10 +7244,12 @@
                 if (!articleEl) return [];
                 if (articleWordMapCache.has(articleEl)) return articleWordMapCache.get(articleEl);
                 const entries = [];
+                const seenNodes = new Set();
                 const collectFromRoot = (rootEl) => {
                     if (!rootEl) return;
                     const walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, {
                         acceptNode(node) {
+                            if (seenNodes.has(node)) return NodeFilter.FILTER_REJECT;
                             const p = node.parentElement;
                             if (!p) return NodeFilter.FILTER_REJECT;
                             if (p.closest('.works-cited, .table-note, .comparison-table, .audio-player, .share-bar, script, style, cite')) {
@@ -7259,28 +7261,48 @@
                     });
                     let n;
                     while ((n = walker.nextNode())) {
+                        seenNodes.add(n);
                         const text = n.nodeValue || '';
                         const re = /\S+/g;
                         let m;
                         while ((m = re.exec(text)) !== null) {
                             const token = m[0];
-                            // Skip parenthetical page citations like (201) if neural TTS skipped them
-                            if (skipCitations && /^\(?\d+[\d\u2013\u2014,;.-]*\)?$/.test(token)) continue;
+                            // Skip standalone parenthetical page citations like (201) if neural TTS skipped them
+                            if (skipCitations && /^\(\d+[\d\u2013\u2014,;.\s-]*\)[.,;:!?]*$/.test(token)) continue;
+                            const spoken = token
+                                .replace(/\(\d+[\d\u2013\u2014,;.\s-]*\)/g, '')
+                                .replace(/\*+/g, '')
+                                .replace(/(?:--|\u2014|\u2013|-–)/g, ', ')
+                                .trim();
+                            if (skipCitations && (!spoken || /^[()[\]]+$/.test(spoken))) continue;
                             const startOffset = m.index;
                             const endOffset = m.index + token.length;
                             const range = document.createRange();
                             range.setStart(n, startOffset);
                             range.setEnd(n, endOffset);
-                            let weight = Math.max(2, token.replace(/[^A-Za-z0-9]/g, '').length);
-                            if (/[,;:\u2013\u2014]$/.test(token)) weight += 2.6;
-                            if (/[.!?]["'\u201d\u2019)]*$/.test(token)) weight += 5.2;
+                            let weight = Math.max(2.2, spoken.replace(/[^A-Za-z0-9]/g, '').length);
+                            if (/[,;:\u2013\u2014]$/.test(token)) weight += 2.2;
+                            if (/[.!?]["'\u201d\u2019)]*$/.test(token)) weight += 3.8;
                             entries.push({ range, weight, startFrac: 0, endFrac: 0 });
                         }
                     }
                 };
                 collectFromRoot(articleEl.querySelector(':scope > h2'));
                 collectFromRoot(articleEl.querySelector(':scope > h3'));
-                collectFromRoot(articleEl.querySelector('.blog-post-content'));
+                const contentEl = articleEl.querySelector('.blog-post-content');
+                if (contentEl) {
+                    const blocks = contentEl.querySelectorAll('h2, h3, h4, blockquote, p, li');
+                    if (blocks.length > 0) {
+                        blocks.forEach(b => {
+                            if (b.closest('.works-cited, .table-note, .comparison-table')) return;
+                            if (b.closest('blockquote') && b.tagName === 'P') return;
+                            if (/^H[2-4]$/.test(b.tagName) && /^works cited$/i.test(b.textContent.trim())) return;
+                            collectFromRoot(b);
+                        });
+                    } else {
+                        collectFromRoot(contentEl);
+                    }
+                }
                 const totalWeight = entries.reduce((sum, e) => sum + e.weight, 0) || 1;
                 let acc = 0;
                 entries.forEach(e => {
@@ -7319,21 +7341,41 @@
                     const skipCit = player.getAttribute('data-neural-mp3') === 'true' || player.getAttribute('data-tts') === 'true';
                     const words = getArticleWordTimings(articleEl, skipCit);
                     if (!words.length) return;
-                    const fb = player.getAttribute('data-fallback-time') || '1:00';
-                    const fbParts = fb.split(':');
-                    const fbSec = parseInt(fbParts[0]) * 60 + parseInt(fbParts[1]);
-                    const dur = (audio.duration && !isNaN(audio.duration) && audio.duration !== Infinity) ? audio.duration : fbSec;
-                    if (!dur) return;
-                    const frac = Math.max(0, Math.min(0.9999, audio.currentTime / dur));
+                    const artId = (articleEl.id || '').replace(/-container$/, '');
+                    const exactTimes = ttsExactTimings && ttsExactTimings[artId];
+                    if (exactTimes && exactTimes.length > 0) {
+                        const curSec = audio.currentTime;
+                        let lo = 0, hi = exactTimes.length - 1, best = 0;
+                        while (lo <= hi) {
+                            const mid = (lo + hi) >> 1;
+                            if (exactTimes[mid] <= curSec) {
+                                best = mid;
+                                lo = mid + 1;
+                            } else {
+                                hi = mid - 1;
+                            }
+                        }
+                        const mappedIdx = exactTimes.length === words.length
+                            ? best
+                            : Math.min(words.length - 1, Math.round((best / Math.max(1, exactTimes.length - 1)) * (words.length - 1)));
+                        activeRange = words[mappedIdx].range;
+                    } else {
+                        const fb = player.getAttribute('data-fallback-time') || '1:00';
+                        const fbParts = fb.split(':');
+                        const fbSec = parseInt(fbParts[0]) * 60 + parseInt(fbParts[1]);
+                        const dur = (audio.duration && !isNaN(audio.duration) && audio.duration !== Infinity) ? audio.duration : fbSec;
+                        if (!dur) return;
+                        const frac = Math.max(0, Math.min(0.9999, audio.currentTime / dur));
 
-                    let lo = 0, hi = words.length - 1, found = 0;
-                    while (lo <= hi) {
-                        const mid = (lo + hi) >> 1;
-                        if (frac < words[mid].startFrac) hi = mid - 1;
-                        else if (frac >= words[mid].endFrac) lo = mid + 1;
-                        else { found = mid; break; }
+                        let lo = 0, hi = words.length - 1, found = 0;
+                        while (lo <= hi) {
+                            const mid = (lo + hi) >> 1;
+                            if (frac < words[mid].startFrac) hi = mid - 1;
+                            else if (frac >= words[mid].endFrac) lo = mid + 1;
+                            else { found = mid; break; }
+                        }
+                        activeRange = words[found].range;
                     }
-                    activeRange = words[found].range;
                 }
                 if (!activeRange || activeRange === lastHighlightedRange) return;
                 lastHighlightedRange = activeRange;
