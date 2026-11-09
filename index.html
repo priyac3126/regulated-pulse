@@ -5964,18 +5964,33 @@
                 });
 
                 // Route to correct view
+                const srAnnouncer = document.getElementById('sr-route-announcer');
+                const focusSectionHeading = (sectionId, label) => {
+                    const sec = document.getElementById(sectionId);
+                    if (sec) {
+                        sec.classList.remove('hidden');
+                        if (hasLoaded) {
+                            const h = sec.querySelector('h2');
+                            if (h) {
+                                h.setAttribute('tabindex', '-1');
+                                h.focus({ preventScroll: true });
+                            }
+                        }
+                    }
+                    if (srAnnouncer && label) srAnnouncer.textContent = label;
+                };
                 if (hash === '#major') {
-                    document.getElementById('section-major').classList.remove('hidden');
+                    focusSectionHeading('section-major', 'My Major section');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash === '#faq') {
-                    document.getElementById('section-faq').classList.remove('hidden');
+                    focusSectionHeading('section-faq', 'Frequently Asked Questions section');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash === '#about') {
-                    document.getElementById('section-about').classList.remove('hidden');
+                    focusSectionHeading('section-about', 'About Me section');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash === '#podcast') {
-                    document.getElementById('section-podcast').classList.remove('hidden');
                     document.getElementById('podcast-list-view').classList.remove('hidden');
+                    focusSectionHeading('section-podcast', 'Podcast episodes section');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (hash && hash.startsWith('#episode-')) {
                     document.getElementById('section-podcast').classList.remove('hidden');
@@ -5992,6 +6007,7 @@
                         if (heading) {
                             heading.setAttribute('tabindex', '-1');
                             heading.focus({ preventScroll: true });
+                            if (srAnnouncer) srAnnouncer.textContent = heading.textContent.trim();
                         }
                     }
                 } else if (hash && hash.startsWith('#post-')) {
@@ -6006,8 +6022,12 @@
                     if (el) {
                         el.classList.remove('hidden');
                         window.scrollTo({ top: 0, behavior: 'instant' });
-                        el.querySelector('h2').setAttribute('tabindex', '-1');
-                        el.querySelector('h2').focus({ preventScroll: true });
+                        const h2 = el.querySelector('h2');
+                        if (h2) {
+                            h2.setAttribute('tabindex', '-1');
+                            h2.focus({ preventScroll: true });
+                            if (srAnnouncer) srAnnouncer.textContent = h2.textContent.trim();
+                        }
 
                         // Trigger Firebase load for this specific post
                         if (window.loadComments) {
@@ -6028,8 +6048,8 @@
                     }
                 } else {
                     // Default fallback to blog list
-                    document.getElementById('section-blog').classList.remove('hidden');
                     document.getElementById('blog-list-view').classList.remove('hidden');
+                    focusSectionHeading('section-blog', 'Blog home');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
@@ -6205,9 +6225,18 @@
             }
 
             // FAQ Accordion Collapsible Logic
-            document.querySelectorAll('.faq-card').forEach(card => {
+            document.querySelectorAll('.faq-card').forEach((card, idx) => {
                 const trigger = card.querySelector('.faq-trigger');
                 const content = card.querySelector('.faq-content');
+                const svg = trigger.querySelector('svg');
+                const contentId = content.id || `faq-answer-${idx + 1}`;
+                const triggerId = trigger.id || `faq-question-${idx + 1}`;
+                content.id = contentId;
+                trigger.id = triggerId;
+                trigger.setAttribute('aria-controls', contentId);
+                content.setAttribute('role', 'region');
+                content.setAttribute('aria-labelledby', triggerId);
+                if (svg) svg.setAttribute('aria-hidden', 'true');
                 
                 trigger.addEventListener('click', (e) => {
                     e.stopPropagation();
