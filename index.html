@@ -1369,6 +1369,18 @@
             color: #fff;
             box-shadow: 0 0 6px var(--pulse-cyan-glow);
         }
+        body.light-mode .filter-tag {
+            background: #0f1824;
+            border-color: rgba(68, 139, 255, 0.28);
+            color: #8ab8ff;
+        }
+        body.light-mode .filter-tag:hover,
+        body.light-mode .filter-tag.active {
+            background: rgba(59, 130, 246, 0.22);
+            border-color: rgba(59, 130, 246, 0.55);
+            color: #9ac2ff;
+            box-shadow: 0 0 8px rgba(68, 139, 255, 0.2);
+        }
         .faq-search-input {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -5663,7 +5675,15 @@
             </section>
 
             <section id="section-faq" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-faq">
-                <h2 class="mb-8 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Frequently Asked Questions</h2>
+                <h2 class="mb-6 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Frequently Asked Questions</h2>
+
+                <div class="flex flex-wrap gap-2.5 mb-8 max-w-4xl mx-auto" id="faq-filter-tags" role="tablist" aria-label="Filter FAQs by category">
+                    <button type="button" class="filter-tag active" data-category="all" aria-pressed="true">All</button>
+                    <button type="button" class="filter-tag" data-category="general" aria-pressed="false">General</button>
+                    <button type="button" class="filter-tag" data-category="academic" aria-pressed="false">Academics &amp; Major</button>
+                    <button type="button" class="filter-tag" data-category="podcast" aria-pressed="false">Blog &amp; Podcast</button>
+                    <button type="button" class="filter-tag" data-category="career" aria-pressed="false">Career &amp; Volunteering</button>
+                </div>
 
                 <div class="flex flex-col gap-4 max-w-4xl mx-auto">
                     <!-- Q1 -->
@@ -6111,6 +6131,32 @@
                     if (btn) btn.click();
                 });
             });
+
+            // FAQ Category Filter Logic
+            const faqFilterTags = document.getElementById('faq-filter-tags');
+            if (faqFilterTags) {
+                faqFilterTags.querySelectorAll('.filter-tag').forEach(tag => {
+                    tag.addEventListener('click', () => {
+                        const selectedCategory = tag.getAttribute('data-category');
+                        faqFilterTags.querySelectorAll('.filter-tag').forEach(t => {
+                            const isActive = t === tag;
+                            t.classList.toggle('active', isActive);
+                            t.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                        });
+                        document.querySelectorAll('.faq-card').forEach(card => {
+                            const category = card.getAttribute('data-category');
+                            const matches = selectedCategory === 'all' || category === selectedCategory;
+                            card.style.display = matches ? '' : 'none';
+                            if (!matches) {
+                                card.classList.remove('open');
+                                card.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+                                const content = card.querySelector('.faq-content');
+                                if (content) content.style.maxHeight = null;
+                            }
+                        });
+                    });
+                });
+            }
 
             // FAQ Accordion Collapsible Logic
             document.querySelectorAll('.faq-card').forEach(card => {
