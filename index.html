@@ -1801,12 +1801,16 @@
             border: 0 !important;
         }
         .play-btn:focus-visible,
-        .faq-trigger:focus-visible,
         .filter-tag:focus-visible,
         .accordion-btn:focus-visible,
         .card-premium:focus-visible {
             outline: 2px solid var(--pulse-cyan) !important;
             outline-offset: 2px !important;
+        }
+        .faq-trigger:focus,
+        .faq-trigger:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
