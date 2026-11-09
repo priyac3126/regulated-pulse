@@ -270,7 +270,7 @@
             align-items: center;
             gap: 1rem;
         }
-        .site-footer .footer-mode-toggle > span {
+        .site-footer #footer-logout {
             display: inline-flex;
             align-items: center;
             gap: 1rem;
@@ -520,10 +520,10 @@
             border-color: rgba(59, 130, 246, 0.3) !important;
             box-shadow: 0 0 14px rgba(68, 139, 255, 0.2) !important;
         }
-        .light-back { display: none; }
-        body.light-mode .light-back { display: inline; }
-        .dark-link { display: inline; }
-        body.light-mode .dark-link { display: none; }
+        .light-back { display: none !important; }
+        body.light-mode .light-back { display: inline !important; }
+        .dark-link { display: inline !important; }
+        body.light-mode .dark-link { display: none !important; }
         .share-bar {
             display: flex; align-items: center; gap: 8px;
             margin: 6px 0 2.25rem;
@@ -1774,9 +1774,15 @@
     <script>
         (function() {
             try {
+                if (localStorage.getItem('lightDefaultMigratedV2') !== '1') {
+                    localStorage.setItem('lightDefaultMigratedV2', '1');
+                    localStorage.setItem('lightModeOn', '1');
+                    localStorage.setItem('lightModeChoice', 'light');
+                }
                 if (localStorage.getItem('lightModeChoice') === 'dark' || localStorage.getItem('lightModeOn') === '0') {
                     document.body.classList.remove('light-mode');
                 } else {
+                    document.body.classList.add('light-mode');
                     localStorage.setItem('lightModeOn', '1');
                 }
             } catch (e) {}
