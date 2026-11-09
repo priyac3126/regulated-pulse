@@ -6551,129 +6551,139 @@
                 } catch (e) {}
             }
 
-            // Inject Web Speech API "Listen to Article" buttons on articles that do not have a recorded .m4a file
-            function normalizeForHumanSpeech(text) {
-                return String(text || '')
-                    // Remove parenthetical page/author citations like (201), (202-203; 208), (Fancourt 116–117), (Tedla et al.)
-                    .replace(/\s*\((?:p\.?\s*|pg\.?\s*|pp\.?\s*)?[A-Za-z\s.,&]*\d+[\d\s,;\u2013\u2014-]*\)/g, '')
-                    .replace(/\s*\([A-Z][A-Za-z\s.,&]+et al\.\)/g, '')
-                    .replace(/\s*\(Trzeciak and Mazzarelli[^)]*\)/g, '')
-                    // Remove stray markdown asterisks and normalize dashes for natural prosody pauses
-                    .replace(/\*+/g, '')
-                    .replace(/\s*(?:--|\u2014|\u2013|-–)\s*/g, ', ')
-                    .replace(/\s+/g, ' ')
-                    .trim();
-            }
-
+            // Build clause-locked DOM word Range chunks so spoken audio and Follow Along word highlighting never drift
             function extractArticleSpeechChunks(articleEl) {
                 if (!articleEl) return [];
                 const chunks = [];
-                const h2 = articleEl.querySelector('h2');
-                if (h2 && h2.textContent.trim()) {
-                    chunks.push({ text: normalizeForHumanSpeech(h2.textContent) + '.', pauseAfter: 380 });
-                }
+
+                const collectBlockWords = (blockEl) => {
+                    const words = [];
+                    const walker = document.createTreeWalker(blockEl, NodeFilter.SHOW_TEXT, {
+                        acceptNode(node) {
+                            const p = node.parentElement;
+                            if (!p) return NodeFilter.FILTER_REJECT;
+                            if (p.closest('.works-cited, .table-note, .comparison-table, .audio-player, .share-bar, script, style, cite')) {
+                                return NodeFilter.FILTER_REJECT;
+                            }
+                            if (/^works cited$/i.test(p.textContent.trim())) return NodeFilter.FILTER_REJECT;
+                            return NodeFilter.FILTER_ACCEPT;
+                        }
+                    });
+                    let n;
+                    while ((n = walker.nextNode())) {
+                        const text = n.nodeValue || '';
+                        const re = /\S+/g;
+                        let m;
+                        while ((m = re.exec(text)) !== null) {
+                            const raw = m[0];
+                            // Skip standalone parenthetical page numbers like (201) or (116–117)
+                            if (/^\(\d+[\d\u2013\u2014,;.\s-]*\)[.,;:!?]*$/.test(raw)) continue;
+                            const spoken = raw
+                                .replace(/\(\d+[\d\u2013\u2014,;.\s-]*\)/g, '')
+                                .replace(/\*+/g, '')
+                                .replace(/(?:--|\u2014|\u2013|-–)/g, ', ')
+                                .trim();
+                            if (!spoken || /^[()[\]]+$/.test(spoken)) continue;
+                            const range = document.createRange();
+                            range.setStart(n, m.index);
+                            range.setEnd(n, m.index + raw.length);
+                            let weight = Math.max(2.2, spoken.replace(/[^A-Za-z0-9]/g, '').length);
+                            if (/[,;:\u2013\u2014]$/.test(raw)) weight += 2.2;
+                            if (/[.!?]["'\u201d\u2019)]*$/.test(raw)) weight += 3.8;
+                            words.push({ raw, spoken, range, weight });
+                        }
+                    }
+                    return words;
+                };
+
+                const finalizeClause = (wordList, pauseAfter) => {
+                    if (!wordList.length) return;
+                    let charCursor = 0;
+                    const totalWeight = wordList.reduce((s, w) => s + w.weight, 0) || 1;
+                    let wAcc = 0;
+                    const textParts = [];
+                    const mappedWords = wordList.map(w => {
+                        const charStart = charCursor;
+                        textParts.push(w.spoken);
+                        charCursor += w.spoken.length + 1;
+                        const entry = {
+                            range: w.range,
+                            weight: w.weight,
+                            startFrac: wAcc / totalWeight,
+                            endFrac: (wAcc + w.weight) / totalWeight,
+                            charStart,
+                            charEnd: charCursor - 1
+                        };
+                        wAcc += w.weight;
+                        return entry;
+                    });
+                    let clauseText = textParts.join(' ').replace(/\s+/g, ' ').trim();
+                    if (!/[.!?]["'\u201d\u2019)]*$/.test(clauseText)) clauseText += '.';
+                    chunks.push({
+                        text: clauseText,
+                        words: mappedWords,
+                        pauseAfter: pauseAfter || 140
+                    });
+                };
+
+                const pushBlock = (blockEl, isHeading) => {
+                    if (!blockEl) return;
+                    const blockWords = collectBlockWords(blockEl);
+                    if (!blockWords.length) return;
+                    let cur = [];
+                    let curLen = 0;
+                    for (let i = 0; i < blockWords.length; i++) {
+                        const w = blockWords[i];
+                        cur.push(w);
+                        curLen += w.spoken.length + 1;
+                        const isLast = i === blockWords.length - 1;
+                        const endsSentence = /[.!?]["'\u201d\u2019)]*$/.test(w.raw);
+                        const endsClause = /[,;:\u2013\u2014]$/.test(w.raw);
+                        if (isLast) {
+                            finalizeClause(cur, isHeading ? 360 : 280);
+                            cur = [];
+                            curLen = 0;
+                        } else if (endsSentence || (endsClause && curLen >= 115) || curLen >= 165) {
+                            finalizeClause(cur, endsSentence ? 160 : 70);
+                            cur = [];
+                            curLen = 0;
+                        }
+                    }
+                    if (cur.length) finalizeClause(cur, isHeading ? 360 : 280);
+                };
+
+                pushBlock(articleEl.querySelector('h2'), true);
                 const contentEl = articleEl.querySelector('.blog-post-content');
                 if (contentEl) {
-                    const clone = contentEl.cloneNode(true);
-                    clone.querySelectorAll('.works-cited, .table-note, .comparison-table, script, style').forEach(el => el.remove());
-                    const blocks = clone.querySelectorAll('h2, h3, h4, blockquote, p, li');
-                    const processBlockText = (rawBlock, isHeading) => {
-                        const cleaned = normalizeForHumanSpeech(rawBlock);
-                        if (!cleaned || /^works cited$/i.test(cleaned)) return;
-                        const sentences = cleaned.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [cleaned];
-                        sentences.forEach((s, idx) => {
-                            let sent = s.trim();
-                            if (sent.length > 1) {
-                                if (!/[.!?]["'\u201d\u2019]?$/.test(sent)) sent += '.';
-                                const isLastInBlock = idx === sentences.length - 1;
-                                chunks.push({
-                                    text: sent,
-                                    pauseAfter: isHeading ? 400 : (isLastInBlock ? 340 : 130)
-                                });
-                            }
-                        });
-                    };
+                    const blocks = contentEl.querySelectorAll('h2, h3, h4, blockquote, p, li');
                     if (blocks.length > 0) {
                         blocks.forEach(b => {
+                            if (b.closest('.works-cited, .table-note, .comparison-table')) return;
                             if (b.closest('blockquote') && b.tagName === 'P') return;
-                            processBlockText(b.textContent, /^H[2-4]$/.test(b.tagName));
+                            if (/^H[2-4]$/.test(b.tagName) && /^works cited$/i.test(b.textContent.trim())) return;
+                            pushBlock(b, /^H[2-4]$/.test(b.tagName));
                         });
                     } else {
-                        processBlockText(clone.textContent, false);
+                        pushBlock(contentEl, false);
                     }
                 }
                 return chunks;
             }
 
-            // Hidden no-referrer iframe so neural cloud TTS <audio> streams load without cross-origin Referer blocks
-            let _ttsIframeDoc = null;
-            function getNoReferrerAudio() {
-                try {
-                    if (!_ttsIframeDoc) {
-                        const ifr = document.createElement('iframe');
-                        ifr.style.display = 'none';
-                        ifr.setAttribute('aria-hidden', 'true');
-                        ifr.setAttribute('tabindex', '-1');
-                        document.body.appendChild(ifr);
-                        _ttsIframeDoc = ifr.contentDocument || ifr.contentWindow.document;
-                        _ttsIframeDoc.open();
-                        _ttsIframeDoc.write('<!DOCTYPE html><html><head><meta name="referrer" content="no-referrer"></head><body></body></html>');
-                        _ttsIframeDoc.close();
-                    }
-                    return _ttsIframeDoc.createElement('audio');
-                } catch (e) {
-                    return new Audio();
-                }
-            }
-
-            function splitIntoCloudTTSChunks(rawChunks) {
-                const result = [];
-                rawChunks.forEach(item => {
-                    const text = item.text.trim();
-                    if (text.length <= 185) {
-                        result.push(item);
-                        return;
-                    }
-                    // Split long sentences at natural clause boundaries (<= 185 chars)
-                    const clauses = text.split(/(?<=[,;:])\s+/);
-                    let buf = '';
-                    clauses.forEach(cl => {
-                        if ((buf + ' ' + cl).trim().length <= 185) {
-                            buf = (buf + ' ' + cl).trim();
-                        } else {
-                            if (buf) result.push({ text: buf, pauseAfter: 80 });
-                            if (cl.length <= 185) {
-                                buf = cl;
-                            } else {
-                                const words = cl.split(/\s+/);
-                                let wbuf = '';
-                                words.forEach(w => {
-                                    if ((wbuf + ' ' + w).trim().length <= 185) {
-                                        wbuf = (wbuf + ' ' + w).trim();
-                                    } else {
-                                        if (wbuf) result.push({ text: wbuf, pauseAfter: 60 });
-                                        wbuf = w;
-                                    }
-                                });
-                                buf = wbuf;
-                            }
-                        }
-                    });
-                    if (buf) result.push({ text: buf, pauseAfter: item.pauseAfter || 260 });
-                });
-                return result;
-            }
-
             function createSpeechAudio(articleEl, fallbackSeconds) {
-                const chunks = splitIntoCloudTTSChunks(extractArticleSpeechChunks(articleEl));
-                const wordCounts = chunks.map(c => Math.max(1, c.text.split(/\s+/).length));
+                const chunks = extractArticleSpeechChunks(articleEl);
+                const wordCounts = chunks.map(c => Math.max(1, c.words ? c.words.length : c.text.split(/\s+/).length));
                 const totalWords = wordCounts.reduce((a, b) => a + b, 0) || 1;
                 const estDuration = fallbackSeconds || Math.max(30, Math.round(totalWords / 2.65));
                 const chunkStartTimes = [];
+                const chunkDurations = [];
                 let accWords = 0;
                 for (let i = 0; i < chunks.length; i++) {
-                    chunkStartTimes.push((accWords / totalWords) * estDuration);
+                    const st = (accWords / totalWords) * estDuration;
+                    chunkStartTimes.push(st);
                     accWords += wordCounts[i];
+                    const endT = (accWords / totalWords) * estDuration;
+                    chunkDurations.push(Math.max(0.5, endT - st));
                 }
 
                 const listeners = { play: [], pause: [], ended: [], timeupdate: [], loadedmetadata: [] };
@@ -6688,6 +6698,8 @@
                 let _sessionId = 0;
                 let _activeCloudAudio = null;
                 let _preloadedNext = null;
+                let _activeBoundaryRange = null;
+                let _chunkPlayStartedAt = 0;
 
                 const NOVELTY_RE = /(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Wobble|Fred|Good News|Jester|Junior|Organ|Superstar|Ralph|Trinoids|Whisper|Zarvox|Grandma|Grandpa|Rocko|Reed|Shelley|Sandy|Eddy)/i;
 
@@ -6718,6 +6730,7 @@
                 const stopActiveOutput = () => {
                     if (_timer) { clearInterval(_timer); _timer = null; }
                     if (_pauseTimeout) { clearTimeout(_pauseTimeout); _pauseTimeout = null; }
+                    _activeBoundaryRange = null;
                     if (_activeCloudAudio) {
                         try { _activeCloudAudio.pause(); _activeCloudAudio.src = ''; } catch (e) {}
                         _activeCloudAudio = null;
@@ -6731,16 +6744,21 @@
                     if (_timer) clearInterval(_timer);
                     _timer = setInterval(() => {
                         if (!_paused) {
-                            _currentTime = Math.min(estDuration, _currentTime + 0.25 * _rate);
+                            if (_activeCloudAudio && _activeCloudAudio.duration && !isNaN(_activeCloudAudio.duration) && _activeCloudAudio.duration !== Infinity) {
+                                const cFrac = Math.min(1, _activeCloudAudio.currentTime / _activeCloudAudio.duration);
+                                _currentTime = Math.min(estDuration, (chunkStartTimes[_chunkIdx] || 0) + cFrac * (chunkDurations[_chunkIdx] || 1));
+                            } else {
+                                _currentTime = Math.min(estDuration, _currentTime + 0.06 * _rate);
+                            }
                             emit('timeupdate');
                         }
-                    }, 250);
+                    }, 60);
                 };
 
                 const preloadChunk = (idx) => {
                     if (idx >= chunks.length) { _preloadedNext = null; return; }
                     try {
-                        const a = getNoReferrerAudio();
+                        const a = new Audio();
                         a.preload = 'auto';
                         a.src = buildCloudUrl(chunks[idx].text);
                         a.load();
@@ -6753,11 +6771,28 @@
                 const speakFallbackChunk = (idx, session) => {
                     if (!('speechSynthesis' in window) || session !== _sessionId || _paused) return;
                     const item = chunks[idx];
+                    _chunkPlayStartedAt = performance.now();
+                    if (item.words && item.words.length) {
+                        _activeBoundaryRange = item.words[0].range;
+                    }
                     const utter = new SpeechSynthesisUtterance(item.text);
                     const voice = pickVoice();
                     if (voice) utter.voice = voice;
                     utter.rate = Math.max(0.45, Math.min(2.2, _rate * 0.96));
                     utter.pitch = 1.02;
+                    utter.onboundary = (ev) => {
+                        if (session !== _sessionId || _paused || !item.words || !item.words.length) return;
+                        if (typeof ev.charIndex === 'number') {
+                            const cIdx = ev.charIndex;
+                            for (let k = item.words.length - 1; k >= 0; k--) {
+                                if (cIdx >= item.words[k].charStart - 1) {
+                                    _activeBoundaryRange = item.words[k].range;
+                                    break;
+                                }
+                            }
+                            emit('timeupdate');
+                        }
+                    };
                     const advanceNext = () => {
                         if (session !== _sessionId || _paused) return;
                         const delay = Math.round((item.pauseAfter || 120) / Math.max(0.5, _rate));
@@ -6785,10 +6820,12 @@
                     }
                     _chunkIdx = idx;
                     _currentTime = chunkStartTimes[idx] || _currentTime;
+                    _activeBoundaryRange = null;
+                    _chunkPlayStartedAt = performance.now();
                     emit('timeupdate');
 
                     const item = chunks[idx];
-                    const cloudAudio = (_preloadedNext && _preloadedNext.idx === idx) ? _preloadedNext.audio : getNoReferrerAudio();
+                    const cloudAudio = (_preloadedNext && _preloadedNext.idx === idx) ? _preloadedNext.audio : new Audio();
                     if (!_preloadedNext || _preloadedNext.idx !== idx) {
                         cloudAudio.src = buildCloudUrl(item.text);
                     }
@@ -6801,7 +6838,7 @@
 
                     const advanceNext = () => {
                         if (session !== _sessionId || _paused) return;
-                        const delay = Math.round(Math.min(180, item.pauseAfter || 90) / Math.max(0.5, _rate));
+                        const delay = Math.round(Math.min(150, item.pauseAfter || 80) / Math.max(0.5, _rate));
                         _pauseTimeout = setTimeout(() => {
                             if (session !== _sessionId || _paused) return;
                             speakFromChunk(idx + 1, session);
@@ -6811,12 +6848,14 @@
                     cloudAudio.onended = advanceNext;
                     cloudAudio.onerror = () => {
                         if (session !== _sessionId || _paused) return;
+                        _activeCloudAudio = null;
                         speakFallbackChunk(idx, session);
                     };
                     const p = cloudAudio.play();
                     if (p && typeof p.catch === 'function') {
                         p.catch(() => {
                             if (session !== _sessionId || _paused) return;
+                            _activeCloudAudio = null;
                             speakFallbackChunk(idx, session);
                         });
                     }
@@ -6827,6 +6866,29 @@
                     get duration() { return estDuration; },
                     get paused() { return _paused; },
                     get currentTime() { return _currentTime; },
+                    getActiveWordRange() {
+                        if (_paused || _chunkIdx < 0 || _chunkIdx >= chunks.length) return null;
+                        const item = chunks[_chunkIdx];
+                        if (!item || !item.words || !item.words.length) return null;
+                        if (_activeBoundaryRange) return _activeBoundaryRange;
+                        let localFrac = 0;
+                        if (_activeCloudAudio && _activeCloudAudio.duration && !isNaN(_activeCloudAudio.duration) && _activeCloudAudio.duration !== Infinity) {
+                            // Trim leading ~60ms and trailing ~110ms silence from Google TTS MP3 frame
+                            const lead = 0.05;
+                            const span = Math.max(0.18, _activeCloudAudio.duration - 0.16);
+                            localFrac = Math.max(0, Math.min(0.9999, (_activeCloudAudio.currentTime - lead) / span));
+                        } else {
+                            const elapsedSec = ((performance.now() - _chunkPlayStartedAt) / 1000) * _rate;
+                            const estClauseDur = Math.max(0.6, item.words.length / 2.8);
+                            localFrac = Math.max(0, Math.min(0.9999, elapsedSec / estClauseDur));
+                        }
+                        for (let i = 0; i < item.words.length; i++) {
+                            if (localFrac >= item.words[i].startFrac && localFrac < item.words[i].endFrac) {
+                                return item.words[i].range;
+                            }
+                        }
+                        return item.words[item.words.length - 1].range;
+                    },
                     set currentTime(val) {
                         const clamped = Math.max(0, Math.min(Number(val) || 0, estDuration));
                         _currentTime = clamped;
@@ -6876,38 +6938,16 @@
                 };
             }
 
-            const TTS_MP3_DURATIONS = {
-                'post-art-cure': '1:44',
-                'post-battlefield': '2:03',
-                'post-book-recs': '2:26',
-                'post-cdc-interview': '1:50',
-                'post-compassion': '3:35',
-                'post-epic': '1:54',
-                'post-malpractice': '2:45',
-                'post-med-ed': '1:45',
-                'post-migration': '3:08',
-                'post-na': '3:14',
-                'post-pain-brokers': '1:09',
-                'post-quote-spotlight': '0:47'
-            };
-
             document.querySelectorAll('#blog-post-view > article').forEach(art => {
                 if (art.querySelector('.audio-player')) return;
                 const contentEl = art.querySelector('.blog-post-content');
                 if (!contentEl) return;
-                const artId = (art.id || '').replace(/-container$/, '');
-                const hasNeuralMp3 = !!TTS_MP3_DURATIONS[artId];
                 const words = contentEl.textContent.trim().split(/\s+/).length;
                 const estSec = Math.max(30, Math.round(words / 2.65));
-                const fallbackStr = hasNeuralMp3 ? TTS_MP3_DURATIONS[artId] : formatTime(estSec);
+                const fallbackStr = formatTime(estSec);
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'audio-player flex items-center gap-3 mb-8 cursor-pointer w-max';
-                if (hasNeuralMp3) {
-                    playerDiv.setAttribute('data-src', `./tts-${artId}.mp3`);
-                    playerDiv.setAttribute('data-neural-mp3', 'true');
-                } else {
-                    playerDiv.setAttribute('data-tts', 'true');
-                }
+                playerDiv.setAttribute('data-tts', 'true');
                 playerDiv.setAttribute('data-fallback-time', fallbackStr);
                 playerDiv.innerHTML = `
                     <button type="button" class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none" aria-label="Play article audio">
