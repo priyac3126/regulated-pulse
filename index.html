@@ -591,6 +591,38 @@
             text-underline-offset: 3px;
             cursor: help;
         }
+        .img-a11y-desc {
+            display: none;
+            font-size: 12px;
+            line-height: 1.55;
+            color: rgb(148, 163, 184);
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(103, 232, 249, 0.22);
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin: 8px auto 0;
+            max-width: 28rem;
+            text-align: left;
+        }
+        body.light-mode .img-a11y-desc {
+            background: #0b1320;
+            border-color: rgba(68, 139, 255, 0.3);
+            color: #b4c8e0;
+        }
+        body.show-image-descriptions .img-a11y-desc {
+            display: block;
+        }
+        body.show-image-descriptions .caption-transcript-note .sr-only {
+            position: static !important;
+            width: auto !important;
+            height: auto !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow: visible !important;
+            clip: auto !important;
+            white-space: normal !important;
+            display: inline !important;
+        }
         #print-area { display: none; }
         @media print {
             @page { margin: 0.75in; }
@@ -7122,16 +7154,43 @@
                 };
             }
 
+            const TTS_EXACT_DURATIONS = {
+                'post-battlefield': '7:45',
+                'post-art-cure': '10:47',
+                'post-malpractice': '5:20',
+                'post-cdc-interview': '9:16',
+                'post-migration': '10:53',
+                'post-compassion': '18:21',
+                'post-book-recs': '3:23',
+                'post-na': '10:11',
+                'post-quote-spotlight': '0:53',
+                'post-med-ed': '2:06',
+                'post-epic': '2:51',
+                'post-pain-brokers': '1:20'
+            };
+            let ttsExactTimings = null;
+            fetch('./tts-timings.json')
+                .then(r => r.ok ? r.json() : null)
+                .then(data => { if (data && data.timings) ttsExactTimings = data.timings; })
+                .catch(() => {});
+
             document.querySelectorAll('#blog-post-view > article').forEach(art => {
                 if (art.querySelector('.audio-player')) return;
                 const contentEl = art.querySelector('.blog-post-content');
                 if (!contentEl) return;
+                const artId = (art.id || '').replace(/-container$/, '');
+                const hasNeuralMp3 = !!TTS_EXACT_DURATIONS[artId];
                 const words = contentEl.textContent.trim().split(/\s+/).length;
                 const estSec = Math.max(30, Math.round(words / 2.65));
-                const fallbackStr = formatTime(estSec);
+                const fallbackStr = hasNeuralMp3 ? TTS_EXACT_DURATIONS[artId] : formatTime(estSec);
                 const playerDiv = document.createElement('div');
                 playerDiv.className = 'audio-player flex items-center gap-3 mb-8 cursor-pointer w-max';
-                playerDiv.setAttribute('data-tts', 'true');
+                if (hasNeuralMp3) {
+                    playerDiv.setAttribute('data-src', `./tts-${artId}.mp3`);
+                    playerDiv.setAttribute('data-neural-mp3', 'true');
+                } else {
+                    playerDiv.setAttribute('data-tts', 'true');
+                }
                 playerDiv.setAttribute('data-fallback-time', fallbackStr);
                 playerDiv.innerHTML = `
                     <button type="button" class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none" aria-label="Play article audio">
