@@ -7475,7 +7475,7 @@
             const fontDecBtn = document.getElementById('reader-font-dec');
             const fontIncBtn = document.getElementById('reader-font-inc');
             const spacingToggleBtn = document.getElementById('reader-spacing-toggle');
-            const scaleClasses = ['', 'reader-scale-lg', 'reader-scale-xl'];
+            const a11yScaleClasses = ['', 'reader-scale-lg', 'reader-scale-xl'];
             let readerScaleIdx = 0;
             let readerWideSpacing = false;
             try {
@@ -7485,7 +7485,7 @@
             const applyReaderA11yPrefs = () => {
                 if (!postViewEl) return;
                 postViewEl.classList.remove('reader-scale-lg', 'reader-scale-xl');
-                if (scaleClasses[readerScaleIdx]) postViewEl.classList.add(scaleClasses[readerScaleIdx]);
+                if (a11yScaleClasses[readerScaleIdx]) postViewEl.classList.add(a11yScaleClasses[readerScaleIdx]);
                 postViewEl.classList.toggle('reader-wide-spacing', readerWideSpacing);
                 if (spacingToggleBtn) spacingToggleBtn.setAttribute('aria-pressed', readerWideSpacing ? 'true' : 'false');
             };
