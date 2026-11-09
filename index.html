@@ -5978,6 +5978,7 @@
                         }
                     }
                     if (srAnnouncer && label) srAnnouncer.textContent = label;
+                    if (label) document.title = `${label.replace(/ section$/i, '')} · The Regulated Pulse`;
                 };
                 if (hash === '#major') {
                     focusSectionHeading('section-major', 'My Major section');
@@ -6007,7 +6008,9 @@
                         if (heading) {
                             heading.setAttribute('tabindex', '-1');
                             heading.focus({ preventScroll: true });
-                            if (srAnnouncer) srAnnouncer.textContent = heading.textContent.trim();
+                            const epTitle = heading.textContent.trim();
+                            if (srAnnouncer) srAnnouncer.textContent = epTitle;
+                            document.title = `${epTitle} · The Regulated Pulse`;
                         }
                     }
                 } else if (hash && hash.startsWith('#post-')) {
@@ -6026,7 +6029,9 @@
                         if (h2) {
                             h2.setAttribute('tabindex', '-1');
                             h2.focus({ preventScroll: true });
-                            if (srAnnouncer) srAnnouncer.textContent = h2.textContent.trim();
+                            const postTitle = h2.textContent.trim();
+                            if (srAnnouncer) srAnnouncer.textContent = postTitle;
+                            document.title = `${postTitle} · The Regulated Pulse`;
                         }
 
                         // Trigger Firebase load for this specific post
