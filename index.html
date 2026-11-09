@@ -6902,6 +6902,18 @@
 
                 const speakFromChunk = (idx, session) => {
                     if (session !== _sessionId || _paused) return;
+                    if (_pauseTimeout) { clearTimeout(_pauseTimeout); _pauseTimeout = null; }
+                    if (_activeCloudAudio) {
+                        try {
+                            _activeCloudAudio.onended = null;
+                            _activeCloudAudio.onerror = null;
+                            _activeCloudAudio.pause();
+                        } catch (e) {}
+                        _activeCloudAudio = null;
+                    }
+                    if ('speechSynthesis' in window) {
+                        try { window.speechSynthesis.cancel(); } catch (e) {}
+                    }
                     if (idx >= chunks.length) {
                         stopActiveOutput();
                         _paused = true;
@@ -7009,28 +7021,30 @@
                     },
                     get playbackRate() { return _rate; },
                     set playbackRate(r) {
-                        _rate = Number(r) || 1.0;
+                        const nextRate = Number(r) || 1.0;
+                        if (Math.abs(nextRate - _rate) < 0.001) return;
+                        _rate = nextRate;
                         if (_activeCloudAudio) {
                             try { _activeCloudAudio.playbackRate = _rate; } catch (e) {}
                         } else if (!_paused) {
-                            _sessionId++;
+                            const mySession = ++_sessionId;
                             stopActiveOutput();
                             startTimer();
-                            speakFromChunk(_chunkIdx, _sessionId);
+                            speakFromChunk(_chunkIdx, mySession);
                         }
                     },
                     addEventListener(type, fn) {
                         if (listeners[type]) listeners[type].push(fn);
                     },
                     play() {
-                        _sessionId++;
+                        const mySession = ++_sessionId;
                         stopActiveOutput();
                         if (_currentTime >= estDuration - 0.5) _currentTime = 0;
                         _chunkIdx = findChunkForTime(_currentTime);
                         _paused = false;
                         startTimer();
+                        speakFromChunk(_chunkIdx, mySession);
                         emit('play');
-                        speakFromChunk(_chunkIdx, _sessionId);
                         return Promise.resolve();
                     },
                     pause() {
