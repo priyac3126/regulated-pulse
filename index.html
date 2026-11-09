@@ -905,21 +905,30 @@
             word-break: normal !important;
         }
 
-        /* Reader Accessibility Controls overrides (proportional --reader-scale across header, metadata, share bar & body) */
-        #blog-post-view {
+        /* Reader Accessibility Controls overrides (proportional --reader-scale across header, metadata, share bar, body & PDF print) */
+        #blog-post-view,
+        #print-area {
             --reader-scale: 1;
         }
-        #blog-post-view > article > h2 {
+        #blog-post-view > article > h2,
+        #print-area > article > h2 {
             font-size: calc(32px * var(--reader-scale, 1)) !important;
             line-height: 1.22 !important;
         }
-        #blog-post-view > article > h3 {
+        #blog-post-view > article > h3,
+        #print-area > article > h3 {
             font-size: calc(20px * var(--reader-scale, 1)) !important;
             line-height: 1.35 !important;
         }
         #blog-post-view > article > p.text-sm,
-        #blog-post-view > article .text-center p.text-sm {
+        #blog-post-view > article .text-center p.text-sm,
+        #print-area > article > p.text-sm,
+        #print-area > article .text-center p.text-sm {
             font-size: calc(0.875rem * var(--reader-scale, 1)) !important;
+        }
+        #blog-post-view .img-a11y-desc,
+        #print-area .img-a11y-desc {
+            font-size: calc(0.8rem * var(--reader-scale, 1)) !important;
         }
         #blog-post-view .share-bar span {
             font-size: calc(12px * var(--reader-scale, 1)) !important;
@@ -930,39 +939,57 @@
         }
         #blog-post-view .blog-post-content,
         #blog-post-view .blog-post-content p,
-        #blog-post-view .blog-post-content li {
+        #blog-post-view .blog-post-content li,
+        #print-area .blog-post-content,
+        #print-area .blog-post-content p,
+        #print-area .blog-post-content li {
             font-size: calc(1.15rem * var(--reader-scale, 1)) !important;
         }
         #blog-post-view .blog-post-content blockquote,
-        #blog-post-view .blog-post-content blockquote p {
+        #blog-post-view .blog-post-content blockquote p,
+        #print-area .blog-post-content blockquote,
+        #print-area .blog-post-content blockquote p {
             font-size: calc(1.2rem * var(--reader-scale, 1)) !important;
         }
-        #blog-post-view .blog-post-content blockquote cite {
+        #blog-post-view .blog-post-content blockquote cite,
+        #print-area .blog-post-content blockquote cite {
             font-size: calc(0.85rem * var(--reader-scale, 1)) !important;
         }
-        #blog-post-view .blog-post-content h2 {
+        #blog-post-view .blog-post-content h2,
+        #print-area .blog-post-content h2 {
             font-size: calc(1.75rem * var(--reader-scale, 1)) !important;
         }
-        #blog-post-view .blog-post-content h3 {
+        #blog-post-view .blog-post-content h3,
+        #print-area .blog-post-content h3 {
             font-size: calc(1.35rem * var(--reader-scale, 1)) !important;
         }
-        #blog-post-view .blog-post-content .works-cited li {
+        #blog-post-view .blog-post-content .works-cited li,
+        #print-area .blog-post-content .works-cited li {
             font-size: calc(0.95rem * var(--reader-scale, 1)) !important;
         }
         #blog-post-view .comparison-table th,
-        #blog-post-view .comparison-table td {
+        #blog-post-view .comparison-table td,
+        #print-area .comparison-table th,
+        #print-area .comparison-table td {
             font-size: calc(13.5px * var(--reader-scale, 1)) !important;
         }
         #blog-post-view.reader-wide-spacing .blog-post-content,
         #blog-post-view.reader-wide-spacing .blog-post-content p,
         #blog-post-view.reader-wide-spacing .blog-post-content li,
         #blog-post-view.reader-wide-spacing .blog-post-content blockquote,
-        #blog-post-view.reader-wide-spacing .blog-post-content blockquote p {
+        #blog-post-view.reader-wide-spacing .blog-post-content blockquote p,
+        #print-area.reader-wide-spacing .blog-post-content,
+        #print-area.reader-wide-spacing .blog-post-content p,
+        #print-area.reader-wide-spacing .blog-post-content li,
+        #print-area.reader-wide-spacing .blog-post-content blockquote,
+        #print-area.reader-wide-spacing .blog-post-content blockquote p {
             line-height: 2.15 !important;
             word-spacing: 0.22em !important;
         }
         #blog-post-view.reader-wide-spacing .blog-post-content p,
-        #blog-post-view.reader-wide-spacing .blog-post-content li {
+        #blog-post-view.reader-wide-spacing .blog-post-content li,
+        #print-area.reader-wide-spacing .blog-post-content p,
+        #print-area.reader-wide-spacing .blog-post-content li {
             margin-bottom: 2.1rem !important;
         }
 
@@ -8557,9 +8584,14 @@
         };
         window.printArticle = function (mode) {
             window.closePdfModal();
+            const postView = document.getElementById('blog-post-view');
             const art = document.querySelector('#blog-post-view article:not(.hidden)');
             const holder = document.getElementById('print-area');
             if (!art || !holder) { window.print(); return; }
+            const activeScale = (postView && postView.style.getPropertyValue('--reader-scale')) || '1';
+            const isWide = !!(postView && postView.classList.contains('reader-wide-spacing'));
+            holder.style.setProperty('--reader-scale', activeScale);
+            holder.classList.toggle('reader-wide-spacing', isWide);
             holder.innerHTML = art.outerHTML;
             holder.classList.toggle('pdf-mode-dark', mode === 'dark');
             holder.querySelectorAll('form, button, [id$="-comments-list"], .audio-player').forEach(el => el.remove());
@@ -8572,7 +8604,7 @@
                 metaEl.style.marginBottom = '4px';
                 const byline = document.createElement('p');
                 byline.textContent = 'By Priya Chaudhari';
-                byline.setAttribute('style', 'font-style: italic; font-size: 15px; margin: 0 0 2rem;');
+                byline.setAttribute('style', 'font-style: italic; font-size: calc(15px * var(--reader-scale, 1)); margin: 0 0 2rem;');
                 metaEl.after(byline);
             }
             document.body.classList.add('printing');
