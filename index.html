@@ -8199,24 +8199,14 @@
                 const snap = await getDoc(doc(db, "userPrefs", uid));
                 const localLight = (function () { try { return localStorage.getItem('lightModeOn') !== '0' && localStorage.getItem('lightModeChoice') !== 'dark'; } catch (e) { return true; } })();
                 const localSpeed = (function () { try { return localStorage.getItem('audioPlaybackSpeed'); } catch (e) { return null; } })();
-                const localImgDesc = (function () { try { return localStorage.getItem('showImageDescriptions'); } catch (e) { return null; } })();
                 if (!snap.exists()) {
                     const initPrefs = { lightMode: localLight, lightModeV2: localLight };
                     if (localSpeed !== null) initPrefs.audioSpeed = parseFloat(localSpeed) || 1.0;
-                    if (localImgDesc !== null) initPrefs.imageDescriptions = localImgDesc === '1';
                     await setDoc(doc(db, "userPrefs", uid), initPrefs, { merge: true });
                     try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
-                    if (localImgDesc === null && window.openImageDescPrompt) window.openImageDescPrompt();
                     return;
                 }
                 const data = snap.data() || {};
-                if (typeof data.imageDescriptions === "boolean") {
-                    if (window.applyImageDescriptionsPref) window.applyImageDescriptionsPref(data.imageDescriptions, false);
-                } else if (localImgDesc !== null) {
-                    await setDoc(doc(db, "userPrefs", uid), { imageDescriptions: localImgDesc === '1' }, { merge: true });
-                } else if (window.openImageDescPrompt) {
-                    window.openImageDescPrompt();
-                }
                 if (typeof data.audioSpeed === "number") {
                     try { localStorage.setItem('audioPlaybackSpeed', String(data.audioSpeed)); } catch (e) {}
                     if (window.__applySavedAudioSpeed) window.__applySavedAudioSpeed(data.audioSpeed);
