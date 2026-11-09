@@ -6841,15 +6841,28 @@
                 const pickVoice = () => {
                     if (!('speechSynthesis' in window)) return null;
                     const voices = (window.speechSynthesis.getVoices() || []).filter(v => /^en/i.test(v.lang) && !NOVELTY_RE.test(v.name));
-                    const usVoices = voices.filter(v => /en(-|_)?(US|GB)/i.test(v.lang));
+                    const usVoices = voices.filter(v => /en(-|_)?(US|GB|AU|IE)/i.test(v.lang));
                     const pool = usVoices.length ? usVoices : voices;
-                    return pool.find(v => /(Natural|Online|Neural)/i.test(v.name) && /(Ava|Aria|Jenny|Andrew|Emma|Brian|Sonia|Ryan)/i.test(v.name))
-                        || pool.find(v => /(Natural|Online|Neural|Premium|Enhanced)/i.test(v.name))
-                        || pool.find(v => /Google US English/i.test(v.name))
-                        || pool.find(v => /(Ava|Allison|Samantha|Victoria|Karen|Moira|Daniel|Serena)/i.test(v.name))
-                        || pool.find(v => /Flo/i.test(v.name))
-                        || pool[0]
-                        || null;
+                    const preferredFemininePatterns = [
+                        /(Natural|Online|Neural).*(Ava|Aria|Jenny|Emma|Sonia|Michelle|steffan)/i,
+                        /(Ava|Aria|Jenny|Emma|Sonia|Michelle).*(Natural|Online|Neural)/i,
+                        /(Ava|Samantha|Allison|Victoria|Karen|Moira|Serena|Tessa).*(Premium|Enhanced)/i,
+                        /Google US English/i,
+                        /Google UK English Female/i,
+                        /\bSamantha\b/i,
+                        /\bAva\b/i,
+                        /\bAllison\b/i,
+                        /\bVictoria\b/i,
+                        /\bKaren\b/i,
+                        /\bMoira\b/i,
+                        /\bSerena\b/i,
+                        /\bKathy\b/i
+                    ];
+                    for (const pat of preferredFemininePatterns) {
+                        const match = pool.find(v => pat.test(v.name));
+                        if (match) return match;
+                    }
+                    return pool.find(v => !/\b(Daniel|Alex|Fred|Tom|Oliver|Aaron|Arthur|Rishi)\b/i.test(v.name)) || pool[0] || null;
                 };
 
                 const findChunkForTime = (sec) => {
@@ -7266,30 +7279,24 @@
                 if (!activeRange || activeRange === lastHighlightedRange) return;
                 lastHighlightedRange = activeRange;
 
-                if (typeof CSS !== 'undefined' && CSS.highlights && typeof Highlight !== 'undefined') {
-                    CSS.highlights.set('tts-active-word', new Highlight(activeRange));
-                } else {
-                    if (!fallbackWordBox) {
-                        fallbackWordBox = document.createElement('div');
-                        fallbackWordBox.style.cssText = 'position:fixed;pointer-events:none;z-index:35;background:rgba(56,189,248,0.32);border-radius:4px;transition:all 0.06s ease;display:none;';
-                        document.body.appendChild(fallbackWordBox);
-                    }
-                    const r = activeRange.getBoundingClientRect();
-                    if (r.width > 0 && r.height > 0) {
-                        fallbackWordBox.style.display = 'block';
-                        fallbackWordBox.style.left = (r.left - 2) + 'px';
-                        fallbackWordBox.style.top = (r.top - 1) + 'px';
-                        fallbackWordBox.style.width = (r.width + 4) + 'px';
-                        fallbackWordBox.style.height = (r.height + 2) + 'px';
+                    if (typeof CSS !== 'undefined' && CSS.highlights && typeof Highlight !== 'undefined') {
+                        CSS.highlights.set('tts-active-word', new Highlight(activeRange));
+                    } else {
+                        if (!fallbackWordBox) {
+                            fallbackWordBox = document.createElement('div');
+                            fallbackWordBox.style.cssText = 'position:fixed;pointer-events:none;z-index:35;background:rgba(56,189,248,0.32);border-radius:4px;transition:all 0.06s ease;display:none;';
+                            document.body.appendChild(fallbackWordBox);
+                        }
+                        const r = activeRange.getBoundingClientRect();
+                        if (r.width > 0 && r.height > 0) {
+                            fallbackWordBox.style.display = 'block';
+                            fallbackWordBox.style.left = (r.left - 2) + 'px';
+                            fallbackWordBox.style.top = (r.top - 1) + 'px';
+                            fallbackWordBox.style.width = (r.width + 4) + 'px';
+                            fallbackWordBox.style.height = (r.height + 2) + 'px';
+                        }
                     }
                 }
-
-                // Auto-scroll gently if the spoken word moves near the bottom of the screen
-                const rect = activeRange.getBoundingClientRect();
-                if (rect.height > 0 && (rect.bottom > window.innerHeight - 130 || rect.top < 90)) {
-                    window.scrollBy({ top: rect.top - window.innerHeight * 0.38, behavior: 'smooth' });
-                }
-            }
 
             function syncFollowAlongButtons() {
                 document.querySelectorAll('.follow-along-toggle').forEach(btn => {
