@@ -8028,12 +8028,15 @@
                     if (!cardEl) return;
                     const catMatch = activeBlogCat === 'all' || item.cat === activeBlogCat;
                     const textMatch = !q || item.title.toLowerCase().includes(q) || item.subtitle.toLowerCase().includes(q) || item.tagLabel.toLowerCase().includes(q);
-                    cardEl.style.display = (catMatch && textMatch) ? '' : 'none';
+                    const show = catMatch && textMatch;
+                    cardEl.style.display = show ? '' : 'none';
+                    cardEl.classList.toggle('hidden', !show);
                 });
                 const vitalSec = document.getElementById('vital-signs-section');
                 if (vitalSec) {
-                    const anyVitalVisible = Array.from(vitalSec.querySelectorAll('.card-premium')).some(btn => btn.style.display !== 'none');
+                    const anyVitalVisible = Array.from(vitalSec.querySelectorAll('.card-premium')).some(btn => !btn.classList.contains('hidden') && btn.style.display !== 'none');
                     vitalSec.style.display = anyVitalVisible ? '' : 'none';
+                    vitalSec.classList.toggle('hidden', !anyVitalVisible);
                 }
             }
             if (blogFilterTags) {
@@ -8090,12 +8093,6 @@
                         if (worksH3) {
                             worksH3.id = `${artId}-toc-works`;
                             tocEntries.push({ id: worksH3.id, label: 'Works Cited' });
-                        }
-                        // Discussion & Comments
-                        const commentForm = art.querySelector('form[onsubmit*="submitComment"]')?.parentElement;
-                        if (commentForm) {
-                            commentForm.id = `${artId}-toc-comments`;
-                            tocEntries.push({ id: commentForm.id, label: 'Discussion & Comments' });
                         }
                         if (tocEntries.length >= 2) {
                             const toc = document.createElement('details');
