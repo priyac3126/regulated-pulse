@@ -6634,11 +6634,13 @@
             function extractArticleSpeechChunks(articleEl) {
                 if (!articleEl) return [];
                 const chunks = [];
+                const seenTextNodes = new Set();
 
                 const collectBlockWords = (blockEl) => {
                     const words = [];
                     const walker = document.createTreeWalker(blockEl, NodeFilter.SHOW_TEXT, {
                         acceptNode(node) {
+                            if (seenTextNodes.has(node)) return NodeFilter.FILTER_REJECT;
                             const p = node.parentElement;
                             if (!p) return NodeFilter.FILTER_REJECT;
                             if (p.closest('.works-cited, .table-note, .comparison-table, .audio-player, .share-bar, script, style, cite')) {
@@ -6650,6 +6652,7 @@
                     });
                     let n;
                     while ((n = walker.nextNode())) {
+                        seenTextNodes.add(n);
                         const text = n.nodeValue || '';
                         const re = /\S+/g;
                         let m;
@@ -6731,7 +6734,8 @@
                     if (cur.length) finalizeClause(cur, isHeading ? 360 : 280);
                 };
 
-                pushBlock(articleEl.querySelector('h2'), true);
+                pushBlock(articleEl.querySelector(':scope > h2'), true);
+                pushBlock(articleEl.querySelector(':scope > h3'), true);
                 const contentEl = articleEl.querySelector('.blog-post-content');
                 if (contentEl) {
                     const blocks = contentEl.querySelectorAll('h2, h3, h4, blockquote, p, li');
@@ -6779,6 +6783,7 @@
                 let _preloadedNext = null;
                 let _activeBoundaryRange = null;
                 let _chunkPlayStartedAt = 0;
+                let _cloudBlocked = false;
 
                 const NOVELTY_RE = /(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Wobble|Fred|Good News|Jester|Junior|Organ|Superstar|Ralph|Trinoids|Whisper|Zarvox|Grandma|Grandpa|Rocko|Reed|Shelley|Sandy|Eddy)/i;
 
@@ -6811,7 +6816,11 @@
                     if (_pauseTimeout) { clearTimeout(_pauseTimeout); _pauseTimeout = null; }
                     _activeBoundaryRange = null;
                     if (_activeCloudAudio) {
-                        try { _activeCloudAudio.pause(); _activeCloudAudio.src = ''; } catch (e) {}
+                        try {
+                            _activeCloudAudio.onended = null;
+                            _activeCloudAudio.onerror = null;
+                            _activeCloudAudio.pause();
+                        } catch (e) {}
                         _activeCloudAudio = null;
                     }
                     if ('speechSynthesis' in window) {
