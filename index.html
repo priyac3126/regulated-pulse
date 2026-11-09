@@ -7535,33 +7535,43 @@
                 }
             });
 
-            // WCAG 1.4.4 / 1.4.12 Reading Accessibility Controls (Text Size A-/A+ & Dyslexia-Friendly Wide Spacing)
+            // WCAG 1.4.4 / 1.4.12 Reading Accessibility Controls (Text Size 0.75x–1.5x & Wide Spacing)
             const postViewEl = document.getElementById('blog-post-view');
             const fontDecBtn = document.getElementById('reader-font-dec');
+            const fontScaleBtn = document.getElementById('reader-font-scale-btn');
             const fontIncBtn = document.getElementById('reader-font-inc');
             const spacingToggleBtn = document.getElementById('reader-spacing-toggle');
-            const a11yScaleClasses = ['reader-scale-sm', '', 'reader-scale-lg', 'reader-scale-xl'];
-            let readerScaleIdx = 1;
+            const readerScaleRates = [0.75, 0.9, 1.0, 1.15, 1.3, 1.5];
+            let readerScaleIdx = 2; // 1.0x default
             let readerWideSpacing = false;
             try {
-                const savedScale = localStorage.getItem('readerFontScaleV2');
-                if (savedScale !== null) {
-                    readerScaleIdx = Math.max(0, Math.min(3, parseInt(savedScale, 10)));
-                }
+                const savedScaleRate = parseFloat(localStorage.getItem('readerFontScaleRate') || '1.0');
+                const foundIdx = readerScaleRates.findIndex(r => Math.abs(r - savedScaleRate) < 0.02);
+                if (foundIdx !== -1) readerScaleIdx = foundIdx;
                 readerWideSpacing = localStorage.getItem('readerWideSpacing') === '1';
             } catch (e) {}
+            const formatReaderScale = (r) => `${Number(r).toFixed(2).replace(/\.00$/, '.0').replace(/(\.\d)0$/, '$1')}x`;
             const applyReaderA11yPrefs = () => {
                 if (!postViewEl) return;
-                postViewEl.classList.remove('reader-scale-sm', 'reader-scale-lg', 'reader-scale-xl');
-                if (a11yScaleClasses[readerScaleIdx]) postViewEl.classList.add(a11yScaleClasses[readerScaleIdx]);
+                const rate = readerScaleRates[readerScaleIdx] || 1.0;
+                postViewEl.style.setProperty('--reader-scale', String(rate));
                 postViewEl.classList.toggle('reader-wide-spacing', readerWideSpacing);
-                if (fontDecBtn) fontDecBtn.setAttribute('aria-pressed', readerScaleIdx < 1 ? 'true' : 'false');
-                if (fontIncBtn) fontIncBtn.setAttribute('aria-pressed', readerScaleIdx > 1 ? 'true' : 'false');
+                if (fontScaleBtn) {
+                    fontScaleBtn.textContent = formatReaderScale(rate);
+                    fontScaleBtn.setAttribute('aria-pressed', Math.abs(rate - 1.0) > 0.01 ? 'true' : 'false');
+                }
+                if (fontDecBtn) fontDecBtn.setAttribute('aria-pressed', rate < 1.0 ? 'true' : 'false');
+                if (fontIncBtn) fontIncBtn.setAttribute('aria-pressed', rate > 1.0 ? 'true' : 'false');
                 if (spacingToggleBtn) spacingToggleBtn.setAttribute('aria-pressed', readerWideSpacing ? 'true' : 'false');
             };
             window.readerAdjustFont = (delta) => {
-                readerScaleIdx = Math.max(0, Math.min(3, readerScaleIdx + delta));
-                try { localStorage.setItem('readerFontScaleV2', String(readerScaleIdx)); } catch (e) {}
+                readerScaleIdx = Math.max(0, Math.min(readerScaleRates.length - 1, readerScaleIdx + delta));
+                try { localStorage.setItem('readerFontScaleRate', String(readerScaleRates[readerScaleIdx])); } catch (e) {}
+                applyReaderA11yPrefs();
+            };
+            window.readerCycleFont = () => {
+                readerScaleIdx = (readerScaleIdx + 1) % readerScaleRates.length;
+                try { localStorage.setItem('readerFontScaleRate', String(readerScaleRates[readerScaleIdx])); } catch (e) {}
                 applyReaderA11yPrefs();
             };
             window.readerToggleSpacing = () => {
