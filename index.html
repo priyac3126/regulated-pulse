@@ -6883,14 +6883,31 @@
                     }
                 });
             });
+            const PODCAST_THUMBNAIL_DESCRIPTIONS = {
+                'KqWkUyPYWY0': 'Video thumbnail: Split-screen showing host Priya Chaudhari smiling in a royal-blue ruffled blouse against a wooden bookshelf on the left, and guest Gina Mundy smiling in a dark button-down shirt in front of an exposed brick wall on the right.',
+                'LDlWsl8vJgg': 'Video thumbnail: Split-screen showing guest Dr. Fazal Khan smiling in glasses and a dark patterned shirt in front of a sunny window on the left, and host Priya Chaudhari smiling in a white collared shirt on the right.',
+                'yBaQIx4xnJs': 'Video thumbnail: Title card on a dark navy background reading "The Regulated Pulse: Healthcare · Technology · Law" in white serif lettering beside a glowing blue ECG heartbeat wave.',
+                'YeBTTdKnmz0': 'Video thumbnail: Title card on a dark navy background reading "The Regulated Pulse: Healthcare · Technology · Law" in white serif lettering beside a glowing blue ECG heartbeat wave.',
+                'Yc8ZDu7BM-w': 'Video thumbnail: Split-screen showing host Priya Chaudhari in an olive-green high-neck top on the left, and guest smiling in a black sweater with an Atlanta pennant banner on the wall behind her on the right.',
+                'kcMphEDVgYw': 'Video thumbnail: Split-screen showing host Priya Chaudhari in a blue quarter-zip pullover on the left, and guest wearing over-ear headphones and a black jacket with red and green stripes in front of a sunlit window decorated with flowers and artwork on the right.',
+                '0JSWv1NJ_YI': 'Video thumbnail: Title card on a dark navy background reading "The Regulated Pulse: Healthcare · Technology · Law" in white serif lettering beside a glowing blue ECG heartbeat wave.'
+            };
             document.querySelectorAll('#podcast-episode-view iframe[src*="youtube.com/embed/"]').forEach(iframe => {
                 const match = iframe.src.match(/embed\/([^?&]+)/);
                 if (match && iframe.parentElement && !iframe.parentElement.querySelector('.caption-transcript-note')) {
                     const videoId = match[1];
+                    const desc = PODCAST_THUMBNAIL_DESCRIPTIONS[videoId] || 'Podcast episode video player with closed captions.';
                     const note = document.createElement('p');
                     note.className = 'caption-transcript-note text-xs text-slate-400 mt-2 flex flex-wrap items-center justify-between gap-2';
-                    note.innerHTML = `<span>Closed captions (CC) enabled by default for deaf &amp; hard-of-hearing listeners.</span><a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-medium">Open interactive transcript on YouTube &rarr;</a>`;
+                    note.innerHTML = `<span class="sr-only">${desc}</span><a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-medium ml-auto">Open interactive transcript on YouTube &rarr;</a>`;
                     iframe.parentElement.appendChild(note);
+                }
+            });
+
+            // Braille display & screen-reader friendliness: hide purely decorative middot separators from tactile Braille cells
+            document.querySelectorAll('#blog-post-view > article > p.text-sm, #podcast-episode-view article p.text-sm, .card-premium p.text-xs').forEach(p => {
+                if (p.innerHTML.includes('·') && !p.querySelector('[aria-hidden="true"]')) {
+                    p.innerHTML = p.innerHTML.replace(/\s*·\s*/g, ' <span aria-hidden="true">·</span> ');
                 }
             });
             document.addEventListener('keydown', (e) => {
@@ -7357,12 +7374,18 @@
         // ---- passwordless auth ----
         const annAuth = getAuth(app);
 
-        // Save/restore theme preference for signed-in readers
+        // Save/restore theme & audio speed preference for signed-in readers
         window.__annSaveThemePref = async function (lightOn) {
             if (!window.annUser) return;
             try {
                 await setDoc(doc(db, "userPrefs", window.annUser.uid), { lightMode: !!lightOn }, { merge: true });
             } catch (err) { console.error("Failed to save theme preference:", err); }
+        };
+        window.__annSaveAudioSpeedPref = async function (speed) {
+            if (!window.annUser) return;
+            try {
+                await setDoc(doc(db, "userPrefs", window.annUser.uid), { audioSpeed: Number(speed) || 1.0 }, { merge: true });
+            } catch (err) { console.error("Failed to save audio speed preference:", err); }
         };
         window.updateFooterLogout = function () {
             const el = document.getElementById('footer-logout');
@@ -7371,24 +7394,34 @@
         async function annRestoreThemePref(uid) {
             try {
                 const snap = await getDoc(doc(db, "userPrefs", uid));
-                const localLight = (function () { try { return localStorage.getItem('lightModeOn') === '1'; } catch (e) { return false; } })();
+                const localLight = (function () { try { return localStorage.getItem('lightModeOn') !== '0' && localStorage.getItem('lightModeChoice') !== 'dark'; } catch (e) { return true; } })();
+                const localSpeed = (function () { try { return localStorage.getItem('audioPlaybackSpeed'); } catch (e) { return null; } })();
                 if (!snap.exists()) {
                     // No account preference yet: adopt the pre-sign-in device choice so it's remembered on all future devices
-                    if (localLight) await setDoc(doc(db, "userPrefs", uid), { lightMode: true }, { merge: true });
+                    const initPrefs = { lightMode: localLight };
+                    if (localSpeed !== null) initPrefs.audioSpeed = parseFloat(localSpeed) || 1.0;
+                    await setDoc(doc(db, "userPrefs", uid), initPrefs, { merge: true });
                     try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
                     return;
                 }
-                const wantLight = snap.data().lightMode;
+                const data = snap.data() || {};
+                if (typeof data.audioSpeed === "number") {
+                    try { localStorage.setItem('audioPlaybackSpeed', String(data.audioSpeed)); } catch (e) {}
+                    if (window.__applySavedAudioSpeed) window.__applySavedAudioSpeed(data.audioSpeed);
+                } else if (localSpeed !== null) {
+                    await setDoc(doc(db, "userPrefs", uid), { audioSpeed: parseFloat(localSpeed) || 1.0 }, { merge: true });
+                }
+                const wantLight = data.lightMode;
                 if (typeof wantLight !== "boolean") {
-                    if (localLight) await setDoc(doc(db, "userPrefs", uid), { lightMode: true }, { merge: true });
+                    await setDoc(doc(db, "userPrefs", uid), { lightMode: localLight }, { merge: true });
                     try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
                     return;
                 }
                 try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
                 // Mirror the account preference onto this device so the prompt never shows here either
                 try {
-                    if (wantLight) localStorage.setItem('lightModeOn', '1');
-                    else localStorage.removeItem('lightModeOn');
+                    if (wantLight) { localStorage.setItem('lightModeOn', '1'); localStorage.setItem('lightModeChoice', 'light'); }
+                    else { localStorage.setItem('lightModeOn', '0'); localStorage.setItem('lightModeChoice', 'dark'); }
                 } catch (e) {}
                 const isLight = document.body.classList.contains('light-mode');
                 if (wantLight && !isLight) window.enterLightMode();
