@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="referrer" content="same-origin">
     <title>The Regulated Pulse</title>
 
     <!-- Favicons & App Icons with Cache-Busting (?v=4) -->
@@ -391,8 +392,23 @@
             box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28) !important;
         }
         body.light-mode .profile-container {
-            background: linear-gradient(135deg, #0f1824, #04080c) !important;
-            border-color: #0f1824 !important;
+            background: radial-gradient(circle at 100% 0%, rgba(68, 139, 255, 0.16) 0%, transparent 65%), linear-gradient(135deg, #0f1824, #04080c) !important;
+            border-color: rgba(68, 139, 255, 0.22) !important;
+        }
+        body.light-mode .profile-container > h3 {
+            border-bottom-color: rgba(68, 139, 255, 0.28) !important;
+        }
+        .shelf-book-btn .text-sm {
+            font-size: 0.84rem !important;
+        }
+        body.light-mode .shelf-book-btn .text-white {
+            color: #8ab8ff !important;
+        }
+        body.light-mode .shelf-book-btn:hover .text-white {
+            color: #4a96ff !important;
+        }
+        body.light-mode .shelf-book-btn .text-slate-400 {
+            color: #79aefb !important;
         }
         body.light-mode .podcast-detail-card {
             background: linear-gradient(135deg, #0f1824, #04080c) !important;
@@ -416,7 +432,7 @@
         body.light-mode .text-cyan-400,
         body.light-mode .text-cyan-300,
         body.light-mode .text-cyan-500,
-        body.light-mode .shelf-subtitle { color: #4a96ff !important; }
+        body.light-mode .shelf-subtitle { color: #73affb !important; }
         body.light-mode #logo-home-btn .text-cyan-400 { color: #3b82f6 !important; }
         body.light-mode .profile-container > h3 { color: #bedaff !important; }
         body.light-mode .bg-cyan-500,
@@ -449,6 +465,7 @@
         body.light-mode .text-slate-300 { color: #8ba1bd !important; }
         body.light-mode .text-slate-400 { color: #b4c8e0 !important; }
         body.light-mode .text-slate-500 { color: #95afd1 !important; }
+        body.light-mode p.shelf-subtitle { color: #73affb !important; }
         #blog-post-view article form button[type="submit"] {
             color: #ffffff !important;
         }
@@ -4655,7 +4672,7 @@
                     <article id="podcast-ep7-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 7 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/KqWkUyPYWY0?cc_load_policy=1&amp;rel=0"
+                            <iframe style="border-radius: 12px;" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/KqWkUyPYWY0?cc_load_policy=1&amp;rel=0"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
@@ -4758,7 +4775,7 @@
                     <article id="podcast-ep6-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 6 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/LDlWsl8vJgg?cc_load_policy=1&amp;rel=0"
+                            <iframe style="border-radius: 12px;" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/LDlWsl8vJgg?cc_load_policy=1&amp;rel=0"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
@@ -4844,7 +4861,7 @@
                     <article id="podcast-ep5-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 5 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/yBaQIx4xnJs?cc_load_policy=1&amp;rel=0"
+                            <iframe style="border-radius: 12px;" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/yBaQIx4xnJs?cc_load_policy=1&amp;rel=0"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
@@ -4931,7 +4948,7 @@
                     <article id="podcast-ep4-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 4 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/YeBTTdKnmz0?cc_load_policy=1&amp;rel=0"
+                            <iframe style="border-radius: 12px;" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/YeBTTdKnmz0?cc_load_policy=1&amp;rel=0"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
@@ -5014,7 +5031,7 @@
                     <article id="podcast-ep3-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 3 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/Yc8ZDu7BM-w?cc_load_policy=1&amp;rel=0"
+                            <iframe style="border-radius: 12px;" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/Yc8ZDu7BM-w?cc_load_policy=1&amp;rel=0"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
@@ -5105,7 +5122,7 @@
                     <article id="podcast-ep2-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 2 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/kcMphEDVgYw?cc_load_policy=1&amp;rel=0"
+                            <iframe style="border-radius: 12px;" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/kcMphEDVgYw?cc_load_policy=1&amp;rel=0"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
@@ -5207,7 +5224,7 @@
                     <article id="podcast-ep1-container" class="hidden max-w-3xl mx-auto mb-16">
                         <!-- YouTube Embed -->
                         <div class="mb-8" role="region" aria-label="Episode 1 video player">
-                            <iframe style="border-radius: 12px;" src="https://www.youtube.com/embed/0JSWv1NJ_YI?cc_load_policy=1&amp;rel=0"
+                            <iframe style="border-radius: 12px;" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/0JSWv1NJ_YI?cc_load_policy=1&amp;rel=0"
                                 width="100%" height="352" frameBorder="0" allowfullscreen=""
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 loading="lazy"
