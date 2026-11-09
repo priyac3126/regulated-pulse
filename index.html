@@ -9006,13 +9006,7 @@
                     <button onclick="window.annGoogleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #f8fafc; color: #0f172a; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.4a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.6-5.2 3.6-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg>Google</button>
                     <button onclick="window.annAppleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="15" height="17" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-4zM11.7 3.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.8-1.5z"/></svg>Apple</button>
                 </div>
-                <div style="margin-top: 14px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); text-align: left;">
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; font-weight: 600; color: rgb(226, 232, 240);">
-                        <input type="checkbox" class="ann-img-desc-checkbox" onchange="window.applyImageDescriptionsPref && window.applyImageDescriptionsPref(this.checked, true)" style="width: 15px; height: 15px; accent-color: #38b6c9;">
-                        <span>Show descriptions for images across the site</span>
-                    </label>
-                    <p style="margin: 6px 0 0; font-size: 11px; line-height: 1.5; color: rgb(148, 163, 184);">Have suggestions on how to make the website more accessible? Contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
-                </div>
+                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Maybe later &mdash; keep highlights for this visit only</button>
             </div>
             <div id="ann-set-password-view" style="display: none;">
@@ -9022,41 +9016,18 @@
                 <button type="button" onclick="window.annTogglePwVisibility('ann-password-input', this)" style="float: right; margin-top: -30px; margin-right: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 11px; font-weight: 700; cursor: pointer; padding: 4px;">Show</button>
                 <button id="ann-save-password-btn" onclick="window.annSavePassword()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Save password</button>
                 <p id="ann-password-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
-                <div style="margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); text-align: left;">
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; font-weight: 600; color: rgb(226, 232, 240);">
-                        <input type="checkbox" class="ann-img-desc-checkbox" onchange="window.applyImageDescriptionsPref && window.applyImageDescriptionsPref(this.checked, true)" style="width: 15px; height: 15px; accent-color: #38b6c9;">
-                        <span>Would you like descriptions for images on the site?</span>
-                    </label>
-                    <p style="margin: 6px 0 0; font-size: 11px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
-                </div>
+                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
                 <button onclick="window.annSkipPassword()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Not now &mdash; email links still work</button>
             </div>
             <div id="ann-signed-in-view" style="display: none;">
                 <p style="margin: 0 0 4px; color: rgb(103, 232, 249); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Signed in</p>
                 <p id="ann-user-email" style="margin: 0 0 16px; color: rgb(241, 245, 249); font-size: 15px; font-weight: 700; word-break: break-all;"></p>
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px;">Your highlights and notes are being saved to your account automatically.</p>
-                <div style="margin-bottom: 12px; padding: 10px 12px; border-radius: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); text-align: left;">
-                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 12px; font-weight: 600; color: rgb(226, 232, 240);">
-                        <input type="checkbox" class="ann-img-desc-checkbox" onchange="window.applyImageDescriptionsPref && window.applyImageDescriptionsPref(this.checked, true)" style="width: 15px; height: 15px; accent-color: #38b6c9;">
-                        <span>Show descriptions for images across the site</span>
-                    </label>
-                    <p style="margin: 6px 0 0; font-size: 11px; line-height: 1.5; color: rgb(148, 163, 184);">Have suggestions on how to make the website more accessible? Contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
-                </div>
+                <p style="margin: 0 0 14px; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
                 <button onclick="window.__annPasswordSkipped = false; window.__annPasswordSaved = false; window.__annForcePasswordUI = true; window.openAnnAuth()" style="width: 100%; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Set or change password</button>
                 <button onclick="window.annSignOut()" style="width: 100%; margin-top: 10px; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Sign out</button>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Close</button>
             </div>
-        </div>
-    </div>
-    <div id="a11y-img-desc-modal" class="ann-overlay" role="dialog" aria-modal="true" aria-labelledby="a11y-img-desc-title">
-        <div class="ann-card">
-            <h3 id="a11y-img-desc-title" style="margin: 0 0 8px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Image Descriptions &amp; Accessibility</h3>
-            <p style="margin: 0 0 14px; color: rgb(226, 232, 240); font-size: 13.5px; line-height: 1.6;">Would you like visible descriptions for images and video thumbnails across the site?</p>
-            <div style="display: flex; gap: 10px; margin-bottom: 14px;">
-                <button type="button" onclick="window.applyImageDescriptionsPref(true, true); window.closeImageDescPrompt();" style="flex: 1; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 13.5px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Yes, show descriptions</button>
-                <button type="button" onclick="window.applyImageDescriptionsPref(false, true); window.closeImageDescPrompt();" style="flex: 1; padding: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); cursor: pointer; font-size: 13.5px; font-weight: 700; background: rgba(255,255,255,0.05); color: rgb(226, 232, 240);">No, keep hidden</button>
-            </div>
-            <p style="margin: 0; color: rgb(148, 163, 184); font-size: 12px; line-height: 1.55;">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
         </div>
     </div>
     <script>
@@ -9066,38 +9037,15 @@
                     const alt = (img.getAttribute('alt') || '').trim();
                     if (!alt || img.nextElementSibling?.classList.contains('img-a11y-desc')) return;
                     const descEl = document.createElement('p');
-                    descEl.className = 'img-a11y-desc';
-                    descEl.textContent = 'Image description: ' + alt;
+                    descEl.className = 'img-a11y-desc text-slate-400 text-sm mt-3';
+                    descEl.textContent = alt;
                     img.insertAdjacentElement('afterend', descEl);
                 });
             }
-            window.applyImageDescriptionsPref = function (enabled, persistRemote) {
-                const on = !!enabled;
-                document.body.classList.toggle('show-image-descriptions', on);
-                try { localStorage.setItem('showImageDescriptions', on ? '1' : '0'); } catch (e) {}
-                document.querySelectorAll('.ann-img-desc-checkbox').forEach(cb => { cb.checked = on; });
-                if (persistRemote && window.__annSaveImageDescPref) window.__annSaveImageDescPref(on);
-            };
-            window.openImageDescPrompt = function () {
-                const m = document.getElementById('a11y-img-desc-modal');
-                if (m) m.classList.add('show');
-            };
-            window.closeImageDescPrompt = function () {
-                const m = document.getElementById('a11y-img-desc-modal');
-                if (m) m.classList.remove('show');
-            };
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', () => {
-                    buildImageDescriptionCaptions();
-                    try {
-                        if (localStorage.getItem('showImageDescriptions') === '1') window.applyImageDescriptionsPref(true, false);
-                    } catch (e) {}
-                });
+                document.addEventListener('DOMContentLoaded', buildImageDescriptionCaptions);
             } else {
                 buildImageDescriptionCaptions();
-                try {
-                    if (localStorage.getItem('showImageDescriptions') === '1') window.applyImageDescriptionsPref(true, false);
-                } catch (e) {}
             }
         })();
     </script>
