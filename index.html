@@ -6552,8 +6552,67 @@
                 return chunks;
             }
 
+            // Hidden no-referrer iframe so neural cloud TTS <audio> streams load without cross-origin Referer blocks
+            let _ttsIframeDoc = null;
+            function getNoReferrerAudio() {
+                try {
+                    if (!_ttsIframeDoc) {
+                        const ifr = document.createElement('iframe');
+                        ifr.style.display = 'none';
+                        ifr.setAttribute('aria-hidden', 'true');
+                        ifr.setAttribute('tabindex', '-1');
+                        document.body.appendChild(ifr);
+                        _ttsIframeDoc = ifr.contentDocument || ifr.contentWindow.document;
+                        _ttsIframeDoc.open();
+                        _ttsIframeDoc.write('<!DOCTYPE html><html><head><meta name="referrer" content="no-referrer"></head><body></body></html>');
+                        _ttsIframeDoc.close();
+                    }
+                    return _ttsIframeDoc.createElement('audio');
+                } catch (e) {
+                    return new Audio();
+                }
+            }
+
+            function splitIntoCloudTTSChunks(rawChunks) {
+                const result = [];
+                rawChunks.forEach(item => {
+                    const text = item.text.trim();
+                    if (text.length <= 185) {
+                        result.push(item);
+                        return;
+                    }
+                    // Split long sentences at natural clause boundaries (<= 185 chars)
+                    const clauses = text.split(/(?<=[,;:])\s+/);
+                    let buf = '';
+                    clauses.forEach(cl => {
+                        if ((buf + ' ' + cl).trim().length <= 185) {
+                            buf = (buf + ' ' + cl).trim();
+                        } else {
+                            if (buf) result.push({ text: buf, pauseAfter: 80 });
+                            if (cl.length <= 185) {
+                                buf = cl;
+                            } else {
+                                const words = cl.split(/\s+/);
+                                let wbuf = '';
+                                words.forEach(w => {
+                                    if ((wbuf + ' ' + w).trim().length <= 185) {
+                                        wbuf = (wbuf + ' ' + w).trim();
+                                    } else {
+                                        if (wbuf) result.push({ text: wbuf, pauseAfter: 60 });
+                                        wbuf = w;
+                                    }
+                                });
+                                buf = wbuf;
+                            }
+                        }
+                    });
+                    if (buf) result.push({ text: buf, pauseAfter: item.pauseAfter || 260 });
+                });
+                return result;
+            }
+
             function createSpeechAudio(articleEl, fallbackSeconds) {
-                const chunks = extractArticleSpeechChunks(articleEl);
+                const chunks = splitIntoCloudTTSChunks(extractArticleSpeechChunks(articleEl));
                 const wordCounts = chunks.map(c => Math.max(1, c.text.split(/\s+/).length));
                 const totalWords = wordCounts.reduce((a, b) => a + b, 0) || 1;
                 const estDuration = fallbackSeconds || Math.max(30, Math.round(totalWords / 2.65));
@@ -6574,6 +6633,8 @@
                 let _timer = null;
                 let _pauseTimeout = null;
                 let _sessionId = 0;
+                let _activeCloudAudio = null;
+                let _preloadedNext = null;
 
                 const NOVELTY_RE = /(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Wobble|Fred|Good News|Jester|Junior|Organ|Superstar|Ralph|Trinoids|Whisper|Zarvox|Grandma|Grandpa|Rocko|Reed|Shelley|Sandy|Eddy)/i;
 
@@ -6598,9 +6659,19 @@
                     return 0;
                 };
 
-                const stopTimer = () => {
+                const buildCloudUrl = (text) =>
+                    'https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=en-US&q=' + encodeURIComponent(text);
+
+                const stopActiveOutput = () => {
                     if (_timer) { clearInterval(_timer); _timer = null; }
                     if (_pauseTimeout) { clearTimeout(_pauseTimeout); _pauseTimeout = null; }
+                    if (_activeCloudAudio) {
+                        try { _activeCloudAudio.pause(); _activeCloudAudio.src = ''; } catch (e) {}
+                        _activeCloudAudio = null;
+                    }
+                    if ('speechSynthesis' in window) {
+                        try { window.speechSynthesis.cancel(); } catch (e) {}
+                    }
                 };
 
                 const startTimer = () => {
@@ -6613,19 +6684,21 @@
                     }, 250);
                 };
 
-                const speakFromChunk = (idx, session) => {
-                    if (!('speechSynthesis' in window) || session !== _sessionId || _paused) return;
-                    if (idx >= chunks.length) {
-                        stopTimer();
-                        _paused = true;
-                        _currentTime = estDuration;
-                        emit('ended');
-                        return;
+                const preloadChunk = (idx) => {
+                    if (idx >= chunks.length) { _preloadedNext = null; return; }
+                    try {
+                        const a = getNoReferrerAudio();
+                        a.preload = 'auto';
+                        a.src = buildCloudUrl(chunks[idx].text);
+                        a.load();
+                        _preloadedNext = { idx, audio: a };
+                    } catch (e) {
+                        _preloadedNext = null;
                     }
-                    _chunkIdx = idx;
-                    _currentTime = chunkStartTimes[idx] || _currentTime;
-                    emit('timeupdate');
+                };
 
+                const speakFallbackChunk = (idx, session) => {
+                    if (!('speechSynthesis' in window) || session !== _sessionId || _paused) return;
                     const item = chunks[idx];
                     const utter = new SpeechSynthesisUtterance(item.text);
                     const voice = pickVoice();
@@ -6634,7 +6707,7 @@
                     utter.pitch = 1.02;
                     const advanceNext = () => {
                         if (session !== _sessionId || _paused) return;
-                        const delay = Math.round((item.pauseAfter || 140) / Math.max(0.5, _rate));
+                        const delay = Math.round((item.pauseAfter || 120) / Math.max(0.5, _rate));
                         _pauseTimeout = setTimeout(() => {
                             if (session !== _sessionId || _paused) return;
                             speakFromChunk(idx + 1, session);
@@ -6648,6 +6721,54 @@
                     window.speechSynthesis.speak(utter);
                 };
 
+                const speakFromChunk = (idx, session) => {
+                    if (session !== _sessionId || _paused) return;
+                    if (idx >= chunks.length) {
+                        stopActiveOutput();
+                        _paused = true;
+                        _currentTime = estDuration;
+                        emit('ended');
+                        return;
+                    }
+                    _chunkIdx = idx;
+                    _currentTime = chunkStartTimes[idx] || _currentTime;
+                    emit('timeupdate');
+
+                    const item = chunks[idx];
+                    const cloudAudio = (_preloadedNext && _preloadedNext.idx === idx) ? _preloadedNext.audio : getNoReferrerAudio();
+                    if (!_preloadedNext || _preloadedNext.idx !== idx) {
+                        cloudAudio.src = buildCloudUrl(item.text);
+                    }
+                    _preloadedNext = null;
+                    _activeCloudAudio = cloudAudio;
+                    cloudAudio.playbackRate = _rate;
+
+                    // Preload the next chunk while this one speaks for gapless transitions
+                    preloadChunk(idx + 1);
+
+                    const advanceNext = () => {
+                        if (session !== _sessionId || _paused) return;
+                        const delay = Math.round(Math.min(180, item.pauseAfter || 90) / Math.max(0.5, _rate));
+                        _pauseTimeout = setTimeout(() => {
+                            if (session !== _sessionId || _paused) return;
+                            speakFromChunk(idx + 1, session);
+                        }, delay);
+                    };
+
+                    cloudAudio.onended = advanceNext;
+                    cloudAudio.onerror = () => {
+                        if (session !== _sessionId || _paused) return;
+                        speakFallbackChunk(idx, session);
+                    };
+                    const p = cloudAudio.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch(() => {
+                            if (session !== _sessionId || _paused) return;
+                            speakFallbackChunk(idx, session);
+                        });
+                    }
+                };
+
                 return {
                     isTTS: true,
                     get duration() { return estDuration; },
@@ -6658,18 +6779,22 @@
                         _currentTime = clamped;
                         _chunkIdx = findChunkForTime(clamped);
                         emit('timeupdate');
-                        if (!_paused && 'speechSynthesis' in window) {
+                        if (!_paused) {
                             _sessionId++;
-                            window.speechSynthesis.cancel();
+                            stopActiveOutput();
+                            startTimer();
                             speakFromChunk(_chunkIdx, _sessionId);
                         }
                     },
                     get playbackRate() { return _rate; },
                     set playbackRate(r) {
                         _rate = Number(r) || 1.0;
-                        if (!_paused && 'speechSynthesis' in window) {
+                        if (_activeCloudAudio) {
+                            try { _activeCloudAudio.playbackRate = _rate; } catch (e) {}
+                        } else if (!_paused) {
                             _sessionId++;
-                            window.speechSynthesis.cancel();
+                            stopActiveOutput();
+                            startTimer();
                             speakFromChunk(_chunkIdx, _sessionId);
                         }
                     },
@@ -6677,9 +6802,8 @@
                         if (listeners[type]) listeners[type].push(fn);
                     },
                     play() {
-                        if (!('speechSynthesis' in window)) return Promise.resolve();
                         _sessionId++;
-                        window.speechSynthesis.cancel();
+                        stopActiveOutput();
                         if (_currentTime >= estDuration - 0.5) _currentTime = 0;
                         _chunkIdx = findChunkForTime(_currentTime);
                         _paused = false;
@@ -6690,8 +6814,7 @@
                     },
                     pause() {
                         _sessionId++;
-                        stopTimer();
-                        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                        stopActiveOutput();
                         if (!_paused) {
                             _paused = true;
                             emit('pause');
