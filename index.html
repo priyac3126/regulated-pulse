@@ -7981,10 +7981,7 @@
                         const picks = scored.slice(0, 2);
                         blogRecGrid.innerHTML = picks.map(p => `
                             <button type="button" onclick="navigateTo('#${p.id}')" class="rounded-2xl p-6 card-premium ${p.cardClass} text-left w-full focus:outline-none cursor-pointer flex flex-col">
-                                <div class="flex items-center justify-between gap-2 mb-3">
-                                    <span class="text-xs px-3 py-1 rounded-full font-semibold ${p.tagClass}">${p.tagLabel}</span>
-                                    <span class="text-[11px] font-semibold text-cyan-400">Recommended for You</span>
-                                </div>
+                                <span class="text-xs px-3 py-1 rounded-full inline-block mb-3 font-semibold self-start ${p.tagClass}">${p.tagLabel}</span>
                                 <h3 class="font-bold mb-1.5 text-white text-base leading-snug">${p.title}</h3>
                                 <p class="text-xs mb-3 flex-grow text-slate-400">${p.subtitle}</p>
                                 <p class="text-[11px] text-slate-500 font-medium">${p.date}</p>
@@ -8006,12 +8003,12 @@
                         const picks = scored.slice(0, 2);
                         podRecGrid.innerHTML = picks.map(ep => `
                             <button type="button" onclick="navigateTo('#episode-${ep.id}')" class="rounded-2xl p-6 card-premium ${ep.cardClass} text-left w-full focus:outline-none cursor-pointer flex flex-col">
-                                <div class="flex items-center justify-between gap-2 mb-3">
-                                    <span class="text-xs px-3 py-1 rounded-full font-semibold ${ep.tagClass}">${ep.epLabel}</span>
-                                    <span class="text-[11px] font-semibold text-cyan-400">Recommended for You</span>
-                                </div>
+                                <span class="text-xs px-3 py-1 rounded-full inline-block mb-3 font-semibold self-start ${ep.tagClass}">${ep.epLabel}</span>
                                 <h4 class="font-bold mb-2 text-white text-base leading-snug">${ep.title}</h4>
                                 <p class="text-xs text-slate-400 mt-auto">${ep.dur} · ${ep.date}</p>
+                                <div onclick="event.stopPropagation(); window.openPodcastPlatformsModal('${ep.id}')" class="ep-watch-footer mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400 group">
+                                    <span>Watch &amp; Listen</span><span aria-hidden="true">&rarr;</span>
+                                </div>
                             </button>
                         `).join('');
                         podRecSec.classList.remove('hidden');
@@ -8061,19 +8058,54 @@
                 const artId = (art.id || '').replace(/-container$/, '');
                 const currentMeta = BLOG_POST_CATALOG.find(p => p.id === artId);
 
-                // Table of Contents for articles with >= 2 subheadings inside .blog-post-content
+                // 4. Collapsible "In This Article" Table of Contents for long-form articles
                 const contentEl = art.querySelector('.blog-post-content');
                 if (contentEl && !art.querySelector('.article-toc-box')) {
-                    const headings = Array.from(contentEl.querySelectorAll('h2, h3')).filter(h => !/^works cited$/i.test(h.textContent.trim()));
-                    if (headings.length >= 2) {
-                        const toc = document.createElement('details');
-                        toc.className = 'article-toc-box';
-                        const itemsHtml = headings.map((h, i) => {
-                            if (!h.id) h.id = `${artId}-sec-${i + 1}`;
-                            return `<li><a href="#${h.id}" onclick="event.preventDefault(); document.getElementById('${h.id}')?.scrollIntoView({behavior:'smooth'});" class="text-xs text-cyan-400 hover:underline">${h.textContent.trim()}</a></li>`;
-                        }).join('');
-                        toc.innerHTML = `<summary class="text-xs font-bold uppercase tracking-wider text-slate-300 cursor-pointer select-none">In This Article (${headings.length} sections)</summary><ul class="mt-3 space-y-2 pl-4 list-disc marker:text-cyan-400">${itemsHtml}</ul>`;
-                        contentEl.parentNode.insertBefore(toc, contentEl);
+                    const paras = Array.from(contentEl.querySelectorAll(':scope > p'));
+                    if (paras.length >= 5) {
+                        const tocEntries = [];
+                        // Opening section
+                        if (paras[0]) {
+                            paras[0].id = `${artId}-toc-intro`;
+                            tocEntries.push({ id: paras[0].id, label: 'Introduction & Overview' });
+                        }
+                        // Check if article has a comparison table
+                        const compTable = contentEl.querySelector('.comparison-table');
+                        if (compTable) {
+                            compTable.id = `${artId}-toc-table`;
+                            tocEntries.push({ id: compTable.id, label: 'Comparison Table & Data' });
+                        }
+                        // Add key thematic milestones across the body paragraphs
+                        const step = Math.max(4, Math.floor(paras.length / 3));
+                        for (let pIdx = step; pIdx < paras.length - 2; pIdx += step) {
+                            const pEl = paras[pIdx];
+                            const strongEl = pEl.querySelector('strong');
+                            let snippet = strongEl ? strongEl.textContent.trim().replace(/[:.]$/, '') : pEl.textContent.replace(/\s+/g, ' ').trim().split(/\s+/).slice(0, 7).join(' ') + '…';
+                            const secId = `${artId}-toc-p-${pIdx}`;
+                            pEl.id = secId;
+                            tocEntries.push({ id: secId, label: snippet });
+                        }
+                        // Works Cited if present
+                        const worksH3 = Array.from(contentEl.querySelectorAll('h3')).find(h => /works cited/i.test(h.textContent));
+                        if (worksH3) {
+                            worksH3.id = `${artId}-toc-works`;
+                            tocEntries.push({ id: worksH3.id, label: 'Works Cited' });
+                        }
+                        // Discussion & Comments
+                        const commentForm = art.querySelector('form[onsubmit*="submitComment"]')?.parentElement;
+                        if (commentForm) {
+                            commentForm.id = `${artId}-toc-comments`;
+                            tocEntries.push({ id: commentForm.id, label: 'Discussion & Comments' });
+                        }
+                        if (tocEntries.length >= 2) {
+                            const toc = document.createElement('details');
+                            toc.className = 'article-toc-box';
+                            const itemsHtml = tocEntries.map(item =>
+                                `<li><a href="#${item.id}" onclick="event.preventDefault(); document.getElementById('${item.id}')?.scrollIntoView({behavior:'smooth'});" class="text-xs text-cyan-400 hover:underline">${item.label}</a></li>`
+                            ).join('');
+                            toc.innerHTML = `<summary class="text-xs font-bold uppercase tracking-wider text-slate-300 cursor-pointer select-none">In This Article (${tocEntries.length} sections)</summary><ul class="mt-3 space-y-2 pl-4 list-disc marker:text-cyan-400">${itemsHtml}</ul>`;
+                            contentEl.parentNode.insertBefore(toc, contentEl);
+                        }
                     }
                 }
 
