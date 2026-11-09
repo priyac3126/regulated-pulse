@@ -558,17 +558,6 @@
         @media (pointer: coarse) {
             .share-bar button { width: 40px; height: 40px; }
         }
-        #blog-post-view.reader-scale-lg .blog-post-content { font-size: 1.28rem !important; }
-        #blog-post-view.reader-scale-xl .blog-post-content { font-size: 1.42rem !important; }
-        #blog-post-view.reader-wide-spacing .blog-post-content {
-            line-height: 2.08 !important;
-            letter-spacing: 0.045em !important;
-            word-spacing: 0.16em !important;
-        }
-        #blog-post-view.reader-wide-spacing .blog-post-content p,
-        #blog-post-view.reader-wide-spacing .blog-post-content li {
-            margin-bottom: 1.55em !important;
-        }
         .reader-a11y-btn {
             font-size: 12px;
             font-weight: 700;
@@ -891,6 +880,40 @@
             font-size: 0.95rem !important;
             overflow-wrap: anywhere !important;
             word-break: normal !important;
+        }
+
+        /* Reader Accessibility Controls overrides (placed after .blog-post-content rules so !important wins) */
+        #blog-post-view.reader-scale-sm .blog-post-content,
+        #blog-post-view.reader-scale-sm .blog-post-content p,
+        #blog-post-view.reader-scale-sm .blog-post-content li { font-size: 1.0rem !important; }
+        #blog-post-view.reader-scale-sm .blog-post-content blockquote,
+        #blog-post-view.reader-scale-sm .blog-post-content blockquote p { font-size: 1.05rem !important; }
+        #blog-post-view.reader-scale-lg .blog-post-content,
+        #blog-post-view.reader-scale-lg .blog-post-content p,
+        #blog-post-view.reader-scale-lg .blog-post-content li { font-size: 1.32rem !important; }
+        #blog-post-view.reader-scale-lg .blog-post-content blockquote,
+        #blog-post-view.reader-scale-lg .blog-post-content blockquote p { font-size: 1.36rem !important; }
+        #blog-post-view.reader-scale-lg .blog-post-content h2 { font-size: 1.95rem !important; }
+        #blog-post-view.reader-scale-lg .blog-post-content h3 { font-size: 1.5rem !important; }
+        #blog-post-view.reader-scale-xl .blog-post-content,
+        #blog-post-view.reader-scale-xl .blog-post-content p,
+        #blog-post-view.reader-scale-xl .blog-post-content li { font-size: 1.5rem !important; }
+        #blog-post-view.reader-scale-xl .blog-post-content blockquote,
+        #blog-post-view.reader-scale-xl .blog-post-content blockquote p { font-size: 1.54rem !important; }
+        #blog-post-view.reader-scale-xl .blog-post-content h2 { font-size: 2.15rem !important; }
+        #blog-post-view.reader-scale-xl .blog-post-content h3 { font-size: 1.68rem !important; }
+        #blog-post-view.reader-wide-spacing .blog-post-content,
+        #blog-post-view.reader-wide-spacing .blog-post-content p,
+        #blog-post-view.reader-wide-spacing .blog-post-content li,
+        #blog-post-view.reader-wide-spacing .blog-post-content blockquote,
+        #blog-post-view.reader-wide-spacing .blog-post-content blockquote p {
+            line-height: 2.15 !important;
+            letter-spacing: 0.055em !important;
+            word-spacing: 0.18em !important;
+        }
+        #blog-post-view.reader-wide-spacing .blog-post-content p,
+        #blog-post-view.reader-wide-spacing .blog-post-content li {
+            margin-bottom: 2.1rem !important;
         }
 
         /* Glass Floating Audio Player (bottom of screen) */
@@ -2308,9 +2331,9 @@
                             </button>
                         </div>
                         <div class="flex items-center gap-2" role="group" aria-label="Reading accessibility controls">
-                            <button type="button" id="reader-font-dec" class="reader-a11y-btn" aria-label="Decrease article text size" title="Decrease text size">A&minus;</button>
-                            <button type="button" id="reader-font-inc" class="reader-a11y-btn" aria-label="Increase article text size" title="Increase text size">A+</button>
-                            <button type="button" id="reader-spacing-toggle" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle dyslexia-friendly wide text spacing" title="Toggle wide line and word spacing">Wide Spacing</button>
+                            <button type="button" id="reader-font-dec" onclick="window.readerAdjustFont && window.readerAdjustFont(-1)" class="reader-a11y-btn" aria-pressed="false" aria-label="Decrease article text size" title="Decrease text size">A&minus;</button>
+                            <button type="button" id="reader-font-inc" onclick="window.readerAdjustFont && window.readerAdjustFont(1)" class="reader-a11y-btn" aria-pressed="false" aria-label="Increase article text size" title="Increase text size">A+</button>
+                            <button type="button" id="reader-spacing-toggle" onclick="window.readerToggleSpacing && window.readerToggleSpacing()" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle dyslexia-friendly wide text spacing" title="Toggle wide line and word spacing">Wide Spacing</button>
                         </div>
                     </div>
 
