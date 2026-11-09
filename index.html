@@ -7787,7 +7787,7 @@
         };
         window.exitLightMode = function () {
             document.body.classList.remove('light-mode');
-            try { localStorage.removeItem('lightModeOn'); localStorage.setItem('lightPromptAnswered', '1'); localStorage.setItem('lightModeChoice', 'dark'); } catch (e) {}
+            try { localStorage.setItem('lightModeOn', '0'); localStorage.setItem('lightPromptAnswered', '1'); localStorage.setItem('lightModeChoice', 'dark'); } catch (e) {}
             if (window.__annSaveThemePref) window.__annSaveThemePref(false);
         };
         window.closeThemePop = function () {
@@ -7795,11 +7795,15 @@
             if (modal) modal.classList.remove('show');
         };
         window.keepDarkChoice = function () {
-            try { localStorage.setItem('lightPromptAnswered', '1'); localStorage.setItem('lightModeChoice', 'dark'); } catch (e) {}
+            try { localStorage.setItem('lightModeOn', '0'); localStorage.setItem('lightPromptAnswered', '1'); localStorage.setItem('lightModeChoice', 'dark'); } catch (e) {}
             window.closeThemePop();
         };
         try {
-            if (localStorage.getItem('lightModeOn') === '1') document.body.classList.add('light-mode');
+            if (localStorage.getItem('lightModeChoice') === 'dark' || localStorage.getItem('lightModeOn') === '0') {
+                document.body.classList.remove('light-mode');
+            } else {
+                document.body.classList.add('light-mode');
+            }
         } catch (e) {}
 
         // ---------- Article share bars ----------
@@ -7868,6 +7872,7 @@
         buildShareBars();
         setTimeout(() => {
             try {
+                if (document.body.classList.contains('light-mode')) return;
                 if (localStorage.getItem('lightPromptAnswered') === '1') return;
                 if (window.annUser) return; // signed in - account preference applies, never ask
                 sessionStorage.setItem('lightPromptShown', '1');
