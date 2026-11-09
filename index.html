@@ -555,6 +555,53 @@
         }
         .share-bar button:hover { color: #38b6c9; border-color: rgba(56, 182, 201, 0.5); }
         .share-bar button.share-copied { color: #38b6c9 !important; border-color: rgba(56, 182, 201, 0.7) !important; }
+        @media (pointer: coarse) {
+            .share-bar button { width: 40px; height: 40px; }
+        }
+        #blog-post-view.reader-scale-lg .blog-post-content { font-size: 1.28rem !important; }
+        #blog-post-view.reader-scale-xl .blog-post-content { font-size: 1.42rem !important; }
+        #blog-post-view.reader-wide-spacing .blog-post-content {
+            line-height: 2.08 !important;
+            letter-spacing: 0.045em !important;
+            word-spacing: 0.16em !important;
+        }
+        #blog-post-view.reader-wide-spacing .blog-post-content p,
+        #blog-post-view.reader-wide-spacing .blog-post-content li {
+            margin-bottom: 1.55em !important;
+        }
+        .reader-a11y-btn {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgb(203, 213, 225);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .reader-a11y-btn:hover,
+        .reader-a11y-btn[aria-pressed="true"] {
+            border-color: rgba(6, 182, 212, 0.6);
+            background: rgba(6, 182, 212, 0.15);
+            color: #67e8f9;
+        }
+        body.light-mode .reader-a11y-btn {
+            border-color: rgba(68, 139, 255, 0.32);
+            background: #0f1824;
+            color: #8ab8ff;
+        }
+        body.light-mode .reader-a11y-btn:hover,
+        body.light-mode .reader-a11y-btn[aria-pressed="true"] {
+            border-color: rgba(68, 139, 255, 0.65);
+            background: rgba(68, 139, 255, 0.22);
+            color: #9ac2ff;
+        }
+        abbr[title] {
+            text-decoration: underline dotted rgba(148, 163, 184, 0.45);
+            text-underline-offset: 3px;
+            cursor: help;
+        }
         #print-area { display: none; }
         @media print {
             @page { margin: 0.75in; }
@@ -2247,16 +2294,25 @@
                     </div>
                 </div>
 <div id="blog-post-view" class="hidden">
-                    <button id="back-to-blog"
-                        class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-semibold focus:outline-none cursor-pointer z-10 group transition-colors"
-                        aria-label="Back to all blog posts">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-                        <span>Back to Posts</span>
-                    </button>
-                    <button onclick="window.askPdfMode()" class="ml-4 inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 mb-8 font-semibold focus:outline-none cursor-pointer transition-colors" aria-label="Download this article as PDF">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-                        <span>Download PDF</span>
-                    </button>
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+                        <div class="flex flex-wrap items-center gap-4">
+                            <button id="back-to-blog"
+                                class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none cursor-pointer z-10 group transition-colors"
+                                aria-label="Back to all blog posts">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+                                <span>Back to Posts</span>
+                            </button>
+                            <button onclick="window.askPdfMode()" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none cursor-pointer transition-colors" aria-label="Download this article as PDF">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                                <span>Download PDF</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-2" role="group" aria-label="Reading accessibility controls">
+                            <button type="button" id="reader-font-dec" class="reader-a11y-btn" aria-label="Decrease article text size" title="Decrease text size">A&minus;</button>
+                            <button type="button" id="reader-font-inc" class="reader-a11y-btn" aria-label="Increase article text size" title="Increase text size">A+</button>
+                            <button type="button" id="reader-spacing-toggle" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle dyslexia-friendly wide text spacing" title="Toggle wide line and word spacing">Wide Spacing</button>
+                        </div>
+                    </div>
 
 
                     <!-- Beyond the Battlefield -->
