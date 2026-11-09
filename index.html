@@ -7384,7 +7384,7 @@
         window.__annSaveThemePref = async function (lightOn) {
             if (!window.annUser) return;
             try {
-                await setDoc(doc(db, "userPrefs", window.annUser.uid), { lightMode: !!lightOn }, { merge: true });
+                await setDoc(doc(db, "userPrefs", window.annUser.uid), { lightMode: !!lightOn, lightModeV2: !!lightOn }, { merge: true });
             } catch (err) { console.error("Failed to save theme preference:", err); }
         };
         window.__annSaveAudioSpeedPref = async function (speed) {
@@ -7403,8 +7403,7 @@
                 const localLight = (function () { try { return localStorage.getItem('lightModeOn') !== '0' && localStorage.getItem('lightModeChoice') !== 'dark'; } catch (e) { return true; } })();
                 const localSpeed = (function () { try { return localStorage.getItem('audioPlaybackSpeed'); } catch (e) { return null; } })();
                 if (!snap.exists()) {
-                    // No account preference yet: adopt the pre-sign-in device choice so it's remembered on all future devices
-                    const initPrefs = { lightMode: localLight };
+                    const initPrefs = { lightMode: localLight, lightModeV2: localLight };
                     if (localSpeed !== null) initPrefs.audioSpeed = parseFloat(localSpeed) || 1.0;
                     await setDoc(doc(db, "userPrefs", uid), initPrefs, { merge: true });
                     try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
@@ -7417,14 +7416,11 @@
                 } else if (localSpeed !== null) {
                     await setDoc(doc(db, "userPrefs", uid), { audioSpeed: parseFloat(localSpeed) || 1.0 }, { merge: true });
                 }
-                const wantLight = data.lightMode;
-                if (typeof wantLight !== "boolean") {
-                    await setDoc(doc(db, "userPrefs", uid), { lightMode: localLight }, { merge: true });
-                    try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
-                    return;
+                const wantLight = typeof data.lightModeV2 === "boolean" ? data.lightModeV2 : true;
+                if (typeof data.lightModeV2 !== "boolean") {
+                    await setDoc(doc(db, "userPrefs", uid), { lightMode: true, lightModeV2: true }, { merge: true });
                 }
                 try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
-                // Mirror the account preference onto this device so the prompt never shows here either
                 try {
                     if (wantLight) { localStorage.setItem('lightModeOn', '1'); localStorage.setItem('lightModeChoice', 'light'); }
                     else { localStorage.setItem('lightModeOn', '0'); localStorage.setItem('lightModeChoice', 'dark'); }
