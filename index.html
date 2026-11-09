@@ -6444,9 +6444,191 @@
                 }
             });
 
+            // Inject Web Speech API "Listen to Article" buttons on articles that do not have a recorded .m4a file
+            function extractArticleSpeechChunks(articleEl) {
+                if (!articleEl) return [];
+                const chunks = [];
+                const h2 = articleEl.querySelector('h2');
+                if (h2 && h2.textContent.trim()) chunks.push(h2.textContent.replace(/\s+/g, ' ').trim() + '.');
+                const contentEl = articleEl.querySelector('.blog-post-content');
+                if (contentEl) {
+                    const clone = contentEl.cloneNode(true);
+                    clone.querySelectorAll('.works-cited, .table-note, script, style').forEach(el => el.remove());
+                    clone.querySelectorAll('h2, h3, h4').forEach(h => {
+                        if (/works cited/i.test(h.textContent)) h.remove();
+                    });
+                    const rawText = clone.textContent.replace(/\s+/g, ' ').trim();
+                    const sentences = rawText.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [rawText];
+                    sentences.forEach(s => {
+                        const clean = s.trim();
+                        if (clean.length > 1) chunks.push(clean);
+                    });
+                }
+                return chunks;
+            }
+
+            function createSpeechAudio(articleEl, fallbackSeconds) {
+                const chunks = extractArticleSpeechChunks(articleEl);
+                const wordCounts = chunks.map(c => Math.max(1, c.split(/\s+/).length));
+                const totalWords = wordCounts.reduce((a, b) => a + b, 0) || 1;
+                const estDuration = fallbackSeconds || Math.max(30, Math.round(totalWords / 2.65));
+                const chunkStartTimes = [];
+                let accWords = 0;
+                for (let i = 0; i < chunks.length; i++) {
+                    chunkStartTimes.push((accWords / totalWords) * estDuration);
+                    accWords += wordCounts[i];
+                }
+
+                const listeners = { play: [], pause: [], ended: [], timeupdate: [], loadedmetadata: [] };
+                const emit = (ev) => (listeners[ev] || []).forEach(fn => { try { fn(); } catch (e) {} });
+
+                let _paused = true;
+                let _currentTime = 0;
+                let _rate = 1.0;
+                let _chunkIdx = 0;
+                let _timer = null;
+                let _sessionId = 0;
+
+                const pickVoice = () => {
+                    if (!('speechSynthesis' in window)) return null;
+                    const voices = window.speechSynthesis.getVoices() || [];
+                    return voices.find(v => /en(-|_)(US|GB)/i.test(v.lang) && /(Samantha|Ava|Allison|Natural|Google US English|Aria|Jenny)/i.test(v.name))
+                        || voices.find(v => /^en/i.test(v.lang) && v.localService)
+                        || voices.find(v => /^en/i.test(v.lang))
+                        || null;
+                };
+
+                const findChunkForTime = (sec) => {
+                    for (let i = chunkStartTimes.length - 1; i >= 0; i--) {
+                        if (sec >= chunkStartTimes[i]) return i;
+                    }
+                    return 0;
+                };
+
+                const stopTimer = () => {
+                    if (_timer) { clearInterval(_timer); _timer = null; }
+                };
+
+                const startTimer = () => {
+                    stopTimer();
+                    _timer = setInterval(() => {
+                        if (!_paused) {
+                            _currentTime = Math.min(estDuration, _currentTime + 0.25 * _rate);
+                            emit('timeupdate');
+                        }
+                    }, 250);
+                };
+
+                const speakFromChunk = (idx, session) => {
+                    if (!('speechSynthesis' in window) || session !== _sessionId || _paused) return;
+                    if (idx >= chunks.length) {
+                        stopTimer();
+                        _paused = true;
+                        _currentTime = estDuration;
+                        emit('ended');
+                        return;
+                    }
+                    _chunkIdx = idx;
+                    _currentTime = chunkStartTimes[idx] || _currentTime;
+                    emit('timeupdate');
+
+                    const utter = new SpeechSynthesisUtterance(chunks[idx]);
+                    const voice = pickVoice();
+                    if (voice) utter.voice = voice;
+                    utter.rate = _rate;
+                    utter.onend = () => {
+                        if (session !== _sessionId || _paused) return;
+                        speakFromChunk(idx + 1, session);
+                    };
+                    utter.onerror = (e) => {
+                        if (e && (e.error === 'interrupted' || e.error === 'canceled')) return;
+                        if (session !== _sessionId || _paused) return;
+                        speakFromChunk(idx + 1, session);
+                    };
+                    window.speechSynthesis.speak(utter);
+                };
+
+                return {
+                    isTTS: true,
+                    get duration() { return estDuration; },
+                    get paused() { return _paused; },
+                    get currentTime() { return _currentTime; },
+                    set currentTime(val) {
+                        const clamped = Math.max(0, Math.min(Number(val) || 0, estDuration));
+                        _currentTime = clamped;
+                        _chunkIdx = findChunkForTime(clamped);
+                        emit('timeupdate');
+                        if (!_paused && 'speechSynthesis' in window) {
+                            _sessionId++;
+                            window.speechSynthesis.cancel();
+                            speakFromChunk(_chunkIdx, _sessionId);
+                        }
+                    },
+                    get playbackRate() { return _rate; },
+                    set playbackRate(r) {
+                        _rate = Number(r) || 1.0;
+                        if (!_paused && 'speechSynthesis' in window) {
+                            _sessionId++;
+                            window.speechSynthesis.cancel();
+                            speakFromChunk(_chunkIdx, _sessionId);
+                        }
+                    },
+                    addEventListener(type, fn) {
+                        if (listeners[type]) listeners[type].push(fn);
+                    },
+                    play() {
+                        if (!('speechSynthesis' in window)) return Promise.resolve();
+                        _sessionId++;
+                        window.speechSynthesis.cancel();
+                        if (_currentTime >= estDuration - 0.5) _currentTime = 0;
+                        _chunkIdx = findChunkForTime(_currentTime);
+                        _paused = false;
+                        startTimer();
+                        emit('play');
+                        speakFromChunk(_chunkIdx, _sessionId);
+                        return Promise.resolve();
+                    },
+                    pause() {
+                        _sessionId++;
+                        stopTimer();
+                        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+                        if (!_paused) {
+                            _paused = true;
+                            emit('pause');
+                        }
+                    }
+                };
+            }
+
+            if ('speechSynthesis' in window) {
+                document.querySelectorAll('#blog-post-view > article').forEach(art => {
+                    if (art.querySelector('.audio-player')) return;
+                    const contentEl = art.querySelector('.blog-post-content');
+                    if (!contentEl) return;
+                    const words = contentEl.textContent.trim().split(/\s+/).length;
+                    const estSec = Math.max(30, Math.round(words / 2.65));
+                    const fallbackStr = formatTime(estSec);
+                    const playerDiv = document.createElement('div');
+                    playerDiv.className = 'audio-player flex items-center gap-3 mb-8 cursor-pointer w-max';
+                    playerDiv.setAttribute('data-tts', 'true');
+                    playerDiv.setAttribute('data-fallback-time', fallbackStr);
+                    playerDiv.innerHTML = `
+                        <button type="button" class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none" aria-label="Play article audio">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </button>
+                        <div>
+                            <p class="text-sm font-bold text-white">Listen to Article</p>
+                            <p class="duration-text text-xs text-slate-400">-${fallbackStr} remaining</p>
+                        </div>`;
+                    contentEl.parentNode.insertBefore(playerDiv, contentEl);
+                });
+            }
+
             document.querySelectorAll('.audio-player').forEach(player => {
                 const src = player.getAttribute('data-src');
-                const audio = new Audio(src);
+                const isTTS = player.getAttribute('data-tts') === 'true';
                 const playBtn = player.querySelector('.play-btn');
                 const durationText = player.querySelector('.duration-text');
 
@@ -6456,6 +6638,7 @@
                     const parts = fallback.split(':');
                     totalTime = parseInt(parts[0]) * 60 + parseInt(parts[1]);
                 }
+                const audio = isTTS ? createSpeechAudio(player.closest('article'), totalTime) : new Audio(src);
 
                 const updateDisplay = () => {
                     const duration = (audio.duration && !isNaN(audio.duration) && audio.duration !== Infinity) ? audio.duration : totalTime;
