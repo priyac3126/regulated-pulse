@@ -71,22 +71,53 @@
         }
 
         /* Specific animation behavior for the welcome screen overlay logo */
+        #intro-overlay {
+            background: radial-gradient(circle at 50% 44%, #0f1b31 0%, #080b11 70%) !important;
+        }
         #intro-overlay .pulse-logo polyline {
             animation: none;
         }
+        #intro-overlay .pulse-logo .pulse-ghost-line {
+            stroke-dasharray: none !important;
+            stroke-dashoffset: 0 !important;
+            opacity: 0.14 !important;
+            animation: none !important;
+        }
         #intro-overlay .pulse-logo {
             width: 300px;
-            height: 300px;
+            height: 210px;
+            margin-bottom: -8px;
         }
         @media (max-width: 767px) {
             #intro-overlay .pulse-logo {
-                width: 190px;
-                height: 190px;
+                width: 200px;
+                height: 145px;
+                margin-bottom: -4px;
             }
         }
 
         #intro-overlay .pulse-logo polyline.welcome-pulse-active {
             animation: heartbeat 2.0s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards !important;
+        }
+
+        @keyframes introTextReveal {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        #intro-overlay .intro-title {
+            opacity: 0;
+            animation: introTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.36s forwards;
+        }
+        #intro-overlay .intro-kicker {
+            opacity: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #38bdf8;
+            margin-top: 0.65rem;
+            animation: introTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.56s forwards;
         }
 
         /* Prevent welcome animation from re-triggering during fade-out */
@@ -95,16 +126,18 @@
         }
 
         .intro-fade {
-            animation: fade-out 0.6s ease forwards;
-            will-change: opacity;
+            animation: fade-out 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            will-change: opacity, transform;
         }
 
         @keyframes fade-out {
             0% {
                 opacity: 1;
+                transform: scale(1);
             }
             100% {
                 opacity: 0;
+                transform: scale(1.035);
             }
         }
 
@@ -516,11 +549,13 @@
         }
         /* Light mode: un-filtered loading screen so the pulse renders true blues */
         body.light-mode #intro-overlay {
-            background: #dfe8f4 !important;
+            background: radial-gradient(circle at 50% 44%, #eef5fc 0%, #dce7f5 65%, #d0dff0 100%) !important;
             filter: invert(1) hue-rotate(180deg);
         }
         body.light-mode #intro-overlay .intro-title { color: #0d1523 !important; }
+        body.light-mode #intro-overlay .intro-kicker { color: #1f56d3 !important; }
         body.light-mode #intro-overlay .pulse-logo polyline { stroke: url(#intro-pulse-grad) !important; }
+        body.light-mode #intro-overlay .pulse-logo .pulse-lead-dot { fill: #1f56d3 !important; }
         /* Light mode: navy & bright blue accents on navigation and branding */
         body.light-mode .pulse-logo polyline { stroke: #93c5fd !important; }
         body.light-mode .nav-link-vertical { color: #8ab8ff; }
