@@ -8120,17 +8120,87 @@
             };
             window.renderRecommendations();
 
-            // 3. Blog Category Filter Bar + Live Search
+            // 3. Blog Category Filter Bar + Semantic / Concept-Aware Live Search
             const blogFilterTags = document.getElementById('blog-filter-tags');
             const blogSearchInput = document.getElementById('blog-search-input');
             let activeBlogCat = 'all';
+
+            const ARTICLE_SEMANTIC_CONCEPTS = {
+                'post-battlefield': 'veteran military soldier army navy marine war combat ptsd post traumatic stress disorder trauma mental health psychology psychiatry depression anxiety suicide therapy counseling va deployment iraq afghanistan service member wounded injury',
+                'post-art-cure': 'art arts music dance painting singing theater creative creativity humanities fifth pillar clinical care healing therapy magic camp hemiplegia paralysis stroke children pediatric well-being wellbeing social prescribing prescription outcomes',
+                'post-malpractice': 'malpractice lawsuit litigation court judge jury tort negligence liability lawyer attorney legal law damages cap caps texas arizona state comparison statute physician error medical error injury harm compensation plaintiff defendant',
+                'post-cdc-interview': 'cdc centers for disease control public health biosafety biosecurity government federal agency epidemic pandemic infectious disease lab laboratory anatomy career law school attorney lawyer regulatory pathogen quarantine interview',
+                'post-book-recs': 'book books reading read literature author review recommendations list library shelf top 11 healthcare reads mortality disability aging biography',
+                'post-compassion': 'compassion compassionate empathy empathetic caring care kindness burnout physician doctor nurse bedside manner patient-centered relationship human connection stress exhaustion morale outcomes survival',
+                'post-migration': 'migration migrant migrants immigrant immigration refugee asylum border borders global health international displaced displacement travel citizenship undocumented language barrier equity disparity disparities policy',
+                'post-na': 'native american indigenous indian tribal tribe reservation history historical colonialism treaty treaties federal trust indian health service ihs disparity disparities tuberculosis trachoma rural underserved',
+                'post-giant-leap': 'ai artificial intelligence machine learning llm chatgpt algorithm algorithms automation predictive digital software tech technology innovation future oversight governance fda regulation trust safety bias hallucination doctor',
+                'post-ai': 'accessibility accessible disability disabled disabilities blind deaf low vision screen reader braille ui ux user interface user experience design inclusive inclusion ada wcag civil rights discrimination ethics ethical assistive',
+                'post-welcome': 'welcome introduction overview mission about blog purpose healthcare technology law regulation ethics',
+                'post-pain-brokers': 'pain brokers device medical devices implant implants pelvic mesh surgery surgical women womens health fraud scam corruption call center mass tort lawsuit litigation fda defective corporate greed',
+                'post-med-ed': 'medical education med school medical student students residency resident training curriculum learning teaching lecture case-based krebs cycle memorization doctor training university academic knowledge doubling',
+                'post-epic': 'epic ehr emr electronic health records medical records oracle cerner monopoly antitrust competition hospital data interoperability software vendor lock-in chart charting',
+                'post-quote-spotlight': 'quote spotlight inspiration arthur clarke magic advanced technology futuristai artificial intelligence coalition for health ai chai safety regulation innovation save lives'
+            };
+
+            const CONCEPT_SYNONYM_GROUPS = [
+                ['ai', 'artificial intelligence', 'machine learning', 'algorithm', 'algorithms', 'llm', 'chatgpt', 'automation', 'automated', 'neural', 'predictive', 'bot', 'robotics'],
+                ['law', 'legal', 'lawyer', 'attorney', 'court', 'judge', 'litigation', 'lawsuit', 'statute', 'regulation', 'regulatory', 'compliance', 'policy', 'legislation', 'tort', 'malpractice', 'liability', 'rights', 'justice'],
+                ['doctor', 'physician', 'clinician', 'nurse', 'provider', 'practitioner', 'surgeon', 'hospital', 'clinic', 'clinical', 'medical', 'medicine', 'healthcare', 'patient', 'patients', 'care', 'treatment', 'healing'],
+                ['disability', 'disabilities', 'disabled', 'accessibility', 'accessible', 'blind', 'deaf', 'braille', 'screen reader', 'inclusive', 'inclusion', 'assistive', 'ada', 'wcag', 'ui', 'ux', 'design'],
+                ['mental', 'psychology', 'psychiatric', 'ptsd', 'trauma', 'depression', 'anxiety', 'burnout', 'stress', 'grief', 'emotional', 'empathy', 'compassion', 'therapy', 'wellbeing'],
+                ['veteran', 'veterans', 'military', 'soldier', 'soldiers', 'war', 'combat', 'army', 'service', 'deployment'],
+                ['immigrant', 'immigrants', 'immigration', 'migrant', 'migrants', 'migration', 'refugee', 'refugees', 'border', 'borders', 'global', 'international', 'foreign'],
+                ['indigenous', 'native', 'indian', 'tribal', 'tribe', 'reservation', 'ihs', 'history', 'historical'],
+                ['record', 'records', 'ehr', 'emr', 'epic', 'oracle', 'data', 'software', 'monopoly', 'antitrust', 'business', 'industry', 'corporation', 'cost', 'money', 'price', 'insurance'],
+                ['education', 'school', 'student', 'students', 'training', 'learning', 'teaching', 'curriculum', 'university', 'college', 'degree', 'study', 'research'],
+                ['fraud', 'scam', 'corrupt', 'corruption', 'crime', 'abuse', 'harm', 'danger', 'risk', 'unsafe', 'defective', 'injury', 'pelvic', 'mesh', 'device', 'implant', 'surgery'],
+                ['art', 'arts', 'music', 'creative', 'humanities', 'culture', 'book', 'books', 'reading', 'literature', 'author']
+            ];
+
+            function stemWord(w) {
+                return w.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/(?:ingly|edly|tion|ions|ment|ments|ness|able|ible|ingly|ing|ed|es|s)$/, '');
+            }
+
+            const articleSearchIndex = {};
+            BLOG_POST_CATALOG.forEach(item => {
+                const artEl = document.getElementById(item.id + '-container');
+                const bodyText = artEl ? artEl.textContent.replace(/\s+/g, ' ').toLowerCase() : '';
+                const concepts = ARTICLE_SEMANTIC_CONCEPTS[item.id] || '';
+                const combined = `${item.title} ${item.subtitle} ${item.tagLabel} ${concepts} ${bodyText}`.toLowerCase();
+                const stems = new Set(combined.split(/\s+/).map(stemWord).filter(Boolean));
+                articleSearchIndex[item.id] = { raw: combined, stems };
+            });
+
+            function matchesSemanticQuery(item, query) {
+                if (!query) return true;
+                const idx = articleSearchIndex[item.id];
+                if (!idx) return true;
+                if (idx.raw.includes(query)) return true;
+                const qTokens = query.split(/\s+/).map(t => t.replace(/[^a-z0-9]/g, '')).filter(t => t.length >= 2);
+                if (!qTokens.length) return true;
+                return qTokens.every(tok => {
+                    const st = stemWord(tok);
+                    if (idx.raw.includes(tok) || (st.length >= 3 && idx.stems.has(st))) return true;
+                    // Check if any synonym in the same concept group appears in this article
+                    for (const group of CONCEPT_SYNONYM_GROUPS) {
+                        const inGroup = group.some(g => g.includes(tok) || tok.includes(g) || (st.length >= 3 && stemWord(g) === st));
+                        if (inGroup) {
+                            const articleHasGroupConcept = group.some(g => idx.raw.includes(g) || idx.stems.has(stemWord(g)));
+                            if (articleHasGroupConcept) return true;
+                        }
+                    }
+                    return false;
+                });
+            }
+
             function filterBlogCards() {
                 const q = (blogSearchInput ? blogSearchInput.value : '').toLowerCase().trim();
                 BLOG_POST_CATALOG.forEach(item => {
                     const cardEl = document.getElementById(item.cardId);
                     if (!cardEl) return;
                     const catMatch = activeBlogCat === 'all' || item.cat === activeBlogCat;
-                    const textMatch = !q || item.title.toLowerCase().includes(q) || item.subtitle.toLowerCase().includes(q) || item.tagLabel.toLowerCase().includes(q);
+                    const textMatch = matchesSemanticQuery(item, q);
                     const show = catMatch && textMatch;
                     cardEl.style.display = show ? '' : 'none';
                     cardEl.classList.toggle('hidden', !show);
