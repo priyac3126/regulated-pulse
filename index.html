@@ -2140,18 +2140,29 @@
     <div id="sr-route-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
     <div id="intro-overlay" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#080b11]" aria-hidden="true">
-        <svg width="240" height="240" viewBox="0 0 160 160" fill="none" aria-hidden="true" class="pulse-logo mb-6">
+        <svg width="240" height="175" viewBox="0 30 160 100" fill="none" aria-hidden="true" class="pulse-logo">
             <defs>
                 <linearGradient id="intro-pulse-grad" gradientUnits="userSpaceOnUse" x1="20" y1="80" x2="140" y2="80">
                     <stop offset="0" stop-color="#3b82f6"></stop>
                     <stop offset="1" stop-color="#1f56d3"></stop>
                 </linearGradient>
+                <path id="intro-ecg-motion-path" d="M20,80 L40,80 L50,50 L60,110 L70,80 L80,80 L85,65 L90,95 L100,80 L120,80 L140,80"></path>
             </defs>
-            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
-                stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline class="pulse-ghost-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
+                stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
+            <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
+                stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            </polyline>
+            <circle class="pulse-lead-dot" r="2.8" fill="#38bdf8" opacity="0">
+                <animateMotion dur="0.95s" begin="0.15s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1">
+                    <mpath href="#intro-ecg-motion-path"></mpath>
+                </animateMotion>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.88;1" dur="1.1s" begin="0.15s" fill="freeze"></animate>
+            </circle>
         </svg>
         <div class="intro-title text-center text-white font-bold text-3xl md:text-5xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse</div>
+        <div class="intro-kicker text-center">Healthcare &middot; Technology &middot; Law</div>
     </div>
 
     <div id="main-content" class="opacity-0 transition-opacity duration-500" tabindex="-1">
