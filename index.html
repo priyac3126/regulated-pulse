@@ -6538,7 +6538,7 @@
             } else {
                 // Play intro animation normally for default home view
                 setTimeout(() => {
-                    const welcomePolyline = document.querySelector('#intro-overlay .pulse-logo polyline');
+                    const welcomePolyline = document.querySelector('#intro-overlay .pulse-logo polyline.pulse-active-line') || document.querySelector('#intro-overlay .pulse-logo polyline');
                     if (welcomePolyline) {
                         welcomePolyline.classList.add('welcome-pulse-active');
                     }
