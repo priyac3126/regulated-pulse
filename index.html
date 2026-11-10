@@ -8172,26 +8172,33 @@
                 const bodyText = artEl ? artEl.textContent.replace(/\s+/g, ' ').toLowerCase() : '';
                 const concepts = ARTICLE_SEMANTIC_CONCEPTS[item.id] || '';
                 const combined = `${item.title} ${item.subtitle} ${item.tagLabel} ${concepts} ${bodyText}`.toLowerCase();
-                const stems = new Set(combined.split(/\s+/).map(stemWord).filter(Boolean));
-                articleSearchIndex[item.id] = { raw: combined, stems };
+                const words = combined.split(/[^a-z0-9]+/).filter(Boolean);
+                const wordSet = new Set(words);
+                const stems = new Set(words.map(stemWord).filter(Boolean));
+                const conceptWords = new Set((`${item.title} ${item.subtitle} ${item.tagLabel} ${concepts}`).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean));
+                const conceptStems = new Set(Array.from(conceptWords).map(stemWord).filter(Boolean));
+                articleSearchIndex[item.id] = { raw: combined, words, wordSet, stems, conceptWords, conceptStems };
             });
 
             function matchesSemanticQuery(item, query) {
                 if (!query) return true;
                 const idx = articleSearchIndex[item.id];
                 if (!idx) return true;
-                if (idx.raw.includes(query)) return true;
-                const qTokens = query.split(/\s+/).map(t => t.replace(/[^a-z0-9]/g, '')).filter(t => t.length >= 2);
+                const cleanQ = query.toLowerCase().trim();
+                if (idx.raw.includes(cleanQ)) return true;
+                const qTokens = cleanQ.split(/\s+/).map(t => t.replace(/[^a-z0-9]/g, '')).filter(Boolean);
                 if (!qTokens.length) return true;
                 return qTokens.every(tok => {
                     const st = stemWord(tok);
-                    if (idx.raw.includes(tok) || (st.length >= 3 && idx.stems.has(st))) return true;
-                    // Check if any synonym in the same concept group appears in this article
+                    // 1. Direct word, prefix, or stem match in the article's text or curated concept list
+                    if (idx.wordSet.has(tok) || (st.length >= 3 && idx.stems.has(st))) return true;
+                    if (tok.length >= 3 && idx.words.some(w => w.startsWith(tok))) return true;
+                    // 2. Concept/synonym expansion against the article's core topic concepts (not generic body words)
                     for (const group of CONCEPT_SYNONYM_GROUPS) {
-                        const inGroup = group.some(g => g.includes(tok) || tok.includes(g) || (st.length >= 3 && stemWord(g) === st));
-                        if (inGroup) {
-                            const articleHasGroupConcept = group.some(g => idx.raw.includes(g) || idx.stems.has(stemWord(g)));
-                            if (articleHasGroupConcept) return true;
+                        const matchesGroup = group.some(g => g === tok || (st.length >= 3 && stemWord(g) === st) || (tok.length >= 4 && g.startsWith(tok)));
+                        if (matchesGroup) {
+                            const articleCoreMatchesGroup = group.some(g => idx.conceptWords.has(g) || idx.conceptStems.has(stemWord(g)));
+                            if (articleCoreMatchesGroup) return true;
                         }
                     }
                     return false;
@@ -8199,23 +8206,45 @@
             }
 
             function filterBlogCards() {
-                const q = (blogSearchInput ? blogSearchInput.value : '').toLowerCase().trim();
+                const searchEl = document.getElementById('blog-search-input');
+                const q = (searchEl ? searchEl.value : '').toLowerCase().trim();
+                let totalVisible = 0;
                 BLOG_POST_CATALOG.forEach(item => {
                     const cardEl = document.getElementById(item.cardId);
                     if (!cardEl) return;
                     const catMatch = activeBlogCat === 'all' || item.cat === activeBlogCat;
                     const textMatch = matchesSemanticQuery(item, q);
                     const show = catMatch && textMatch;
-                    cardEl.style.display = show ? '' : 'none';
+                    cardEl.classList.toggle('blog-card-hidden', !show);
                     cardEl.classList.toggle('hidden', !show);
+                    cardEl.style.display = show ? '' : 'none';
+                    if (show) totalVisible++;
                 });
                 const vitalSec = document.getElementById('vital-signs-section');
                 if (vitalSec) {
-                    const anyVitalVisible = Array.from(vitalSec.querySelectorAll('.card-premium')).some(btn => !btn.classList.contains('hidden') && btn.style.display !== 'none');
-                    vitalSec.style.display = anyVitalVisible ? '' : 'none';
+                    const anyVitalVisible = Array.from(vitalSec.querySelectorAll('.card-premium')).some(btn => !btn.classList.contains('blog-card-hidden') && btn.style.display !== 'none');
+                    vitalSec.classList.toggle('blog-card-hidden', !anyVitalVisible);
                     vitalSec.classList.toggle('hidden', !anyVitalVisible);
+                    vitalSec.style.display = anyVitalVisible ? '' : 'none';
+                }
+                const noResMsg = document.getElementById('blog-no-results-msg');
+                if (noResMsg) {
+                    noResMsg.classList.toggle('blog-card-hidden', totalVisible > 0);
                 }
             }
+            window.filterBlogCards = filterBlogCards;
+            window.selectBlogCategory = function (cat, clickedBtn) {
+                activeBlogCat = cat || 'all';
+                const container = document.getElementById('blog-filter-tags');
+                if (container) {
+                    container.querySelectorAll('.filter-tag').forEach(t => {
+                        const on = t === clickedBtn || t.getAttribute('data-blog-cat') === activeBlogCat;
+                        t.classList.toggle('active', on);
+                        t.setAttribute('aria-pressed', on ? 'true' : 'false');
+                    });
+                }
+                filterBlogCards();
+            };
             if (blogFilterTags) {
                 blogFilterTags.querySelectorAll('.filter-tag').forEach(btn => {
                     btn.addEventListener('click', () => {
