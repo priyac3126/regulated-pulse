@@ -726,6 +726,9 @@
             border-color: rgba(68, 139, 255, 0.28);
             color: #e2e8f0;
         }
+        .blog-card-hidden {
+            display: none !important;
+        }
         .img-a11y-desc {
             display: block;
             margin: 8px auto 0;
@@ -2272,19 +2275,20 @@
                             </div>
 
                             <!-- Articles Area -->
-                            <div>
+                            <div id="recent-articles-section">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                                     <h2 class="text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recent Articles</h2>
-                                    <input type="search" id="blog-search-input" class="blog-search-input" placeholder="Search articles..." aria-label="Search blog articles">
+                                    <input type="search" id="blog-search-input" oninput="window.filterBlogCards && window.filterBlogCards()" class="blog-search-input" placeholder="Search articles..." aria-label="Search blog articles">
                                 </div>
                                 <div class="flex flex-wrap gap-2 mb-7" id="blog-filter-tags" role="tablist" aria-label="Filter blog articles by category">
-                                    <button type="button" class="filter-tag active" data-blog-cat="all" aria-pressed="true">All</button>
-                                    <button type="button" class="filter-tag" data-blog-cat="book" aria-pressed="false">Book Insights</button>
-                                    <button type="button" class="filter-tag" data-blog-cat="law" aria-pressed="false">Law &amp; Policy</button>
-                                    <button type="button" class="filter-tag" data-blog-cat="ai" aria-pressed="false">AI &amp; Tech</button>
-                                    <button type="button" class="filter-tag" data-blog-cat="education" aria-pressed="false">Education &amp; History</button>
-                                    <button type="button" class="filter-tag" data-blog-cat="interview" aria-pressed="false">Interview</button>
+                                    <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('all', this)" class="filter-tag active" data-blog-cat="all" aria-pressed="true">All</button>
+                                    <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('book', this)" class="filter-tag" data-blog-cat="book" aria-pressed="false">Book Insights</button>
+                                    <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('law', this)" class="filter-tag" data-blog-cat="law" aria-pressed="false">Law &amp; Policy</button>
+                                    <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('ai', this)" class="filter-tag" data-blog-cat="ai" aria-pressed="false">AI &amp; Tech</button>
+                                    <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('education', this)" class="filter-tag" data-blog-cat="education" aria-pressed="false">Education &amp; History</button>
+                                    <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('interview', this)" class="filter-tag" data-blog-cat="interview" aria-pressed="false">Interview</button>
                                 </div>
+                                <p id="blog-no-results-msg" class="text-sm text-slate-400 py-6 text-center blog-card-hidden">No matching articles found. Try a different keyword or category.</p>
                                 
                                 <div class="flex flex-col gap-6" id="recent-articles-list">
                                     <!-- Beyond the Battlefield -->
@@ -4856,7 +4860,7 @@
 
                 <!-- Streaming Platform Links -->
                 <div class="mb-12">
-                    <h3 class="font-bold text-white text-base mb-4" style="font-family: 'Plus Jakarta Sans', sans-serif;">Listen &amp; Subscribe</h3>
+                    <h3 class="font-medium text-white text-base mb-4" style="font-family: 'Plus Jakarta Sans', sans-serif;">Listen &amp; Subscribe</h3>
                     <nav aria-label="Podcast streaming platforms" class="flex flex-wrap gap-3">
                         <a href="https://www.youtube.com/@theregulatedpulse" target="_blank" rel="noopener noreferrer"
                             class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
