@@ -2409,7 +2409,7 @@
                         <!-- Sidebar Content (Right Column) -->
                         <div class="lg:col-span-4 flex flex-col gap-8">
                             <!-- Priya Profile widget -->
-                            <div class="profile-container p-6 text-left flex flex-col gap-4">
+                            <div onclick="navigateTo('#about')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();navigateTo('#about');}" role="button" tabindex="0" aria-label="Read full About Me bio for Priya Chaudhari" class="profile-container p-6 text-left flex flex-col gap-4 cursor-pointer transition-transform hover:-translate-y-0.5">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
                                 <div class="flex flex-row md:flex-col items-center gap-4 text-left md:text-center mt-2">
                                     <img class="editor-portrait w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./IMG_5048.jpg?v=2" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
