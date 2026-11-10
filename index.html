@@ -8200,9 +8200,8 @@
                 const linksEl = document.getElementById('podcast-platforms-modal-links');
                 if (titleEl) titleEl.textContent = `${ep.epLabel}: ${ep.title}`;
                 if (linksEl) {
-                    const ytUrl = `https://www.youtube.com/watch?v=${ep.ytId}`;
                     linksEl.innerHTML = `
-                        <a href="${ytUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                        <a href="${ep.ytUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
                             <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#FF0000;display:inline-block;"></span>YouTube</span>
                             <span class="text-xs text-cyan-400">Watch Video &rarr;</span>
                         </a>
@@ -8214,11 +8213,11 @@
                             <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#9933CC;display:inline-block;"></span>Apple Podcasts</span>
                             <span class="text-xs text-cyan-400">Listen &rarr;</span>
                         </a>
-                        <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/the-regulated-pulse-podcast" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                        <a href="${ep.amazonUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
                             <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#00A8E1;display:inline-block;"></span>Amazon Music</span>
                             <span class="text-xs text-cyan-400">Listen &rarr;</span>
                         </a>
-                        <a href="https://pca.st/mws3867u" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
+                        <a href="${ep.pocketCastsUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
                             <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#F43E37;display:inline-block;"></span>Pocket Casts</span>
                             <span class="text-xs text-cyan-400">Listen &rarr;</span>
                         </a>
@@ -8248,6 +8247,7 @@
             });
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
+                    if (document.getElementById('podcast-platforms-modal')?.classList.contains('show') && window.closePodcastPlatformsModal) window.closePodcastPlatformsModal();
                     if (document.getElementById('pdf-mode-modal')?.classList.contains('show') && window.closePdfModal) window.closePdfModal();
                     if (document.getElementById('ann-auth-modal')?.classList.contains('show') && window.annCloseAuth) window.annCloseAuth();
                     if (document.getElementById('note-pop')?.classList.contains('show') && window.annCancelNote) window.annCancelNote();
