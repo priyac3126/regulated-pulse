@@ -695,12 +695,15 @@
         }
         .img-a11y-desc {
             display: block;
-            margin: 6px auto 0;
+            margin: 8px auto 0;
             max-width: 26rem;
             text-align: center;
             font-size: 0.68rem !important;
             line-height: 1.42 !important;
             color: #94a3b8 !important;
+        }
+        #section-about .img-a11y-desc {
+            margin: 0 auto !important;
         }
         body.light-mode .img-a11y-desc {
             color: #788da8 !important;
@@ -4993,7 +4996,7 @@
                             <div class="mb-6" role="region" aria-label="Episode 7 key takeaways">
                                 <h4 class="font-bold mb-3" style="color: rgb(226, 232, 240); font-size: 17px;">Key Takeaways</h4>
                                 <ul class="space-y-2 text-sm pl-5 list-disc marker:text-slate-500" role="list">
-                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-200">The Emotional Cost of Malpractice Litigation:</strong> Why navigating catastrophic delivery outcomes—maternal mortality, fetal demise, and permanent neonatal brain damage—demands active desensitization and carries a profound personal toll for litigators.</li>
+                                    <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-200">The Emotional Cost of Malpractice Litigation:</strong> Why navigating catastrophic delivery outcomes such as maternal mortality, fetal demise, and permanent neonatal brain damage demands active desensitization and carries a profound personal toll for litigators.</li>
                                     <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-200">Poor Pitocin Management:</strong> How unmanaged labor inductions using Pitocin serve as the single most frequent recurring denominator in birth trauma lawsuits.</li>
                                     <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-200">Fetal Monitoring Reliability &amp; Regulatory Gaps:</strong> The life-critical tradeoffs between internal scalp electrodes and wireless telemetry systems, including fatal troubleshooting delays during fetal distress and the lack of hospital reporting to regulatory bodies.</li>
                                     <li style="color: rgb(148, 163, 184); line-height: 1.7;"><strong class="font-bold text-slate-200">The Illusion of Medical Consensus:</strong> How opposing expert testimonies in high-stakes malpractice litigation reveal competing schools of thought, reinforcing the necessity for patients to probe clinical assumptions and seek second opinions.</li>
@@ -6258,12 +6261,10 @@
                         <p>
                             My long-term visions are to become a law professor specializing in healthcare technology law and regulation and to be an administrative law judge for the Health and Human Services agency's 4th region that is based in Atlanta.
                         </p>
-                        <div class="pt-4 flex flex-wrap gap-2.5" aria-label="Academic credentials and certificates">
-                            <span class="credential-pill">A.B. Interdisciplinary Studies: Healthcare Tech Law &amp; Regulation</span>
-                            <span class="credential-pill">Bioethics Minor</span>
-                            <span class="credential-pill">Certificate in Health Humanities: Health, Arts, and Society</span>
-                            <span class="credential-pill">Certificate in Disability Studies</span>
+                        <div class="pt-4 flex flex-wrap gap-2.5" aria-label="Academic credentials and goals">
                             <span class="credential-pill">UGA Class of 2027</span>
+                            <span class="credential-pill">Aspiring Law Professor &amp; HHS Judge</span>
+                            <span class="credential-pill">Athens / Atlanta, GA</span>
                         </div>
                     </div>
                     <div class="flex-shrink-0 flex flex-col items-center gap-4 w-full lg:w-64">
@@ -7800,7 +7801,7 @@
                     const desc = PODCAST_THUMBNAIL_DESCRIPTIONS[videoId] || 'Podcast episode video player with closed captions.';
                     const note = document.createElement('p');
                     note.className = 'caption-transcript-note text-xs text-slate-400 mt-2 flex flex-wrap items-center justify-between gap-2';
-                    note.innerHTML = `<span class="sr-only">${desc}</span><a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-medium ml-auto">Open interactive transcript on YouTube &rarr;</a>`;
+                    note.innerHTML = `<span class="sr-only">${desc}</span><a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-medium ml-auto">Watch with captions on YouTube &rarr;</a>`;
                     iframe.parentElement.appendChild(note);
                 }
             });
