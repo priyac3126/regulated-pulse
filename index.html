@@ -1333,21 +1333,27 @@
         }
 
         .focus-card {
-            border-left: 3px solid #c02669 !important;
-            background: rgba(235, 95, 105, 0.05) !important;
-            transition: all 0.3s ease;
+            border: 1px solid rgba(129, 140, 248, 0.2) !important;
+            border-left: 3px solid #818cf8 !important;
+            border-radius: 0.75rem !important;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.03)) !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .focus-card:hover {
-            box-shadow: 0 4px 20px rgba(235, 95, 105, 0.22);
+            border-color: rgba(165, 180, 252, 0.38) !important;
+            border-left-color: #a5b4fc !important;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.06)) !important;
+            box-shadow: 0 8px 24px -6px rgba(99, 102, 241, 0.22);
         }
 
         .focus-card .accordion-btn:hover span {
-            color: #f5555f !important;
+            color: #c7d2fe !important;
         }
         body.light-mode .focus-card {
-            border-left-color: #d982b8 !important;
-            background: rgba(235, 95, 105, 0.06) !important;
+            border-color: rgba(129, 140, 248, 0.28) !important;
+            border-left-color: #818cf8 !important;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.04)) !important;
         }
         body.light-mode .view-doc-btn {
             background-color: #68a4f9 !important;
@@ -2298,7 +2304,7 @@
                                             aria-label="Read post: Beyond the Battlefield">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">Beyond the Battlefield</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">The Effects of PTSD and the Evolution of Veteran Care</p>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">The effects of PTSD and the evolution of veteran care</p>
                                             <p class="text-xs text-slate-500 font-medium">November 2026 · 5 min read</p>
                                     </button>
 
@@ -2351,7 +2357,7 @@
                                             id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care">
                                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-fuchsia">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Case for Compassionate Care</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">The medical necessity of compassionate care.</p>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">The medical necessity of compassionate care</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026 · 11 min read</p>
                                     </button>
 
@@ -2596,7 +2602,7 @@
                     <!-- Beyond the Battlefield -->
                     <article id="post-battlefield-container" class="hidden max-w-3xl mx-auto relative mb-16">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Beyond the Battlefield</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The Effects of PTSD and the Evolution of Veteran Care</h3>
+                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The effects of PTSD and the evolution of veteran care</h3>
                         <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Book Insights · November 7, 2026 · 5 min read</p>
 
                         <div class="text-center mb-10">
@@ -2607,7 +2613,7 @@
 
                         <div class="blog-post-content">
                             <blockquote>
-                                <p>“‘They thought she was a terrorist and it was a little girl bouncing a ball in the
+                                <p>“‘They thought she was a terrorist but it was a little girl bouncing a ball in the
                                     dark.’ Although he had nothing to do with the event, Carlos visited the girl
                                     repeatedly in the hospital, hiding behind a curtain so she wouldn’t know he was
                                     there. After he returned home, he began seeing visions in which she was ‘injured or
@@ -5660,7 +5666,7 @@
             <section id="section-major" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-major">
                 <h2 class="mb-2 text-white font-extrabold text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">
                     Interdisciplinary Studies: Healthcare Technology Law &amp; Regulation</h2>
-                <p class="mb-4 text-cyan-400 font-semibold text-sm">University of Georgia · Franklin College of Arts and Sciences · A.B. Interdisciplinary Studies</p>
+                <p class="mb-4 text-cyan-400 font-semibold text-sm">University of Georgia · A.B. Interdisciplinary Studies · Franklin College of Arts and Sciences</p>
                 <p class="mb-8 text-slate-300 leading-relaxed text-base" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">I designed
                     this major at the intersection of public health, technology law, and public policy to investigate
                     the regulatory frameworks and ethical foundations required to protect society's most
@@ -5675,7 +5681,7 @@
                     <ul class="space-y-3 text-sm pl-4 list-disc marker:text-cyan-500">
                         <li class="text-slate-300">SOCI 3110: Sociology of Healthcare OR SOCI 3100/H: Medical Sociology</li>
                         <li class="text-slate-300">HPAM 3600: Introduction to Health Policy</li>
-                        <li class="text-slate-300">One course in Artificial Intelligence (e.g., ARTI 2130, ARTI 2550, MIST 5400)</li>
+                        <li class="text-slate-300">One course in Artificial Intelligence</li>
                         <li class="text-slate-300">INTS 4990R: Undergraduate Research Thesis or Final Project</li>
                     </ul>
                 </div>
@@ -5807,13 +5813,8 @@
                         <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Investigates systemic, cultural, and
                             legal barriers that diverse and vulnerable populations encounter within the healthcare
                             system. ANTH 3540: Multicultural Healthcare is required for Specialized distinction.</p>
-                        <p class="text-xs" style="color: rgb(103, 232, 249);">12 credit hours · 4 Specialized Threads
+                        <p class="text-xs mb-3" style="color: rgb(103, 232, 249);">12 credit hours · 4 Specialized Threads
                             available</p>
-                        <p class="text-xs mt-2 mb-3" style="color: rgb(148, 163, 184); font-style: italic;">
-                            A thread becomes <span
-                                style="color: rgb(165, 243, 252); font-weight: 600;">Specialized</span> when a student
-                            completes two courses within that thread, earning a formal distinction on their transcript.
-                        </p>
 
                         <!-- Specialized Thread: Disability -->
                         <div class="thread-dropdown-card">
@@ -5835,7 +5836,7 @@
                             </button>
                             <div id="thread-disability-content" class="accordion-content mt-3" role="region" aria-label="Disability Thread Details">
                                 <p class="text-xs leading-relaxed text-slate-300 mb-3">
-                                    Examines the social, legal, and systemic frameworks shaping the lived experiences of individuals with disabilities — including disability rights legislation, accessibility in digital health platforms, and advocacy for cognitive and physical diversity within healthcare delivery.
+                                    Examines the social, legal, and systemic frameworks shaping the lived experiences of individuals with disabilities.
                                 </p>
                                 <div class="p-3 rounded-lg bg-black/40 border border-white/5 mb-3">
                                     <p class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider mb-2">Approved Coursework Options (Choose 1–2):</p>
@@ -5972,9 +5973,9 @@
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-public-health-content" aria-expanded="false"
                         aria-controls="focus-public-health-content">
-                        <span class="font-bold" style="color: #eb5f69; font-size: 16px;">Public Health</span>
+                        <span class="font-bold" style="color: #a5b4fc; font-size: 16px;">Public Health</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" style="color: #eb5f69;" aria-hidden="true">
+                            stroke-width="2" style="color: #a5b4fc;" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
@@ -5982,10 +5983,10 @@
                         <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
                             Examines health management, policy legalities, and comparative systems to analyze how underserved and rural communities navigate institutional healthcare barriers.
                         </p>
-                        <p class="text-xs mb-3" style="color: #f5555f;">9 credit hours · Choose 3 courses</p>
+                        <p class="text-xs mb-3" style="color: #818cf8;">9 credit hours · Choose 3 courses</p>
                         <div class="p-3.5 rounded-lg bg-black/40 border border-white/5">
-                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #eb5f69;">Approved Coursework Options:</p>
-                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-rose-400">
+                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #a5b4fc;">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-indigo-400">
                                 <li><span class="font-medium text-white">PBHL 3100:</span> Introduction to Public Health</li>
                                 <li><span class="font-medium text-white">HPAM 3500:</span> Introduction to Healthcare Management</li>
                                 <li><span class="font-medium text-white">HPAM 3600:</span> Introduction to Health Policy <span class="text-slate-400 text-[10px] ml-1">(P/C: PBHL 3100)</span></li>
@@ -6007,9 +6008,9 @@
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-ai-content" aria-expanded="false"
                         aria-controls="focus-ai-content">
-                        <span class="font-bold" style="color: #eb5f69; font-size: 16px;">Artificial Intelligence</span>
+                        <span class="font-bold" style="color: #a5b4fc; font-size: 16px;">Artificial Intelligence</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" style="color: #eb5f69;" aria-hidden="true">
+                            stroke-width="2" style="color: #a5b4fc;" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
@@ -6017,13 +6018,13 @@
                         <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
                             Explores data analytics, user experience integration, and ethical governance to understand how emerging computing technologies impact societal systems and compliance.
                         </p>
-                        <p class="text-xs mb-3" style="color: #f5555f;">9 credit hours · Choose 3 courses</p>
+                        <p class="text-xs mb-3" style="color: #818cf8;">9 credit hours · Choose 3 courses</p>
                         <p class="text-xs text-slate-400 mb-3 italic">
                             ARTI 2550: Thinking Machines and ARTI(PHIL) 2130: AI for Humans may count towards this focus area.
                         </p>
                         <div class="p-3.5 rounded-lg bg-black/40 border border-white/5 mb-3">
-                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #eb5f69;">Approved Coursework Options:</p>
-                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-rose-400">
+                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #a5b4fc;">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-indigo-400">
                                 <li><span class="font-medium text-white">ARTI(PHIL) 4340:</span> Ethics and Artificial Intelligence</li>
                                 <li><span class="font-medium text-white">MIST 4600 / MIST 4610:</span> Computer Programming in Business OR Data Management and Analytics</li>
                                 <li><span class="font-medium text-white">MIST 5400:</span> Foundations of Artificial Intelligence in Business</li>
@@ -6043,9 +6044,9 @@
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-substance-content" aria-expanded="false"
                         aria-controls="focus-substance-content">
-                        <span class="font-bold" style="color: #eb5f69; font-size: 16px;">Substance Abuse</span>
+                        <span class="font-bold" style="color: #a5b4fc; font-size: 16px;">Substance Abuse</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" style="color: #eb5f69;" aria-hidden="true">
+                            stroke-width="2" style="color: #a5b4fc;" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
@@ -6053,10 +6054,10 @@
                         <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
                             Investigates the biological, social, and historical forces that drive addiction to better inform the development of inclusive healthtech. Foundational for designing digital health interventions that are ethically grounded and culturally responsive.
                         </p>
-                        <p class="text-xs mb-3" style="color: #f5555f;">6 credit hours · Choose 2–3 courses</p>
+                        <p class="text-xs mb-3" style="color: #818cf8;">6 credit hours · Choose 2–3 courses</p>
                         <div class="p-3.5 rounded-lg bg-black/40 border border-white/5">
-                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #eb5f69;">Approved Coursework Options:</p>
-                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-rose-400">
+                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #a5b4fc;">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-indigo-400">
                                 <li><span class="font-medium text-white">ECHD 3170:</span> Drug and Alcohol Abuse Issues</li>
                                 <li><span class="font-medium text-white">HDFS 3200:</span> Substance Use and Other Addictive Behaviors within Family Systems</li>
                                 <li><span class="font-medium text-white">SOCI 3860:</span> Sociology of Alcohol and Drug Use</li>
@@ -6072,9 +6073,9 @@
                     <button class="accordion-btn w-full flex items-center justify-between text-left focus:outline-none cursor-pointer"
                         data-target="focus-companion-content" aria-expanded="false"
                         aria-controls="focus-companion-content">
-                        <span class="font-bold" style="color: #eb5f69; font-size: 16px;">Companion Animals</span>
+                        <span class="font-bold" style="color: #a5b4fc; font-size: 16px;">Companion Animals</span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" style="color: #eb5f69;" aria-hidden="true">
+                            stroke-width="2" style="color: #a5b4fc;" aria-hidden="true">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
@@ -6082,10 +6083,10 @@
                         <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">
                             Examines the therapeutic, legal, and biological bonds between humans and animals to effectively integrate animal-centered support into digital care models. Provides regulatory and physiological context for animal welfare and accessibility.
                         </p>
-                        <p class="text-xs mb-3" style="color: #f5555f;">6 credit hours · Choose 2 courses</p>
+                        <p class="text-xs mb-3" style="color: #818cf8;">6 credit hours · Choose 2 courses</p>
                         <div class="p-3.5 rounded-lg bg-black/40 border border-white/5">
-                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #eb5f69;">Approved Coursework Options:</p>
-                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-rose-400">
+                            <p class="text-[11px] font-bold uppercase tracking-wider mb-2" style="color: #a5b4fc;">Approved Coursework Options:</p>
+                            <ul class="space-y-1.5 text-xs text-slate-300 pl-4 list-disc marker:text-indigo-400">
                                 <li><span class="font-medium text-white">HDFS 4890S:</span> More than a Four-Legged Friend: The Benefits of Animal-Assisted Interventions</li>
                                 <li><span class="font-medium text-white">ADSC 2520:</span> Animal Welfare</li>
                                 <li><span class="font-medium text-white">JURI 3278:</span> Special Topics in Animal Welfare</li>
@@ -7945,7 +7946,7 @@
 
             // ================= Catalog & "Recommended for You" + Editorial Enhancements =================
             const BLOG_POST_CATALOG = [
-                { id: 'post-battlefield', cardId: 'card-battlefield-click', cat: 'book', cardClass: 'card-violet', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'Beyond the Battlefield', subtitle: 'The Effects of PTSD and the Evolution of Veteran Care', date: 'November 2026 · 5 min read' },
+                { id: 'post-battlefield', cardId: 'card-battlefield-click', cat: 'book', cardClass: 'card-violet', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'Beyond the Battlefield', subtitle: 'The effects of PTSD and the evolution of veteran care', date: 'November 2026 · 5 min read' },
                 { id: 'post-art-cure', cardId: 'card-art-cure-click', cat: 'book', cardClass: 'card-book', tagClass: 'tag-book', tagLabel: 'Book Insights', title: 'The Fifth Pillar: Why the Arts Belong in Clinical Care', subtitle: 'How arts engagement can improve patient outcomes', date: 'October 2026 · 4 min read' },
                 { id: 'post-malpractice', cardId: 'card-malpractice-click', cat: 'law', cardClass: 'card-law', tagClass: 'tag-law', tagLabel: 'Law & Policy', title: 'State Medical Malpractice Laws Comparison', subtitle: 'Texas and Arizona', date: 'July 2026 · 6 min read' },
                 { id: 'post-cdc-interview', cardId: 'card-cdc-interview-click', cat: 'interview', cardClass: 'card-interview', tagClass: 'tag-interview', tagLabel: 'Interview', title: 'From Anatomy Labs to Biosafety Laws', subtitle: 'An Interview with CDC Attorney Taylor Revenew', date: 'July 2026 · 5 min read' },
