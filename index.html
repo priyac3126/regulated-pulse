@@ -8185,20 +8185,25 @@
                 return s;
             }
 
+            const GENERIC_STOP_WORDS = new Set(['article', 'articles', 'post', 'posts', 'blog', 'read', 'reading', 'website', 'page', 'click', 'share', 'comment', 'comments']);
             const articleSearchIndex = {};
+            const allCompleteWords = new Set();
             BLOG_POST_CATALOG.forEach(item => {
                 const artEl = document.getElementById(item.id + '-container');
-                const bodyText = artEl ? artEl.textContent.replace(/\s+/g, ' ').toLowerCase() : '';
+                const contentOnlyEl = artEl ? (artEl.querySelector('.blog-post-content') || artEl) : null;
+                const bodyText = contentOnlyEl ? contentOnlyEl.textContent.replace(/\s+/g, ' ').toLowerCase() : '';
                 const concepts = ARTICLE_SEMANTIC_CONCEPTS[item.id] || '';
                 const combined = `${item.title} ${item.subtitle} ${item.tagLabel} ${concepts} ${bodyText}`.toLowerCase();
-                const words = combined.split(/[^a-z0-9]+/).filter(Boolean);
+                const words = combined.split(/[^a-z0-9]+/).filter(w => w && !GENERIC_STOP_WORDS.has(w));
+                words.forEach(w => allCompleteWords.add(w));
                 const wordSet = new Set(words);
                 const normSet = new Set(words.map(normalizeWholeWord).filter(Boolean));
-                const conceptList = (`${item.title} ${item.subtitle} ${item.tagLabel} ${concepts}`).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+                const conceptList = (`${item.title} ${item.subtitle} ${item.tagLabel} ${concepts}`).toLowerCase().split(/[^a-z0-9]+/).filter(w => w && !GENERIC_STOP_WORDS.has(w));
                 const conceptWords = new Set(conceptList);
                 const conceptNorms = new Set(conceptList.map(normalizeWholeWord).filter(Boolean));
                 articleSearchIndex[item.id] = { raw: combined, words, wordSet, normSet, conceptList, conceptWords, conceptNorms };
             });
+            CONCEPT_SYNONYM_GROUPS.forEach(group => group.forEach(w => allCompleteWords.add(w)));
 
             let isCommittedSearch = false;
 
@@ -8211,7 +8216,6 @@
                 if (!qTokens.length) return true;
                 return qTokens.every((tok, tokenIdx) => {
                     const normTok = normalizeWholeWord(tok);
-                    const isLastTokenBeingTyped = !committed && (tokenIdx === qTokens.length - 1);
 
                     // 1. Exact whole-word match in the article's text or curated concept list
                     if (idx.wordSet.has(tok) || idx.normSet.has(normTok)) return true;
@@ -8225,10 +8229,13 @@
                         }
                     }
 
-                    // 3. Exception: ONLY when the user is still in the process of typing a word (before hitting Enter/Search),
-                    //    allow the in-progress token to match the beginning of a word in the article or its concepts (e.g. "arti" -> "artificial" & "artistic")
-                    if (isLastTokenBeingTyped && tok.length >= 2) {
-                        if (idx.words.some(w => w.startsWith(tok))) return true;
+                    // 3. In-progress word prefix match:
+                    //    If the token is an incomplete word (like "arti" for "artificial") OR the user is still typing (and token is >= 4 chars, or >= 2 chars when not already a complete word),
+                    //    match words in the article or concept groups that start with `tok`!
+                    const isCompleteWord = allCompleteWords.has(tok) || allCompleteWords.has(normTok);
+                    const allowPrefix = !isCompleteWord || (!committed && tok.length >= 4);
+                    if (allowPrefix && tok.length >= 2) {
+                        if (idx.conceptList.some(w => w.startsWith(tok)) || (tok.length >= 5 && idx.words.some(w => w.startsWith(tok)))) return true;
                         for (const group of CONCEPT_SYNONYM_GROUPS) {
                             if (group.some(g => g.startsWith(tok))) {
                                 const articleCoreMatchesGroup = group.some(g => idx.conceptWords.has(g) || idx.conceptNorms.has(normalizeWholeWord(g)));
