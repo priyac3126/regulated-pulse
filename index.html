@@ -2297,7 +2297,7 @@
                             <div id="recent-articles-section">
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                                     <h2 class="text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recent Articles</h2>
-                                    <input type="search" id="blog-search-input" oninput="window.filterBlogCards && window.filterBlogCards()" class="blog-search-input" placeholder="Search articles..." aria-label="Search blog articles">
+                                    <input type="search" id="blog-search-input" oninput="window.filterBlogCards && window.filterBlogCards(false)" onkeydown="if(event.key==='Enter'){event.preventDefault();window.filterBlogCards && window.filterBlogCards(true);}" class="blog-search-input" placeholder="Search articles..." aria-label="Search blog articles">
                                 </div>
                                 <div class="flex flex-wrap gap-2 mb-7" id="blog-filter-tags" role="tablist" aria-label="Filter blog articles by category">
                                     <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('all', this)" class="filter-tag active" data-blog-cat="all" aria-pressed="true">All</button>
@@ -8143,49 +8143,45 @@
             let activeBlogCat = 'all';
 
             const ARTICLE_SEMANTIC_CONCEPTS = {
-                'post-battlefield': 'veteran veterans military soldier soldiers army navy marine marines air force war warfare combat ptsd post traumatic stress disorder trauma traumatic mental health psychology psychological psychiatry psychiatric depression depressed anxiety anxious suicide suicidal therapy therapeutic counseling va department of veterans affairs deployment iraq afghanistan service member wounded injury shell shock',
-                'post-art-cure': 'art arts artistic artist artists music musical musician musicians dance dancing dancer painting paint painter draw drawing singing sing song songs theater theatre drama creative creativity craft poetry literature humanities fifth pillar clinical care healing heal therapy therapeutic magic camp hemiplegia paralysis stroke children pediatric well-being wellbeing social prescribing prescription outcomes',
-                'post-malpractice': 'malpractice lawsuit lawsuits litigation litigate court judge jury tort negligence negligent liability liable lawyer lawyers attorney attorneys legal law damages cap caps texas arizona state comparison statute physician error medical error mistakes injury harm compensation plaintiff defendant',
-                'post-cdc-interview': 'cdc centers for disease control public health biosafety biosecurity biological government federal agency epidemic pandemic outbreak virus bacteria infectious infection disease lab laboratory labs anatomy career law school attorney lawyer regulatory pathogen quarantine containment interview taylor revenew',
-                'post-book-recs': 'book books reading read reader literature literary author authors review reviews recommendations list library shelf top 11 healthcare reads mortality aging biography nonfiction',
-                'post-compassion': 'compassion compassionate empathy empathetic caring care kindness kind warmth human connection burnout exhaustion stress physician doctor nurse bedside manner patient-centered relationship communication listening morale outcomes survival compassionomics',
+                'post-battlefield': 'veteran veterans military soldier soldiers army navy marine marines air force war warfare wartime combat battlefield ptsd post traumatic stress disorder trauma traumatic traumatized mental health psychology psychological psychologist psychiatry psychiatric psychiatrist depression depressed anxiety anxious panic nightmare flashbacks suicide suicidal therapy therapeutic therapist counseling counselor va department of veterans affairs deployment deployed iraq afghanistan service member wounded injury shell shock rehabilitation',
+                'post-art-cure': 'art arts artistic artistically artist artists artworkmusic musical musician musicians symphony choir singing sing song songs dance dancing dancer ballet painting paint painter canvas drawing draw sketch sculpture theater theatre drama acting creative creativity craft poetry poem museum gallery concert aesthetic expressive humanities fifth pillar clinical care healing heal therapy therapeutic magic camp hemiplegia paralysis stroke children pediatric well-being wellbeing social prescribing prescription outcomes',
+                'post-malpractice': 'malpractice lawsuit lawsuits litigation litigate court courtroom judge jury verdict tort negligence negligent liability liable lawyer lawyers attorney attorneys legal law damages cap caps texas arizona state comparison statute physician error medical error mistake mistakes injury harm compensation payout plaintiff defendant',
+                'post-cdc-interview': 'cdc centers for disease control public health biosafety biosecurity biological government federal agency epidemic pandemic outbreak virus viral bacteria bacterial infectious infection contagious disease lab laboratory labs anatomy dissection career law school attorney lawyer regulatory regulation pathogen pathogens quarantine containment interview taylor revenew',
+                'post-book-recs': 'book books reading read reader literature literary author authors review reviews recommendations list library shelf top 11 healthcare reads mortality aging biography memoir nonfiction',
+                'post-compassion': 'compassion compassionate empathy empathetic caring care kindness kind warmth human connection burnout exhausted exhaustion stress physician doctor nurse bedside manner patient-centered relationship communication listening morale outcomes survival compassionomics',
                 'post-migration': 'migration migrant migrants immigrant immigrants immigration refugee refugees asylum border borders global health international displaced displacement travel citizenship undocumented language barrier cultural equity disparity disparities foreign policy',
                 'post-na': 'native american indigenous indian indians tribal tribe tribes reservation reservations history historical colonialism colonial treaty treaties federal trust indian health service ihs disparity disparities tuberculosis trachoma rural underserved sovereignty',
-                'post-giant-leap': 'ai artificial intelligence machine learning deep learning llm chatgpt generative algorithm algorithms automation automated predictive digital software tech technology technological innovation future oversight governance fda regulation trust safety bias hallucination wachter',
+                'post-giant-leap': 'ai artificial intelligence machine learning deep learning neural network llm chatgpt generative algorithm algorithms algorithmic automation automated predictive digital software tech technology technological innovation future oversight governance fda regulation regulatory trust safety bias hallucination wachter',
                 'post-ai': 'accessibility accessible disability disabilities disabled blind blindness deaf deafness low vision visual impairment hearing impairment screen reader braille ui ux user interface user experience design inclusive inclusion ada americans with disabilities act wcag civil rights discrimination assistive',
                 'post-welcome': 'welcome introduction intro overview mission about blog purpose healthcare technology law regulation ethics priya chaudhari',
-                'post-pain-brokers': 'pain brokers device medical devices implant implants pelvic mesh transvaginal surgery surgical women womens health fraud fraudulent scam corruption corrupt call center telemarketing mass tort lawsuit litigation fda defective corporate greed profit kickback',
-                'post-med-ed': 'medical education med school medical student students residency resident training curriculum learning teaching pedagogy lecture case-based krebs cycle memorization memorize doctor training university academic knowledge doubling',
+                'post-pain-brokers': 'pain brokers device medical devices implant implants pelvic mesh transvaginal surgery surgical surgeon women womens health fraud fraudulent scam corruption corrupt call center telemarketing mass tort lawsuit litigation fda defective corporate greed profit kickback',
+                'post-med-ed': 'medical education med school medical student students residency resident training curriculum learning teaching pedagogy lecture case-based krebs cycle memorization memorize academic knowledge doubling',
                 'post-epic': 'epic ehr emr electronic health records medical records oracle cerner monopoly monopolized antitrust competition hospital data interoperability software vendor lock-in chart charting billing',
                 'post-quote-spotlight': 'quote quotation spotlight inspiration inspirational arthur clarke magic advanced technology futurist artificial intelligence coalition for health ai chai safety regulation innovation save lives'
             };
 
             const CONCEPT_SYNONYM_GROUPS = [
-                ['art', 'arts', 'artistic', 'artist', 'artists', 'music', 'musical', 'musician', 'dance', 'dancing', 'paint', 'painting', 'sing', 'singing', 'song', 'theater', 'theatre', 'drama', 'creative', 'creativity', 'craft', 'poetry', 'sculpture', 'draw', 'drawing', 'gallery', 'museum', 'concert', 'aesthetic', 'expressive'],
-                ['ai', 'artificial intelligence', 'machine learning', 'algorithm', 'algorithms', 'llm', 'chatgpt', 'automation', 'automated', 'neural', 'predictive', 'bot', 'robotics'],
-                ['malpractice', 'negligence', 'negligent', 'tort', 'lawsuit', 'lawsuits', 'litigation', 'damages', 'plaintiff', 'defendant', 'jury', 'court', 'liability'],
-                ['disability', 'disabilities', 'disabled', 'accessibility', 'accessible', 'blind', 'deaf', 'braille', 'screen reader', 'inclusive', 'inclusion', 'assistive', 'ada', 'wcag', 'ui', 'ux'],
-                ['ptsd', 'trauma', 'traumatic', 'veteran', 'veterans', 'military', 'soldier', 'soldiers', 'war', 'combat', 'army', 'navy', 'marine', 'deployment'],
-                ['compassion', 'compassionate', 'empathy', 'empathetic', 'kindness', 'burnout', 'bedside', 'caring'],
-                ['immigrant', 'immigrants', 'immigration', 'migrant', 'migrants', 'migration', 'refugee', 'refugees', 'border', 'borders', 'asylum', 'undocumented', 'displaced'],
-                ['indigenous', 'native', 'indian', 'tribal', 'tribe', 'reservation', 'ihs', 'treaty', 'colonialism'],
-                ['ehr', 'emr', 'epic', 'oracle', 'cerner', 'monopoly', 'monopolized', 'antitrust', 'interoperability', 'records'],
-                ['education', 'school', 'student', 'students', 'residency', 'resident', 'training', 'learning', 'teaching', 'curriculum', 'lecture', 'memorization'],
-                ['fraud', 'scam', 'corrupt', 'corruption', 'defective', 'pelvic', 'mesh', 'implant', 'implants', 'device', 'devices'],
-                ['cdc', 'biosafety', 'biosecurity', 'epidemic', 'pandemic', 'infectious', 'pathogen', 'quarantine', 'laboratory', 'anatomy'],
-                ['book', 'books', 'reading', 'literature', 'author', 'authors', 'recommendations', 'shelf']
+                ['art', 'arts', 'artistic', 'artistically', 'artist', 'artists', 'artwork', 'music', 'musical', 'musician', 'musicians', 'dance', 'dancing', 'dancer', 'paint', 'painting', 'painter', 'sing', 'singing', 'song', 'theater', 'theatre', 'drama', 'creative', 'creativity', 'craft', 'poetry', 'sculpture', 'draw', 'drawing', 'gallery', 'museum', 'concert', 'aesthetic', 'expressive'],
+                ['ai', 'artificial', 'intelligence', 'algorithm', 'algorithms', 'algorithmic', 'llm', 'chatgpt', 'automation', 'automated', 'neural', 'predictive', 'robotics', 'generative'],
+                ['malpractice', 'negligence', 'negligent', 'tort', 'lawsuit', 'lawsuits', 'litigation', 'litigate', 'damages', 'plaintiff', 'defendant', 'jury', 'verdict', 'court', 'courtroom', 'liability', 'liable'],
+                ['disability', 'disabilities', 'disabled', 'accessibility', 'accessible', 'blind', 'blindness', 'deaf', 'deafness', 'braille', 'inclusive', 'inclusion', 'assistive', 'ada', 'wcag', 'ui', 'ux'],
+                ['ptsd', 'trauma', 'traumatic', 'traumatized', 'veteran', 'veterans', 'military', 'soldier', 'soldiers', 'war', 'warfare', 'combat', 'battlefield', 'army', 'navy', 'marine', 'marines', 'deployment', 'deployed'],
+                ['compassion', 'compassionate', 'empathy', 'empathetic', 'kindness', 'burnout', 'bedside', 'caring', 'warmth'],
+                ['immigrant', 'immigrants', 'immigration', 'migrant', 'migrants', 'migration', 'refugee', 'refugees', 'border', 'borders', 'asylum', 'undocumented', 'displaced', 'displacement'],
+                ['indigenous', 'native', 'indian', 'indians', 'tribal', 'tribe', 'tribes', 'reservation', 'reservations', 'ihs', 'treaty', 'treaties', 'colonialism', 'sovereignty'],
+                ['ehr', 'emr', 'epic', 'oracle', 'cerner', 'monopoly', 'monopolized', 'antitrust', 'interoperability', 'records', 'charting'],
+                ['education', 'educational', 'student', 'students', 'residency', 'resident', 'training', 'learning', 'teaching', 'curriculum', 'lecture', 'memorization', 'pedagogy'],
+                ['fraud', 'fraudulent', 'scam', 'corrupt', 'corruption', 'defective', 'pelvic', 'mesh', 'implant', 'implants', 'device', 'devices', 'kickback'],
+                ['cdc', 'biosafety', 'biosecurity', 'epidemic', 'pandemic', 'outbreak', 'infectious', 'infection', 'pathogen', 'pathogens', 'quarantine', 'laboratory', 'anatomy'],
+                ['book', 'books', 'reading', 'literature', 'literary', 'author', 'authors', 'recommendations', 'shelf', 'biography']
             ];
 
-            function stemWord(w) {
-                let s = w.toLowerCase().replace(/[^a-z0-9]/g, '');
+            function normalizeWholeWord(w) {
+                const s = w.toLowerCase().replace(/[^a-z0-9]/g, '');
                 if (s.length <= 3) return s;
-                const suffixes = ['istically', 'istical', 'istic', 'ically', 'ical', 'ational', 'ional', 'ative', 'itive', 'ousness', 'iously', 'ious', 'eous', 'ous', 'ability', 'ibility', 'able', 'ible', 'ments', 'ment', 'nesses', 'ness', 'tions', 'tion', 'sions', 'sion', 'ingly', 'ings', 'edly', 'ally', 'fulness', 'ful', 'lessness', 'less', 'ists', 'ist', 'isms', 'ism', 'izing', 'ized', 'izes', 'ize', 'ising', 'ised', 'ises', 'ise', 'ic', 'al', 'ive', 'ary', 'ory', 'ery', 'ing', 'ed', 'ers', 'er', 'ors', 'or', 'ly', 'es', 's', 'y'];
-                for (const suf of suffixes) {
-                    if (s.endsWith(suf) && s.length - suf.length >= 3) {
-                        s = s.slice(0, -suf.length);
-                        break;
-                    }
-                }
+                if (s.endsWith('ies') && s.length > 4) return s.slice(0, -3) + 'y';
+                if (s.endsWith('es') && s.length > 4 && /(?:shes|ches|xes|zes|ses)$/.test(s)) return s.slice(0, -2);
+                if (s.endsWith('s') && !s.endsWith('ss') && !s.endsWith('us') && !s.endsWith('is')) return s.slice(0, -1);
                 return s;
             }
 
@@ -8197,39 +8193,55 @@
                 const combined = `${item.title} ${item.subtitle} ${item.tagLabel} ${concepts} ${bodyText}`.toLowerCase();
                 const words = combined.split(/[^a-z0-9]+/).filter(Boolean);
                 const wordSet = new Set(words);
-                const stems = new Set(words.map(stemWord).filter(Boolean));
+                const normSet = new Set(words.map(normalizeWholeWord).filter(Boolean));
                 const conceptList = (`${item.title} ${item.subtitle} ${item.tagLabel} ${concepts}`).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
                 const conceptWords = new Set(conceptList);
-                const conceptStems = new Set(conceptList.map(stemWord).filter(Boolean));
-                articleSearchIndex[item.id] = { raw: combined, words, wordSet, stems, conceptList, conceptWords, conceptStems };
+                const conceptNorms = new Set(conceptList.map(normalizeWholeWord).filter(Boolean));
+                articleSearchIndex[item.id] = { raw: combined, words, wordSet, normSet, conceptList, conceptWords, conceptNorms };
             });
 
-            function matchesSemanticQuery(item, query) {
+            let isCommittedSearch = false;
+
+            function matchesSemanticQuery(item, query, committed) {
                 if (!query) return true;
                 const idx = articleSearchIndex[item.id];
                 if (!idx) return true;
                 const cleanQ = query.toLowerCase().trim();
                 const qTokens = cleanQ.split(/\s+/).map(t => t.replace(/[^a-z0-9]/g, '')).filter(Boolean);
                 if (!qTokens.length) return true;
-                return qTokens.every(tok => {
-                    const st = stemWord(tok);
-                    // 1. Direct whole-word or exact-stem match in the article's text or curated concept list
-                    if (idx.wordSet.has(tok) || (st.length >= 3 && idx.stems.has(st))) return true;
-                    // Prefix match only when the typed token is at least 5 characters (prevents 3-letter 'art' from matching 'artificial')
-                    if (tok.length >= 5 && idx.words.some(w => w.startsWith(tok))) return true;
-                    // 2. Concept/synonym expansion against the article's core topic concepts
+                return qTokens.every((tok, tokenIdx) => {
+                    const normTok = normalizeWholeWord(tok);
+                    const isLastTokenBeingTyped = !committed && (tokenIdx === qTokens.length - 1);
+
+                    // 1. Exact whole-word match in the article's text or curated concept list
+                    if (idx.wordSet.has(tok) || idx.normSet.has(normTok)) return true;
+
+                    // 2. Whole-word concept / synonym group match (considers the entire word, not substrings)
                     for (const group of CONCEPT_SYNONYM_GROUPS) {
-                        const matchesGroup = group.some(g => g === tok || (st.length >= 3 && stemWord(g) === st) || (tok.length >= 5 && g.startsWith(tok)));
-                        if (matchesGroup) {
-                            const articleCoreMatchesGroup = group.some(g => idx.conceptWords.has(g) || idx.conceptStems.has(stemWord(g)));
+                        const matchesWholeGroupWord = group.some(g => g === tok || normalizeWholeWord(g) === normTok);
+                        if (matchesWholeGroupWord) {
+                            const articleCoreMatchesGroup = group.some(g => idx.conceptWords.has(g) || idx.conceptNorms.has(normalizeWholeWord(g)));
                             if (articleCoreMatchesGroup) return true;
+                        }
+                    }
+
+                    // 3. Exception: ONLY when the user is still in the process of typing a word (before hitting Enter/Search),
+                    //    allow the in-progress token to match the beginning of a word in the article or its concepts (e.g. "arti" -> "artificial" & "artistic")
+                    if (isLastTokenBeingTyped && tok.length >= 2) {
+                        if (idx.words.some(w => w.startsWith(tok))) return true;
+                        for (const group of CONCEPT_SYNONYM_GROUPS) {
+                            if (group.some(g => g.startsWith(tok))) {
+                                const articleCoreMatchesGroup = group.some(g => idx.conceptWords.has(g) || idx.conceptNorms.has(normalizeWholeWord(g)));
+                                if (articleCoreMatchesGroup) return true;
+                            }
                         }
                     }
                     return false;
                 });
             }
 
-            function filterBlogCards() {
+            function filterBlogCards(committed) {
+                if (typeof committed === 'boolean') isCommittedSearch = committed;
                 const searchEl = document.getElementById('blog-search-input');
                 const q = (searchEl ? searchEl.value : '').toLowerCase().trim();
                 let totalVisible = 0;
@@ -8237,7 +8249,7 @@
                     const cardEl = document.getElementById(item.cardId);
                     if (!cardEl) return;
                     const catMatch = activeBlogCat === 'all' || item.cat === activeBlogCat;
-                    const textMatch = matchesSemanticQuery(item, q);
+                    const textMatch = matchesSemanticQuery(item, q, isCommittedSearch);
                     const show = catMatch && textMatch;
                     cardEl.classList.toggle('blog-card-hidden', !show);
                     cardEl.classList.toggle('hidden', !show);
@@ -8283,7 +8295,13 @@
                 });
             }
             if (blogSearchInput) {
-                blogSearchInput.addEventListener('input', filterBlogCards);
+                blogSearchInput.addEventListener('input', () => filterBlogCards(false));
+                blogSearchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        filterBlogCards(true);
+                    }
+                });
             }
 
             // 2. "Related Articles / Continue Reading" Card Pair & 4. Collapsible Table of Contents
