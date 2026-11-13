@@ -269,8 +269,11 @@
 
         .site-footer {
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 1.75rem 1rem 2.25rem;
+            padding: 1.75rem 1.5rem 2.25rem;
             margin-top: 2rem;
+            margin-left: 280px;
+            width: calc(100% - 280px);
+            box-sizing: border-box;
             text-align: center;
         }
         .site-footer p {
@@ -279,7 +282,7 @@
             letter-spacing: 0.01em;
         }
         .site-footer a {
-            color: #67e8f9;
+            color: #4adcf0;
             text-decoration: none;
         }
         .site-footer a:hover { text-decoration: underline; }
@@ -291,7 +294,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 0.75rem 1.5rem;
+            gap: 0.5rem 0.65rem;
         }
         .site-footer .footer-meta-row > span {
             min-width: 0;
@@ -302,22 +305,47 @@
         .site-footer .footer-mode-toggle {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            gap: 0.65rem;
         }
         .site-footer #footer-logout {
             display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: center;
+            gap: 0.65rem;
         }
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .site-footer .footer-meta-row {
                 flex-direction: column;
                 align-items: center;
-                gap: 0.25rem;
+                justify-content: center;
+                gap: 0.35rem;
+            }
+            .site-footer .footer-copy {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.35rem;
+            }
+            .site-footer .footer-mode-toggle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.35rem;
+            }
+            .site-footer #footer-logout {
+                justify-content: center;
+            }
+            .site-footer .footer-sep {
+                display: none !important;
             }
         }
         @media (max-width: 1024px) {
             .site-footer {
+                margin-left: 0 !important;
+                width: 100% !important;
                 padding-bottom: 8.25rem;
             }
             .site-footer p {
@@ -326,8 +354,8 @@
             }
             .site-footer a {
                 display: inline-block;
-                padding: 0.6rem 0.95rem;
-                margin: 0.15rem 0;
+                padding: 0.35rem 0.75rem;
+                margin: 0.1rem 0;
                 font-size: 1rem;
                 border-radius: 0.5rem;
             }
@@ -471,7 +499,9 @@
         body.light-mode .bg-cyan-400 { background-color: #75acfa !important; }
         body.light-mode .bg-cyan-500:hover,
         body.light-mode .bg-cyan-400:hover { background-color: #589af8 !important; }
-        body.light-mode .site-footer a { color: #3d63d4 !important; }
+        body.light-mode .site-footer a { color: #567ce4 !important; }
+        #section-podcast .card-premium h4 { font-weight: 600 !important; }
+        body.light-mode #section-podcast .card-premium h4 { color: #bedaff !important; font-weight: 600 !important; }
         body.light-mode .blog-post-content blockquote {
             border-left-color: #448bff !important;
             background: linear-gradient(90deg, rgba(68, 139, 255, 0.12) 0%, transparent 100%) !important;
@@ -4927,7 +4957,7 @@
                             aria-label="View episode: Advocating for Safer Childbirth: Birth Injury Law, Fetal Monitoring Risks, and Doula Integration with Gina Mundy">
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Season 1 ·
                                 Episode 7</span>
-                            <h4 class="font-bold mb-2 text-white text-lg leading-snug">Advocating for Safer Childbirth: Birth Injury Law, Fetal Monitoring Risks, and Doula Integration with Gina Mundy</h4>
+                            <h4 class="font-semibold mb-2 text-white text-lg leading-snug">Advocating for Safer Childbirth: Birth Injury Law, Fetal Monitoring Risks, and Doula Integration with Gina Mundy</h4>
                             <p class="text-sm mb-4 flex-grow text-slate-400">57m</p>
                             <p class="text-xs text-slate-500 font-medium">October 2026</p>
                         </button>
@@ -4939,7 +4969,7 @@
                             aria-label="View episode: The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan">
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-interview">Season 1 ·
                                 Episode 6</span>
-                            <h4 class="font-bold mb-2 text-white text-lg leading-snug">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h4>
+                            <h4 class="font-semibold mb-2 text-white text-lg leading-snug">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h4>
                             <p class="text-sm mb-4 flex-grow text-slate-400">1h 5m</p>
                             <p class="text-xs text-slate-500 font-medium">September 2026</p>
                         </button>
@@ -4951,7 +4981,7 @@
                             aria-label="View episode: How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song">
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-inspiration">Season 1 ·
                                 Episode 5</span>
-                            <h4 class="font-bold mb-2 text-white text-lg leading-snug">How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h4>
+                            <h4 class="font-semibold mb-2 text-white text-lg leading-snug">How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h4>
                             <p class="text-sm mb-4 flex-grow text-slate-400">1h 12m</p>
                             <p class="text-xs text-slate-500 font-medium">August 2026</p>
                         </button>
@@ -4963,7 +4993,7 @@
                             aria-label="View episode: From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy">
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-epic">Season 1 ·
                                 Episode 4</span>
-                            <h4 class="font-bold mb-2 text-white text-lg leading-snug">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h4>
+                            <h4 class="font-semibold mb-2 text-white text-lg leading-snug">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h4>
                             <p class="text-sm mb-4 flex-grow text-slate-400">1h 45m</p>
                             <p class="text-xs text-slate-500 font-medium">August 2026</p>
                         </button>
@@ -4975,7 +5005,7 @@
                             aria-label="View episode: Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together">
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-quote">Season 1 ·
                                 Episode 3</span>
-                            <h4 class="font-bold mb-2 text-white text-lg leading-snug">Breaking
+                            <h4 class="font-semibold mb-2 text-white text-lg leading-snug">Breaking
                                 the Tech Silos: Bringing Clinicians, Policy, and Data Together</h4>
                             <p class="text-sm mb-4 flex-grow text-slate-400">1h 44m</p>
                             <p class="text-xs text-slate-500 font-medium">July 2026</p>
@@ -4988,7 +5018,7 @@
                             aria-label="View episode: Clinical Advocacy: Bridging Climate, Policy, and Rural Health">
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-education">Season 1 ·
                                 Episode 2</span>
-                            <h4 class="font-bold mb-2 text-white text-lg leading-snug">Clinical
+                            <h4 class="font-semibold mb-2 text-white text-lg leading-snug">Clinical
                                 Advocacy: Bridging Climate, Policy, and Rural Health</h4>
                             <p class="text-sm mb-4 flex-grow text-slate-400">1h 33m</p>
                             <p class="text-xs text-slate-500 font-medium">July 2025</p>
@@ -5001,7 +5031,7 @@
                             aria-label="View episode: Decoding Digital Accessibility: Authentic Leadership in UX">
                             <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-slate">Season 1 ·
                                 Episode 1</span>
-                            <h4 class="font-bold mb-2 text-white text-lg leading-snug">Decoding
+                            <h4 class="font-semibold mb-2 text-white text-lg leading-snug">Decoding
                                 Digital Accessibility: Authentic Leadership in UX</h4>
                             <p class="text-sm mb-4 flex-grow text-slate-400">55m</p>
                             <p class="text-xs text-slate-500 font-medium">July 2025</p>
@@ -8112,7 +8142,7 @@
                         podRecGrid.innerHTML = picks.map(ep => `
                             <button type="button" onclick="navigateTo('#episode-${ep.id}')" class="rounded-2xl p-6 card-premium ${ep.cardClass} text-left w-full focus:outline-none cursor-pointer flex flex-col">
                                 <span class="text-xs px-3 py-1 rounded-full inline-block mb-3 font-semibold self-start ${ep.tagClass}">${ep.epLabel}</span>
-                                <h4 class="font-bold mb-2 text-white text-base leading-snug">${ep.title}</h4>
+                                <h4 class="font-semibold mb-2 text-white text-base leading-snug">${ep.title}</h4>
                                 <p class="text-xs text-slate-400 mt-auto">${ep.dur} · ${ep.date}</p>
                                 <div onclick="event.stopPropagation(); window.openPodcastPlatformsModal('${ep.id}')" class="ep-watch-footer mt-3 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-semibold text-cyan-400 group">
                                     <span>Watch &amp; Listen</span><span aria-hidden="true">&rarr;</span>
@@ -8355,7 +8385,7 @@
                         </a>
                         <a href="${ep.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
                             <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#1DB954;display:inline-block;"></span>Spotify</span>
-                            <span class="text-xs text-cyan-400">Listen &rarr;</span>
+                            <span class="text-xs text-cyan-400">Watch and Listen &rarr;</span>
                         </a>
                         <a href="${ep.appleUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
                             <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#9933CC;display:inline-block;"></span>Apple Podcasts</span>
@@ -9239,7 +9269,7 @@
     </div>
     <footer class="site-footer">
         <p class="footer-line footer-meta-row">
-            <span class="footer-copy">&copy; 2026 The Regulated Pulse &middot; <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
+            <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span><span class="footer-sep"> &middot; </span><a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
             <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
         </p>
     </footer>
