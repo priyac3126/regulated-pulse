@@ -7,13 +7,13 @@
     <meta name="referrer" content="same-origin">
     <title>The Regulated Pulse</title>
 
-    <!-- Favicons & App Icons with Cache-Busting (?v=4) -->
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=4">
-    <link rel="icon" type="image/png" sizes="512x512" href="./favicon.png?v=4">
-    <link rel="icon" type="image/png" sizes="192x192" href="./favicon-192.png?v=4">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=4">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=4">
-    <link rel="shortcut icon" href="./favicon.ico?v=4">
+    <!-- Favicons & App Icons with Cache-Busting (?v=5) -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=5">
+    <link rel="icon" type="image/png" sizes="512x512" href="./favicon.png?v=5">
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicon-192.png?v=5">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=5">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=5">
+    <link rel="shortcut icon" href="./favicon.ico?v=5">
 
     <meta property="og:title" content="The Regulated Pulse">
     <meta property="og:description"
@@ -269,7 +269,7 @@
 
         .site-footer {
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 1.75rem 1.5rem 2.25rem;
+            padding: 1.75rem 1.25rem 2.25rem;
             margin-top: 2rem;
             margin-left: 280px;
             width: calc(100% - 280px);
@@ -278,69 +278,51 @@
         }
         .site-footer p {
             color: #64748b;
-            font-size: 0.8rem;
+            font-size: clamp(0.72rem, 1.35vw, 0.82rem);
             letter-spacing: 0.01em;
         }
         .site-footer a {
             color: #4adcf0;
             text-decoration: none;
+            white-space: nowrap;
         }
         .site-footer a:hover { text-decoration: underline; }
         .site-footer .footer-line { padding: 0; }
         .site-footer .footer-line + .footer-line { margin-top: 0.25rem; }
         .site-footer .footer-meta-row {
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 0.5rem 0.65rem;
+            gap: 0.35rem 0.55rem;
         }
-        .site-footer .footer-meta-row > span {
-            min-width: 0;
-        }
-        .site-footer a {
-            overflow-wrap: anywhere;
+        .site-footer .footer-copy {
+            display: inline-flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem 0.55rem;
+            white-space: nowrap;
         }
         .site-footer .footer-mode-toggle {
             display: inline-flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 0.65rem;
+            gap: 0.35rem 0.55rem;
+            white-space: nowrap;
         }
         .site-footer #footer-logout {
             display: inline-flex;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 0.65rem;
-        }
-        @media (max-width: 1200px) {
-            .site-footer .footer-meta-row {
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 0.35rem;
-            }
-            .site-footer .footer-copy {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 0.35rem;
-            }
-            .site-footer .footer-mode-toggle {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 0.35rem;
-            }
-            .site-footer #footer-logout {
-                justify-content: center;
-            }
-            .site-footer .footer-sep {
-                display: none !important;
-            }
+            gap: 0.35rem 0.55rem;
+            white-space: nowrap;
         }
         @media (max-width: 1024px) {
             .site-footer {
@@ -349,15 +331,14 @@
                 padding-bottom: 8.25rem;
             }
             .site-footer p {
-                font-size: 0.95rem;
-                line-height: 1.6;
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
             .site-footer a {
-                display: inline-block;
-                padding: 0.35rem 0.75rem;
-                margin: 0.1rem 0;
-                font-size: 1rem;
-                border-radius: 0.5rem;
+                display: inline;
+                padding: 0;
+                margin: 0;
+                font-size: inherit;
             }
             .site-footer .footer-line + .footer-line {
                 margin-top: 0;
@@ -2496,7 +2477,7 @@
                             <div onclick="navigateTo('#about')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();navigateTo('#about');}" role="button" tabindex="0" aria-label="Read full About Me bio for Priya Chaudhari" class="profile-container p-6 text-left flex flex-col gap-4 cursor-pointer transition-transform hover:-translate-y-0.5">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
                                 <div class="flex flex-row md:flex-col items-center gap-4 text-left md:text-center mt-2">
-                                    <img class="editor-portrait w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./IMG_5048.jpg?v=2" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
+                                    <img class="editor-portrait w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./IMG_5048.jpg?v=3" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
                                     <div>
                                         <h4 class="font-bold text-white text-lg">Priya Chaudhari</h4>
                                         <p class="editor-subtitle text-xs text-cyan-400 font-medium mt-1">UGA Class of 2028 · Interdisciplinary Studies</p>
@@ -9269,7 +9250,8 @@
     </div>
     <footer class="site-footer">
         <p class="footer-line footer-meta-row">
-            <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span><span class="footer-sep"> &middot; </span><a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
+            <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span><span class="footer-sep">&middot;</span><a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
+            <span class="footer-sep">&middot;</span>
             <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
         </p>
     </footer>
