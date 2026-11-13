@@ -575,7 +575,6 @@
         body.light-mode #intro-overlay .intro-title { color: #e3ebf9 !important; }
         body.light-mode #intro-overlay .intro-kicker { color: #77aeff !important; }
         body.light-mode #intro-overlay .pulse-logo polyline { stroke: #448bff !important; }
-        body.light-mode #intro-overlay .pulse-logo .pulse-lead-dot { fill: #77aeff !important; }
         /* Light mode: navy & bright blue accents on navigation and branding */
         body.light-mode .pulse-logo polyline { stroke: #93c5fd !important; }
         body.light-mode .nav-link-vertical { color: #8ab8ff; }
@@ -2183,12 +2182,6 @@
             <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
                 stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
-            <circle class="pulse-lead-dot" r="2.8" fill="#38bdf8" opacity="0">
-                <animateMotion dur="0.95s" begin="0.15s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1">
-                    <mpath href="#intro-ecg-motion-path"></mpath>
-                </animateMotion>
-                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.88;1" dur="1.1s" begin="0.15s" fill="freeze"></animate>
-            </circle>
         </svg>
         <div class="intro-title text-center text-white font-bold text-3xl md:text-5xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse</div>
         <div class="intro-kicker text-center">Healthcare &middot; Technology &middot; Law</div>
@@ -8216,19 +8209,17 @@
                 const idx = articleSearchIndex[item.id];
                 if (!idx) return true;
                 const cleanQ = query.toLowerCase().trim();
-                if (idx.raw.includes(cleanQ)) return true;
                 const qTokens = cleanQ.split(/\s+/).map(t => t.replace(/[^a-z0-9]/g, '')).filter(Boolean);
                 if (!qTokens.length) return true;
                 return qTokens.every(tok => {
                     const st = stemWord(tok);
-                    // 1. Direct word, prefix, or stem match in the article's text or curated concept list
+                    // 1. Direct whole-word or exact-stem match in the article's text or curated concept list
                     if (idx.wordSet.has(tok) || (st.length >= 3 && idx.stems.has(st))) return true;
-                    if (tok.length >= 3 && idx.words.some(w => w.startsWith(tok))) return true;
-                    // Check if query token is a derived form of one of the article's core concept words (e.g., 'artistic' starts with 'art')
-                    if (st.length >= 3 && idx.conceptList.some(cw => (cw.length >= 3 && (tok.startsWith(cw) || st.startsWith(cw))) || (cw.length >= 4 && cw.startsWith(st)))) return true;
+                    // Prefix match only when the typed token is at least 5 characters (prevents 3-letter 'art' from matching 'artificial')
+                    if (tok.length >= 5 && idx.words.some(w => w.startsWith(tok))) return true;
                     // 2. Concept/synonym expansion against the article's core topic concepts
                     for (const group of CONCEPT_SYNONYM_GROUPS) {
-                        const matchesGroup = group.some(g => g === tok || (st.length >= 3 && stemWord(g) === st) || (tok.length >= 4 && (g.startsWith(tok) || (g.length >= 3 && tok.startsWith(g)))));
+                        const matchesGroup = group.some(g => g === tok || (st.length >= 3 && stemWord(g) === st) || (tok.length >= 5 && g.startsWith(tok)));
                         if (matchesGroup) {
                             const articleCoreMatchesGroup = group.some(g => idx.conceptWords.has(g) || idx.conceptStems.has(stemWord(g)));
                             if (articleCoreMatchesGroup) return true;
