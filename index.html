@@ -7,13 +7,14 @@
     <meta name="referrer" content="same-origin">
     <title>The Regulated Pulse</title>
 
-    <!-- Favicons & App Icons with Cache-Busting (?v=5) -->
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=5">
-    <link rel="icon" type="image/png" sizes="512x512" href="./favicon.png?v=5">
-    <link rel="icon" type="image/png" sizes="192x192" href="./favicon-192.png?v=5">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png?v=5">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=5">
-    <link rel="shortcut icon" href="./favicon.ico?v=5">
+    <!-- Favicons & App Icons with Cache-Busting (?v=6) -->
+    <link rel="icon" type="image/svg+xml" href="./logo-light.svg?v=6">
+    <link rel="icon" type="image/png" sizes="512x512" href="./logo-light-512.png?v=6">
+    <link rel="icon" type="image/png" sizes="192x192" href="./logo-light-192.png?v=6">
+    <link rel="icon" type="image/png" sizes="32x32" href="./logo-light-32.png?v=6">
+    <link rel="apple-touch-icon" sizes="180x180" href="./logo-light-180.png?v=6">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="./logo-light-180.png?v=6">
+    <link rel="shortcut icon" href="./logo-light.ico?v=6">
 
     <meta property="og:title" content="The Regulated Pulse">
     <meta property="og:description"
@@ -278,7 +279,7 @@
         }
         .site-footer p {
             color: #64748b;
-            font-size: clamp(0.72rem, 1.35vw, 0.82rem);
+            font-size: clamp(0.66rem, 1.3vw, 0.82rem);
             letter-spacing: 0.01em;
         }
         .site-footer a {
@@ -292,36 +293,38 @@
         .site-footer .footer-meta-row {
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 0.35rem 0.55rem;
+            gap: 0.35rem 0.5rem;
+            white-space: nowrap;
         }
         .site-footer .footer-copy {
             display: inline-flex;
             flex-direction: row;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
             justify-content: center;
-            gap: 0.35rem 0.55rem;
+            gap: 0.35rem 0.5rem;
             white-space: nowrap;
         }
         .site-footer .footer-mode-toggle {
             display: inline-flex;
             flex-direction: row;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             align-items: center;
             justify-content: center;
-            gap: 0.35rem 0.55rem;
+            gap: 0.35rem 0.5rem;
             white-space: nowrap;
         }
         .site-footer #footer-logout {
             display: inline-flex;
             flex-direction: row;
+            flex-wrap: nowrap;
             align-items: center;
             justify-content: center;
-            gap: 0.35rem 0.55rem;
+            gap: 0.35rem 0.5rem;
             white-space: nowrap;
         }
         @media (max-width: 1024px) {
@@ -331,7 +334,7 @@
                 padding-bottom: 8.25rem;
             }
             .site-footer p {
-                font-size: 0.85rem;
+                font-size: clamp(0.64rem, 2.3vw, 0.84rem);
                 line-height: 1.5;
             }
             .site-footer a {
@@ -439,6 +442,12 @@
         }
         body.light-mode .profile-container > h3 {
             border-bottom-color: rgba(68, 139, 255, 0.28) !important;
+        }
+        .editor-portrait {
+            border-color: rgba(68, 139, 255, 0.28) !important;
+        }
+        body.light-mode .editor-portrait {
+            border-color: rgba(68, 139, 255, 0.28) !important;
         }
         .shelf-book-btn .text-sm {
             font-size: 0.84rem !important;
@@ -558,15 +567,15 @@
             background: linear-gradient(270deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.06) 28%, transparent 50%);
             opacity: 1;
         }
-        /* Light mode: un-filtered loading screen so the pulse renders true blues */
+        /* Light mode: loading screen uses pre-filter colors so html filter renders true light-mode blues on both desktop and mobile WebKit */
         body.light-mode #intro-overlay {
-            background: radial-gradient(circle at 50% 44%, #eef5fc 0%, #dce7f5 65%, #d0dff0 100%) !important;
-            filter: invert(1) hue-rotate(180deg);
+            background: radial-gradient(circle at 50% 44%, #050c13 0%, #101b29 65%, #152435 100%) !important;
+            filter: none !important;
         }
-        body.light-mode #intro-overlay .intro-title { color: #0d1523 !important; }
-        body.light-mode #intro-overlay .intro-kicker { color: #1f56d3 !important; }
-        body.light-mode #intro-overlay .pulse-logo polyline { stroke: url(#intro-pulse-grad) !important; }
-        body.light-mode #intro-overlay .pulse-logo .pulse-lead-dot { fill: #1f56d3 !important; }
+        body.light-mode #intro-overlay .intro-title { color: #e3ebf9 !important; }
+        body.light-mode #intro-overlay .intro-kicker { color: #77aeff !important; }
+        body.light-mode #intro-overlay .pulse-logo polyline { stroke: #448bff !important; }
+        body.light-mode #intro-overlay .pulse-logo .pulse-lead-dot { fill: #77aeff !important; }
         /* Light mode: navy & bright blue accents on navigation and branding */
         body.light-mode .pulse-logo polyline { stroke: #93c5fd !important; }
         body.light-mode .nav-link-vertical { color: #8ab8ff; }
@@ -1768,9 +1777,9 @@
         .dashboard-content {
             flex-grow: 1;
             margin-left: 280px;
-            padding: 3rem 4rem;
+            padding: 3rem 4rem 0 4rem;
             width: calc(100% - 280px);
-            min-height: 100vh;
+            min-height: auto;
             box-sizing: border-box;
         }
 
@@ -1854,7 +1863,7 @@
             .dashboard-content {
                 margin-left: 0 !important;
                 width: 100% !important;
-                padding: 2rem 1.25rem 7.5rem 1.25rem !important;
+                padding: 2rem 1.25rem 0 1.25rem !important;
             }
             .mobile-tab-dock {
                 display: flex;
@@ -2578,10 +2587,9 @@
                             </div>
 
                             <!-- Footer/Contact Inquiries inside Sidebar -->
-                            <div class="text-center mt-2 pb-4">
-                                <p class="text-xs text-slate-500">
-                                    For inquiries, contact<br>
-                                    <a href="mailto:hello@theregulatedpulse.com" class="font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">hello@theregulatedpulse.com</a>
+                            <div class="text-center mt-0 pb-0">
+                                <p class="text-xs text-slate-500 whitespace-nowrap">
+                                    For inquiries, contact <a href="mailto:hello@theregulatedpulse.com" class="font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">hello@theregulatedpulse.com</a>
                                 </p>
                             </div>
                         </div>
@@ -8142,40 +8150,50 @@
             let activeBlogCat = 'all';
 
             const ARTICLE_SEMANTIC_CONCEPTS = {
-                'post-battlefield': 'veteran military soldier army navy marine war combat ptsd post traumatic stress disorder trauma mental health psychology psychiatry depression anxiety suicide therapy counseling va deployment iraq afghanistan service member wounded injury',
-                'post-art-cure': 'art arts music dance painting singing theater creative creativity humanities fifth pillar clinical care healing therapy magic camp hemiplegia paralysis stroke children pediatric well-being wellbeing social prescribing prescription outcomes',
-                'post-malpractice': 'malpractice lawsuit litigation court judge jury tort negligence liability lawyer attorney legal law damages cap caps texas arizona state comparison statute physician error medical error injury harm compensation plaintiff defendant',
-                'post-cdc-interview': 'cdc centers for disease control public health biosafety biosecurity government federal agency epidemic pandemic infectious disease lab laboratory anatomy career law school attorney lawyer regulatory pathogen quarantine interview',
-                'post-book-recs': 'book books reading read literature author review recommendations list library shelf top 11 healthcare reads mortality disability aging biography',
-                'post-compassion': 'compassion compassionate empathy empathetic caring care kindness burnout physician doctor nurse bedside manner patient-centered relationship human connection stress exhaustion morale outcomes survival',
-                'post-migration': 'migration migrant migrants immigrant immigration refugee asylum border borders global health international displaced displacement travel citizenship undocumented language barrier equity disparity disparities policy',
-                'post-na': 'native american indigenous indian tribal tribe reservation history historical colonialism treaty treaties federal trust indian health service ihs disparity disparities tuberculosis trachoma rural underserved',
-                'post-giant-leap': 'ai artificial intelligence machine learning llm chatgpt algorithm algorithms automation predictive digital software tech technology innovation future oversight governance fda regulation trust safety bias hallucination doctor',
-                'post-ai': 'accessibility accessible disability disabled disabilities blind deaf low vision screen reader braille ui ux user interface user experience design inclusive inclusion ada wcag civil rights discrimination ethics ethical assistive',
-                'post-welcome': 'welcome introduction overview mission about blog purpose healthcare technology law regulation ethics',
-                'post-pain-brokers': 'pain brokers device medical devices implant implants pelvic mesh surgery surgical women womens health fraud scam corruption call center mass tort lawsuit litigation fda defective corporate greed',
-                'post-med-ed': 'medical education med school medical student students residency resident training curriculum learning teaching lecture case-based krebs cycle memorization doctor training university academic knowledge doubling',
-                'post-epic': 'epic ehr emr electronic health records medical records oracle cerner monopoly antitrust competition hospital data interoperability software vendor lock-in chart charting',
-                'post-quote-spotlight': 'quote spotlight inspiration arthur clarke magic advanced technology futuristai artificial intelligence coalition for health ai chai safety regulation innovation save lives'
+                'post-battlefield': 'veteran veterans military soldier soldiers army navy marine marines air force war warfare combat ptsd post traumatic stress disorder trauma traumatic mental health psychology psychological psychiatry psychiatric depression depressed anxiety anxious suicide suicidal therapy therapeutic counseling va department of veterans affairs deployment iraq afghanistan service member wounded injury shell shock',
+                'post-art-cure': 'art arts artistic artist artists music musical musician musicians dance dancing dancer painting paint painter draw drawing singing sing song songs theater theatre drama creative creativity craft poetry literature humanities fifth pillar clinical care healing heal therapy therapeutic magic camp hemiplegia paralysis stroke children pediatric well-being wellbeing social prescribing prescription outcomes',
+                'post-malpractice': 'malpractice lawsuit lawsuits litigation litigate court judge jury tort negligence negligent liability liable lawyer lawyers attorney attorneys legal law damages cap caps texas arizona state comparison statute physician error medical error mistakes injury harm compensation plaintiff defendant',
+                'post-cdc-interview': 'cdc centers for disease control public health biosafety biosecurity biological government federal agency epidemic pandemic outbreak virus bacteria infectious infection disease lab laboratory labs anatomy career law school attorney lawyer regulatory pathogen quarantine containment interview taylor revenew',
+                'post-book-recs': 'book books reading read reader literature literary author authors review reviews recommendations list library shelf top 11 healthcare reads mortality aging biography nonfiction',
+                'post-compassion': 'compassion compassionate empathy empathetic caring care kindness kind warmth human connection burnout exhaustion stress physician doctor nurse bedside manner patient-centered relationship communication listening morale outcomes survival compassionomics',
+                'post-migration': 'migration migrant migrants immigrant immigrants immigration refugee refugees asylum border borders global health international displaced displacement travel citizenship undocumented language barrier cultural equity disparity disparities foreign policy',
+                'post-na': 'native american indigenous indian indians tribal tribe tribes reservation reservations history historical colonialism colonial treaty treaties federal trust indian health service ihs disparity disparities tuberculosis trachoma rural underserved sovereignty',
+                'post-giant-leap': 'ai artificial intelligence machine learning deep learning llm chatgpt generative algorithm algorithms automation automated predictive digital software tech technology technological innovation future oversight governance fda regulation trust safety bias hallucination wachter',
+                'post-ai': 'accessibility accessible disability disabilities disabled blind blindness deaf deafness low vision visual impairment hearing impairment screen reader braille ui ux user interface user experience design inclusive inclusion ada americans with disabilities act wcag civil rights discrimination assistive',
+                'post-welcome': 'welcome introduction intro overview mission about blog purpose healthcare technology law regulation ethics priya chaudhari',
+                'post-pain-brokers': 'pain brokers device medical devices implant implants pelvic mesh transvaginal surgery surgical women womens health fraud fraudulent scam corruption corrupt call center telemarketing mass tort lawsuit litigation fda defective corporate greed profit kickback',
+                'post-med-ed': 'medical education med school medical student students residency resident training curriculum learning teaching pedagogy lecture case-based krebs cycle memorization memorize doctor training university academic knowledge doubling',
+                'post-epic': 'epic ehr emr electronic health records medical records oracle cerner monopoly monopolized antitrust competition hospital data interoperability software vendor lock-in chart charting billing',
+                'post-quote-spotlight': 'quote quotation spotlight inspiration inspirational arthur clarke magic advanced technology futurist artificial intelligence coalition for health ai chai safety regulation innovation save lives'
             };
 
             const CONCEPT_SYNONYM_GROUPS = [
+                ['art', 'arts', 'artistic', 'artist', 'artists', 'music', 'musical', 'musician', 'dance', 'dancing', 'paint', 'painting', 'sing', 'singing', 'song', 'theater', 'theatre', 'drama', 'creative', 'creativity', 'craft', 'poetry', 'sculpture', 'draw', 'drawing', 'gallery', 'museum', 'concert', 'aesthetic', 'expressive'],
                 ['ai', 'artificial intelligence', 'machine learning', 'algorithm', 'algorithms', 'llm', 'chatgpt', 'automation', 'automated', 'neural', 'predictive', 'bot', 'robotics'],
-                ['law', 'legal', 'lawyer', 'attorney', 'court', 'judge', 'litigation', 'lawsuit', 'statute', 'regulation', 'regulatory', 'compliance', 'policy', 'legislation', 'tort', 'malpractice', 'liability', 'rights', 'justice'],
-                ['doctor', 'physician', 'clinician', 'nurse', 'provider', 'practitioner', 'surgeon', 'hospital', 'clinic', 'clinical', 'medical', 'medicine', 'healthcare', 'patient', 'patients', 'care', 'treatment', 'healing'],
-                ['disability', 'disabilities', 'disabled', 'accessibility', 'accessible', 'blind', 'deaf', 'braille', 'screen reader', 'inclusive', 'inclusion', 'assistive', 'ada', 'wcag', 'ui', 'ux', 'design'],
-                ['mental', 'psychology', 'psychiatric', 'ptsd', 'trauma', 'depression', 'anxiety', 'burnout', 'stress', 'grief', 'emotional', 'empathy', 'compassion', 'therapy', 'wellbeing'],
-                ['veteran', 'veterans', 'military', 'soldier', 'soldiers', 'war', 'combat', 'army', 'service', 'deployment'],
-                ['immigrant', 'immigrants', 'immigration', 'migrant', 'migrants', 'migration', 'refugee', 'refugees', 'border', 'borders', 'global', 'international', 'foreign'],
-                ['indigenous', 'native', 'indian', 'tribal', 'tribe', 'reservation', 'ihs', 'history', 'historical'],
-                ['record', 'records', 'ehr', 'emr', 'epic', 'oracle', 'data', 'software', 'monopoly', 'antitrust', 'business', 'industry', 'corporation', 'cost', 'money', 'price', 'insurance'],
-                ['education', 'school', 'student', 'students', 'training', 'learning', 'teaching', 'curriculum', 'university', 'college', 'degree', 'study', 'research'],
-                ['fraud', 'scam', 'corrupt', 'corruption', 'crime', 'abuse', 'harm', 'danger', 'risk', 'unsafe', 'defective', 'injury', 'pelvic', 'mesh', 'device', 'implant', 'surgery'],
-                ['art', 'arts', 'music', 'creative', 'humanities', 'culture', 'book', 'books', 'reading', 'literature', 'author']
+                ['malpractice', 'negligence', 'negligent', 'tort', 'lawsuit', 'lawsuits', 'litigation', 'damages', 'plaintiff', 'defendant', 'jury', 'court', 'liability'],
+                ['disability', 'disabilities', 'disabled', 'accessibility', 'accessible', 'blind', 'deaf', 'braille', 'screen reader', 'inclusive', 'inclusion', 'assistive', 'ada', 'wcag', 'ui', 'ux'],
+                ['ptsd', 'trauma', 'traumatic', 'veteran', 'veterans', 'military', 'soldier', 'soldiers', 'war', 'combat', 'army', 'navy', 'marine', 'deployment'],
+                ['compassion', 'compassionate', 'empathy', 'empathetic', 'kindness', 'burnout', 'bedside', 'caring'],
+                ['immigrant', 'immigrants', 'immigration', 'migrant', 'migrants', 'migration', 'refugee', 'refugees', 'border', 'borders', 'asylum', 'undocumented', 'displaced'],
+                ['indigenous', 'native', 'indian', 'tribal', 'tribe', 'reservation', 'ihs', 'treaty', 'colonialism'],
+                ['ehr', 'emr', 'epic', 'oracle', 'cerner', 'monopoly', 'monopolized', 'antitrust', 'interoperability', 'records'],
+                ['education', 'school', 'student', 'students', 'residency', 'resident', 'training', 'learning', 'teaching', 'curriculum', 'lecture', 'memorization'],
+                ['fraud', 'scam', 'corrupt', 'corruption', 'defective', 'pelvic', 'mesh', 'implant', 'implants', 'device', 'devices'],
+                ['cdc', 'biosafety', 'biosecurity', 'epidemic', 'pandemic', 'infectious', 'pathogen', 'quarantine', 'laboratory', 'anatomy'],
+                ['book', 'books', 'reading', 'literature', 'author', 'authors', 'recommendations', 'shelf']
             ];
 
             function stemWord(w) {
-                return w.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/(?:ingly|edly|tion|ions|ment|ments|ness|able|ible|ingly|ing|ed|es|s)$/, '');
+                let s = w.toLowerCase().replace(/[^a-z0-9]/g, '');
+                if (s.length <= 3) return s;
+                const suffixes = ['istically', 'istical', 'istic', 'ically', 'ical', 'ational', 'ional', 'ative', 'itive', 'ousness', 'iously', 'ious', 'eous', 'ous', 'ability', 'ibility', 'able', 'ible', 'ments', 'ment', 'nesses', 'ness', 'tions', 'tion', 'sions', 'sion', 'ingly', 'ings', 'edly', 'ally', 'fulness', 'ful', 'lessness', 'less', 'ists', 'ist', 'isms', 'ism', 'izing', 'ized', 'izes', 'ize', 'ising', 'ised', 'ises', 'ise', 'ic', 'al', 'ive', 'ary', 'ory', 'ery', 'ing', 'ed', 'ers', 'er', 'ors', 'or', 'ly', 'es', 's', 'y'];
+                for (const suf of suffixes) {
+                    if (s.endsWith(suf) && s.length - suf.length >= 3) {
+                        s = s.slice(0, -suf.length);
+                        break;
+                    }
+                }
+                return s;
             }
 
             const articleSearchIndex = {};
@@ -8187,9 +8205,10 @@
                 const words = combined.split(/[^a-z0-9]+/).filter(Boolean);
                 const wordSet = new Set(words);
                 const stems = new Set(words.map(stemWord).filter(Boolean));
-                const conceptWords = new Set((`${item.title} ${item.subtitle} ${item.tagLabel} ${concepts}`).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean));
-                const conceptStems = new Set(Array.from(conceptWords).map(stemWord).filter(Boolean));
-                articleSearchIndex[item.id] = { raw: combined, words, wordSet, stems, conceptWords, conceptStems };
+                const conceptList = (`${item.title} ${item.subtitle} ${item.tagLabel} ${concepts}`).toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+                const conceptWords = new Set(conceptList);
+                const conceptStems = new Set(conceptList.map(stemWord).filter(Boolean));
+                articleSearchIndex[item.id] = { raw: combined, words, wordSet, stems, conceptList, conceptWords, conceptStems };
             });
 
             function matchesSemanticQuery(item, query) {
@@ -8205,9 +8224,11 @@
                     // 1. Direct word, prefix, or stem match in the article's text or curated concept list
                     if (idx.wordSet.has(tok) || (st.length >= 3 && idx.stems.has(st))) return true;
                     if (tok.length >= 3 && idx.words.some(w => w.startsWith(tok))) return true;
-                    // 2. Concept/synonym expansion against the article's core topic concepts (not generic body words)
+                    // Check if query token is a derived form of one of the article's core concept words (e.g., 'artistic' starts with 'art')
+                    if (st.length >= 3 && idx.conceptList.some(cw => (cw.length >= 3 && (tok.startsWith(cw) || st.startsWith(cw))) || (cw.length >= 4 && cw.startsWith(st)))) return true;
+                    // 2. Concept/synonym expansion against the article's core topic concepts
                     for (const group of CONCEPT_SYNONYM_GROUPS) {
-                        const matchesGroup = group.some(g => g === tok || (st.length >= 3 && stemWord(g) === st) || (tok.length >= 4 && g.startsWith(tok)));
+                        const matchesGroup = group.some(g => g === tok || (st.length >= 3 && stemWord(g) === st) || (tok.length >= 4 && (g.startsWith(tok) || (g.length >= 3 && tok.startsWith(g)))));
                         if (matchesGroup) {
                             const articleCoreMatchesGroup = group.some(g => idx.conceptWords.has(g) || idx.conceptStems.has(stemWord(g)));
                             if (articleCoreMatchesGroup) return true;
