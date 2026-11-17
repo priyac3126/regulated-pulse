@@ -125,6 +125,11 @@
             margin-top: 0.65rem;
             animation: introTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.56s forwards;
         }
+        @media (max-width: 767px) and (pointer: coarse), (max-width: 480px) {
+            #intro-overlay .intro-kicker {
+                word-spacing: -0.312em;
+            }
+        }
 
         /* Prevent welcome animation from re-triggering during fade-out */
         #intro-overlay.intro-fade .pulse-logo polyline {
@@ -349,7 +354,7 @@
                 font-size: inherit;
             }
             .site-footer .footer-line + .footer-line {
-                margin-top: 0;
+                margin-top: 0.25rem;
             }
         }
         ::selection { background: rgba(56, 182, 201, 0.28); color: #f8fafc; }
@@ -489,14 +494,110 @@
         body.light-mode .text-cyan-300,
         body.light-mode .text-cyan-500 { color: #73affb !important; }
         body.light-mode #logo-home-btn .text-cyan-400 { color: #3b82f6 !important; }
-        body.light-mode .profile-container > h3 { color: #bedaff !important; }
+        body.light-mode .profile-container > h3,
+        body.light-mode .profile-container h4 { color: #bedaff !important; }
         body.light-mode .bg-cyan-500,
         body.light-mode .bg-cyan-400 { background-color: #75acfa !important; }
         body.light-mode .bg-cyan-500:hover,
         body.light-mode .bg-cyan-400:hover { background-color: #589af8 !important; }
+        body.light-mode .welcome-note-btn { background-color: #5293ff !important; }
+        body.light-mode .welcome-note-btn:hover { background-color: #4284ff !important; }
         body.light-mode .site-footer a { color: #567ce4 !important; }
         #section-podcast .card-premium h4 { font-weight: 600 !important; }
         body.light-mode #section-podcast .card-premium h4 { color: #bedaff !important; font-weight: 600 !important; }
+        @media (max-width: 767px) {
+            #section-podcast > h2 { font-weight: 700 !important; }
+        }
+        /* True-color brand dots on Podcast tab & modal in Light Mode */
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) {
+            filter: none !important;
+            background: #f1f4fa !important;
+        }
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .dashboard-container {
+            background-color: #f1f4fa !important;
+        }
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #intro-overlay,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .dashboard-sidebar,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .mobile-tab-dock,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-blog,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-major,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-faq,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-about,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-podcast > h2,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-podcast > p,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-podcast > div.mb-12 > h3,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #podcast-list-view,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #podcast-episode-view,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .site-footer,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .floating-audio-bar,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #reader-progress,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #sel-toolbar,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #note-pop,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .ann-overlay:not(#podcast-platforms-modal) {
+            filter: invert(1) hue-rotate(180deg);
+        }
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .dashboard-sidebar {
+            background: #122338 !important;
+        }
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .mobile-tab-dock {
+            background: #13253b !important;
+        }
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-blog,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-major,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-faq,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #section-about,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #podcast-list-view,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #podcast-episode-view {
+            background-color: #080b11;
+        }
+        body.light-mode .podcast-platform-link {
+            background-color: #e9edf4 !important;
+            border-color: rgba(15, 23, 42, 0.08) !important;
+            color: #0b0e14 !important;
+            box-shadow: none !important;
+        }
+        body.light-mode .podcast-platform-link:hover {
+            background-color: #dfe5f0 !important;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+        }
+        body.light-mode #podcast-platforms-modal {
+            background: rgba(15, 23, 42, 0.35) !important;
+        }
+        body.light-mode #podcast-platforms-modal .ann-card {
+            background: #eef2f8 !important;
+            border-color: rgba(68, 139, 255, 0.25) !important;
+            color: #0b0e14 !important;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2) !important;
+        }
+        body.light-mode #podcast-platforms-modal #podcast-platforms-modal-title {
+            color: #102c51 !important;
+        }
+        body.light-mode #podcast-platforms-modal #podcast-platforms-modal-ep-title {
+            color: #475569 !important;
+        }
+        body.light-mode #podcast-platforms-modal #podcast-platforms-modal-links a {
+            background: #e4eaf3 !important;
+            border-color: rgba(15, 23, 42, 0.08) !important;
+            color: #0b0e14 !important;
+        }
+        body.light-mode #podcast-platforms-modal #podcast-platforms-modal-links a:hover {
+            border-color: rgba(59, 130, 246, 0.45) !important;
+            background: #dbe3f0 !important;
+        }
+        body.light-mode #podcast-platforms-modal #podcast-platforms-modal-links a .text-cyan-400 {
+            color: #235fab !important;
+        }
+        body.light-mode #podcast-platforms-modal #podcast-platforms-modal-links button {
+            background: rgba(59, 130, 246, 0.14) !important;
+            border-color: rgba(59, 130, 246, 0.35) !important;
+            color: #235fab !important;
+        }
+        body.light-mode .platform-dot-youtube { background: #FF0000 !important; }
+        body.light-mode .platform-dot-spotify { background: #1DB954 !important; }
+        body.light-mode .platform-dot-apple { background: #9933CC !important; }
+        body.light-mode .platform-dot-amazon { background: #00A8E1 !important; }
+        body.light-mode .platform-dot-pocketcasts { background: #F43E37 !important; }
         body.light-mode .blog-post-content blockquote {
             border-left-color: #448bff !important;
             background: linear-gradient(90deg, rgba(68, 139, 255, 0.12) 0%, transparent 100%) !important;
@@ -536,8 +637,9 @@
             background-color: #060b14 !important;
             border-color: rgba(68, 139, 255, 0.28) !important;
         }
-        body.light-mode :focus { outline-color: #81b2ff; }
-        body.light-mode :focus-visible { outline-color: #81b2ff; }
+        *, *::before, *::after, *:focus, *:focus-visible, *:active { outline: none !important; }
+        body.light-mode :focus { outline: none !important; }
+        body.light-mode :focus-visible { outline: none !important; }
         /* Light mode: richer tinted gradients on article cards */
         body.light-mode .card-violet,
         body.light-mode .card-education,
@@ -1000,8 +1102,7 @@
             color: #22d3ee !important;
         }
         .shelf-book-btn:focus-visible {
-            outline: 2px solid var(--pulse-cyan);
-            outline-offset: 2px;
+            outline: none !important;
         }
 
         /* Journalistic typography for blog content */
@@ -1497,8 +1598,7 @@
         aria:focus-visible,
         input:focus-visible,
         textarea:focus-visible {
-            outline: 2px solid var(--pulse-cyan);
-            outline-offset: 2px;
+            outline: none !important;
         }
 
         .podcast-platform-link {
@@ -2122,8 +2222,7 @@
         .filter-tag:focus-visible,
         .accordion-btn:focus-visible,
         .card-premium:focus-visible {
-            outline: 2px solid var(--pulse-cyan) !important;
-            outline-offset: 2px !important;
+            outline: none !important;
         }
         .faq-trigger:focus,
         .faq-trigger:focus-visible,
@@ -2281,7 +2380,7 @@
                                         This blog navigates the legal frameworks and ethical guardrails shaping the future of healthcare technology, bridging the gap between complex academic research and practical industry impact.
                                     </p>
                                     <div class="flex flex-wrap gap-4">
-                                        <button onclick="navigateTo('#post-welcome')" class="px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm bg-cyan-500 hover:bg-cyan-400 text-[#080b11]">Read Welcome Note</button>
+                                        <button onclick="navigateTo('#post-welcome')" class="welcome-note-btn px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm bg-cyan-500 hover:bg-cyan-400 text-[#080b11]">Read Welcome Note</button>
                                         <button onclick="navigateTo('#about')" class="px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white" style="background: transparent;">About the Editor</button>
                                     </div>
                                 </div>
@@ -2482,9 +2581,11 @@
                         <div class="lg:col-span-4 flex flex-col gap-8">
                             <!-- Priya Profile widget -->
                             <div onclick="navigateTo('#about')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();navigateTo('#about');}" role="button" tabindex="0" aria-label="Read full About Me bio for Priya Chaudhari" class="profile-container p-6 text-left flex flex-col gap-4 cursor-pointer transition-transform hover:-translate-y-0.5">
-                                <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
+                                <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
                                 <div class="flex flex-row md:flex-col items-center gap-4 text-left md:text-center mt-2">
-                                    <img class="editor-portrait w-16 h-16 md:w-28 md:h-28 rounded-full object-cover border-2 border-cyan-500/20" style="object-position: center;" src="./IMG_5048.jpg?v=3" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
+                                    <div class="editor-portrait w-16 h-16 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-cyan-500/20 flex-shrink-0">
+                                        <img class="w-full h-full object-cover" style="object-position: 100% 50%; transform: scale(1.025) translateX(-1%);" src="./IMG_5048.jpg?v=3" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
+                                    </div>
                                     <div>
                                         <h4 class="font-bold text-white text-lg">Priya Chaudhari</h4>
                                         <p class="editor-subtitle text-xs text-cyan-400 font-medium mt-1">UGA Class of 2028 · Interdisciplinary Studies</p>
@@ -2497,7 +2598,7 @@
 
                             <!-- On the Shelf widget -->
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
-                                <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">On the Shelf</h3>
+                                <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">On the Shelf</h3>
                                 <p class="shelf-subtitle text-xs text-slate-400 -mt-2">Current reads shaping The Pulse's coverage.</p>
                                 <div class="space-y-4 mt-2">
                                     <button onclick="navigateTo('#post-battlefield')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Fields of Combat: Beyond the Battlefield">
@@ -2582,13 +2683,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Footer/Contact Inquiries inside Sidebar -->
-                            <div class="text-center mt-0 pb-0">
-                                <p class="text-xs text-slate-500 whitespace-nowrap">
-                                    For inquiries, contact <a href="mailto:hello@theregulatedpulse.com" class="font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">hello@theregulatedpulse.com</a>
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -4878,7 +4972,7 @@
             </section>
 
             <section id="section-podcast" class="tab-section hidden" role="tabpanel" aria-labelledby="tab-podcast">
-                <h2 class="mb-2.5 text-white font-semibold text-3xl md:text-4xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse Podcast</h2>
+                <h2 class="mb-2.5 text-white font-bold md:font-semibold text-3xl md:text-4xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Regulated Pulse Podcast</h2>
                 <p class="text-base mb-8 text-slate-400">Conversations at the intersection of healthcare, technology, law, leadership, and the human experience.</p>
 
                 <!-- Streaming Platform Links -->
@@ -4888,35 +4982,35 @@
                         <a href="https://www.youtube.com/@theregulatedpulse" target="_blank" rel="noopener noreferrer"
                             class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on YouTube (opens in new tab)">
-                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #FF0000; flex-shrink: 0;" aria-hidden="true"></span>
+                            <span class="platform-dot platform-dot-youtube" style="width: 10px; height: 10px; border-radius: 50%; background: #FF0000; flex-shrink: 0;" aria-hidden="true"></span>
                             YouTube
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ" target="_blank" rel="noopener noreferrer"
                             class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Spotify (opens in new tab)">
-                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #1DB954; flex-shrink: 0;" aria-hidden="true"></span>
+                            <span class="platform-dot platform-dot-spotify" style="width: 10px; height: 10px; border-radius: 50%; background: #1DB954; flex-shrink: 0;" aria-hidden="true"></span>
                             Spotify
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020" target="_blank" rel="noopener noreferrer"
                             class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Apple Podcasts (opens in new tab)">
-                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #9933CC; flex-shrink: 0;" aria-hidden="true"></span>
+                            <span class="platform-dot platform-dot-apple" style="width: 10px; height: 10px; border-radius: 50%; background: #9933CC; flex-shrink: 0;" aria-hidden="true"></span>
                             Apple Podcasts
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/the-regulated-pulse-podcast" target="_blank" rel="noopener noreferrer"
                             class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Amazon Music (opens in new tab)">
-                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #00A8E1; flex-shrink: 0;" aria-hidden="true"></span>
+                            <span class="platform-dot platform-dot-amazon" style="width: 10px; height: 10px; border-radius: 50%; background: #00A8E1; flex-shrink: 0;" aria-hidden="true"></span>
                             Amazon Music
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://pca.st/mws3867u" target="_blank" rel="noopener noreferrer"
                             class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Pocket Casts (opens in new tab)">
-                            <span style="width: 10px; height: 10px; border-radius: 50%; background: #F43E37; flex-shrink: 0;" aria-hidden="true"></span>
+                            <span class="platform-dot platform-dot-pocketcasts" style="width: 10px; height: 10px; border-radius: 50%; background: #F43E37; flex-shrink: 0;" aria-hidden="true"></span>
                             Pocket Casts
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
@@ -8405,23 +8499,23 @@
                 if (linksEl) {
                     linksEl.innerHTML = `
                         <a href="${ep.ytUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
-                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#FF0000;display:inline-block;"></span>YouTube</span>
+                            <span class="flex items-center gap-2.5"><span class="platform-dot platform-dot-youtube" style="width:9px;height:9px;border-radius:50%;background:#FF0000;display:inline-block;"></span>YouTube</span>
                             <span class="text-xs text-cyan-400">Watch Video &rarr;</span>
                         </a>
                         <a href="${ep.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
-                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#1DB954;display:inline-block;"></span>Spotify</span>
+                            <span class="flex items-center gap-2.5"><span class="platform-dot platform-dot-spotify" style="width:9px;height:9px;border-radius:50%;background:#1DB954;display:inline-block;"></span>Spotify</span>
                             <span class="text-xs text-cyan-400">Watch and Listen &rarr;</span>
                         </a>
                         <a href="${ep.appleUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
-                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#9933CC;display:inline-block;"></span>Apple Podcasts</span>
+                            <span class="flex items-center gap-2.5"><span class="platform-dot platform-dot-apple" style="width:9px;height:9px;border-radius:50%;background:#9933CC;display:inline-block;"></span>Apple Podcasts</span>
                             <span class="text-xs text-cyan-400">Listen &rarr;</span>
                         </a>
                         <a href="${ep.amazonUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
-                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#00A8E1;display:inline-block;"></span>Amazon Music</span>
+                            <span class="flex items-center gap-2.5"><span class="platform-dot platform-dot-amazon" style="width:9px;height:9px;border-radius:50%;background:#00A8E1;display:inline-block;"></span>Amazon Music</span>
                             <span class="text-xs text-cyan-400">Listen &rarr;</span>
                         </a>
                         <a href="${ep.pocketCastsUrl}" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-4 py-3 rounded-xl border border-white/10 bg-white/5 hover:border-cyan-400/50 text-sm font-semibold text-white transition-colors" style="text-decoration:none;">
-                            <span class="flex items-center gap-2.5"><span style="width:9px;height:9px;border-radius:50%;background:#F43E37;display:inline-block;"></span>Pocket Casts</span>
+                            <span class="flex items-center gap-2.5"><span class="platform-dot platform-dot-pocketcasts" style="width:9px;height:9px;border-radius:50%;background:#F43E37;display:inline-block;"></span>Pocket Casts</span>
                             <span class="text-xs text-cyan-400">Listen &rarr;</span>
                         </a>
                         <button type="button" onclick="window.closePodcastPlatformsModal(); navigateTo('#episode-${ep.id}');" class="w-full mt-1 px-4 py-2.5 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 text-xs font-bold text-cyan-300 cursor-pointer transition-colors">
@@ -9294,9 +9388,12 @@
     </div>
     <footer class="site-footer">
         <p class="footer-line footer-meta-row">
-            <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span><span class="footer-sep">&middot;</span><a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a></span>
+            <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span></span>
             <span class="footer-sep">&middot;</span>
             <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
+        </p>
+        <p class="footer-line">
+            For inquiries, contact <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a>
         </p>
     </footer>
     <div id="print-area"></div>
