@@ -125,7 +125,12 @@
             margin-top: 0.65rem;
             animation: introTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.56s forwards;
         }
-        @media (max-width: 767px) and (pointer: coarse), (max-width: 480px) {
+        @media (min-width: 768px) {
+            #intro-overlay .intro-kicker {
+                font-size: 1.138rem;
+            }
+        }
+        @media (max-width: 767px) {
             #intro-overlay .intro-kicker {
                 word-spacing: -0.312em;
             }
