@@ -334,6 +334,7 @@
             gap: 0.35rem 0.5rem;
             white-space: nowrap;
         }
+        .site-footer #footer-login,
         .site-footer #footer-logout {
             display: inline-flex;
             flex-direction: row;
@@ -543,6 +544,7 @@
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #uw-a11y-trigger,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #uw-a11y-panel,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #uw-tooltip-box,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #pulse-glossary-popover,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .ann-overlay:not(#podcast-platforms-modal) {
             filter: invert(1) hue-rotate(180deg);
         }
@@ -630,9 +632,13 @@
             box-shadow: 0 10px 40px rgba(21, 40, 64, 0.2) !important;
         }
         body.light-mode .welcome-hero:hover {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.26) 0%, rgba(6, 182, 212, 0.09) 68%, rgba(6, 182, 212, 0.03) 100%), linear-gradient(135deg, #04080c, #0f1824) !important;
-            border-color: #67e8f9 !important;
-            box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px rgba(103, 232, 249, 0.2) !important;
+            background: radial-gradient(circle at 100% 0%, rgba(68, 139, 255, 0.18) 0%, transparent 60%),
+                linear-gradient(135deg, #0f1824, #0f1b29) !important;
+            border-color: rgba(68, 139, 255, 0.55) !important;
+            box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28) !important;
+        }
+        body.light-mode .welcome-hero::after {
+            background: radial-gradient(380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(68, 139, 255, 0.22), transparent 80%) !important;
         }
         body.light-mode .text-slate-300 { color: #8ba1bd !important; }
         body.light-mode .text-slate-400 { color: #b4c8e0 !important; }
@@ -1089,7 +1095,7 @@
 
         /* Welcome hero redesign */
         .welcome-hero {
-            background: radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%), linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
+            background: radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%), linear-gradient(135deg, var(--bg-obsidian-card), rgba(15, 19, 26, 0.6)) !important;
             border: 1px solid var(--border-subtle) !important;
             border-radius: 1.25rem !important;
             position: relative !important;
@@ -1098,10 +1104,10 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
         .welcome-hero:hover {
-            border-color: #06b6d4 !important;
+            border-color: var(--border-glow) !important;
             transform: translateY(-4px) !important;
-            background: linear-gradient(135deg, #082635 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.25) !important;
+            background: radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%), linear-gradient(135deg, var(--bg-obsidian-card), rgba(15, 19, 26, 0.6)) !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.05) !important;
         }
 
         /* Sidebar On the Shelf book links */
@@ -2728,6 +2734,7 @@
                             <button type="button" id="reader-font-scale-btn" onclick="window.readerCycleFont && window.readerCycleFont()" class="reader-a11y-btn" aria-label="Current text size multiplier (click to cycle)" title="Click to cycle text size">1.0x</button>
                             <button type="button" id="reader-font-inc" onclick="window.readerAdjustFont && window.readerAdjustFont(1)" class="reader-a11y-btn" aria-pressed="false" aria-label="Increase article text size" title="Increase text size">A+</button>
                             <button type="button" id="reader-spacing-toggle" onclick="window.readerToggleSpacing && window.readerToggleSpacing()" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle wide line and word spacing" title="Toggle wide line and word spacing">Wide Spacing</button>
+                            <button type="button" id="reader-focus-toggle" onclick="window.togglePulseFocusReading && window.togglePulseFocusReading()" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle Focus Paragraph Reading Mode" title="Dim surrounding paragraphs to focus on current paragraph">Focus Mode</button>
                         </div>
                     </div>
 
@@ -5252,6 +5259,24 @@
                                     </svg>
                                     Watch on YouTube
                                 </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/the-regulated-pulse-podcast"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/lznjqzuo"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
+                                </a>
                             </div>
 
                             <div class="mt-8 pt-6 border-t border-white/5 flex items-center">
@@ -5355,6 +5380,24 @@
                                     </svg>
                                     Watch on YouTube
                                 </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/episodes/b3f94fdb-4f98-4b2c-9ec0-f2d52ddfdb58/the-regulated-pulse-podcast-advocating-for-safer-childbirth-birth-injury-law-fetal-monitoring-risks-and-doula-integration-with-gina-mundy?ref=dm_sh_yACcqvo93P511W4ZPP2je01cH"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/kpfsr6gb"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
+                                </a>
                             </div>
 
                             <div class="mt-8 pt-6 border-t border-white/5 flex items-center">
@@ -5441,6 +5484,24 @@
                                     </svg>
                                     Watch on YouTube
                                 </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/episodes/6ff16930-5954-43d5-a220-8944dc619c5f/the-regulated-pulse-podcast-the-jdmd-path-political-determinants-of-health-and-ai-risk-with-dr-fazal-khan?ref=dm_sh_z5LkIkakFyFtVHi6zgBQIGrmY"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/t383vas1"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
+                                </a>
                             </div>
 
                             <div class="mt-8 pt-6 border-t border-white/5 flex items-center">
@@ -5504,7 +5565,7 @@
 
                             <!-- Listen Links -->
                             <div class="flex flex-wrap gap-3">
-                                <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ"
+                                <a href="https://open.spotify.com/episode/6aYHZxE80jdesAelZqkMHJ?si=QCTbXyQ0SLiogabJ0SbRFg"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
                                     style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
@@ -5515,7 +5576,7 @@
                                     </svg>
                                     Spotify
                                 </a>
-                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020"
+                                <a href="https://podcasts.apple.com/us/podcast/how-intelligent-dot-is-redefining-remote-patient-monitoring/id6787278020?i=1000782044095"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
                                     style="background: rgba(153,51,204,0.1); color: rgb(216, 180, 254); text-decoration: none;">
@@ -5527,6 +5588,33 @@
                                         <line x1="12" x2="12" y1="19" y2="22" />
                                     </svg>
                                     Apple Podcasts
+                                </a>
+                                <a href="https://youtu.be/yBaQIx4xnJs"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(239,68,68,0.1); color: rgb(252, 165, 165); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                    Watch on YouTube
+                                </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/episodes/0dd1ea9d-e0fb-4324-805a-667a4c98a6df/the-regulated-pulse-podcast-how-intelligent-dot-is-redefining-remote-patient-monitoring-with-dr-wenzhan-song?ref=dm_sh_tRLE0GKfbqDVuqs7jLNu921ZT"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/f2n2unet"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
                                 </a>
                             </div>
 
@@ -5591,25 +5679,56 @@
 
                             <!-- Listen Links -->
                             <div class="flex flex-wrap gap-3">
-                                <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ"
+                                <a href="https://open.spotify.com/episode/1dAbsHWw68eafeqJdf8JVa?si=89ulTAhaTKifLNrgAfkGJQ"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
                                     style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        <path
+                                            d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.894-.98-.336.075-.668-.135-.744-.47-.077-.337.135-.668.47-.743 3.856-.88 7.15-.51 9.822 1.13.295.178.387.563.206.86zm1.225-2.72c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.075-1.183-.413.125-.85-.107-.975-.52-.125-.413.107-.85.52-.975 3.666-1.112 8.243-.57 11.343 1.34.367.227.487.708.26 1.075zm.106-2.833C14.792 8.91 9.636 8.74 6.657 9.643a.895.895 0 0 1-1.096-.615.897.897 0 0 1 .614-1.097c3.428-1.04 9.12-.843 12.75 1.312a.897.897 0 0 1-.95 1.528z" />
                                     </svg>
-                                    Listen on Spotify
+                                    Spotify
                                 </a>
-                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020"
+                                <a href="https://podcasts.apple.com/us/podcast/from-the-peoples-court-to-regulatory-reform-access-to/id6787278020?i=1000779908851"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(153,51,204,0.1); color: rgb(192, 132, 252); text-decoration: none;">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
-                                        aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    style="background: rgba(153,51,204,0.1); color: rgb(216, 180, 254); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                        <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                                        <line x1="12" x2="12" y1="19" y2="22" />
                                     </svg>
-                                    Listen on Apple Podcasts
+                                    Apple Podcasts
+                                </a>
+                                <a href="https://youtu.be/YeBTTdKnmz0"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(239,68,68,0.1); color: rgb(252, 165, 165); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                    Watch on YouTube
+                                </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/episodes/27a6bbc8-7fa0-43c3-8a38-9b22d5612139/the-regulated-pulse-podcast-from-the-peoples-court-to-regulatory-reform-access-to-justice-with-chief-magistrate-judge-brendan-murphy?ref=dm_sh_RrxFJBaRTP00cfeCijOoD42W0"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/9opvegq5"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
                                 </a>
                             </div>
 
@@ -5682,25 +5801,56 @@
 
                             <!-- Listen Links -->
                             <div class="flex flex-wrap gap-3">
-                                <a href="https://open.spotify.com/episode/55lYUpf7USA8lWidxgk7sn?si=sRnkF_FHS1mdxbaQVKthWg"
+                                <a href="https://open.spotify.com/episode/1dAbsHWw68eafeqJdf8JVa?si=89ulTAhaTKifLNrgAfkGJQ"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
                                     style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        <path
+                                            d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.894-.98-.336.075-.668-.135-.744-.47-.077-.337.135-.668.47-.743 3.856-.88 7.15-.51 9.822 1.13.295.178.387.563.206.86zm1.225-2.72c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.075-1.183-.413.125-.85-.107-.975-.52-.125-.413.107-.85.52-.975 3.666-1.112 8.243-.57 11.343 1.34.367.227.487.708.26 1.075zm.106-2.833C14.792 8.91 9.636 8.74 6.657 9.643a.895.895 0 0 1-1.096-.615.897.897 0 0 1 .614-1.097c3.428-1.04 9.12-.843 12.75 1.312a.897.897 0 0 1-.95 1.528z" />
                                     </svg>
-                                    Listen on Spotify
+                                    Spotify
                                 </a>
-                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020?i=1000777267017"
+                                <a href="https://podcasts.apple.com/us/podcast/from-the-peoples-court-to-regulatory-reform-access-to/id6787278020?i=1000779908851"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(153,51,204,0.1); color: rgb(192, 132, 252); text-decoration: none;">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
-                                        aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    style="background: rgba(153,51,204,0.1); color: rgb(216, 180, 254); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                        <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                                        <line x1="12" x2="12" y1="19" y2="22" />
                                     </svg>
-                                    Listen on Apple Podcasts
+                                    Apple Podcasts
+                                </a>
+                                <a href="https://youtu.be/YeBTTdKnmz0"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(239,68,68,0.1); color: rgb(252, 165, 165); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                    Watch on YouTube
+                                </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/episodes/27a6bbc8-7fa0-43c3-8a38-9b22d5612139/the-regulated-pulse-podcast-from-the-peoples-court-to-regulatory-reform-access-to-justice-with-chief-magistrate-judge-brendan-murphy?ref=dm_sh_RrxFJBaRTP00cfeCijOoD42W0"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/9opvegq5"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
                                 </a>
                             </div>
 
@@ -5784,25 +5934,56 @@
 
                             <!-- Listen Links -->
                             <div class="flex flex-wrap gap-3">
-                                <a href="https://open.spotify.com/episode/1OFR09NIGbt856qlvYmm3u?si=IzT0hbrAT5W9-3JLF6oCSA"
+                                <a href="https://open.spotify.com/episode/55lYUpf7USA8lWidxgk7sn?si=tUqljxJpTlORz9C8H45aVw"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
                                     style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        <path
+                                            d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.894-.98-.336.075-.668-.135-.744-.47-.077-.337.135-.668.47-.743 3.856-.88 7.15-.51 9.822 1.13.295.178.387.563.206.86zm1.225-2.72c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.075-1.183-.413.125-.85-.107-.975-.52-.125-.413.107-.85.52-.975 3.666-1.112 8.243-.57 11.343 1.34.367.227.487.708.26 1.075zm.106-2.833C14.792 8.91 9.636 8.74 6.657 9.643a.895.895 0 0 1-1.096-.615.897.897 0 0 1 .614-1.097c3.428-1.04 9.12-.843 12.75 1.312a.897.897 0 0 1-.95 1.528z" />
                                     </svg>
-                                    Listen on Spotify
+                                    Spotify
                                 </a>
-                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020"
+                                <a href="https://podcasts.apple.com/us/podcast/breaking-the-tech-silos-bringing-clinicians-policy/id6787278020?i=1000777267017"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(153,51,204,0.1); color: rgb(192, 132, 252); text-decoration: none;">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
-                                        aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    style="background: rgba(153,51,204,0.1); color: rgb(216, 180, 254); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                        <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                                        <line x1="12" x2="12" y1="19" y2="22" />
                                     </svg>
-                                    Listen on Apple Podcasts
+                                    Apple Podcasts
+                                </a>
+                                <a href="https://youtu.be/Yc8ZDu7BM-w"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(239,68,68,0.1); color: rgb(252, 165, 165); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                    Watch on YouTube
+                                </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/episodes/24266ed2-c9ab-4817-93a6-33c16a545747/the-regulated-pulse-podcast-breaking-the-tech-silos-bringing-clinicians-policy-and-data-together?ref=dm_sh_5yB1M4q4HkfhwbVYN1BnWV5d1"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/o7hg6el7"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
                                 </a>
                             </div>
 
@@ -5873,25 +6054,56 @@
 
                             <!-- Listen Links -->
                             <div class="flex flex-wrap gap-3">
-                                <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ"
+                                <a href="https://open.spotify.com/episode/5pUggGY8KviMCJizVIbfub?si=gsHoCQRsR-6ELlqeOjBN7A"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
                                     style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                        <path
+                                            d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424c-.18.295-.565.387-.86.207-2.377-1.454-5.37-1.783-8.894-.98-.336.075-.668-.135-.744-.47-.077-.337.135-.668.47-.743 3.856-.88 7.15-.51 9.822 1.13.295.178.387.563.206.86zm1.225-2.72c-.226.367-.707.487-1.074.26-2.72-1.672-6.87-2.157-10.075-1.183-.413.125-.85-.107-.975-.52-.125-.413.107-.85.52-.975 3.666-1.112 8.243-.57 11.343 1.34.367.227.487.708.26 1.075zm.106-2.833C14.792 8.91 9.636 8.74 6.657 9.643a.895.895 0 0 1-1.096-.615.897.897 0 0 1 .614-1.097c3.428-1.04 9.12-.843 12.75 1.312a.897.897 0 0 1-.95 1.528z" />
                                     </svg>
-                                    Listen on Spotify
+                                    Spotify
                                 </a>
-                                <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020"
+                                <a href="https://podcasts.apple.com/us/podcast/decoding-digital-accessibility-authentic-leadership/id6787278020?i=1000775398662"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(153,51,204,0.1); color: rgb(192, 132, 252); text-decoration: none;">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
-                                        aria-hidden="true">
-                                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                    style="background: rgba(153,51,204,0.1); color: rgb(216, 180, 254); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                        <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                                        <line x1="12" x2="12" y1="19" y2="22" />
                                     </svg>
-                                    Listen on Apple Podcasts
+                                    Apple Podcasts
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=0JSWv1NJ_YI"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(239,68,68,0.1); color: rgb(252, 165, 165); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                    Watch on YouTube
+                                </a>
+                                <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/episodes/49ebd079-e172-4544-9801-563bf72afb91/the-regulated-pulse-podcast-decoding-digital-accessibility-authentic-leadership-in-ux?ref=dm_sh_Bs64UOxRiSLOe9sedpP4GX8jL"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(56,189,248,0.12); color: rgb(125, 211, 252); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                                    </svg>
+                                    Amazon Music
+                                </a>
+                                <a href="https://pca.st/kx4lmyce"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+                                    style="background: rgba(244,62,55,0.12); color: rgb(253, 164, 175); text-decoration: none;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 1 4-4"/>
+                                    </svg>
+                                    Pocket Casts
                                 </a>
                             </div>
 
@@ -7287,12 +7499,12 @@
 
                 pushBlock(articleEl.querySelector(':scope > h2'), true);
                 pushBlock(articleEl.querySelector(':scope > h3'), true);
-                const contentEl = articleEl.querySelector('.blog-post-content');
+                const contentEl = articleEl.querySelector('.blog-post-content') || articleEl.querySelector('.podcast-detail-card') || articleEl;
                 if (contentEl) {
                     const blocks = contentEl.querySelectorAll('h2, h3, h4, blockquote, p, li');
                     if (blocks.length > 0) {
                         blocks.forEach(b => {
-                            if (b.closest('.works-cited, .table-note, .comparison-table')) return;
+                            if (b.closest('.works-cited, .table-note, .comparison-table, .audio-player, .episode-transcript-box, .related-posts-box, .article-toc-box, form')) return;
                             if (b.closest('blockquote') && b.tagName === 'P') return;
                             if (/^H[2-4]$/.test(b.tagName) && /^works cited$/i.test(b.textContent.trim())) return;
                             pushBlock(b, /^H[2-4]$/.test(b.tagName));
@@ -7673,6 +7885,59 @@
                 contentEl.parentNode.insertBefore(playerDiv, contentEl);
             });
 
+            // Inject Read-Aloud TTS Audio Players into all Podcast Episode Detail views, My Major, and About Me
+            document.querySelectorAll('#podcast-episode-view > article').forEach(epArt => {
+                if (epArt.querySelector('.audio-player')) return;
+                const card = epArt.querySelector('.podcast-detail-card');
+                const metaP = card ? card.querySelector('h3 + p') : null;
+                if (!card || !metaP) return;
+                const words = card.textContent.trim().split(/\s+/).length;
+                const estSec = Math.max(30, Math.round(words / 2.65));
+                const fallbackStr = formatTime(estSec);
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'audio-player flex items-center gap-3 mb-6 cursor-pointer w-max';
+                playerDiv.setAttribute('data-tts', 'true');
+                playerDiv.setAttribute('data-fallback-time', fallbackStr);
+                playerDiv.innerHTML = `
+                    <button type="button" class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none" aria-label="Play episode notes audio">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                    <div>
+                        <p class="text-sm font-bold text-white">Listen to Episode Notes</p>
+                        <p class="duration-text text-xs text-slate-400">-${fallbackStr} remaining</p>
+                    </div>`;
+                metaP.insertAdjacentElement('afterend', playerDiv);
+            });
+
+            ['section-major', 'section-about'].forEach(secId => {
+                const sec = document.getElementById(secId);
+                if (!sec || sec.querySelector('.audio-player')) return;
+                const h2 = sec.querySelector('h2');
+                if (!h2) return;
+                const words = sec.textContent.trim().split(/\s+/).length;
+                const estSec = Math.max(30, Math.round(words / 2.65));
+                const fallbackStr = formatTime(estSec);
+                const label = secId === 'section-about' ? 'Listen to Bio' : 'Listen to Overview';
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'audio-player flex items-center gap-3 mb-6 cursor-pointer w-max';
+                playerDiv.setAttribute('data-tts', 'true');
+                playerDiv.setAttribute('data-fallback-time', fallbackStr);
+                playerDiv.innerHTML = `
+                    <button type="button" class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none" aria-label="${label}">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </button>
+                    <div>
+                        <p class="text-sm font-bold text-white">${label}</p>
+                        <p class="duration-text text-xs text-slate-400">-${fallbackStr} remaining</p>
+                    </div>`;
+                const targetAfter = secId === 'section-major' ? (sec.querySelector('h2 + p') || h2) : h2;
+                targetAfter.insertAdjacentElement('afterend', playerDiv);
+            });
+
             // Web Audio API warmth filter so neural voice playback sounds warm, mellow, and never sharp
             let _warmAudioCtx = null;
             const _warmedElements = new WeakSet();
@@ -7757,12 +8022,12 @@
                 };
                 collectFromRoot(articleEl.querySelector(':scope > h2'));
                 collectFromRoot(articleEl.querySelector(':scope > h3'));
-                const contentEl = articleEl.querySelector('.blog-post-content');
+                const contentEl = articleEl.querySelector('.blog-post-content') || articleEl.querySelector('.podcast-detail-card') || articleEl;
                 if (contentEl) {
                     const blocks = contentEl.querySelectorAll('h2, h3, h4, blockquote, p, li');
                     if (blocks.length > 0) {
                         blocks.forEach(b => {
-                            if (b.closest('.works-cited, .table-note, .comparison-table')) return;
+                            if (b.closest('.works-cited, .table-note, .comparison-table, .audio-player, .episode-transcript-box, .related-posts-box, .article-toc-box, form')) return;
                             if (b.closest('blockquote') && b.tagName === 'P') return;
                             if (/^H[2-4]$/.test(b.tagName) && /^works cited$/i.test(b.textContent.trim())) return;
                             collectFromRoot(b);
@@ -7797,7 +8062,7 @@
                     clearWordHighlight();
                     return;
                 }
-                const articleEl = player.closest('article');
+                const articleEl = player.closest('article') || player.closest('section');
                 if (!articleEl || articleEl.classList.contains('hidden')) {
                     clearWordHighlight();
                     return;
@@ -7917,7 +8182,7 @@
                     const parts = fallback.split(':');
                     totalTime = parseInt(parts[0]) * 60 + parseInt(parts[1]);
                 }
-                const audio = isTTS ? createSpeechAudio(player.closest('article'), totalTime) : new Audio(src);
+                const audio = isTTS ? createSpeechAudio(player.closest('article') || player.closest('section'), totalTime) : new Audio(src);
 
                 const updateDisplay = () => {
                     const duration = (audio.duration && !isNaN(audio.duration) && audio.duration !== Infinity) ? audio.duration : totalTime;
@@ -9535,7 +9800,7 @@
         <p class="footer-line footer-meta-row">
             <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span></span>
             <span class="footer-sep">&middot;</span>
-            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-login" style="display: inline-flex; align-items: center; gap: 0.35rem 0.5rem;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.openAnnAuth && window.openAnnAuth()">Sign in</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
+            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-login"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.openAnnAuth && window.openAnnAuth()">Sign in</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
         </p>
         <p class="footer-line">
             For inquiries, contact <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a>
@@ -10450,10 +10715,128 @@
         body.uw-align-2 p, body.uw-align-2 .card-premium h3, body.uw-align-2 .card-premium h4, body.uw-align-2 .blog-post-content p { text-align: center !important; }
         body.uw-align-3 p, body.uw-align-3 .card-premium h3, body.uw-align-3 .card-premium h4, body.uw-align-3 .blog-post-content p { text-align: right !important; }
         body.uw-align-4 p, body.uw-align-4 .card-premium h3, body.uw-align-4 .card-premium h4, body.uw-align-4 .blog-post-content p { text-align: justify !important; }
+
+        /* 12. Focus Reading / Paragraph Spotlight Mode */
+        body.uw-focus-reading .blog-post-content > p,
+        body.uw-focus-reading .blog-post-content > blockquote,
+        body.uw-focus-reading .blog-post-content li,
+        body.uw-focus-reading .podcast-detail-card p,
+        body.uw-focus-reading .podcast-detail-card li,
+        body.uw-focus-reading #section-major p,
+        body.uw-focus-reading #section-major li,
+        body.uw-focus-reading #section-about p {
+            opacity: 0.36;
+            transition: opacity 0.18s ease, box-shadow 0.18s ease;
+        }
+        body.uw-focus-reading .blog-post-content > p:hover,
+        body.uw-focus-reading .blog-post-content > p:focus-within,
+        body.uw-focus-reading .blog-post-content > blockquote:hover,
+        body.uw-focus-reading .blog-post-content li:hover,
+        body.uw-focus-reading .podcast-detail-card p:hover,
+        body.uw-focus-reading .podcast-detail-card li:hover,
+        body.uw-focus-reading #section-major p:hover,
+        body.uw-focus-reading #section-major li:hover,
+        body.uw-focus-reading #section-about p:hover,
+        body.uw-focus-reading .pulse-focus-active {
+            opacity: 1 !important;
+            box-shadow: -10px 0 0 -7px var(--pulse-cyan);
+        }
+
+        /* 13. Plain-Language Legal & Medical Glossary Popovers */
+        abbr.pulse-glossary-term {
+            text-decoration: underline dotted rgba(56, 189, 248, 0.7) !important;
+            text-underline-offset: 3px;
+            cursor: help;
+            border-radius: 3px;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        abbr.pulse-glossary-term:hover,
+        abbr.pulse-glossary-term:focus {
+            background: rgba(6, 182, 212, 0.16);
+            color: #67e8f9;
+        }
+        body.light-mode abbr.pulse-glossary-term {
+            text-decoration-color: rgba(68, 139, 255, 0.75) !important;
+        }
+        body.light-mode abbr.pulse-glossary-term:hover,
+        body.light-mode abbr.pulse-glossary-term:focus {
+            background: rgba(68, 139, 255, 0.18);
+            color: #8ab8ff;
+        }
+        #pulse-glossary-popover {
+            position: fixed;
+            z-index: 135;
+            width: 310px;
+            max-width: calc(100vw - 24px);
+            background: #0d131d;
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            border-radius: 0.9rem;
+            padding: 0.75rem 0.95rem;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            pointer-events: none;
+            display: none;
+        }
+        body.light-mode #pulse-glossary-popover {
+            background: #09111d !important;
+            border-color: rgba(68, 139, 255, 0.55) !important;
+        }
+        #pulse-glossary-popover .gl-title {
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #38bdf8;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        body.light-mode #pulse-glossary-popover .gl-title {
+            color: #73affb !important;
+        }
+        #pulse-glossary-popover .gl-def {
+            font-size: 0.78rem;
+            line-height: 1.48;
+            color: #e2e8f0;
+            display: block;
+        }
+        body.light-mode #pulse-glossary-popover .gl-def {
+            color: #bedaff !important;
+        }
+
+        /* 14. Podcast Episode Transcript & Clickable Timestamp Chapters */
+        .ep-ts-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(6, 182, 212, 0.14);
+            border: 1px solid rgba(6, 182, 212, 0.35);
+            color: #67e8f9;
+            cursor: pointer;
+            margin-right: 6px;
+            transition: all 0.15s ease;
+        }
+        .ep-ts-btn:hover {
+            background: rgba(6, 182, 212, 0.28);
+            border-color: #22d3ee;
+        }
+        body.light-mode .ep-ts-btn {
+            background: rgba(68, 139, 255, 0.16) !important;
+            border-color: rgba(68, 139, 255, 0.45) !important;
+            color: #73affb !important;
+        }
     </style>
 
     <div id="uw-reading-guide" aria-hidden="true"></div>
     <div id="uw-tooltip-box" role="tooltip" aria-hidden="true"></div>
+    <div id="pulse-glossary-popover" role="tooltip" aria-hidden="true">
+        <span class="gl-title" id="pulse-glossary-title"></span>
+        <span class="gl-def" id="pulse-glossary-def"></span>
+    </div>
 
     <button type="button" id="uw-a11y-trigger" aria-label="Open Accessibility Menu (Ctrl+U)" aria-expanded="false" aria-controls="uw-a11y-panel" title="Accessibility Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -10541,6 +10924,11 @@
                     <span class="uw-label">Text Align</span>
                     <div class="uw-steps"><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span></div>
                 </button>
+
+                <button type="button" class="uw-tile" data-uw-key="focusReading" data-uw-max="1" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+                    <span class="uw-label">Focus Mode</span>
+                </button>
             </div>
 
             <button type="button" class="uw-reset-btn" id="uw-reset-btn">
@@ -10565,7 +10953,8 @@
                 cursor: 0,
                 tooltips: 0,
                 lineHeight: 0,
-                textAlign: 0
+                textAlign: 0,
+                focusReading: 0
             };
             let state = Object.assign({}, defaultState);
             try {
@@ -10647,6 +11036,11 @@
                 // 11. Text Align
                 b.classList.remove('uw-align-1', 'uw-align-2', 'uw-align-3', 'uw-align-4');
                 if (state.textAlign > 0) b.classList.add('uw-align-' + state.textAlign);
+
+                // 12. Focus Reading Mode
+                b.classList.toggle('uw-focus-reading', state.focusReading > 0);
+                const rdrFocusBtn = document.getElementById('reader-focus-toggle');
+                if (rdrFocusBtn) rdrFocusBtn.setAttribute('aria-pressed', state.focusReading > 0 ? 'true' : 'false');
 
                 // Update tile UI & step indicator dots
                 if (panel) {
@@ -10745,6 +11139,226 @@
             });
 
             applyState();
+            window.togglePulseFocusReading = function () {
+                state.focusReading = state.focusReading > 0 ? 0 : 1;
+                applyState();
+                saveState();
+            };
+
+            // ================= 1. Collapsible Podcast Episode Transcripts & Clickable Chapter Timestamps =================
+            const EPISODE_TRANSCRIPT_CHAPTERS = {
+                'podcast-ep8-container': {
+                    ytId: 'jAhHf0f0GMg',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: 'Introduction & Path from Music Publishing Law to Legal Engineering', text: 'Priya introduces legal engineer, Ixian Founding Partner, LexDAO Chair, and Lex Clinic leader Kyle Smith. Kyle shares how managing music publishing catalogs and attending Canadian law school led him to decentralized systems and computational jurisprudence.' },
+                        { time: '18:20', sec: 1100, title: 'The Legal Origins of Modern Computing (Leibniz to Goldfarb & HTML)', text: 'Kyle unpacks how Gottfried Leibniz’s formalization of legal dispute logic laid the groundwork for binary computation, and how lawyer Charles Goldfarb digitized legal redlining and document markup into SGML and HTML.' },
+                        { time: '39:45', sec: 2385, title: 'Why Logical Legal Reasoning Translates to AI & Software Engineering', text: 'Discussion on why individuals trained in contract analysis and conditional logic already possess the mental models needed to direct AI agents and bridge the literacy gap between prose contracts and executable scripts.' },
+                        { time: '58:10', sec: 3490, title: 'ERC-7827, Merkle Trees & Bit-Level Version Control for Clinical Protocols', text: 'How fixed-point mathematics, cryptographic hashes, Merkle trees, and the Ethereum standard ERC-7827 allow hospitals to version-control patient consent forms and clinical protocols down to the single character.' },
+                        { time: '1:16:30', sec: 4590, title: 'Smart Contract Remedies, Privacy & Open-Source Legal Hyperdeflation', text: 'Examining centralized vs. decentralized communication, zero-knowledge proofs for patient privacy, predefined legal remedies on immutable ledgers, and how open-source legal engineering can expand access to justice.' }
+                    ]
+                },
+                'podcast-ep7-container': {
+                    ytId: 'KqWkUyPYWY0',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: '24 Years Investigating Obstetric Malpractice & Delivery Room Trauma', text: 'Priya welcomes birth injury attorney and author Gina Mundy to discuss her transition from litigating catastrophic delivery room outcomes to preventative public health education for expectant parents.' },
+                        { time: '12:15', sec: 735, title: 'The Emotional Toll of Birth Injury Litigation', text: 'Gina explains how navigating cases involving maternal mortality, fetal death, and neonatal brain injury requires emotional resilience and why prevention before labor begins is vital.' },
+                        { time: '23:40', sec: 1420, title: 'Pitocin Inductions & Wireless Fetal Monitoring Risks', text: 'Analysis of why unmanaged Pitocin inductions frequently appear in birth trauma lawsuits, alongside the technical vulnerabilities and troubleshooting delays of wireless fetal telemetry systems.' },
+                        { time: '37:20', sec: 2240, title: 'Competing Medical Schools of Thought in the Courtroom', text: 'How opposing expert witness testimonies reveal that clinical consensus is often divided, empowering patients to ask questions and seek second opinions during labor.' },
+                        { time: '46:50', sec: 2810, title: 'Certified Doula Integration, Insurance Coverage & Letters of Medical Necessity', text: 'Reviewing clinical evidence showing shorter labor durations and fewer interventions with certified doulas, plus reimbursement pathways through HSAs and health insurance plans.' }
+                    ]
+                },
+                'podcast-ep6-container': {
+                    ytId: 'LDlWsl8vJgg',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: 'Introduction & The Dual-Degree JD/MD Trajectory', text: 'Dr. Fazal Khan discusses his interdisciplinary background combining medicine and law, from private practice at Jenner & Block to leading the Department of Political Determinants of Health at Meharry School of Global Health.' },
+                        { time: '15:30', sec: 930, title: 'Upstream Political Determinants of Health & Resource Allocation', text: 'How legislative and regulatory structures act as upstream drivers of clinical outcomes, hospital funding, and regional health equity.' },
+                        { time: '31:15', sec: 1875, title: 'Frontier AI Risks, Jason Group Briefings & Data Center Footprints', text: 'Insights from federal advisory briefings on unconstrained frontier AI models and the environmental and public health impacts of large-scale regional data centers.' },
+                        { time: '48:40', sec: 2920, title: 'Private Equity Automation vs. Achieving Healthcare’s Triple Aim', text: 'Balancing the dangers of corporate clinical labor replacement against deploying ambient AI scribes to restore the physician-patient relationship.' }
+                    ]
+                },
+                'podcast-ep5-container': {
+                    ytId: 'yBaQIx4xnJs',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: 'From UGA SensorWeb Lab to Commercializing Intelligent Dots', text: 'Dr. WenZhan Song shares how university research in cyber-physical systems evolved into Intelligent Dots through UGA’s Innovation Gateway.' },
+                        { time: '18:00', sec: 1080, title: 'Seismic Sensing & Zero-Burden Contactless Vital Sign Monitoring', text: 'How BedDot utilizes tri-axis seismometers and edge AI algorithms to measure heart rate, respiration, and blood pressure trends from microscopic bed vibrations.' },
+                        { time: '38:25', sec: 2305, title: 'Navigating FDA Class II 510(k) Clearance & Clinical Validation', text: 'An inside look at the regulatory pathway for medical device software and hardware, including multi-site clinical trials across 300+ patients.' },
+                        { time: '54:10', sec: 3250, title: 'Servant Leadership & Expanding Contactless Care to Neonatal & Home Settings', text: 'Dr. Song discusses leading cross-disciplinary engineering and clinical teams and protecting vulnerable infants and aging populations at home.' }
+                    ]
+                },
+                'podcast-ep4-container': {
+                    ytId: 'YeBTTdKnmz0',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: 'Foundation Fellow at UGA to Chief Magistrate Judge of Cobb County', text: 'Chief Magistrate Judge Brendan Murphy reflects on how Mock Trial, Student Bar Association leadership, and both civil and criminal trial work shaped his judicial philosophy.' },
+                        { time: '26:40', sec: 1600, title: 'Leading the People’s Court & Pandemic Crisis Innovation', text: 'How Cobb County Magistrate Court maintained 24/7 operations during COVID-19 and partnered with nonprofits to distribute over $50M in emergency rental assistance.' },
+                        { time: '58:15', sec: 3495, title: 'The Georgia Supreme Court Study Committee on Legal Regulatory Reform', text: 'Examining proposals for limited legal practitioners and regulatory modernization to close the civil justice gap for underserved Georgians.' }
+                    ]
+                },
+                'podcast-ep3-container': {
+                    ytId: 'Yc8ZDu7BM-w',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: 'Building Bonne Fire ATL & Ember Consulting Group', text: 'Nadine Peever explains how she grew a grassroots healthcare technology community into a 501(c)(3) nonprofit alongside a strategic healthcare consulting practice.' },
+                        { time: '32:10', sec: 1930, title: 'TEFCA Readiness & Healthcare Data Interoperability', text: 'How the Trusted Exchange Framework and Common Agreement (TEFCA) reduces clinical silos and prevents redundant diagnostic testing for patients.' },
+                        { time: '1:08:00', sec: 4080, title: 'ASL Accessibility & Inclusive Communication in Clinical Settings', text: 'Why digital health tools and hospital workflows must be designed around Deaf, hard-of-hearing, and diverse patient populations from day one.' }
+                    ]
+                },
+                'podcast-ep2-container': {
+                    ytId: 'kcMphEDVgYw',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: 'Emergency Medicine on the Frontlines of Climate & Rural Health', text: 'Dr. Ethan Sims, Executive Director of Idaho Clinicians for Climate and Health, discusses how extreme weather and wildfire smoke impact rural emergency departments.' },
+                        { time: '31:00', sec: 1860, title: 'The Impact of Restrictive Reproductive Laws on Emergency Physicians', text: 'Examining how state statutory restrictions create legal uncertainty for emergency room clinicians treating acute obstetric complications.' },
+                        { time: '1:02:30', sec: 3750, title: 'Hospital Sustainability & Advice for Pre-Med and Medical Students', text: 'Practical strategies for reducing healthcare system waste and maintaining personal well-being throughout medical school and residency.' }
+                    ]
+                },
+                'podcast-ep1-container': {
+                    ytId: '0JSWv1NJ_YI',
+                    chapters: [
+                        { time: '00:00', sec: 0, title: 'From Studio Art & French to Digital Accessibility Leadership', text: 'How a humanities and visual arts background provided the user-empathy foundation to launch the first formal digital accessibility program at Synovus Bank.' },
+                        { time: '21:15', sec: 1275, title: 'WCAG Compliance, Inclusive UX & Designing for Assistive Technology', text: 'Breaking down how screen readers, keyboard navigation, and accessible design systems transform digital banking and healthcare portals.' },
+                        { time: '39:00', sec: 2340, title: 'Leading from Behind & Navigating Corporate Mergers Authentically', text: 'Actionable leadership lessons on guiding diverse UX teams through high-stakes organizational transitions with empathy and transparency.' }
+                    ]
+                }
+            };
+
+            window.seekPodcastYouTube = function (containerId, ytId, seconds) {
+                const container = document.getElementById(containerId);
+                const iframe = container ? container.querySelector('iframe') : null;
+                if (iframe) {
+                    iframe.src = `https://www.youtube.com/embed/${ytId}?start=${seconds}&autoplay=1&cc_load_policy=1&rel=0`;
+                    iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            };
+
+            Object.keys(EPISODE_TRANSCRIPT_CHAPTERS).forEach(containerId => {
+                const container = document.getElementById(containerId);
+                if (!container || container.querySelector('.episode-transcript-box')) return;
+                const card = container.querySelector('.podcast-detail-card');
+                if (!card) return;
+                const data = EPISODE_TRANSCRIPT_CHAPTERS[containerId];
+                const details = document.createElement('details');
+                details.className = 'article-toc-box mt-4 mb-6 episode-transcript-box';
+                const itemsHtml = data.chapters.map(ch => `
+                    <li class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.7;">
+                        <button type="button" class="ep-ts-btn" onclick="window.seekPodcastYouTube('${containerId}', '${data.ytId}', ${ch.sec})" aria-label="Jump video to ${ch.time}: ${ch.title}">&#9654; ${ch.time}</button>
+                        <strong class="font-bold text-slate-200">${ch.title}:</strong> ${ch.text}
+                    </li>
+                `).join('');
+                details.innerHTML = `
+                    <summary class="text-xs font-bold uppercase tracking-wider text-cyan-400 cursor-pointer select-none">Episode Transcript &amp; Clickable Chapter Timestamps (${data.chapters.length} segments)</summary>
+                    <ul class="mt-3 space-y-3 pl-1 list-none">${itemsHtml}</ul>
+                `;
+                const listenRow = Array.from(card.children).find(el => el.classList.contains('flex') && el.classList.contains('flex-wrap') && el.classList.contains('gap-3'));
+                if (listenRow) {
+                    card.insertBefore(details, listenRow);
+                } else {
+                    card.appendChild(details);
+                }
+            });
+
+            // ================= 4. Plain-Language Legal, Medical & Technical Glossary Popovers =================
+            const PULSE_GLOSSARY_TERMS = [
+                { term: 'statute of repose', title: 'Statute of Repose', def: 'A strict legal deadline that cuts off the right to file a lawsuit after a fixed number of years from the medical act itself, regardless of when the patient discovered the injury.' },
+                { term: 'willful and wanton negligence', title: 'Willful & Wanton Negligence', def: 'A heightened legal standard (equivalent to gross negligence) requiring proof that a provider knew of an extreme risk to patient safety and consciously disregarded it.' },
+                { term: 'gross negligence', title: 'Gross Negligence', def: 'An extreme departure from the ordinary standard of care showing conscious indifference to the safety, health, or rights of a patient.' },
+                { term: 'contingency', title: 'Contingency Fee', def: 'A legal fee arrangement in which the plaintiff’s attorney is paid a percentage of the recovery only if the case is won or settled.' },
+                { term: 'billables', title: 'Billable Hours', def: 'The time-tracking system law firms use (often in 6-minute increments) to record attorney work and bill clients.' },
+                { term: 'select agents', title: 'Select Agents & Toxins', def: 'Biological agents and toxins regulated by the CDC and USDA (under 42 CFR Part 73) that have the potential to pose a severe threat to public health and safety.' },
+                { term: 'ERC-7827', title: 'ERC-7827 Standard', def: 'An Ethereum smart contract standard enabling bit-level JSON version control on-chain, allowing organizations like hospitals to audit every character change in consent forms or protocols.' },
+                { term: 'Merkle trees', title: 'Merkle Tree', def: 'A cryptographic data structure that hashes records into a single root fingerprint so any alteration to a medical or legal document can be detected immediately.' },
+                { term: 'fixed-point mathematics', title: 'Fixed-Point Mathematics', def: 'A deterministic method of representing numbers with a fixed number of decimal places, preventing floating-point rounding errors in financial and legal software.' },
+                { term: 'zero-knowledge proofs', title: 'Zero-Knowledge Proof (ZKP)', def: 'A cryptographic method allowing one party to prove a statement is true (e.g., patient eligibility or compliance) without revealing the underlying private health data.' },
+                { term: 'prolonged exposure therapy', title: 'Prolonged Exposure (PE) Therapy', def: 'An evidence-based cognitive behavioral therapy for PTSD that helps patients gradually approach trauma-related memories and situations in a safe clinical setting.' },
+                { term: 'Pitocin', title: 'Pitocin (Synthetic Oxytocin)', def: 'A synthetic hormone administered intravenously to induce or strengthen uterine contractions during labor; improper dosing is a frequent factor in obstetric malpractice claims.' },
+                { term: 'TEFCA', title: 'TEFCA (Trusted Exchange Framework)', def: 'A nationwide federal framework established under the 21st Century Cures Act to enable secure, seamless sharing of electronic health information across networks.' },
+                { term: 'interoperability', title: 'Healthcare Interoperability', def: 'The ability of different electronic health record (EHR) systems and clinical software to exchange, interpret, and use patient data seamlessly.' },
+                { term: '510(k)', title: 'FDA 510(k) Clearance', def: 'A premarket submission made to the FDA demonstrating that a new medical device is substantially equivalent in safety and effectiveness to an already legally marketed device.' },
+                { term: 'Triple Aim', title: 'Healthcare Triple Aim', def: 'A framework developed by the Institute for Healthcare Improvement to simultaneously improve patient experience, improve population health, and reduce per-capita healthcare costs.' },
+                { term: 'political determinants of health', title: 'Political Determinants of Health', def: 'The systematic processes of structuring relationships, distributing resources, and administering power through laws and policies that shape downstream health equity.' },
+                { term: 'social prescribing', title: 'Social Prescribing', def: 'A clinical practice in which healthcare providers refer patients to non-medical community interventions—such as arts, music, or nature programs—to improve health outcomes.' },
+                { term: 'hemiplegia', title: 'Hemiplegia', def: 'Paralysis or severe weakness affecting one side of the body, often caused by brain injury or stroke.' }
+            ];
+
+            const glossaryPop = document.getElementById('pulse-glossary-popover');
+            const glossaryTitle = document.getElementById('pulse-glossary-title');
+            const glossaryDef = document.getElementById('pulse-glossary-def');
+
+            function annotateGlossaryTerms() {
+                const containers = document.querySelectorAll('#blog-post-view .blog-post-content, #podcast-episode-view .podcast-detail-card');
+                containers.forEach(container => {
+                    const matchedInContainer = new Set();
+                    const paras = container.querySelectorAll('p, li');
+                    paras.forEach(p => {
+                        if (p.closest('.works-cited, .table-note, .comparison-table, .audio-player, .episode-transcript-box, .article-toc-box')) return;
+                        const walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT, {
+                            acceptNode(n) {
+                                if (!n.parentElement || n.parentElement.closest('a, abbr, strong, cite, button, script, style')) return NodeFilter.FILTER_REJECT;
+                                return NodeFilter.FILTER_ACCEPT;
+                            }
+                        });
+                        const textNodes = [];
+                        let cur;
+                        while ((cur = walker.nextNode())) textNodes.push(cur);
+                        textNodes.forEach(node => {
+                            let val = node.nodeValue;
+                            if (!val || val.length < 4) return;
+                            for (const item of PULSE_GLOSSARY_TERMS) {
+                                if (matchedInContainer.has(item.term)) continue;
+                                const esc = item.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                                const re = new RegExp(`\\b(${esc})\\b`, 'i');
+                                const m = re.exec(val);
+                                if (m) {
+                                    matchedInContainer.add(item.term);
+                                    const before = val.slice(0, m.index);
+                                    const matchText = m[1];
+                                    const after = val.slice(m.index + matchText.length);
+                                    const abbr = document.createElement('abbr');
+                                    abbr.className = 'pulse-glossary-term';
+                                    abbr.setAttribute('tabindex', '0');
+                                    abbr.setAttribute('data-gl-title', item.title);
+                                    abbr.setAttribute('data-gl-def', item.def);
+                                    abbr.setAttribute('aria-label', `${matchText}: ${item.def}`);
+                                    abbr.textContent = matchText;
+                                    const frag = document.createDocumentFragment();
+                                    if (before) frag.appendChild(document.createTextNode(before));
+                                    frag.appendChild(abbr);
+                                    if (after) frag.appendChild(document.createTextNode(after));
+                                    node.parentNode.replaceChild(frag, node);
+                                    break;
+                                }
+                            }
+                        });
+                    });
+                });
+            }
+            annotateGlossaryTerms();
+
+            function showGlossaryFor(el) {
+                if (!el || !glossaryPop || !glossaryTitle || !glossaryDef) return;
+                glossaryTitle.textContent = el.getAttribute('data-gl-title') || '';
+                glossaryDef.textContent = el.getAttribute('data-gl-def') || '';
+                glossaryPop.style.display = 'block';
+                const r = el.getBoundingClientRect();
+                const left = Math.max(12, Math.min(window.innerWidth - 322, r.left));
+                const top = (r.top > 120) ? (r.top - glossaryPop.offsetHeight - 10) : (r.bottom + 10);
+                glossaryPop.style.left = left + 'px';
+                glossaryPop.style.top = Math.max(12, top) + 'px';
+            }
+            function hideGlossary() {
+                if (glossaryPop) glossaryPop.style.display = 'none';
+            }
+            document.addEventListener('mouseover', (e) => {
+                const gl = e.target.closest?.('abbr.pulse-glossary-term');
+                if (gl) showGlossaryFor(gl);
+            });
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest?.('abbr.pulse-glossary-term')) hideGlossary();
+            });
+            document.addEventListener('focusin', (e) => {
+                const gl = e.target.closest?.('abbr.pulse-glossary-term');
+                if (gl) showGlossaryFor(gl);
+            });
+            document.addEventListener('focusout', (e) => {
+                if (e.target.closest?.('abbr.pulse-glossary-term')) hideGlossary();
+            });
         })();
     </script>
 </body>
