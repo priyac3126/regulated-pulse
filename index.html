@@ -8821,6 +8821,90 @@
             }
 
             // 2. "Related Articles / Continue Reading" Card Pair & 4. Collapsible Table of Contents
+            const ARTICLE_CURATED_TOC = {
+                'post-art-cure': [
+                    { match: 'In the summer of 2012', label: 'Magic Camps & Pediatric Hand Rehabilitation' },
+                    { match: 'Because the arts are the forgotten fifth pillar', label: 'The Arts as the Fifth Pillar of Clinical Health' },
+                    { match: 'study of 52 premature infants', label: 'Music Therapy in the NICU & ICU Ventilator Weaning' },
+                    { match: 'inviting music into a clinical setting could benefit patients would be in the pre-operative', label: 'Reducing Preoperative Anxiety, Sedation & Surgical Pain' },
+                    { match: 'study conducted in France with adults hospitalized with chronic', label: 'Chronic Pain, Consciousness Disorders & Palliative Care' }
+                ],
+                'post-battlefield': [
+                    { match: 'Those that serve in the U.S. military', label: 'The Invisible Wounds of Military Service' },
+                    { table: true, label: 'PTSD Prevalence by Service Era (Data Table)' },
+                    { match: 'Having PTSD can greatly affect important areas', label: 'Impact on Families, Employment & Suicide Risk' },
+                    { match: 'One of the greatest obstacles servicemen and veterans face', label: 'Military Mental Health Stigma & Deployment Extensions' },
+                    { match: 'In 2008, the VA rolled out the use of prolonged exposure', label: 'Prolonged Exposure Therapy & VA Hospital Quality Ratings' }
+                ],
+                'post-malpractice': [
+                    { match: 'Texas has some of the most restrictive medical malpractice', label: 'Overview: Restrictive vs. Plaintiff-Favorable Frameworks' },
+                    { match: 'Texas Civil Practice and Remedies Code Section 74.153', label: 'Texas Emergency Care Standards & Wrongful Death Exemptions' },
+                    { match: 'imposes a two-year time frame', label: 'Statutes of Limitations & Repose: Texas vs. Arizona' },
+                    { match: 'one Arizona constitutional provision makes the state', label: 'Arizona Constitutional Protections Against Damages Caps' },
+                    { table: true, label: 'Arizona vs. Texas Statutory Comparison Table' }
+                ],
+                'post-cdc-interview': [
+                    { match: 'I had the privilege of interviewing Mrs. Taylor Revenew', label: 'Introduction & Pre-Law Path at the University of Georgia' },
+                    { match: 'She applied early through the UGA Scholars Program', label: 'UGA Scholars Program, Health Law Society & Legal Externships' },
+                    { match: 'After graduating from law school, Mrs. Revenew worked as a medical malpractice', label: 'Medical Malpractice Defense, Case Economics & Billable Hours' },
+                    { match: 'While working in private practice, Mrs. Revenew was contacted by an attorney at CDC OGC', label: 'Advising the CDC: Select Agents, Import Permits & Poliovirus Containment' },
+                    { match: 'Additionally, her Health Promotion coursework', label: 'Translating Health Promotion & Anatomy Coursework to Legal Practice' }
+                ],
+                'post-migration': [
+                    { match: 'People migrate for reasons as varied', label: 'Global Migration Scale & International Human Rights Frameworks' },
+                    { match: 'As climate change contributes to record-high', label: 'Climate Displacement, Infectious Diseases & Nutritional Risks' },
+                    { match: 'Interestingly, older migrants, especially those that have a disability', label: 'Health Vulnerabilities of Older, Disabled & Child Migrants' },
+                    { match: 'However, technology can be harnessed to advance migrant health', label: 'Digital Health Innovation & Clean Water Infrastructure' },
+                    { match: 'To switch gears, in September 2019, Bangladesh', label: 'Telecommunications Blackouts, Biometric Data Privacy & Mental Health' }
+                ],
+                'post-compassion': [
+                    { match: 'Compassionomics presents an enormous amount of scientific data', label: 'The Healthcare Compassion Crisis & Systemic Costs' },
+                    { match: 'When comparing the 891 diabetic patient outcomes', label: 'Clinical Evidence: How Physician Empathy Improves Physiological Outcomes' },
+                    { match: 'A study that looked at how 136 Level 1 trauma patients', label: 'Pain Perception, Trauma Recovery & Patient Adherence' },
+                    { match: 'It starts with addressing the hidden curriculum of medical schools', label: 'The Hidden Curriculum of Medical School & Physician Burnout' },
+                    { match: 'Even here, compassion is the answer', label: 'Compassion as a Neurobiological Buffer Against Clinician Burnout' },
+                    { match: 'Unlocking the door to a more compassionate health care experience', label: 'The 40-Second Compassion Intervention & Malpractice Reduction' }
+                ],
+                'post-giant-leap': [
+                    { match: 'The slow erosion of the patient-doctor relationship', label: 'Erosion of the Doctor-Patient Relationship & Clinical AI Accuracy' },
+                    { match: 'how does the regulatory landscape look like', label: 'FDA Regulatory Challenges & Generative AI Hallucinations' },
+                    { match: 'As long as there’s a human in the loop', label: 'Automation Bias & The Limits of Human-in-the-Loop Oversight' },
+                    { match: 'Another reason why the human-in-the-loop idea may not be as strong', label: 'When Physicians Override AI: Clinical Decision Study Insights' },
+                    { match: 'When Dr. Watcher met with the United States’ chief health AI official', label: 'Liability Gray Areas & The Coalition for Health AI (CHAI)' }
+                ],
+                'post-ai': [
+                    { match: 'Upon a 2023 Executive Order', label: 'Federal AI Executive Orders, Risks & Algorithmic Bias' },
+                    { match: 'The definition of disability according to the Inclusive Design', label: 'The Social Model of Disability & Inclusive Feature Mapping' },
+                    { match: 'A recommended approach to creating accessible design', label: 'Community Co-Design, Assistive AI & Automated UX Auditing' },
+                    { match: 'Why should organizations care about accessible design', label: 'The Human Dignity & Economic Case for Digital Accessibility' },
+                    { match: 'Title III of the American Disabilities Act', label: 'ADA Title III, ACA Section 1557 & Rehabilitation Act Mandates' },
+                    { match: 'One of the goals of user-interface design', label: 'Minimizing Cognitive Load & Ethical UI/UX Guardrails' }
+                ],
+                'post-na': [
+                    { match: 'The progressive-minded reformer did not mince words', label: 'Broken Treaty Obligations & Underfunding of the Indian Medical Service' },
+                    { match: 'The nature of Indian reservations compelled them', label: 'Geographic Isolation, Physician Vacancies & The Meriam Report' },
+                    { match: 'Particularly, there were three populations that suffered', label: 'Boarding School Epidemics, Disabled Native Americans & Alaska Natives' },
+                    { match: 'Facing a post-WWII wave of nationalism and conservatism', label: 'The Termination Era vs. Tribal Self-Determination (1975 ISDEAA)' },
+                    { match: 'Present-day tribes are faced with the freedom', label: 'Modern IHS Funding Gaps & Traditional Health Care Medicaid Waivers' }
+                ],
+                'post-book-recs': [
+                    { match: 'Over the past year, as an avid reader', label: 'Overview: 35+ Healthcare Reads & Selection Criteria' },
+                    { match: 'A Giant Leap by Robert Wachter', label: 'Healthcare AI, Mortality & Disability Perspectives (#1–#4)' },
+                    { match: 'Compassionomics by Stephen Trzeciak', label: 'Compassion Science, Disability History & Bereavement (#5–#7)' },
+                    { match: 'If You Knew the Conditions', label: 'Indigenous Health, Cross-Cultural Medicine, Migration & Chronic Illness (#8–#11)' }
+                ],
+                'post-med-ed': [
+                    { match: 'It simply is inefficient and unsustainable', label: 'The Exponential Doubling of Medical Knowledge' },
+                    { match: 'There have been recent efforts to change medical training', label: 'Curriculum Reform, Early Clinical Exposure & AI-Driven Training' },
+                    { match: 'Funnily enough, there’s only one set of facts', label: 'Rethinking Rote Memorization vs. Clinical Reasoning in the AI Era' }
+                ],
+                'post-epic': [
+                    { match: 'The end of my blog post about A Giant Leap', label: 'Epic’s Market Dominance in U.S. Electronic Health Records' },
+                    { match: 'In speaking to several health system technology leaders', label: 'Vendor Lock-In, Chilled Criticism & Third-Party Integration Barriers' },
+                    { match: 'In response to Epic’s recent lawsuits', label: 'Antitrust Litigation, Particle Health & The Future of EHR Competition' }
+                ]
+            };
+
             document.querySelectorAll('#blog-post-view > article').forEach(art => {
                 const artId = (art.id || '').replace(/-container$/, '');
                 const currentMeta = BLOG_POST_CATALOG.find(p => p.id === artId);
@@ -8829,44 +8913,61 @@
                 const contentEl = art.querySelector('.blog-post-content');
                 if (contentEl && !art.querySelector('.article-toc-box')) {
                     const paras = Array.from(contentEl.querySelectorAll(':scope > p'));
-                    if (paras.length >= 5) {
-                        const tocEntries = [];
-                        // Opening section
+                    const allBlocks = Array.from(contentEl.querySelectorAll('p, h3, table.comparison-table'));
+                    const curatedList = ARTICLE_CURATED_TOC[artId];
+                    const tocEntries = [];
+
+                    if (curatedList && curatedList.length) {
+                        curatedList.forEach((entry, idx) => {
+                            let targetEl = null;
+                            if (entry.table) {
+                                targetEl = contentEl.querySelector('.comparison-table');
+                            } else if (entry.match) {
+                                const needle = entry.match.toLowerCase();
+                                targetEl = allBlocks.find(b => b.textContent.toLowerCase().includes(needle));
+                            }
+                            if (!targetEl && idx === 0 && paras[0]) targetEl = paras[0];
+                            if (targetEl) {
+                                const secId = `${artId}-toc-sec-${idx}`;
+                                targetEl.id = secId;
+                                tocEntries.push({ id: secId, label: entry.label });
+                            }
+                        });
+                    } else if (paras.length >= 5) {
                         if (paras[0]) {
                             paras[0].id = `${artId}-toc-intro`;
                             tocEntries.push({ id: paras[0].id, label: 'Introduction & Overview' });
                         }
-                        // Check if article has a comparison table
                         const compTable = contentEl.querySelector('.comparison-table');
                         if (compTable) {
                             compTable.id = `${artId}-toc-table`;
                             tocEntries.push({ id: compTable.id, label: 'Comparison Table & Data' });
                         }
-                        // Add key thematic milestones across the body paragraphs
                         const step = Math.max(4, Math.floor(paras.length / 3));
                         for (let pIdx = step; pIdx < paras.length - 2; pIdx += step) {
                             const pEl = paras[pIdx];
                             const strongEl = pEl.querySelector('strong');
-                            let snippet = strongEl ? strongEl.textContent.trim().replace(/[:.]$/, '') : pEl.textContent.replace(/\s+/g, ' ').trim().split(/\s+/).slice(0, 7).join(' ') + '…';
+                            let snippet = strongEl ? strongEl.textContent.trim().replace(/[:.]$/, '') : `Key Analysis & Case Findings`;
                             const secId = `${artId}-toc-p-${pIdx}`;
                             pEl.id = secId;
                             tocEntries.push({ id: secId, label: snippet });
                         }
-                        // Works Cited if present
-                        const worksH3 = Array.from(contentEl.querySelectorAll('h3')).find(h => /works cited/i.test(h.textContent));
-                        if (worksH3) {
-                            worksH3.id = `${artId}-toc-works`;
-                            tocEntries.push({ id: worksH3.id, label: 'Works Cited' });
-                        }
-                        if (tocEntries.length >= 2) {
-                            const toc = document.createElement('details');
-                            toc.className = 'article-toc-box';
-                            const itemsHtml = tocEntries.map(item =>
-                                `<li><a href="#${item.id}" onclick="event.preventDefault(); document.getElementById('${item.id}')?.scrollIntoView({behavior:'smooth'});" class="text-xs text-cyan-400 hover:underline">${item.label}</a></li>`
-                            ).join('');
-                            toc.innerHTML = `<summary class="text-xs font-bold uppercase tracking-wider text-slate-300 cursor-pointer select-none">In This Article (${tocEntries.length} sections)</summary><ul class="mt-3 space-y-2 pl-4 list-disc marker:text-cyan-400">${itemsHtml}</ul>`;
-                            contentEl.parentNode.insertBefore(toc, contentEl);
-                        }
+                    }
+
+                    // Works Cited if present
+                    const worksH3 = Array.from(contentEl.querySelectorAll('h3')).find(h => /works cited/i.test(h.textContent));
+                    if (worksH3) {
+                        worksH3.id = `${artId}-toc-works`;
+                        tocEntries.push({ id: worksH3.id, label: 'Works Cited' });
+                    }
+                    if (tocEntries.length >= 2) {
+                        const toc = document.createElement('details');
+                        toc.className = 'article-toc-box';
+                        const itemsHtml = tocEntries.map(item =>
+                            `<li><a href="#${item.id}" onclick="event.preventDefault(); document.getElementById('${item.id}')?.scrollIntoView({behavior:'smooth'});" class="text-xs text-cyan-400 hover:underline">${item.label}</a></li>`
+                        ).join('');
+                        toc.innerHTML = `<summary class="text-xs font-bold uppercase tracking-wider text-slate-300 cursor-pointer select-none">In This Article (${tocEntries.length} sections)</summary><ul class="mt-3 space-y-2 pl-4 list-disc marker:text-cyan-400">${itemsHtml}</ul>`;
+                        contentEl.parentNode.insertBefore(toc, contentEl);
                     }
                 }
 
