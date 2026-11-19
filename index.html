@@ -30,7 +30,7 @@
 
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
 
@@ -475,7 +475,7 @@
             color: #73affb !important;
         }
         body.light-mode .shelf-book-btn .text-slate-400 {
-            color: #9ec5fd !important;
+            color: #b4c8e0 !important;
         }
         body.light-mode .podcast-detail-card {
             background: linear-gradient(135deg, #0f1824, #04080c) !important;
@@ -540,6 +540,9 @@
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #reader-progress,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #sel-toolbar,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #note-pop,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #uw-a11y-trigger,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #uw-a11y-panel,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode #uw-tooltip-box,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .ann-overlay:not(#podcast-platforms-modal) {
             filter: invert(1) hue-rotate(180deg);
         }
@@ -625,6 +628,11 @@
                 linear-gradient(135deg, #0f1824, #0f1b29) !important;
             border-color: #0f1824 !important;
             box-shadow: 0 10px 40px rgba(21, 40, 64, 0.2) !important;
+        }
+        body.light-mode .welcome-hero:hover {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.26) 0%, rgba(6, 182, 212, 0.09) 68%, rgba(6, 182, 212, 0.03) 100%), linear-gradient(135deg, #04080c, #0f1824) !important;
+            border-color: #67e8f9 !important;
+            box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px rgba(103, 232, 249, 0.2) !important;
         }
         body.light-mode .text-slate-300 { color: #8ba1bd !important; }
         body.light-mode .text-slate-400 { color: #b4c8e0 !important; }
@@ -1081,11 +1089,19 @@
 
         /* Welcome hero redesign */
         .welcome-hero {
-            background: radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%), linear-gradient(135deg, var(--bg-obsidian-card), rgba(15, 19, 26, 0.6)) !important;
+            background: radial-gradient(circle at 100% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 60%), linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
             border: 1px solid var(--border-subtle) !important;
             border-radius: 1.25rem !important;
             position: relative !important;
+            overflow: hidden !important;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .welcome-hero:hover {
+            border-color: #06b6d4 !important;
+            transform: translateY(-4px) !important;
+            background: linear-gradient(135deg, #082635 0%, #0b0f17 100%) !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.25) !important;
         }
 
         /* Sidebar On the Shelf book links */
@@ -1620,12 +1636,12 @@
         /* --- HIGH-FIDELITY SUBSTANTIAL REDESIGN OVERRIDES --- */
 
         /* Cursor Glow Mouse Mapping */
-        .card-premium, .emphasis-card, .faq-card, .course-card {
+        .card-premium, .welcome-hero, .emphasis-card, .faq-card, .course-card {
             position: relative;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .card-premium::after, .emphasis-card::after, .faq-card::after, .course-card::after {
+        .card-premium::after, .welcome-hero::after, .emphasis-card::after, .faq-card::after, .course-card::after {
             content: '';
             position: absolute;
             inset: 0;
@@ -1635,7 +1651,7 @@
             pointer-events: none;
             z-index: 2;
         }
-        .card-premium:hover::after, .emphasis-card:hover::after, .faq-card:hover::after, .course-card:hover::after {
+        .card-premium:hover::after, .welcome-hero:hover::after, .emphasis-card:hover::after, .faq-card:hover::after, .course-card:hover::after {
             opacity: 1;
         }
 
@@ -1887,7 +1903,7 @@
         .dashboard-content {
             flex-grow: 1;
             margin-left: 280px;
-            padding: 3rem 4rem 0 4rem;
+            padding: 3rem 3.2rem 0 4rem;
             width: calc(100% - 280px);
             min-height: auto;
             box-sizing: border-box;
@@ -7040,7 +7056,7 @@
             }
 
             // Mouse-tracker radial card glow
-            const trackClasses = ['.card-premium', '.emphasis-card', '.faq-card', '.course-card'];
+            const trackClasses = ['.card-premium', '.welcome-hero', '.emphasis-card', '.faq-card', '.course-card'];
             document.addEventListener('mousemove', (e) => {
                 trackClasses.forEach(cls => {
                     document.querySelectorAll(cls).forEach(card => {
@@ -9162,6 +9178,8 @@
         window.updateFooterLogout = function () {
             const el = document.getElementById('footer-logout');
             if (el) el.style.display = window.annUser ? '' : 'none';
+            const loginEl = document.getElementById('footer-login');
+            if (loginEl) loginEl.style.display = window.annUser ? 'none' : '';
         };
         async function annRestoreThemePref(uid) {
             try {
@@ -9517,7 +9535,7 @@
         <p class="footer-line footer-meta-row">
             <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span></span>
             <span class="footer-sep">&middot;</span>
-            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
+            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-login" style="display: inline-flex; align-items: center; gap: 0.35rem 0.5rem;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.openAnnAuth && window.openAnnAuth()">Sign in</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
         </p>
         <p class="footer-line">
             For inquiries, contact <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a>
@@ -10044,6 +10062,689 @@
             } else {
                 buildImageDescriptionCaptions();
             }
+        })();
+    </script>
+
+    <!-- UserWay-Style Comprehensive Accessibility Widget & Menu -->
+    <style>
+        #uw-a11y-trigger {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 110;
+            width: 48px;
+            height: 48px;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #06b6d4, #0284c7);
+            color: #080b11;
+            border: 2px solid rgba(255, 255, 255, 0.22);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45), 0 0 14px rgba(6, 182, 212, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        #uw-a11y-trigger:hover {
+            transform: scale(1.07);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55), 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+        body.light-mode #uw-a11y-trigger {
+            background: #5293ff !important;
+            color: #080b11 !important;
+            border-color: rgba(68, 139, 255, 0.45) !important;
+            box-shadow: 0 8px 24px rgba(21, 40, 64, 0.28) !important;
+        }
+        @media (max-width: 1024px) {
+            #uw-a11y-trigger {
+                bottom: 5.75rem;
+                right: 1rem;
+                width: 44px;
+                height: 44px;
+            }
+        }
+        #uw-a11y-panel {
+            position: fixed;
+            top: 0.75rem;
+            right: 0.75rem;
+            max-height: calc(100vh - 1.5rem);
+            max-height: calc(100dvh - 1.5rem);
+            width: 360px;
+            max-width: calc(100vw - 1.5rem);
+            z-index: 120;
+            background: #0d121a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 1.25rem;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        #uw-a11y-panel.uw-open {
+            display: flex;
+        }
+        #uw-a11y-panel.uw-oversized {
+            width: 450px;
+        }
+        body.light-mode #uw-a11y-panel {
+            background: #0b131f !important;
+            border-color: rgba(68, 139, 255, 0.28) !important;
+        }
+        .uw-header {
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
+            color: #080b11;
+            padding: 0.9rem 1.15rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        body.light-mode .uw-header {
+            background: #5293ff !important;
+            color: #080b11 !important;
+        }
+        .uw-close-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 9999px;
+            background: rgba(8, 11, 17, 0.15);
+            color: #080b11;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+        .uw-body {
+            padding: 1rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .uw-oversize-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.55rem 0.75rem;
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        .uw-switch {
+            width: 44px;
+            height: 24px;
+            border-radius: 9999px;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            padding: 0;
+        }
+        .uw-switch-knob {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #f8fafc;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            transition: transform 0.2s ease;
+        }
+        .uw-switch[aria-checked="true"] {
+            background: #06b6d4;
+        }
+        body.light-mode .uw-switch[aria-checked="true"] {
+            background: #5293ff !important;
+        }
+        .uw-switch[aria-checked="true"] .uw-switch-knob {
+            transform: translateX(20px);
+        }
+        .uw-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.65rem;
+        }
+        .uw-tile {
+            background: #141b26;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 0.95rem;
+            padding: 0.9rem 0.6rem 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            color: #e2e8f0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            position: relative;
+            text-align: center;
+            min-height: 92px;
+        }
+        #uw-a11y-panel.uw-oversized .uw-tile {
+            min-height: 114px;
+            font-size: 0.88rem;
+            padding: 1.1rem 0.75rem 0.9rem;
+        }
+        .uw-tile:hover {
+            border-color: rgba(6, 182, 212, 0.45);
+            background: #1a2332;
+            transform: translateY(-1px);
+        }
+        .uw-tile.uw-active {
+            border-color: #06b6d4 !important;
+            background: rgba(6, 182, 212, 0.14) !important;
+            color: #67e8f9 !important;
+            box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.35);
+        }
+        body.light-mode .uw-tile {
+            background: #060b12 !important;
+            border-color: rgba(68, 139, 255, 0.22) !important;
+            color: #bedaff !important;
+        }
+        body.light-mode .uw-tile:hover {
+            border-color: rgba(68, 139, 255, 0.55) !important;
+            background: #0d1624 !important;
+        }
+        body.light-mode .uw-tile.uw-active {
+            border-color: #5293ff !important;
+            background: rgba(68, 139, 255, 0.22) !important;
+            color: #79aefb !important;
+        }
+        .uw-steps {
+            display: flex;
+            gap: 4px;
+            margin-top: 2px;
+        }
+        .uw-step-dot {
+            width: 14px;
+            height: 3.5px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.18);
+        }
+        .uw-step-dot.on {
+            background: #06b6d4;
+        }
+        body.light-mode .uw-step-dot.on {
+            background: #5293ff !important;
+        }
+        .uw-reset-btn {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 0.85rem;
+            background: linear-gradient(135deg, #0284c7, #06b6d4);
+            color: #080b11;
+            font-weight: 700;
+            font-size: 0.84rem;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            margin-top: 0.25rem;
+        }
+        .uw-reset-btn:hover { opacity: 0.92; }
+        body.light-mode .uw-reset-btn {
+            background: #5293ff !important;
+            color: #080b11 !important;
+        }
+
+        /* --- Accessibility Feature Effect Classes --- */
+        /* 1. Contrast + */
+        body.uw-contrast-1 {
+            filter: contrast(1.18) saturate(1.12);
+        }
+        body.uw-contrast-2 p,
+        body.uw-contrast-2 li,
+        body.uw-contrast-2 span {
+            color: #ffffff !important;
+        }
+        body.uw-contrast-2 .card-premium,
+        body.uw-contrast-2 .profile-container,
+        body.uw-contrast-2 .welcome-hero,
+        body.uw-contrast-2 .faq-card {
+            border-color: #38bdf8 !important;
+        }
+        body.uw-contrast-3 .card-premium,
+        body.uw-contrast-3 .profile-container,
+        body.uw-contrast-3 .welcome-hero,
+        body.uw-contrast-3 .faq-card {
+            border-color: rgba(68, 139, 255, 0.75) !important;
+        }
+
+        /* 2. Highlight Links */
+        body.uw-highlight-links a,
+        body.uw-highlight-links button.card-premium,
+        body.uw-highlight-links button.shelf-book-btn,
+        body.uw-highlight-links .nav-link-vertical,
+        body.uw-highlight-links .mobile-dock-btn {
+            text-decoration: underline !important;
+            text-decoration-thickness: 2px !important;
+            text-underline-offset: 3px !important;
+            box-shadow: inset 0 0 0 2px #fbbf24 !important;
+        }
+
+        /* 3. Bigger Text (4 levels) */
+        body.uw-bigger-text-1 .dashboard-content { zoom: 1.08; }
+        body.uw-bigger-text-2 .dashboard-content { zoom: 1.16; }
+        body.uw-bigger-text-3 .dashboard-content { zoom: 1.24; }
+        body.uw-bigger-text-4 .dashboard-content { zoom: 1.32; }
+
+        /* 4. Text Spacing (3 levels) */
+        body.uw-text-spacing-1 p, body.uw-text-spacing-1 li, body.uw-text-spacing-1 h2, body.uw-text-spacing-1 h3, body.uw-text-spacing-1 h4 {
+            letter-spacing: 0.035em !important;
+            word-spacing: 0.1em !important;
+        }
+        body.uw-text-spacing-2 p, body.uw-text-spacing-2 li, body.uw-text-spacing-2 h2, body.uw-text-spacing-2 h3, body.uw-text-spacing-2 h4 {
+            letter-spacing: 0.07em !important;
+            word-spacing: 0.2em !important;
+        }
+        body.uw-text-spacing-3 p, body.uw-text-spacing-3 li, body.uw-text-spacing-3 h2, body.uw-text-spacing-3 h3, body.uw-text-spacing-3 h4 {
+            letter-spacing: 0.11em !important;
+            word-spacing: 0.3em !important;
+        }
+
+        /* 5. Pause Animations */
+        body.uw-pause-anim *,
+        body.uw-pause-anim *::before,
+        body.uw-pause-anim *::after {
+            animation-play-state: paused !important;
+            animation-duration: 0.001ms !important;
+            transition-duration: 0.001ms !important;
+        }
+        body.uw-pause-anim .pulse-logo polyline {
+            stroke-dashoffset: 0 !important;
+            opacity: 1 !important;
+        }
+
+        /* 6. Hide Images */
+        body.uw-hide-images img {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        /* 7. Dyslexia Friendly */
+        body.uw-dyslexia,
+        body.uw-dyslexia p,
+        body.uw-dyslexia li,
+        body.uw-dyslexia h1,
+        body.uw-dyslexia h2,
+        body.uw-dyslexia h3,
+        body.uw-dyslexia h4,
+        body.uw-dyslexia span,
+        body.uw-dyslexia a,
+        body.uw-dyslexia button,
+        body.uw-dyslexia .blog-post-content,
+        body.uw-dyslexia .blog-post-content p {
+            font-family: 'Lexend', 'Comic Sans MS', Verdana, sans-serif !important;
+            letter-spacing: 0.025em !important;
+        }
+
+        /* 8. Big Cursor & Reading Guide */
+        body.uw-cursor-1,
+        body.uw-cursor-1 * {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M7 4 L7 34 L15 26 L21 39 L26 37 L20 24 L31 24 Z' fill='%23ffffff' stroke='%23000000' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E") 6 4, auto !important;
+        }
+        #uw-reading-guide {
+            position: fixed;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background: rgba(250, 204, 21, 0.22);
+            border-top: 2px solid #38bdf8;
+            border-bottom: 2px solid #38bdf8;
+            pointer-events: none;
+            z-index: 105;
+            display: none;
+            transform: translateY(-50%);
+        }
+        body.uw-cursor-2 #uw-reading-guide {
+            display: block !important;
+        }
+
+        /* 9. Tooltips */
+        #uw-tooltip-box {
+            position: fixed;
+            z-index: 130;
+            max-width: 300px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: #0f172a;
+            color: #f8fafc;
+            border: 1px solid #38bdf8;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            font-size: 12.5px;
+            font-weight: 600;
+            line-height: 1.4;
+            pointer-events: none;
+            display: none;
+        }
+
+        /* 10. Line Height (3 levels) */
+        body.uw-line-height-1 p, body.uw-line-height-1 li, body.uw-line-height-1 .blog-post-content { line-height: 1.95 !important; }
+        body.uw-line-height-2 p, body.uw-line-height-2 li, body.uw-line-height-2 .blog-post-content { line-height: 2.2 !important; }
+        body.uw-line-height-3 p, body.uw-line-height-3 li, body.uw-line-height-3 .blog-post-content { line-height: 2.45 !important; }
+
+        /* 11. Text Align (Left, Center, Right, Justify) */
+        body.uw-align-1 p, body.uw-align-1 .card-premium h3, body.uw-align-1 .card-premium h4, body.uw-align-1 .blog-post-content p { text-align: left !important; }
+        body.uw-align-2 p, body.uw-align-2 .card-premium h3, body.uw-align-2 .card-premium h4, body.uw-align-2 .blog-post-content p { text-align: center !important; }
+        body.uw-align-3 p, body.uw-align-3 .card-premium h3, body.uw-align-3 .card-premium h4, body.uw-align-3 .blog-post-content p { text-align: right !important; }
+        body.uw-align-4 p, body.uw-align-4 .card-premium h3, body.uw-align-4 .card-premium h4, body.uw-align-4 .blog-post-content p { text-align: justify !important; }
+    </style>
+
+    <div id="uw-reading-guide" aria-hidden="true"></div>
+    <div id="uw-tooltip-box" role="tooltip" aria-hidden="true"></div>
+
+    <button type="button" id="uw-a11y-trigger" aria-label="Open Accessibility Menu (Ctrl+U)" aria-expanded="false" aria-controls="uw-a11y-panel" title="Accessibility Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="4.5" r="2"/>
+            <path d="M5 8.5h14"/>
+            <path d="M12 8.5v5.5"/>
+            <path d="M9 20l3-6 3 6"/>
+        </svg>
+    </button>
+
+    <aside id="uw-a11y-panel" role="dialog" aria-modal="false" aria-label="Accessibility Menu">
+        <div class="uw-header">
+            <span class="flex items-center gap-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M5 8.5h14"/><path d="M12 8.5v5.5"/><path d="M9 20l3-6 3 6"/></svg>
+                <span>Accessibility Menu</span>
+            </span>
+            <button type="button" class="uw-close-btn" id="uw-close-btn" aria-label="Close Accessibility Menu">&times;</button>
+        </div>
+        <div class="uw-body">
+            <div class="uw-oversize-row">
+                <span>Oversized Widget</span>
+                <button type="button" role="switch" aria-checked="false" aria-label="Toggle Oversized Accessibility Widget" class="uw-switch" id="uw-oversize-switch">
+                    <span class="uw-switch-knob" id="uw-oversize-knob">&times;</span>
+                </button>
+            </div>
+
+            <div class="uw-grid">
+                <button type="button" class="uw-tile" data-uw-key="contrast" data-uw-max="3" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor"/></svg>
+                    <span class="uw-label">Contrast +</span>
+                    <div class="uw-steps"><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span></div>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="links" data-uw-max="1" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    <span class="uw-label">Highlight Links</span>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="textSize" data-uw-max="4" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V9"/><path d="M2 9h4"/><path d="M14 19V5"/><path d="M10 5h8"/></svg>
+                    <span class="uw-label">Bigger Text</span>
+                    <div class="uw-steps"><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span></div>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="spacing" data-uw-max="3" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 8-4 4 4 4"/><path d="m17 8 4 4-4 4"/><path d="M3 12h18" stroke-dasharray="3 3"/></svg>
+                    <span class="uw-label">Text Spacing</span>
+                    <div class="uw-steps"><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span></div>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="pauseAnim" data-uw-max="1" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke-dasharray="2.5 2.5"/><line x1="10" y1="9" x2="10" y2="15"/><line x1="14" y1="9" x2="14" y2="15"/></svg>
+                    <span class="uw-label">Pause Animations</span>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="hideImages" data-uw-max="1" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+                    <span class="uw-label">Hide Images</span>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="dyslexia" data-uw-max="1" aria-pressed="false">
+                    <span style="font-size: 1.25rem; font-weight: 800; line-height: 1; font-family: 'Lexend', sans-serif;" aria-hidden="true">Df</span>
+                    <span class="uw-label">Dyslexia Friendly</span>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="cursor" data-uw-max="2" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 3 14 8-6 2-3 6Z"/><path d="m13 13 6 6"/></svg>
+                    <span class="uw-label">Cursor</span>
+                    <div class="uw-steps"><span class="uw-step-dot"></span><span class="uw-step-dot"></span></div>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="tooltips" data-uw-max="1" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="8.01"/><line x1="12" y1="11" x2="12" y2="14"/></svg>
+                    <span class="uw-label">Tooltips</span>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="lineHeight" data-uw-max="3" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 5v14"/><path d="m4 7 2-2 2 2"/><path d="m4 17 2 2 2-2"/><line x1="12" y1="6" x2="20" y2="6"/><line x1="12" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+                    <span class="uw-label">Line Height</span>
+                    <div class="uw-steps"><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span></div>
+                </button>
+
+                <button type="button" class="uw-tile" data-uw-key="textAlign" data-uw-max="4" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="10" x2="14" y2="10"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="4" y1="18" x2="16" y2="18"/></svg>
+                    <span class="uw-label">Text Align</span>
+                    <div class="uw-steps"><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span><span class="uw-step-dot"></span></div>
+                </button>
+            </div>
+
+            <button type="button" class="uw-reset-btn" id="uw-reset-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+                <span>Reset All Accessibility Settings</span>
+            </button>
+        </div>
+    </aside>
+
+    <script>
+        (function () {
+            const STORAGE_KEY = 'pulseA11ySettingsV1';
+            const defaultState = {
+                oversized: false,
+                contrast: 0,
+                links: 0,
+                textSize: 0,
+                spacing: 0,
+                pauseAnim: 0,
+                hideImages: 0,
+                dyslexia: 0,
+                cursor: 0,
+                tooltips: 0,
+                lineHeight: 0,
+                textAlign: 0
+            };
+            let state = Object.assign({}, defaultState);
+            try {
+                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+                if (saved && typeof saved === 'object') {
+                    state = Object.assign({}, defaultState, saved);
+                }
+            } catch (e) {}
+
+            const triggerBtn = document.getElementById('uw-a11y-trigger');
+            const panel = document.getElementById('uw-a11y-panel');
+            const closeBtn = document.getElementById('uw-close-btn');
+            const oversizeSwitch = document.getElementById('uw-oversize-switch');
+            const oversizeKnob = document.getElementById('uw-oversize-knob');
+            const resetBtn = document.getElementById('uw-reset-btn');
+            const readingGuide = document.getElementById('uw-reading-guide');
+            const tooltipBox = document.getElementById('uw-tooltip-box');
+
+            function saveState() {
+                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+            }
+
+            function applyState() {
+                const b = document.body;
+                if (!b) return;
+
+                // Oversized widget
+                if (panel) panel.classList.toggle('uw-oversized', !!state.oversized);
+                if (oversizeSwitch) oversizeSwitch.setAttribute('aria-checked', state.oversized ? 'true' : 'false');
+                if (oversizeKnob) oversizeKnob.innerHTML = state.oversized ? '&#10003;' : '&times;';
+
+                // 1. Contrast +
+                b.classList.remove('uw-contrast-1', 'uw-contrast-2', 'uw-contrast-3');
+                if (state.contrast > 0) {
+                    b.classList.add('uw-contrast-' + state.contrast);
+                    if (state.contrast === 2 && window.exitLightMode) window.exitLightMode();
+                    if (state.contrast === 3 && window.enterLightMode) window.enterLightMode();
+                }
+
+                // 2. Highlight Links
+                b.classList.toggle('uw-highlight-links', state.links > 0);
+
+                // 3. Bigger Text
+                b.classList.remove('uw-bigger-text-1', 'uw-bigger-text-2', 'uw-bigger-text-3', 'uw-bigger-text-4');
+                if (state.textSize > 0) {
+                    b.classList.add('uw-bigger-text-' + state.textSize);
+                }
+                const postView = document.getElementById('blog-post-view');
+                if (postView) {
+                    const scales = [1, 1.12, 1.24, 1.36, 1.48];
+                    postView.style.setProperty('--reader-scale', String(scales[state.textSize] || 1));
+                }
+
+                // 4. Text Spacing
+                b.classList.remove('uw-text-spacing-1', 'uw-text-spacing-2', 'uw-text-spacing-3');
+                if (state.spacing > 0) b.classList.add('uw-text-spacing-' + state.spacing);
+
+                // 5. Pause Animations
+                b.classList.toggle('uw-pause-anim', state.pauseAnim > 0);
+
+                // 6. Hide Images
+                b.classList.toggle('uw-hide-images', state.hideImages > 0);
+
+                // 7. Dyslexia Friendly
+                b.classList.toggle('uw-dyslexia', state.dyslexia > 0);
+
+                // 8. Cursor & Reading Guide
+                b.classList.remove('uw-cursor-1', 'uw-cursor-2');
+                if (state.cursor > 0) b.classList.add('uw-cursor-' + state.cursor);
+
+                // 9. Tooltips
+                b.classList.toggle('uw-tooltips', state.tooltips > 0);
+                if (!state.tooltips && tooltipBox) tooltipBox.style.display = 'none';
+
+                // 10. Line Height
+                b.classList.remove('uw-line-height-1', 'uw-line-height-2', 'uw-line-height-3');
+                if (state.lineHeight > 0) b.classList.add('uw-line-height-' + state.lineHeight);
+
+                // 11. Text Align
+                b.classList.remove('uw-align-1', 'uw-align-2', 'uw-align-3', 'uw-align-4');
+                if (state.textAlign > 0) b.classList.add('uw-align-' + state.textAlign);
+
+                // Update tile UI & step indicator dots
+                if (panel) {
+                    panel.querySelectorAll('.uw-tile').forEach(tile => {
+                        const key = tile.getAttribute('data-uw-key');
+                        const val = state[key] || 0;
+                        tile.classList.toggle('uw-active', val > 0);
+                        tile.setAttribute('aria-pressed', val > 0 ? 'true' : 'false');
+                        const dots = tile.querySelectorAll('.uw-step-dot');
+                        dots.forEach((dot, idx) => {
+                            dot.classList.toggle('on', idx < val);
+                        });
+                    });
+                }
+            }
+
+            if (triggerBtn && panel) {
+                triggerBtn.addEventListener('click', () => {
+                    const open = !panel.classList.contains('uw-open');
+                    panel.classList.toggle('uw-open', open);
+                    triggerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                });
+            }
+            if (closeBtn && panel && triggerBtn) {
+                closeBtn.addEventListener('click', () => {
+                    panel.classList.remove('uw-open');
+                    triggerBtn.setAttribute('aria-expanded', 'false');
+                });
+            }
+            if (oversizeSwitch) {
+                oversizeSwitch.addEventListener('click', () => {
+                    state.oversized = !state.oversized;
+                    applyState();
+                    saveState();
+                });
+            }
+            if (panel) {
+                panel.querySelectorAll('.uw-tile').forEach(tile => {
+                    tile.addEventListener('click', () => {
+                        const key = tile.getAttribute('data-uw-key');
+                        const max = parseInt(tile.getAttribute('data-uw-max') || '1', 10);
+                        state[key] = ((state[key] || 0) + 1) > max ? 0 : (state[key] || 0) + 1;
+                        applyState();
+                        saveState();
+                    });
+                });
+            }
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                    state = Object.assign({}, defaultState);
+                    applyState();
+                    saveState();
+                });
+            }
+
+            // Reading Guide & Tooltips listeners
+            window.addEventListener('mousemove', (e) => {
+                if (state.cursor === 2 && readingGuide) {
+                    readingGuide.style.top = e.clientY + 'px';
+                }
+                if (state.tooltips && tooltipBox && tooltipBox.style.display === 'block') {
+                    tooltipBox.style.left = Math.min(window.innerWidth - 310, e.clientX + 14) + 'px';
+                    tooltipBox.style.top = Math.min(window.innerHeight - 60, e.clientY + 18) + 'px';
+                }
+            }, { passive: true });
+
+            document.addEventListener('mouseover', (e) => {
+                if (!state.tooltips || !tooltipBox) return;
+                const el = e.target.closest('[aria-label], [title], img[alt]');
+                if (!el || panel?.contains(el) || el === triggerBtn) {
+                    tooltipBox.style.display = 'none';
+                    return;
+                }
+                const text = el.getAttribute('aria-label') || el.getAttribute('title') || el.getAttribute('alt');
+                if (text) {
+                    tooltipBox.textContent = text;
+                    tooltipBox.style.display = 'block';
+                }
+            });
+            document.addEventListener('mouseout', (e) => {
+                if (!state.tooltips || !tooltipBox) return;
+                if (!e.relatedTarget || !e.relatedTarget.closest?.('[aria-label], [title], img[alt]')) {
+                    tooltipBox.style.display = 'none';
+                }
+            });
+
+            // Keyboard shortcut Ctrl+U to toggle Accessibility Menu
+            document.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') {
+                    e.preventDefault();
+                    triggerBtn?.click();
+                } else if (e.key === 'Escape' && panel?.classList.contains('uw-open')) {
+                    panel.classList.remove('uw-open');
+                    triggerBtn?.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            applyState();
         })();
     </script>
 </body>
