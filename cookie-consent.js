@@ -103,7 +103,7 @@
         banner.innerHTML = [
             '<p class="pulse-cookie-kicker">Privacy choices</p>',
             '<h2 class="pulse-cookie-title" id="pulse-cookie-title">May we use cookies?</h2>',
-            '<p class="pulse-cookie-copy" id="pulse-cookie-copy">We use essential cookies and local storage to run the site, keep you signed in, protect your account, and honor accessibility choices. Optional preference storage remembers your theme, playback speed, reading settings, and view history. We do not use advertising cookies. Do you allow optional preference storage?</p>',
+            '<p class="pulse-cookie-copy" id="pulse-cookie-copy">Essential cookies and local storage keep the site working, sign-in, and accessibility choices. With permission, we also remember theme and reading preferences. No advertising cookies. Allow optional storage?</p>',
             '<p class="pulse-cookie-links" id="pulse-cookie-links"><a href="./privacy.html#cookies">Privacy Policy</a> <span aria-hidden="true">&middot;</span> <a href="./terms.html">Terms &amp; Conditions</a></p>',
             '<div class="pulse-cookie-actions">',
             '    <button type="button" class="pulse-cookie-btn pulse-cookie-btn-primary" data-cookie-choice="all">Allow cookies</button>',
@@ -145,10 +145,10 @@
 
         if (existingChoice) {
             keepButton.hidden = false;
-            copy.textContent = 'Your current choice is ' + currentChoiceLabel() + '. You can change it at any time. Essential cookies and local storage keep the site working, keep you signed in, protect your account, and honor accessibility choices. Optional preference storage remembers your theme, playback speed, reading settings, and view history. We do not use advertising cookies.';
+            copy.textContent = 'Your current choice is ' + currentChoiceLabel() + '. Essential storage keeps the site working, sign-in, and accessibility choices. Optional storage remembers theme and reading preferences. No advertising cookies. You can change this anytime.';
         } else {
             keepButton.hidden = true;
-            copy.textContent = 'We use essential cookies and local storage to run the site, keep you signed in, protect your account, and honor accessibility choices. Optional preference storage remembers your theme, playback speed, reading settings, and view history. We do not use advertising cookies. Do you allow optional preference storage?';
+            copy.textContent = 'Essential cookies and local storage keep the site working, sign-in, and accessibility choices. With permission, we also remember theme and reading preferences. No advertising cookies. Allow optional storage?';
         }
 
         el.hidden = false;

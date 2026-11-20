@@ -2030,6 +2030,50 @@
                 bottom: 7rem !important;
             }
         }
+
+        /* Unified, flat article postcards */
+        #recent-articles-list .card-premium,
+        #blog-recommended-grid .card-premium {
+            background: #0f141c !important;
+            border: 1px solid rgba(255, 255, 255, 0.07) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.07) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+        }
+        #recent-articles-list .card-premium::before,
+        #recent-articles-list .card-premium::after,
+        #blog-recommended-grid .card-premium::before,
+        #blog-recommended-grid .card-premium::after {
+            display: none !important;
+        }
+        #recent-articles-list .card-premium:hover,
+        #blog-recommended-grid .card-premium:hover {
+            background: #121924 !important;
+            border-color: rgba(148, 163, 184, 0.22) !important;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.26) !important;
+            transform: translateY(-2px) !important;
+        }
+        #recent-articles-list .card-premium h3,
+        #blog-recommended-grid .card-premium h3 {
+            color: #f8fafc !important;
+            letter-spacing: -0.012em !important;
+            line-height: 1.35 !important;
+        }
+        #recent-articles-list .card-premium p,
+        #blog-recommended-grid .card-premium p {
+            line-height: 1.6 !important;
+        }
+        body.light-mode #recent-articles-list .card-premium,
+        body.light-mode #blog-recommended-grid .card-premium {
+            background: #0b0804 !important;
+            border-color: #191208 !important;
+            box-shadow: 0 8px 24px rgba(21, 40, 64, 0.12) !important;
+        }
+        body.light-mode #recent-articles-list .card-premium:hover,
+        body.light-mode #blog-recommended-grid .card-premium:hover {
+            background: #0f0b06 !important;
+            border-color: #221a0e !important;
+            box-shadow: 0 14px 30px rgba(21, 40, 64, 0.18) !important;
+        }
     </style>
 
     <style type="text/css">
@@ -2754,13 +2798,6 @@
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
                                 <span>Download PDF</span>
                             </button>
-                        </div>
-                        <div class="flex items-center gap-2" role="group" aria-label="Reading accessibility controls">
-                            <button type="button" id="reader-font-dec" onclick="window.readerAdjustFont && window.readerAdjustFont(-1)" class="reader-a11y-btn" aria-pressed="false" aria-label="Decrease article text size" title="Decrease text size">A&minus;</button>
-                            <button type="button" id="reader-font-scale-btn" onclick="window.readerCycleFont && window.readerCycleFont()" class="reader-a11y-btn" aria-label="Current text size multiplier (click to cycle)" title="Click to cycle text size">1.0x</button>
-                            <button type="button" id="reader-font-inc" onclick="window.readerAdjustFont && window.readerAdjustFont(1)" class="reader-a11y-btn" aria-pressed="false" aria-label="Increase article text size" title="Increase text size">A+</button>
-                            <button type="button" id="reader-spacing-toggle" onclick="window.readerToggleSpacing && window.readerToggleSpacing()" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle wide line and word spacing" title="Toggle wide line and word spacing">Wide Spacing</button>
-                            <button type="button" id="reader-focus-toggle" onclick="window.togglePulseFocusReading && window.togglePulseFocusReading()" class="reader-a11y-btn" aria-pressed="false" aria-label="Toggle Focus Paragraph Reading Mode" title="Dim surrounding paragraphs to focus on current paragraph">Focus Mode</button>
                         </div>
                     </div>
 
@@ -6682,7 +6719,7 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
-                                Yes! Although I didn’t recognize it at first, The Pulse’s posts definitely make sense for my Major's Final Project course through which I can receive up to eight credit hours.
+                                Yes, I am recieving six credit hours through my major's Final Project course!
                             </div>
                         </div>
                     </div>
@@ -6695,7 +6732,7 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
-                                Creating a major with 18 specializations across 42 departments and programs and in collaboration with over a dozen faculty was the coolest thing I have ever done--  and may ever do for a very long time. This program tested me more than just academically but also mentally, emotionally, and spiritually. It took me nine months to assemble my Faculty Advisory Committee, a vital component of applying for this major. I was nearly two years into undergrad before I knew I could get this major approved by the Franklin College of Arts and Sciences. What was integral to me being resilient in this program was my faith-- I trusted that God did not put me through all those health challenges freshman year just to not turn around and dedicate my life towards advancing American healthcare, beginning in creating a major that precisely helped me pursue my future academic and professional goals.
+                                Creating a major with 18 specializations across 42 departments and programs and in collaboration with over a dozen faculty was the coolest thing I have ever done--  and may ever do for a very long time. This program tested me more than just academically but also mentally, emotionally, and spiritually. It took me nine months to assemble my Faculty Advisory Committee, a vital component of applying for this major. I was nearly two years into undergrad before I knew I could get this major approved by the Franklin College of Arts and Sciences. What was integral to me being resilient in this program was my faith.
                             </div>
                         </div>
                     </div>
@@ -6710,7 +6747,7 @@
                             <div class="faq-content-inner">
                                 No! Throughout my life, I have always been interested in a variety of careers and majors. Freshman year was no exception. My first semester, I changed my major nearly every week—moderately stressful, do not recommend. However, crossing out the vast majority of professions and academic programs through thorough research and time investment, I can say for certain that what I pursue now is a perfect blend of my interests, passions, and strengths.
                                 <br><br>
-                                One interesting fun fact about my major though is that for the first year of it, it was actually called AI, Ethics, and the Future of Health Policy, and the coursework reflected its niche nature. I decided to expand it to Healthcare Technology Law and Regulation in April 2025 as I became more curious as to other areas of healthcare technology law and regulation. However, this area remains one of my top research and professional interests still, and can explain why I've really enjoyed using artificial intelligence to build this website.
+                                One interesting fun fact about my major though is that for the first year of it, it was actually AI, Ethics, and the Future of Health Policy. I decided to expand it to Healthcare Technology Law and Regulation in April 2025 as I became more curious as to other areas of healthcare technology law and regulation. However, this area remains one of my top research and professional interests still, and can explain why I've really enjoyed using artificial intelligence to build this website.
                             </div>
                         </div>
                     </div>
@@ -6723,7 +6760,7 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
-                                I intend to post 1-2 podcasts/blog articles combined on a monthly basis.
+                                I intend to post 1-2 podcasts/blog articles on a monthly basis.
                             </div>
                         </div>
                     </div>
@@ -6768,7 +6805,7 @@
                                 <br><br>
                                 For those 21 or older, volunteering as a Wish Granter for the Make-A-Wish Foundation sounds wonderful.
                                 <br><br>
-                                For those interested in supporting rural health in Georgia, interning with the Lake Country Medical Group during the summer is a fantastic idea. Helping out at local food pantries is also a great way to boost the foundation of community health– access to nutrition.
+                                For those interested in supporting rural health in Georgia, interning with the Lake Country Medical Group during the summer is a fantastic idea. Helping out at local food pantries is also a great way to boost the foundation of community health-– access to nutrition.
                             </div>
                         </div>
                     </div>
@@ -7023,6 +7060,7 @@
                 if (overlay) overlay.remove();
                 document.getElementById('main-content').classList.remove('opacity-0');
                 navigateTo(currentHash);
+                document.body.classList.add('pulse-ready');
                 setTimeout(() => { hasLoaded = true; }, 500);
             } else {
                 // Play intro animation normally for default home view
@@ -7041,11 +7079,13 @@
                         setTimeout(() => {
                             if (overlay.parentNode) overlay.remove();
                             navigateTo(currentHash || '#blog'); // Route on load
+                            document.body.classList.add('pulse-ready');
                             setTimeout(() => { hasLoaded = true; }, 500);
                         }, 600);
                     } else {
                         document.getElementById('main-content').classList.remove('opacity-0');
                         navigateTo(currentHash || '#blog');
+                        document.body.classList.add('pulse-ready');
                         setTimeout(() => { hasLoaded = true; }, 500);
                     }
                 }, 2250);
@@ -8622,7 +8662,7 @@
 
             window.renderRecommendations = function () {
                 const h = getPulseHistory();
-                const isFrequentOrLoggedIn = !!(window.annUser || h.visits >= 2 || h.posts.length >= 1 || h.episodes.length >= 1);
+                const isFrequentOrLoggedIn = !!(window.annUser || h.visits >= 2);
 
                 const blogRecSec = document.getElementById('blog-recommended-section');
                 const blogRecGrid = document.getElementById('blog-recommended-grid');
@@ -9567,6 +9607,15 @@
                 await setDoc(doc(db, "userPrefs", window.annUser.uid), { imageDescriptions: !!enabled }, { merge: true });
             } catch (err) { console.error("Failed to save image description preference:", err); }
         };
+        window.__annSaveA11yPref = async function (settings, updatedAt) {
+            if (!window.annUser || !settings || typeof settings !== "object") return;
+            try {
+                await setDoc(doc(db, "userPrefs", window.annUser.uid), {
+                    a11ySettings: settings,
+                    a11ySettingsUpdatedAt: Number(updatedAt) || Date.now()
+                }, { merge: true });
+            } catch (err) { console.error("Failed to save accessibility preferences:", err); }
+        };
         window.updateFooterLogout = function () {
             const el = document.getElementById('footer-logout');
             if (el) el.style.display = window.annUser ? '' : 'none';
@@ -9583,9 +9632,18 @@
                     if (localSpeed !== null) initPrefs.audioSpeed = parseFloat(localSpeed) || 1.0;
                     await setDoc(doc(db, "userPrefs", uid), initPrefs, { merge: true });
                     try { localStorage.setItem('lightPromptAnswered', '1'); } catch (e) {}
+                    window.__pulseA11yCloudPayload = { settings: null, updatedAt: 0 };
+                    window.dispatchEvent(new CustomEvent("pulse:a11y-cloud", { detail: window.__pulseA11yCloudPayload }));
                     return;
                 }
                 const data = snap.data() || {};
+                const localA11yAt = (function () { try { return Number(localStorage.getItem("pulseA11ySettingsUpdatedAt")) || 0; } catch (e) { return 0; } })();
+                const cloudA11yAt = Number(data.a11ySettingsUpdatedAt) || 0;
+                const cloudA11y = data.a11ySettings && typeof data.a11ySettings === "object" ? data.a11ySettings : null;
+                window.__pulseA11yCloudPayload = (cloudA11y && cloudA11yAt >= localA11yAt)
+                    ? { settings: cloudA11y, updatedAt: cloudA11yAt }
+                    : { settings: null, updatedAt: cloudA11yAt };
+                window.dispatchEvent(new CustomEvent("pulse:a11y-cloud", { detail: window.__pulseA11yCloudPayload }));
                 if (data.viewHistory && typeof data.viewHistory === "object") {
                     try {
                         const localH = JSON.parse(localStorage.getItem('pulseViewHistory') || '{}');
@@ -9795,15 +9853,47 @@
             }
         };
 
+        async function annCheckProviderAvailable(providerId) {
+            try {
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 4000);
+                const response = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:createAuthUri?key=" + encodeURIComponent(firebaseConfig.apiKey), {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ providerId: providerId, continueUri: window.location.origin + window.location.pathname }),
+                    signal: controller.signal
+                });
+                clearTimeout(timer);
+                if (response.ok) return true;
+                const data = await response.json().catch(() => ({}));
+                const message = String((data && data.error && data.error.message) || "");
+                return !/OPERATION_NOT_ALLOWED|configuration is not found/i.test(message);
+            } catch (err) {
+                return true;
+            }
+        }
+
         window.annAppleSignIn = async function () {
             const msg = document.getElementById('ann-auth-msg');
+            const provider = new OAuthProvider("apple.com");
+            provider.addScope("email");
+            provider.addScope("name");
+            provider.setCustomParameters({ locale: "en" });
+            msg.textContent = "Opening Apple sign-in...";
             try {
-                await signInWithPopup(annAuth, new OAuthProvider("apple.com"));
+                if (!(await annCheckProviderAvailable("apple.com"))) {
+                    msg.textContent = "Apple sign-in isn't available yet. Please use Google or a login link.";
+                    return;
+                }
+                await signInWithPopup(annAuth, provider);
             } catch (err) {
                 console.error(err);
                 const code = (err && err.code) || "unknown";
-                if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") return;
-                msg.textContent = "Apple sign-in failed (" + code + "). " + (code === "auth/operation-not-allowed" || code === "auth/configuration-not-found" ? "Apple sign-in needs to be enabled in Firebase with an Apple Developer account." : "");
+                if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") {
+                    msg.textContent = "";
+                    return;
+                }
+                msg.textContent = "Apple sign-in failed (" + code + "). " + (code === "auth/operation-not-allowed" || code === "auth/configuration-not-found" ? "Apple sign-in is not enabled for this site yet." : "Please use Google or a login link.");
             }
         };
 
@@ -10482,7 +10572,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease, visibility 0.25s ease;
+        }
+        body:not(.pulse-ready) #uw-a11y-trigger {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
         }
         #uw-a11y-trigger:hover {
             transform: scale(1.07);
@@ -11075,6 +11170,7 @@
     <script>
         (function () {
             const STORAGE_KEY = 'pulseA11ySettingsV1';
+            const STORAGE_UPDATED_KEY = 'pulseA11ySettingsUpdatedAt';
             const defaultState = {
                 oversized: false,
                 contrast: 0,
@@ -11107,9 +11203,34 @@
             const readingGuide = document.getElementById('uw-reading-guide');
             const tooltipBox = document.getElementById('uw-tooltip-box');
 
-            function saveState() {
-                try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+            function persistLocalState() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+                    localStorage.setItem(STORAGE_UPDATED_KEY, String(Date.now()));
+                } catch (e) {}
             }
+
+            function saveState() {
+                persistLocalState();
+                try {
+                    const updatedAt = Number(localStorage.getItem(STORAGE_UPDATED_KEY)) || Date.now();
+                    if (window.__annSaveA11yPref) window.__annSaveA11yPref(state, updatedAt);
+                } catch (e) {}
+            }
+
+            function applyCloudA11y(payload) {
+                if (!payload) return;
+                if (payload.settings && typeof payload.settings === 'object') {
+                    state = Object.assign({}, defaultState, payload.settings);
+                    applyState();
+                    persistLocalState();
+                } else if (window.annUser) {
+                    saveState();
+                }
+                try { delete window.__pulseA11yCloudPayload; } catch (e) {}
+            }
+
+
 
             function applyState() {
                 const b = document.body;
@@ -11273,6 +11394,10 @@
             });
 
             applyState();
+            window.addEventListener('pulse:a11y-cloud', function (event) {
+                applyCloudA11y(event.detail);
+            });
+            if (window.__pulseA11yCloudPayload) applyCloudA11y(window.__pulseA11yCloudPayload);
             window.togglePulseFocusReading = function () {
                 state.focusReading = state.focusReading > 0 ? 0 : 1;
                 applyState();
