@@ -32,7 +32,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./cookie-consent.css">
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="./cookie-consent.js"></script>
 
     <style>
         :root {
@@ -304,6 +306,30 @@
             white-space: nowrap;
         }
         .site-footer a:hover { text-decoration: underline; }
+        .site-footer .footer-legal-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem 0.5rem;
+        }
+        .site-footer .footer-cookie-btn {
+            appearance: none;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            color: #4adcf0;
+            font: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .site-footer .footer-cookie-btn:hover {
+            text-decoration: underline;
+        }
+        body.light-mode .site-footer .footer-cookie-btn { color: #567ce4 !important; }
         .site-footer .footer-line { padding: 0; }
         .site-footer .footer-line + .footer-line { margin-top: 0.25rem; }
         .site-footer .footer-meta-row {
@@ -6630,7 +6656,7 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
-                                At first, I used CanvaAI to create the website’s design. However, Canva had not released an AI helper to edit the design at the time. I really liked the design though so I moved the design’s HTML file over to Gemini. As the website became more complex, we switched to Google AntiGravity, still utilizing Gemini. Now, I am utilizing OpenCode. For those unfamiliar with website design, it is not normal to have your entire website based on one HTML file. Each website page typically has its own HTML file. But, here we are, making it work!
+                                I've primarily used Gemini and various models on OpenCode!
                             </div>
                         </div>
                     </div>
@@ -6643,7 +6669,7 @@
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
-                                I intend on applying to law school next fall and, ideally, getting into a well-rounded program with plenty of healthtech law adjacent opportunities. It is a slightly nerve-wracking process but I trust I will be where I’m meant to be.
+                                I intend on taking a few gap years before applying to law school!
                             </div>
                         </div>
                     </div>
@@ -9905,6 +9931,13 @@
         </p>
         <p class="footer-line">
             For inquiries, contact <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a>
+        </p>
+        <p class="footer-line footer-legal-row">
+            <a href="./terms.html">Terms &amp; Conditions</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <a href="./privacy.html">Privacy Policy</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <button type="button" class="footer-cookie-btn" data-cookie-settings>Cookie settings</button>
         </p>
     </footer>
     <div id="print-area"></div>
