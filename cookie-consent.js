@@ -101,7 +101,6 @@
         banner.setAttribute('aria-labelledby', 'pulse-cookie-title');
         banner.setAttribute('aria-describedby', 'pulse-cookie-copy pulse-cookie-links');
         banner.innerHTML = [
-            '<p class="pulse-cookie-kicker">Privacy choices</p>',
             '<h2 class="pulse-cookie-title" id="pulse-cookie-title">May we use cookies?</h2>',
             '<p class="pulse-cookie-copy" id="pulse-cookie-copy">Essential cookies and local storage keep the site working, sign-in, and accessibility choices. With permission, we also remember theme and reading preferences. No advertising cookies. Allow optional storage?</p>',
             '<p class="pulse-cookie-links" id="pulse-cookie-links"><a href="./privacy.html#cookies">Privacy Policy</a> <span aria-hidden="true">&middot;</span> <a href="./terms.html">Terms &amp; Conditions</a></p>',
