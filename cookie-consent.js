@@ -89,6 +89,30 @@
         return readChoice() === 'all' ? 'all optional preferences' : 'essential storage only';
     }
 
+    function isLightThemeContext() {
+        try {
+            if (document.body && document.body.classList.contains('light-mode')) return true;
+            if (document.body && document.body.classList.contains('legal-page')) return true;
+            return document.documentElement.getAttribute('data-theme') === 'light';
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function isGlobalFilterActive() {
+        try {
+            var filter = window.getComputedStyle(document.documentElement).filter;
+            return !!filter && filter !== 'none';
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function syncBannerTheme() {
+        if (!banner) return;
+        banner.classList.toggle('pulse-cookie-banner-light', isLightThemeContext() && !isGlobalFilterActive());
+    }
+
     function buildBanner() {
         if (banner) return banner;
 
@@ -151,6 +175,9 @@
         }
 
         el.hidden = false;
+        syncBannerTheme();
+        setTimeout(syncBannerTheme, 0);
+        setTimeout(syncBannerTheme, 400);
         if (status) status.textContent = existingChoice ? 'Current choice: ' + currentChoiceLabel() + '.' : '';
 
         if (reopen) {
@@ -195,4 +222,10 @@
         event.preventDefault();
         showBanner(true);
     });
+
+    window.addEventListener('hashchange', syncBannerTheme);
+    window.addEventListener('popstate', syncBannerTheme);
+    if (typeof MutationObserver !== 'undefined' && document.body) {
+        new MutationObserver(syncBannerTheme).observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+    }
 })();

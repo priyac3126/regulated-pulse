@@ -190,3 +190,60 @@
         transform: none;
     }
 }
+
+.pulse-cookie-banner.pulse-cookie-banner-light {
+    background:
+        radial-gradient(circle at 100% 0%, rgba(68, 139, 255, 0.14), transparent 17rem),
+        #f5f9ff;
+    border-color: rgba(68, 139, 255, 0.32);
+    color: #20324a;
+    box-shadow: 0 24px 70px rgba(21, 40, 64, 0.18);
+}
+
+.pulse-cookie-banner-light .pulse-cookie-title {
+    color: #10243f;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-copy {
+    color: #42566f;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-links {
+    color: #61758e;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-links a {
+    color: #235fab;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-btn-primary {
+    border-color: #2f6bb8;
+    background: #2f6bb8;
+    color: #ffffff;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-btn-primary:hover {
+    border-color: #245796;
+    background: #245796;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-btn-secondary {
+    border-color: #b8cbe6;
+    background: #ffffff;
+    color: #1c3a5c;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-btn-secondary:hover {
+    border-color: #8fb0d8;
+    background: #eef5ff;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-btn-quiet {
+    color: #4b607c;
+}
+
+.pulse-cookie-banner-light .pulse-cookie-btn-quiet:hover {
+    border-color: #c5d5e8;
+    background: #ffffff;
+    color: #10243f;
+}
