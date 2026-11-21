@@ -2123,23 +2123,6 @@
             font-weight: 500 !important;
         }
 
-        .shelf-heading {
-            display: flex !important;
-            align-items: center;
-            gap: 0.45rem;
-        }
-        .shelf-heading-icon {
-            display: inline-flex;
-            width: 0.9rem;
-            height: 0.9rem;
-            color: #6ea8ff;
-            flex: 0 0 auto;
-        }
-        .shelf-heading-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
         body.light-mode #podcast-list-view .card-premium > span,
         body.light-mode #podcast-recommended-grid .card-premium > span {
             background: #0d2440 !important;
@@ -2767,15 +2750,7 @@
 
                             <!-- On the Shelf widget -->
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
-                                <h3 class="shelf-heading font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">
-                                    <span class="shelf-heading-icon" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12 7v14"></path>
-                                            <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path>
-                                        </svg>
-                                    </span>
-                                    <span>On the Shelf</span>
-                                </h3>
+                                <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">On the Shelf</h3>
                                 <p class="shelf-subtitle text-xs text-slate-400 -mt-2">Current reads shaping The Pulse's coverage.</p>
                                 <div class="space-y-4 mt-2">
                                     <button onclick="navigateTo('#post-battlefield')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Fields of Combat: Beyond the Battlefield">
