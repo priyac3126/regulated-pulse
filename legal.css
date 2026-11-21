@@ -269,7 +269,7 @@ button:focus-visible {
 }
 
 .legal-toc {
-    margin: 1.6rem 0 0;
+    margin: 1.6rem 0 2.2rem;
     padding: 1rem 1.15rem;
     border: 1px solid var(--legal-line);
     border-radius: 0.75rem;
