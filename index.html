@@ -3613,7 +3613,7 @@
                         <p class="text-sm mb-8" style="color: rgb(254, 215, 170);">Welcome · June 2026</p>
 
                         <div class="audio-player flex items-center gap-3 mb-8 cursor-pointer w-max"
-                            data-src="./Welcome to the Pulse.m4a" data-fallback-time="1:00">
+                            data-src="./welcome-to-the-pulse.m4a" data-fallback-time="0:54">
                             <button
                                 class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none"
                                 aria-label="Play article audio">
@@ -3625,7 +3625,7 @@
                             </button>
                             <div>
                                 <p class="text-sm font-bold text-white">Listen to Article</p>
-                                <p class="duration-text text-xs text-slate-400">-1:00 remaining</p>
+                                <p class="duration-text text-xs text-slate-400">-0:54 remaining</p>
                             </div>
                         </div>
 
@@ -4150,7 +4150,7 @@
                             read</p>
 
                         <div class="audio-player flex items-center gap-3 mb-8 cursor-pointer w-max"
-                            data-src="./A Giant Leap.m4a" data-fallback-time="5:00">
+                            data-src="./A Giant Leap.m4a" data-fallback-time="5:00" data-volume-boost="1.75">
                             <button
                                 class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none"
                                 aria-label="Play article audio">
@@ -4365,7 +4365,7 @@
                         </p>
 
                         <div class="audio-player flex items-center gap-3 mb-8 cursor-pointer w-max"
-                            data-src="./UI-UX Design.m4a" data-fallback-time="4:00">
+                            data-src="./UI-UX Design.m4a" data-fallback-time="4:00" data-volume-boost="1.75">
                             <button
                                 class="play-btn w-10 h-10 rounded-full flex items-center justify-center focus:outline-none"
                                 aria-label="Play article audio">
@@ -8060,7 +8060,7 @@
             // Web Audio API warmth filter so neural voice playback sounds warm, mellow, and never sharp
             let _warmAudioCtx = null;
             const _warmedElements = new WeakSet();
-            function attachWarmVoiceFilter(mediaEl) {
+            function attachWarmVoiceFilter(mediaEl, boost, warm) {
                 if (!mediaEl || mediaEl.isTTS || _warmedElements.has(mediaEl)) return;
                 try {
                     const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -8068,17 +8068,28 @@
                     if (!_warmAudioCtx) _warmAudioCtx = new AudioCtx();
                     if (_warmAudioCtx.state === 'suspended') _warmAudioCtx.resume();
                     const source = _warmAudioCtx.createMediaElementSource(mediaEl);
-                    const lowShelf = _warmAudioCtx.createBiquadFilter();
-                    lowShelf.type = 'lowshelf';
-                    lowShelf.frequency.value = 190;
-                    lowShelf.gain.value = 2.2;
-                    const highShelf = _warmAudioCtx.createBiquadFilter();
-                    highShelf.type = 'highshelf';
-                    highShelf.frequency.value = 3100;
-                    highShelf.gain.value = -4.8;
-                    source.connect(lowShelf);
-                    lowShelf.connect(highShelf);
-                    highShelf.connect(_warmAudioCtx.destination);
+                    let output = source;
+                    if (warm) {
+                        const lowShelf = _warmAudioCtx.createBiquadFilter();
+                        lowShelf.type = 'lowshelf';
+                        lowShelf.frequency.value = 190;
+                        lowShelf.gain.value = 2.2;
+                        const highShelf = _warmAudioCtx.createBiquadFilter();
+                        highShelf.type = 'highshelf';
+                        highShelf.frequency.value = 3100;
+                        highShelf.gain.value = -4.8;
+                        output.connect(lowShelf);
+                        lowShelf.connect(highShelf);
+                        output = highShelf;
+                    }
+                    const gainValue = Number(boost) || 1;
+                    if (gainValue !== 1) {
+                        const gainNode = _warmAudioCtx.createGain();
+                        gainNode.gain.value = gainValue;
+                        output.connect(gainNode);
+                        output = gainNode;
+                    }
+                    output.connect(_warmAudioCtx.destination);
                     _warmedElements.add(mediaEl);
                 } catch (e) {}
             }
@@ -8332,8 +8343,10 @@
                 });
 
                 audio.addEventListener('play', () => {
-                    if (player.getAttribute('data-neural-mp3') === 'true') {
-                        attachWarmVoiceFilter(audio);
+                    const boost = parseFloat(player.getAttribute('data-volume-boost') || '1');
+                    const isNeuralMp3 = player.getAttribute('data-neural-mp3') === 'true';
+                    if (isNeuralMp3 || boost !== 1) {
+                        attachWarmVoiceFilter(audio, boost, isNeuralMp3);
                     }
                     if (activeHighlightTimer) clearInterval(activeHighlightTimer);
                     activeHighlightTimer = setInterval(() => {
