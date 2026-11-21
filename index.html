@@ -9327,10 +9327,25 @@
             $('.ml-subscribe-form-42510540 .row-form').hide();
         }
     </script>
-    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519"
-        type="text/javascript"></script>
     <script>
-        fetch("https://assets.mailerlite.com/jsonp/2426551/forms/190027996672821166/takel")
+        (function () {
+            function loadMailerLite() {
+                if (window.__pulseMailerLiteLoaded) return;
+                window.__pulseMailerLiteLoaded = true;
+                var script = document.createElement('script');
+                script.src = 'https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519';
+                script.type = 'text/javascript';
+                script.async = true;
+                document.head.appendChild(script);
+                fetch('https://assets.mailerlite.com/jsonp/2426551/forms/190027996672821166/takel').catch(function () {});
+            }
+            try {
+                if (localStorage.getItem('pulseCookieConsentV1') === 'all') loadMailerLite();
+            } catch (e) {}
+            window.addEventListener('pulse:cookie-consent', function (event) {
+                if (event.detail && event.detail.choice === 'all') loadMailerLite();
+            });
+        })();
     </script>
 
     <script type="module">

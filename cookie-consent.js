@@ -14,6 +14,7 @@
         'pulseViewHistory'
     ];
     var OPTIONAL_PREFIXES = ['liked_'];
+    var FUNCTIONAL_KEYS = ['annEmail', 'my_comment_emails', 'pulseA11ySettingsV1', 'pulseA11ySettingsUpdatedAt'];
     var originalSetItem = null;
     var banner = null;
     var lastFocusedElement = null;
@@ -21,7 +22,7 @@
     function readChoice() {
         try {
             var value = window.localStorage.getItem(CONSENT_KEY);
-            return value === 'all' || value === 'essential' ? value : null;
+            return value === 'all' || value === 'essential' || value === 'none' ? value : null;
         } catch (error) {
             return null;
         }
@@ -34,12 +35,23 @@
         });
     }
 
+    function isFunctionalKey(key) {
+        return FUNCTIONAL_KEYS.indexOf(key) !== -1;
+    }
+
+    function isBlockedKey(key) {
+        var choice = readChoice();
+        if (isOptionalKey(key)) return choice !== 'all';
+        if (isFunctionalKey(key)) return choice !== 'all' && choice !== 'essential';
+        return false;
+    }
+
     function installStorageGuard() {
         try {
             originalSetItem = window.Storage.prototype.setItem;
             window.Storage.prototype.setItem = function (key, value) {
                 try {
-                    if (this === window.localStorage && readChoice() !== 'all' && isOptionalKey(String(key))) {
+                    if (this === window.localStorage && isBlockedKey(String(key))) {
                         return;
                     }
                 } catch (error) {
@@ -52,16 +64,20 @@
         }
     }
 
-    function clearOptionalStorage() {
+    function clearStoredKeys(includeFunctional) {
         OPTIONAL_KEYS.forEach(function (key) {
             try { window.localStorage.removeItem(key); } catch (error) {}
         });
-
+        if (includeFunctional) {
+            FUNCTIONAL_KEYS.forEach(function (key) {
+                try { window.localStorage.removeItem(key); } catch (error) {}
+            });
+        }
         try {
             var keys = [];
             for (var i = 0; i < window.localStorage.length; i += 1) {
                 var key = window.localStorage.key(i);
-                if (key && isOptionalKey(key)) keys.push(key);
+                if (key && (isOptionalKey(key) || (includeFunctional && isFunctionalKey(key)))) keys.push(key);
             }
             keys.forEach(function (key) {
                 try { window.localStorage.removeItem(key); } catch (error) {}
@@ -76,7 +92,8 @@
             return;
         }
 
-        if (value === 'essential') clearOptionalStorage();
+        if (value === 'essential') clearStoredKeys(false);
+        if (value === 'none') clearStoredKeys(true);
 
         try {
             window.dispatchEvent(new CustomEvent('pulse:cookie-consent', {
@@ -86,7 +103,10 @@
     }
 
     function currentChoiceLabel() {
-        return readChoice() === 'all' ? 'all optional preferences' : 'essential storage only';
+        var choice = readChoice();
+        if (choice === 'all') return 'all optional preferences';
+        if (choice === 'none') return 'no cookies';
+        return 'essential storage only';
     }
 
     function isLightThemeContext() {
@@ -126,11 +146,12 @@
         banner.setAttribute('aria-describedby', 'pulse-cookie-copy pulse-cookie-links');
         banner.innerHTML = [
             '<h2 class="pulse-cookie-title" id="pulse-cookie-title">May we use cookies?</h2>',
-            '<p class="pulse-cookie-copy" id="pulse-cookie-copy">Essential cookies and local storage keep the site working, sign-in, and accessibility choices. With permission, we also remember theme and reading preferences. No advertising cookies. Allow optional storage?</p>',
+            '<p class="pulse-cookie-copy" id="pulse-cookie-copy">We use essential cookies and local storage to keep the site secure and remember this choice. With permission, we also remember theme and reading preferences. No advertising cookies. Choose what you want to allow.</p>',
             '<p class="pulse-cookie-links" id="pulse-cookie-links"><a href="./privacy.html#cookies">Privacy Policy</a> <span aria-hidden="true">&middot;</span> <a href="./terms.html">Terms &amp; Conditions</a></p>',
             '<div class="pulse-cookie-actions">',
             '    <button type="button" class="pulse-cookie-btn pulse-cookie-btn-primary" data-cookie-choice="all">Allow cookies</button>',
             '    <button type="button" class="pulse-cookie-btn pulse-cookie-btn-secondary" data-cookie-choice="essential">Essential only</button>',
+            '    <button type="button" class="pulse-cookie-btn pulse-cookie-btn-secondary" data-cookie-choice="none">No cookies</button>',
             '    <button type="button" class="pulse-cookie-btn pulse-cookie-btn-quiet" data-cookie-keep hidden>Keep current choice</button>',
             '</div>',
             '<p class="pulse-cookie-sr" aria-live="polite" data-cookie-status></p>'
@@ -168,10 +189,10 @@
 
         if (existingChoice) {
             keepButton.hidden = false;
-            copy.textContent = 'Your current choice is ' + currentChoiceLabel() + '. Essential storage keeps the site working, sign-in, and accessibility choices. Optional storage remembers theme and reading preferences. No advertising cookies. You can change this anytime.';
+            copy.textContent = 'Your current choice is ' + currentChoiceLabel() + '. Essential storage keeps the site secure and remembers this choice. Optional storage remembers theme and reading preferences. No advertising cookies. You can change this anytime.';
         } else {
             keepButton.hidden = true;
-            copy.textContent = 'Essential cookies and local storage keep the site working, sign-in, and accessibility choices. With permission, we also remember theme and reading preferences. No advertising cookies. Allow optional storage?';
+            copy.textContent = 'We use essential cookies and local storage to keep the site secure and remember this choice. With permission, we also remember theme and reading preferences. No advertising cookies. Choose what you want to allow.';
         }
 
         el.hidden = false;
@@ -206,7 +227,8 @@
     };
 
     installStorageGuard();
-    if (readChoice() === 'essential') clearOptionalStorage();
+    if (readChoice() === 'essential') clearStoredKeys(false);
+    if (readChoice() === 'none') clearStoredKeys(true);
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () {
