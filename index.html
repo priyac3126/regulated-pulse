@@ -2031,48 +2031,51 @@
             }
         }
 
-        /* Unified, flat article postcards */
-        #recent-articles-list .card-premium,
-        #blog-recommended-grid .card-premium {
-            background: #0f141c !important;
-            border: 1px solid rgba(255, 255, 255, 0.07) !important;
-            border-left: 1px solid rgba(255, 255, 255, 0.07) !important;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18) !important;
+        /* Unified white-and-blue postcards for articles, Vital Signs, and podcast episodes */
+        .card-premium {
+            background: #0b1524 !important;
+            border: 1px solid rgba(96, 165, 250, 0.18) !important;
+            border-left: 1px solid rgba(96, 165, 250, 0.18) !important;
+            box-shadow: 0 8px 24px rgba(2, 8, 20, 0.24) !important;
         }
-        #recent-articles-list .card-premium::before,
-        #recent-articles-list .card-premium::after,
-        #blog-recommended-grid .card-premium::before,
-        #blog-recommended-grid .card-premium::after {
+        .card-premium::before,
+        .card-premium::after {
             display: none !important;
         }
-        #recent-articles-list .card-premium:hover,
-        #blog-recommended-grid .card-premium:hover {
-            background: #121924 !important;
-            border-color: rgba(148, 163, 184, 0.22) !important;
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.26) !important;
+        .card-premium:hover {
+            background: #101d30 !important;
+            border-color: rgba(96, 165, 250, 0.38) !important;
+            box-shadow: 0 14px 30px rgba(2, 8, 20, 0.32) !important;
             transform: translateY(-2px) !important;
         }
-        #recent-articles-list .card-premium h3,
-        #blog-recommended-grid .card-premium h3 {
+        .card-premium h3,
+        .card-premium h4 {
             color: #f8fafc !important;
             letter-spacing: -0.012em !important;
             line-height: 1.35 !important;
         }
-        #recent-articles-list .card-premium p,
-        #blog-recommended-grid .card-premium p {
+        .card-premium p {
             line-height: 1.6 !important;
         }
-        body.light-mode #recent-articles-list .card-premium,
-        body.light-mode #blog-recommended-grid .card-premium {
-            background: linear-gradient(135deg, #0a192d 0%, #000000 100%) !important;
-            border-color: #12274a !important;
+        #podcast-list-view .card-premium > span,
+        #podcast-recommended-grid .card-premium > span {
+            background: rgba(59, 130, 246, 0.16) !important;
+            color: #93c5fd !important;
+        }
+        body.light-mode .card-premium {
+            background: #020509 !important;
+            border-color: #0f2b4e !important;
             box-shadow: 0 8px 24px rgba(21, 40, 64, 0.12) !important;
         }
-        body.light-mode #recent-articles-list .card-premium:hover,
-        body.light-mode #blog-recommended-grid .card-premium:hover {
-            background: linear-gradient(135deg, #0f2b4e 0%, #000000 100%) !important;
-            border-color: #0f2b4e !important;
+        body.light-mode .card-premium:hover {
+            background: #040b14 !important;
+            border-color: #1a477e !important;
             box-shadow: 0 14px 30px rgba(21, 40, 64, 0.18) !important;
+        }
+        body.light-mode #podcast-list-view .card-premium > span,
+        body.light-mode #podcast-recommended-grid .card-premium > span {
+            background: #0d2440 !important;
+            color: #c7dcff !important;
         }
     </style>
 
@@ -2528,7 +2531,7 @@
                                             class="rounded-2xl p-7 card-premium card-book text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-art-cure-click"
                                             aria-label="Read post: The Fifth Pillar: Why the Arts Belong in Clinical Care">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-book">Book Insights</span>
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Fifth Pillar: Why the Arts Belong in Clinical Care</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">How arts engagement can improve patient outcomes</p>
                                             <p class="text-xs text-slate-500 font-medium">October 2026 · 4 min read</p>
@@ -2570,7 +2573,7 @@
                                     <button
                                             class="rounded-2xl p-7 card-premium card-fuchsia text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-compassion-click" aria-label="Read post: The Case for Compassionate Care">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-fuchsia">Book Insights</span>
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Case for Compassionate Care</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">The medical necessity of compassionate care</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026 · 11 min read</p>
@@ -2580,7 +2583,7 @@
                                     <button
                                             class="rounded-2xl p-7 card-premium card-welcome text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-migration-click" aria-label="Read post: Healing Without Borders">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-welcome">Book Insights</span>
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">Healing Without Borders</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">Bridging gaps in migrant health through innovation and policy</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026 · 7 min read</p>
@@ -2601,7 +2604,7 @@
                                             class="rounded-2xl p-7 card-premium card-slate text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                             id="card-giant-leap-click"
                                             aria-label="Read post: A Giant Leap: Trust and Oversight in Healthcare AI">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-slate">Book Insights</span>
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">A Giant Leap: Trust and Oversight in Healthcare AI</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">AI will transform healthcare. This book explains why and what it means for healthtech regulation</p>
                                             <p class="text-xs text-slate-500 font-medium">June 2026 · 8 min read</p>
@@ -8525,14 +8528,14 @@
             // ================= Catalog & "Recommended for You" + Editorial Enhancements =================
             const BLOG_POST_CATALOG = [
                 { id: 'post-battlefield', cardId: 'card-battlefield-click', cat: 'book', cardClass: 'card-violet', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'Beyond the Battlefield', subtitle: 'The Toll of PTSD and the Fight to Improve Veteran Mental Health', date: 'November 2026 · 5 min read' },
-                { id: 'post-art-cure', cardId: 'card-art-cure-click', cat: 'book', cardClass: 'card-book', tagClass: 'tag-book', tagLabel: 'Book Insights', title: 'The Fifth Pillar: Why the Arts Belong in Clinical Care', subtitle: 'How arts engagement can improve patient outcomes', date: 'October 2026 · 4 min read' },
+                { id: 'post-art-cure', cardId: 'card-art-cure-click', cat: 'book', cardClass: 'card-book', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'The Fifth Pillar: Why the Arts Belong in Clinical Care', subtitle: 'How arts engagement can improve patient outcomes', date: 'October 2026 · 4 min read' },
                 { id: 'post-malpractice', cardId: 'card-malpractice-click', cat: 'law', cardClass: 'card-law', tagClass: 'tag-law', tagLabel: 'Law & Policy', title: 'State Medical Malpractice Laws Comparison', subtitle: 'Texas and Arizona', date: 'July 2026 · 6 min read' },
                 { id: 'post-cdc-interview', cardId: 'card-cdc-interview-click', cat: 'interview', cardClass: 'card-interview', tagClass: 'tag-interview', tagLabel: 'Interview', title: 'From Anatomy Labs to Biosafety Laws', subtitle: 'An Interview with CDC Attorney Taylor Revenew', date: 'July 2026 · 5 min read' },
                 { id: 'post-book-recs', cardId: 'card-book-recs-click', cat: 'book', cardClass: 'card-book', tagClass: 'tag-book', tagLabel: 'Reading List', title: 'Book Recommendations', subtitle: 'My top 11 healthcare reads', date: 'June 2026' },
-                { id: 'post-compassion', cardId: 'card-compassion-click', cat: 'book', cardClass: 'card-fuchsia', tagClass: 'tag-fuchsia', tagLabel: 'Book Insights', title: 'The Case for Compassionate Care', subtitle: 'The medical necessity of compassionate care', date: 'June 2026 · 11 min read' },
-                { id: 'post-migration', cardId: 'card-migration-click', cat: 'book', cardClass: 'card-welcome', tagClass: 'tag-welcome', tagLabel: 'Book Insights', title: 'Healing Without Borders', subtitle: 'Bridging gaps in migrant health through innovation and policy', date: 'June 2026 · 7 min read' },
+                { id: 'post-compassion', cardId: 'card-compassion-click', cat: 'book', cardClass: 'card-fuchsia', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'The Case for Compassionate Care', subtitle: 'The medical necessity of compassionate care', date: 'June 2026 · 11 min read' },
+                { id: 'post-migration', cardId: 'card-migration-click', cat: 'book', cardClass: 'card-welcome', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'Healing Without Borders', subtitle: 'Bridging gaps in migrant health through innovation and policy', date: 'June 2026 · 7 min read' },
                 { id: 'post-na', cardId: 'card-na-click', cat: 'education', cardClass: 'card-inspiration', tagClass: 'tag-inspiration', tagLabel: 'History & Policy', title: '"If You Knew the Conditions"', subtitle: 'The evolution of Native American health care', date: 'June 2026 · 4 min read' },
-                { id: 'post-giant-leap', cardId: 'card-giant-leap-click', cat: 'ai', cardClass: 'card-slate', tagClass: 'tag-slate', tagLabel: 'Book Insights', title: 'A Giant Leap: Trust and Oversight in Healthcare AI', subtitle: 'AI will transform healthcare. This book explains why and what it means for healthtech regulation.', date: 'June 2026 · 8 min read' },
+                { id: 'post-giant-leap', cardId: 'card-giant-leap-click', cat: 'ai', cardClass: 'card-slate', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'A Giant Leap: Trust and Oversight in Healthcare AI', subtitle: 'AI will transform healthcare. This book explains why and what it means for healthtech regulation.', date: 'June 2026 · 8 min read' },
                 { id: 'post-ai', cardId: 'card-ai-access-click', cat: 'ai', cardClass: 'card-education', tagClass: 'tag-education', tagLabel: 'AI & Policy', title: 'Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights', subtitle: 'How we build ethical, inclusive design', date: 'June 2026 · 7 min read' },
                 { id: 'post-welcome', cardId: 'card-welcome-click', cat: 'education', cardClass: 'card-welcome', tagClass: 'tag-welcome', tagLabel: 'Welcome', title: 'Welcome to The Regulated Pulse', subtitle: 'What to expect from the blog', date: 'June 2026' },
                 { id: 'post-pain-brokers', cardId: 'card-pain-brokers-click', cat: 'law', cardClass: 'card-book', tagClass: 'tag-book', tagLabel: 'Reading List', title: 'The Pain Brokers', subtitle: 'Defective healthcare technology and legal corruption', date: 'July 2026' },
