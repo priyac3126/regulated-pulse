@@ -598,6 +598,36 @@
             background-color: #dfe5f0 !important;
             box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
         }
+        body.light-mode .podcast-platform-link.platform-youtube {
+            background-color: #fff0f0 !important;
+            border-color: rgba(255, 0, 0, 0.25) !important;
+            color: #c40000 !important;
+        }
+        body.light-mode .podcast-platform-link.platform-spotify {
+            background-color: #e9f9ef !important;
+            border-color: rgba(29, 185, 84, 0.32) !important;
+            color: #0f7a42 !important;
+        }
+        body.light-mode .podcast-platform-link.platform-apple {
+            background-color: #f5ecfb !important;
+            border-color: rgba(153, 51, 204, 0.28) !important;
+            color: #6d1d99 !important;
+        }
+        body.light-mode .podcast-platform-link.platform-amazon {
+            background-color: #e9f8fe !important;
+            border-color: rgba(0, 168, 225, 0.32) !important;
+            color: #006f99 !important;
+        }
+        body.light-mode .podcast-platform-link.platform-pocketcasts {
+            background-color: #fdeeed !important;
+            border-color: rgba(244, 62, 55, 0.28) !important;
+            color: #b32620 !important;
+        }
+        body.light-mode .podcast-platform-link.platform-youtube:hover { background-color: #ffe4e4 !important; }
+        body.light-mode .podcast-platform-link.platform-spotify:hover { background-color: #ddf4e6 !important; }
+        body.light-mode .podcast-platform-link.platform-apple:hover { background-color: #ecdcf8 !important; }
+        body.light-mode .podcast-platform-link.platform-amazon:hover { background-color: #dcf3fc !important; }
+        body.light-mode .podcast-platform-link.platform-pocketcasts:hover { background-color: #fbe2e1 !important; }
         body.light-mode #podcast-platforms-modal {
             background: rgba(15, 23, 42, 0.35) !important;
         }
@@ -5080,35 +5110,35 @@
                     <h3 class="font-medium text-white text-base mb-4" style="font-family: 'Plus Jakarta Sans', sans-serif;">Listen &amp; Subscribe</h3>
                     <nav aria-label="Podcast streaming platforms" class="flex flex-wrap gap-3">
                         <a href="https://www.youtube.com/@theregulatedpulse" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
+                            class="podcast-platform-link platform-youtube inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on YouTube (opens in new tab)">
                             <span class="platform-dot platform-dot-youtube" style="width: 10px; height: 10px; border-radius: 50%; background: #FF0000; flex-shrink: 0;" aria-hidden="true"></span>
                             YouTube
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
+                            class="podcast-platform-link platform-spotify inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Spotify (opens in new tab)">
                             <span class="platform-dot platform-dot-spotify" style="width: 10px; height: 10px; border-radius: 50%; background: #1DB954; flex-shrink: 0;" aria-hidden="true"></span>
                             Spotify
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
+                            class="podcast-platform-link platform-apple inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Apple Podcasts (opens in new tab)">
                             <span class="platform-dot platform-dot-apple" style="width: 10px; height: 10px; border-radius: 50%; background: #9933CC; flex-shrink: 0;" aria-hidden="true"></span>
                             Apple Podcasts
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/the-regulated-pulse-podcast" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
+                            class="podcast-platform-link platform-amazon inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Amazon Music (opens in new tab)">
                             <span class="platform-dot platform-dot-amazon" style="width: 10px; height: 10px; border-radius: 50%; background: #00A8E1; flex-shrink: 0;" aria-hidden="true"></span>
                             Amazon Music
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                         <a href="https://pca.st/mws3867u" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
+                            class="podcast-platform-link platform-pocketcasts inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
                             aria-label="Listen on Pocket Casts (opens in new tab)">
                             <span class="platform-dot platform-dot-pocketcasts" style="width: 10px; height: 10px; border-radius: 50%; background: #F43E37; flex-shrink: 0;" aria-hidden="true"></span>
                             Pocket Casts
@@ -5128,7 +5158,11 @@
                         <div id="podcast-recommended-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
                     </div>
 
-                    <h3 class="font-bold mb-6" style="color: rgb(241, 245, 249); font-size: 22px;">Episodes</h3>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+                        <h3 class="font-bold" style="color: rgb(241, 245, 249); font-size: 22px;">Episodes</h3>
+                        <input type="search" id="podcast-search-input" class="blog-search-input" placeholder="Search episodes..." aria-label="Search podcast episodes">
+                    </div>
+                    <p id="podcast-no-results-msg" class="text-sm text-slate-400 py-6 text-center blog-card-hidden">No matching episodes found. Try a different keyword.</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
 
                         <!-- Episode 8 Card -->
@@ -8894,6 +8928,108 @@
                 });
             }
 
+            // Podcast key-term search
+            const PODCAST_SEMANTIC_CONCEPTS = {
+                ep8: 'kyle smith legal engineering law iXian LexDAO Lex Clinic decentralized blockchain ethereum smart contracts ERC-7827 merkle trees zero knowledge proofs privacy consent forms clinical protocols html markup leibniz goldfarb open source legal literacy healthcare compliance jurisprudence computer science',
+                ep7: 'gina mundy childbirth birth injury obstetric malpractice pregnancy labor delivery fetal monitoring wireless telemetry pitocin induction doula maternal mortality neonatal brain injury litigation prevention patient advocacy insurance hsa letter of medical necessity',
+                ep6: 'fazal khan jd md dual degree political determinants of health health equity frontier ai jason group data centers private equity automation ai scribes triple aim meharry jeaner block regulation risk',
+                ep5: 'wenzhan song intelligent dot beddot contactless monitoring seismic sensing remote patient monitoring fda 510k class ii clearance clinical validation sensors uga innovation gateway neonatal home care cyber physical systems',
+                ep4: 'brendan murphy chief magistrate judge cobb county peoples court access to justice pandemic covid rental assistance georgia supreme court legal regulatory reform limited legal practitioners mock trial student bar association probate',
+                ep3: 'nadine peever bonne fire ember consulting tefca interoperability healthcare data electronic health records ehr clinical silos asl american sign language deaf accessibility inclusive design health tech nonprofit community',
+                ep2: 'ethan sims climate health rural health emergency medicine wildfire extreme weather heat reproductive laws obstetric emergency hospital sustainability pre med medical students idaho clinicians',
+                ep1: 'digital accessibility ux user experience wcag screen readers assistive technology synovus banking inclusive design design systems keyboard navigation corporate mergers leadership'
+            };
+            const podcastSearchIndex = {};
+            const allPodcastWords = new Set();
+            PODCAST_EP_CATALOG.forEach(ep => {
+                const container = document.getElementById('podcast-' + ep.id + '-container');
+                const detail = container ? container.querySelector('.podcast-detail-card') : null;
+                const bodyText = detail ? detail.textContent.replace(/\s+/g, ' ').toLowerCase() : '';
+                const concepts = PODCAST_SEMANTIC_CONCEPTS[ep.id] || '';
+                const combined = `${ep.title} ${ep.epLabel} ${ep.date} ${concepts} ${bodyText}`.toLowerCase();
+                const words = combined.split(/[^a-z0-9]+/).filter(w => w && !GENERIC_STOP_WORDS.has(w));
+                words.forEach(w => allPodcastWords.add(w));
+                const conceptList = (`${ep.title} ${ep.epLabel} ${concepts}`).toLowerCase().split(/[^a-z0-9]+/).filter(w => w && !GENERIC_STOP_WORDS.has(w));
+                podcastSearchIndex[ep.id] = {
+                    raw: combined,
+                    words,
+                    wordSet: new Set(words),
+                    normSet: new Set(words.map(normalizeWholeWord).filter(Boolean)),
+                    conceptList,
+                    conceptWords: new Set(conceptList),
+                    conceptNorms: new Set(conceptList.map(normalizeWholeWord).filter(Boolean))
+                };
+            });
+            CONCEPT_SYNONYM_GROUPS.forEach(group => group.forEach(w => allPodcastWords.add(w)));
+
+            let isCommittedPodcastSearch = false;
+
+            function matchesPodcastQuery(ep, query, committed) {
+                if (!query) return true;
+                const idx = podcastSearchIndex[ep.id];
+                if (!idx) return true;
+                const cleanQ = query.toLowerCase().trim();
+                const qTokens = cleanQ.split(/\s+/).map(t => t.replace(/[^a-z0-9]/g, '')).filter(Boolean);
+                if (!qTokens.length) return true;
+                return qTokens.every(tok => {
+                    const normTok = normalizeWholeWord(tok);
+                    if (idx.wordSet.has(tok) || idx.normSet.has(normTok)) return true;
+                    for (const group of CONCEPT_SYNONYM_GROUPS) {
+                        const groupMatches = group.some(g => g === tok || normalizeWholeWord(g) === normTok);
+                        if (groupMatches) {
+                            const episodeMatches = group.some(g => idx.conceptWords.has(g) || idx.conceptNorms.has(normalizeWholeWord(g)));
+                            if (episodeMatches) return true;
+                        }
+                    }
+                    const isCompleteWord = allPodcastWords.has(tok) || allPodcastWords.has(normTok);
+                    const allowPrefix = !isCompleteWord || (!committed && tok.length >= 4);
+                    if (allowPrefix && tok.length >= 2) {
+                        if (idx.conceptList.some(w => w.startsWith(tok)) || (tok.length >= 5 && idx.words.some(w => w.startsWith(tok)))) return true;
+                        for (const group of CONCEPT_SYNONYM_GROUPS) {
+                            if (group.some(g => g.startsWith(tok))) {
+                                const episodeMatches = group.some(g => idx.conceptWords.has(g) || idx.conceptNorms.has(normalizeWholeWord(g)));
+                                if (episodeMatches) return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+            }
+
+            function filterPodcastCards(committed) {
+                if (typeof committed === 'boolean') isCommittedPodcastSearch = committed;
+                const searchEl = document.getElementById('podcast-search-input');
+                const q = (searchEl ? searchEl.value : '').toLowerCase().trim();
+                let totalVisible = 0;
+                PODCAST_EP_CATALOG.forEach(ep => {
+                    const cardEl = document.getElementById(ep.cardId);
+                    if (!cardEl) return;
+                    const show = matchesPodcastQuery(ep, q, isCommittedPodcastSearch);
+                    cardEl.classList.toggle('blog-card-hidden', !show);
+                    cardEl.classList.toggle('hidden', !show);
+                    cardEl.style.display = show ? '' : 'none';
+                    if (show) totalVisible++;
+                });
+                const noResMsg = document.getElementById('podcast-no-results-msg');
+                if (noResMsg) noResMsg.classList.toggle('blog-card-hidden', totalVisible > 0);
+                const recSec = document.getElementById('podcast-recommended-section');
+                if (recSec) {
+                    if (q) recSec.classList.add('hidden');
+                    else if (window.renderRecommendations) window.renderRecommendations();
+                }
+            }
+            window.filterPodcastCards = filterPodcastCards;
+            const podcastSearchInput = document.getElementById('podcast-search-input');
+            if (podcastSearchInput) {
+                podcastSearchInput.addEventListener('input', () => filterPodcastCards(false));
+                podcastSearchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        filterPodcastCards(true);
+                    }
+                });
+            }
+
             // 2. "Related Articles / Continue Reading" Card Pair & 4. Collapsible Table of Contents
             const ARTICLE_CURATED_TOC = {
                 'post-art-cure': [
@@ -11411,115 +11547,6 @@
                 applyState();
                 saveState();
             };
-
-            // ================= 1. Collapsible Podcast Episode Transcripts & Clickable Chapter Timestamps =================
-            const EPISODE_TRANSCRIPT_CHAPTERS = {
-                'podcast-ep8-container': {
-                    ytId: 'jAhHf0f0GMg',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: 'Introduction & Path from Music Publishing Law to Legal Engineering', text: 'Priya introduces legal engineer, Ixian Founding Partner, LexDAO Chair, and Lex Clinic leader Kyle Smith. Kyle shares how managing music publishing catalogs and attending Canadian law school led him to decentralized systems and computational jurisprudence.' },
-                        { time: '18:20', sec: 1100, title: 'The Legal Origins of Modern Computing (Leibniz to Goldfarb & HTML)', text: 'Kyle unpacks how Gottfried Leibniz’s formalization of legal dispute logic laid the groundwork for binary computation, and how lawyer Charles Goldfarb digitized legal redlining and document markup into SGML and HTML.' },
-                        { time: '39:45', sec: 2385, title: 'Why Logical Legal Reasoning Translates to AI & Software Engineering', text: 'Discussion on why individuals trained in contract analysis and conditional logic already possess the mental models needed to direct AI agents and bridge the literacy gap between prose contracts and executable scripts.' },
-                        { time: '58:10', sec: 3490, title: 'ERC-7827, Merkle Trees & Bit-Level Version Control for Clinical Protocols', text: 'How fixed-point mathematics, cryptographic hashes, Merkle trees, and the Ethereum standard ERC-7827 allow hospitals to version-control patient consent forms and clinical protocols down to the single character.' },
-                        { time: '1:16:30', sec: 4590, title: 'Smart Contract Remedies, Privacy & Open-Source Legal Hyperdeflation', text: 'Examining centralized vs. decentralized communication, zero-knowledge proofs for patient privacy, predefined legal remedies on immutable ledgers, and how open-source legal engineering can expand access to justice.' }
-                    ]
-                },
-                'podcast-ep7-container': {
-                    ytId: 'KqWkUyPYWY0',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: '24 Years Investigating Obstetric Malpractice & Delivery Room Trauma', text: 'Priya welcomes birth injury attorney and author Gina Mundy to discuss her transition from litigating catastrophic delivery room outcomes to preventative public health education for expectant parents.' },
-                        { time: '12:15', sec: 735, title: 'The Emotional Toll of Birth Injury Litigation', text: 'Gina explains how navigating cases involving maternal mortality, fetal death, and neonatal brain injury requires emotional resilience and why prevention before labor begins is vital.' },
-                        { time: '23:40', sec: 1420, title: 'Pitocin Inductions & Wireless Fetal Monitoring Risks', text: 'Analysis of why unmanaged Pitocin inductions frequently appear in birth trauma lawsuits, alongside the technical vulnerabilities and troubleshooting delays of wireless fetal telemetry systems.' },
-                        { time: '37:20', sec: 2240, title: 'Competing Medical Schools of Thought in the Courtroom', text: 'How opposing expert witness testimonies reveal that clinical consensus is often divided, empowering patients to ask questions and seek second opinions during labor.' },
-                        { time: '46:50', sec: 2810, title: 'Certified Doula Integration, Insurance Coverage & Letters of Medical Necessity', text: 'Reviewing clinical evidence showing shorter labor durations and fewer interventions with certified doulas, plus reimbursement pathways through HSAs and health insurance plans.' }
-                    ]
-                },
-                'podcast-ep6-container': {
-                    ytId: 'LDlWsl8vJgg',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: 'Introduction & The Dual-Degree JD/MD Trajectory', text: 'Dr. Fazal Khan discusses his interdisciplinary background combining medicine and law, from private practice at Jenner & Block to leading the Department of Political Determinants of Health at Meharry School of Global Health.' },
-                        { time: '15:30', sec: 930, title: 'Upstream Political Determinants of Health & Resource Allocation', text: 'How legislative and regulatory structures act as upstream drivers of clinical outcomes, hospital funding, and regional health equity.' },
-                        { time: '31:15', sec: 1875, title: 'Frontier AI Risks, Jason Group Briefings & Data Center Footprints', text: 'Insights from federal advisory briefings on unconstrained frontier AI models and the environmental and public health impacts of large-scale regional data centers.' },
-                        { time: '48:40', sec: 2920, title: 'Private Equity Automation vs. Achieving Healthcare’s Triple Aim', text: 'Balancing the dangers of corporate clinical labor replacement against deploying ambient AI scribes to restore the physician-patient relationship.' }
-                    ]
-                },
-                'podcast-ep5-container': {
-                    ytId: 'yBaQIx4xnJs',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: 'From UGA SensorWeb Lab to Commercializing Intelligent Dots', text: 'Dr. WenZhan Song shares how university research in cyber-physical systems evolved into Intelligent Dots through UGA’s Innovation Gateway.' },
-                        { time: '18:00', sec: 1080, title: 'Seismic Sensing & Zero-Burden Contactless Vital Sign Monitoring', text: 'How BedDot utilizes tri-axis seismometers and edge AI algorithms to measure heart rate, respiration, and blood pressure trends from microscopic bed vibrations.' },
-                        { time: '38:25', sec: 2305, title: 'Navigating FDA Class II 510(k) Clearance & Clinical Validation', text: 'An inside look at the regulatory pathway for medical device software and hardware, including multi-site clinical trials across 300+ patients.' },
-                        { time: '54:10', sec: 3250, title: 'Servant Leadership & Expanding Contactless Care to Neonatal & Home Settings', text: 'Dr. Song discusses leading cross-disciplinary engineering and clinical teams and protecting vulnerable infants and aging populations at home.' }
-                    ]
-                },
-                'podcast-ep4-container': {
-                    ytId: 'YeBTTdKnmz0',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: 'Foundation Fellow at UGA to Chief Magistrate Judge of Cobb County', text: 'Chief Magistrate Judge Brendan Murphy reflects on how Mock Trial, Student Bar Association leadership, and both civil and criminal trial work shaped his judicial philosophy.' },
-                        { time: '26:40', sec: 1600, title: 'Leading the People’s Court & Pandemic Crisis Innovation', text: 'How Cobb County Magistrate Court maintained 24/7 operations during COVID-19 and partnered with nonprofits to distribute over $50M in emergency rental assistance.' },
-                        { time: '58:15', sec: 3495, title: 'The Georgia Supreme Court Study Committee on Legal Regulatory Reform', text: 'Examining proposals for limited legal practitioners and regulatory modernization to close the civil justice gap for underserved Georgians.' }
-                    ]
-                },
-                'podcast-ep3-container': {
-                    ytId: 'Yc8ZDu7BM-w',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: 'Building Bonne Fire ATL & Ember Consulting Group', text: 'Nadine Peever explains how she grew a grassroots healthcare technology community into a 501(c)(3) nonprofit alongside a strategic healthcare consulting practice.' },
-                        { time: '32:10', sec: 1930, title: 'TEFCA Readiness & Healthcare Data Interoperability', text: 'How the Trusted Exchange Framework and Common Agreement (TEFCA) reduces clinical silos and prevents redundant diagnostic testing for patients.' },
-                        { time: '1:08:00', sec: 4080, title: 'ASL Accessibility & Inclusive Communication in Clinical Settings', text: 'Why digital health tools and hospital workflows must be designed around Deaf, hard-of-hearing, and diverse patient populations from day one.' }
-                    ]
-                },
-                'podcast-ep2-container': {
-                    ytId: 'kcMphEDVgYw',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: 'Emergency Medicine on the Frontlines of Climate & Rural Health', text: 'Dr. Ethan Sims, Executive Director of Idaho Clinicians for Climate and Health, discusses how extreme weather and wildfire smoke impact rural emergency departments.' },
-                        { time: '31:00', sec: 1860, title: 'The Impact of Restrictive Reproductive Laws on Emergency Physicians', text: 'Examining how state statutory restrictions create legal uncertainty for emergency room clinicians treating acute obstetric complications.' },
-                        { time: '1:02:30', sec: 3750, title: 'Hospital Sustainability & Advice for Pre-Med and Medical Students', text: 'Practical strategies for reducing healthcare system waste and maintaining personal well-being throughout medical school and residency.' }
-                    ]
-                },
-                'podcast-ep1-container': {
-                    ytId: '0JSWv1NJ_YI',
-                    chapters: [
-                        { time: '00:00', sec: 0, title: 'From Studio Art & French to Digital Accessibility Leadership', text: 'How a humanities and visual arts background provided the user-empathy foundation to launch the first formal digital accessibility program at Synovus Bank.' },
-                        { time: '21:15', sec: 1275, title: 'WCAG Compliance, Inclusive UX & Designing for Assistive Technology', text: 'Breaking down how screen readers, keyboard navigation, and accessible design systems transform digital banking and healthcare portals.' },
-                        { time: '39:00', sec: 2340, title: 'Leading from Behind & Navigating Corporate Mergers Authentically', text: 'Actionable leadership lessons on guiding diverse UX teams through high-stakes organizational transitions with empathy and transparency.' }
-                    ]
-                }
-            };
-
-            window.seekPodcastYouTube = function (containerId, ytId, seconds) {
-                const container = document.getElementById(containerId);
-                const iframe = container ? container.querySelector('iframe') : null;
-                if (iframe) {
-                    iframe.src = `https://www.youtube.com/embed/${ytId}?start=${seconds}&autoplay=1&cc_load_policy=1&rel=0`;
-                    iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            };
-
-            Object.keys(EPISODE_TRANSCRIPT_CHAPTERS).forEach(containerId => {
-                const container = document.getElementById(containerId);
-                if (!container || container.querySelector('.episode-transcript-box')) return;
-                const card = container.querySelector('.podcast-detail-card');
-                if (!card) return;
-                const data = EPISODE_TRANSCRIPT_CHAPTERS[containerId];
-                const details = document.createElement('details');
-                details.className = 'article-toc-box mt-4 mb-6 episode-transcript-box';
-                const itemsHtml = data.chapters.map(ch => `
-                    <li class="text-sm leading-relaxed" style="color: rgb(148, 163, 184); line-height: 1.7;">
-                        <button type="button" class="ep-ts-btn" onclick="window.seekPodcastYouTube('${containerId}', '${data.ytId}', ${ch.sec})" aria-label="Jump video to ${ch.time}: ${ch.title}">&#9654; ${ch.time}</button>
-                        <strong class="font-bold text-slate-200">${ch.title}:</strong> ${ch.text}
-                    </li>
-                `).join('');
-                details.innerHTML = `
-                    <summary class="text-xs font-bold uppercase tracking-wider text-cyan-400 cursor-pointer select-none">Episode Transcript &amp; Clickable Chapter Timestamps (${data.chapters.length} segments)</summary>
-                    <ul class="mt-3 space-y-3 pl-1 list-none">${itemsHtml}</ul>
-                `;
-                const listenRow = Array.from(card.children).find(el => el.classList.contains('flex') && el.classList.contains('flex-wrap') && el.classList.contains('gap-3'));
-                if (listenRow) {
-                    card.insertBefore(details, listenRow);
-                } else {
-                    card.appendChild(details);
-                }
-            });
 
             // ================= 4. Plain-Language Legal, Medical & Technical Glossary Popovers =================
             const PULSE_GLOSSARY_TERMS = [
