@@ -2123,57 +2123,6 @@
             font-weight: 500 !important;
         }
 
-        /* Small geometric bookmark on postcards */
-        .card-premium::before {
-            content: '' !important;
-            display: block !important;
-            position: absolute !important;
-            top: 0 !important;
-            right: 1.55rem !important;
-            bottom: auto !important;
-            left: auto !important;
-            width: 0.62rem !important;
-            height: 1.15rem !important;
-            border-radius: 0 0 0.18rem 0.18rem !important;
-            background: linear-gradient(180deg, #6ea8ff 0%, #2f6bb8 100%) !important;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
-            opacity: 0.72 !important;
-            pointer-events: none !important;
-            transition: opacity 0.2s ease, transform 0.2s ease !important;
-        }
-        .card-premium:hover::before,
-        .card-premium:focus::before,
-        .card-premium:focus-visible::before,
-        .card-premium:active::before {
-            opacity: 1 !important;
-            transform: translateY(2px);
-        }
-        .card-premium::after {
-            display: none !important;
-        }
-        #recent-articles-list .card-premium::after,
-        #blog-recommended-grid .card-premium::after,
-        #vital-signs-section .card-premium::after {
-            content: '\2192' !important;
-            display: block !important;
-            position: absolute !important;
-            right: 1.5rem !important;
-            bottom: 1.35rem !important;
-            color: #6ea8ff !important;
-            font-size: 1rem !important;
-            font-weight: 700 !important;
-            line-height: 1 !important;
-            opacity: 0.52 !important;
-            pointer-events: none !important;
-            transition: opacity 0.2s ease, transform 0.2s ease !important;
-        }
-        #recent-articles-list .card-premium:hover::after,
-        #blog-recommended-grid .card-premium:hover::after,
-        #vital-signs-section .card-premium:hover::after {
-            opacity: 1 !important;
-            transform: translateX(2px);
-        }
-
         .shelf-heading {
             display: flex !important;
             align-items: center;
