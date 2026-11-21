@@ -12,10 +12,10 @@
     max-width: 820px;
     margin: 0 auto;
     padding: 1.2rem 1.25rem;
-    border: 1px solid rgba(34, 211, 238, 0.34);
+    border: 1px solid rgba(68, 139, 255, 0.34);
     border-radius: 1rem;
     background:
-        radial-gradient(circle at 100% 0%, rgba(34, 211, 238, 0.12), transparent 17rem),
+        radial-gradient(circle at 100% 0%, rgba(68, 139, 255, 0.14), transparent 17rem),
         rgba(8, 15, 25, 0.98);
     color: #e8eefc;
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
@@ -37,7 +37,7 @@
 
 .pulse-cookie-kicker {
     margin: 0 0 0.25rem;
-    color: #67e8f9;
+    color: #649cf1;
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.14em;
@@ -67,7 +67,7 @@
 }
 
 .pulse-cookie-links a {
-    color: #67e8f9;
+    color: #649cf1;
     font-weight: 700;
     text-decoration: none;
 }
@@ -104,19 +104,19 @@
 }
 
 .pulse-cookie-btn:focus-visible {
-    outline: 3px solid rgba(103, 232, 249, 0.62);
+    outline: 3px solid rgba(100, 156, 241, 0.62);
     outline-offset: 3px;
 }
 
 .pulse-cookie-btn-primary {
-    border: 1px solid #22d3ee;
-    background: #22d3ee;
+    border: 1px solid #649cf1;
+    background: #649cf1;
     color: #061018;
 }
 
 .pulse-cookie-btn-primary:hover {
-    border-color: #67e8f9;
-    background: #67e8f9;
+    border-color: #5e96ec;
+    background: #5e96ec;
 }
 
 .pulse-cookie-btn-secondary {
