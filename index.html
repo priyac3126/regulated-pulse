@@ -44,10 +44,10 @@
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            --pulse-cyan: #06b6d4;
-            --pulse-cyan-glow: rgba(6, 182, 212, 0.15);
-            --pulse-cyan-border: rgba(6, 182, 212, 0.25);
-            --pulse-cyan-border-hover: rgba(6, 182, 212, 0.6);
+            --pulse-cyan: #22d3ee;
+            --pulse-cyan-glow: rgba(34, 211, 238, 0.15);
+            --pulse-cyan-border: rgba(34, 211, 238, 0.25);
+            --pulse-cyan-border-hover: rgba(34, 211, 238, 0.6);
             --border-subtle: rgba(255, 255, 255, 0.06);
             --border-glow: rgba(255, 255, 255, 0.12);
         }
@@ -2686,6 +2686,279 @@
                 grid-template-columns: 1fr !important;
             }
         }
+
+        /* ============================================================
+           COLOR + INTERACTION REFINEMENT
+           Dark accent: teal #22d3ee, matching the Health & Tech Law
+           kicker. Light accent: source #81b2ff (renders blue after the
+           global light-mode inversion). Teal is never paired with blue
+           in dark mode; teal is a small-surface accent, not a fill.
+           ============================================================ */
+
+        .hero-action-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.4rem;
+            margin-top: 0.25rem;
+        }
+        .hero-text-link {
+            appearance: none;
+            background: transparent !important;
+            border: 0 !important;
+            border-bottom: 1px solid currentColor !important;
+            border-radius: 0 !important;
+            padding: 0 0 0.18rem !important;
+            color: #9fadc1 !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.01em;
+            line-height: 1.3;
+            cursor: pointer;
+            transition: color 0.18s ease, border-color 0.18s ease;
+        }
+        .hero-text-link:hover,
+        .hero-text-link:focus-visible {
+            color: #f1f5f9 !important;
+        }
+        .hero-text-link:focus-visible {
+            outline: 2px solid #22d3ee;
+            outline-offset: 4px;
+        }
+        .hero-text-link--primary {
+            color: #22d3ee !important;
+        }
+        body.light-mode .hero-text-link {
+            color: #9fadc1 !important;
+        }
+        body.light-mode .hero-text-link:hover,
+        body.light-mode .hero-text-link:focus-visible {
+            color: #f1f5f9 !important;
+        }
+        body.light-mode .hero-text-link--primary {
+            color: #81b2ff !important;
+        }
+        body.light-mode .hero-text-link:focus-visible {
+            outline-color: #81b2ff;
+        }
+
+        .blog-search-input,
+        body.light-mode .blog-search-input {
+            background-color: transparent !important;
+            border: 0 !important;
+            border-bottom: 1px solid #1f2937 !important;
+            border-radius: 0 !important;
+            padding: 0.35rem 0 !important;
+            width: 220px !important;
+            max-width: 100% !important;
+            box-shadow: none !important;
+        }
+        .blog-search-input:focus {
+            border-bottom-color: #22d3ee !important;
+            box-shadow: none !important;
+        }
+        body.light-mode .blog-search-input {
+            border-bottom-color: #16181c !important;
+        }
+        body.light-mode .blog-search-input:focus {
+            border-bottom-color: #81b2ff !important;
+        }
+
+        .blog-newsletter-column .profile-container {
+            border: 0 !important;
+            border-top: 1px solid #1f2937 !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            padding: 1.75rem 0 2rem !important;
+            text-align: left !important;
+            align-items: stretch !important;
+        }
+        body.light-mode .blog-newsletter-column .profile-container {
+            border-top-color: #16181c !important;
+            background: transparent !important;
+        }
+        .blog-newsletter-column .profile-container h3 {
+            border-bottom: 0 !important;
+            padding-bottom: 0.55rem !important;
+            color: #22d3ee !important;
+        }
+        body.light-mode .blog-newsletter-column .profile-container h3 {
+            color: #81b2ff !important;
+        }
+        body#top .blog-newsletter-column .ml-form-embedWrapper {
+            background: transparent !important;
+            border: 0 !important;
+            box-shadow: none !important;
+        }
+        body#top .blog-newsletter-column .ml-form-align-center,
+        body#top .blog-newsletter-column .ml-form-embedContent,
+        body#top .blog-newsletter-column .ml-form-formContent,
+        body#top .blog-newsletter-column .ml-form-embedSubmit {
+            text-align: left !important;
+        }
+        body#top .blog-newsletter-column #mlb2-42510540 .form-control {
+            background: transparent !important;
+            border: 0 !important;
+            border-bottom: 1px solid #1f2937 !important;
+            border-radius: 0 !important;
+            padding: 0.65rem 0 !important;
+            color: #f1f5f9 !important;
+            text-align: left !important;
+            box-shadow: none !important;
+        }
+        body#top.light-mode .blog-newsletter-column #mlb2-42510540 .form-control {
+            border-bottom-color: #16181c !important;
+            color: #f1f5f9 !important;
+        }
+        body#top .blog-newsletter-column #mlb2-42510540 .form-control:focus {
+            border-bottom-color: #22d3ee !important;
+            outline: 0 !important;
+        }
+        body#top.light-mode .blog-newsletter-column #mlb2-42510540 .form-control:focus {
+            border-bottom-color: #81b2ff !important;
+        }
+        body#top #mlb2-42510540 .ml-form-embedSubmit button[type="submit"] {
+            width: auto !important;
+            padding: 0.55rem 1rem !important;
+            border-radius: 0.3rem !important;
+            background: #22d3ee !important;
+            color: #080b11 !important;
+            box-shadow: none !important;
+        }
+        body#top.light-mode #mlb2-42510540 .ml-form-embedSubmit button[type="submit"] {
+            background: #81b2ff !important;
+            color: #000000 !important;
+        }
+
+        body#top:not(.light-mode) .dashboard-sidebar .nav-link-vertical.active,
+        body#top:not(.light-mode) .dashboard-sidebar .nav-link-vertical.active:hover {
+            color: #22d3ee !important;
+            border-bottom-color: #22d3ee !important;
+            border-left-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .mobile-dock-btn.active {
+            color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .welcome-hero {
+            border-top-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .card-premium:hover,
+        body#top:not(.light-mode) .card-premium:focus,
+        body#top:not(.light-mode) .card-premium:focus-visible,
+        body#top:not(.light-mode) .card-premium:active {
+            border-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .card-premium > span {
+            color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .card-premium > span::before {
+            background-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .filter-tag:hover,
+        body#top:not(.light-mode) .filter-tag.active {
+            color: #22d3ee !important;
+            border-bottom-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .tab-btn::after {
+            background-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .tab-active {
+            color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .pulse-logo polyline {
+            stroke: #22d3ee !important;
+        }
+        body#top:not(.light-mode) #blog-post-view article form button[type="submit"],
+        body#top:not(.light-mode) #blog-post-view article button[style*="linear-gradient"] {
+            background-color: #22d3ee !important;
+            background-image: none !important;
+            color: #080b11 !important;
+        }
+        body#top:not(.light-mode) #mlb2-42510540 button[type="submit"] {
+            background-color: #22d3ee !important;
+            color: #080b11 !important;
+        }
+
+        .podcast-platform-link,
+        body#top.light-mode .podcast-platform-link {
+            min-height: 2.75rem;
+            background: transparent !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            padding: 0.35rem 0 !important;
+            color: #9fadc1 !important;
+            box-shadow: none !important;
+        }
+        body#top:not(.light-mode) .podcast-platform-link:hover,
+        body#top:not(.light-mode) .podcast-platform-link:focus-visible {
+            background: transparent !important;
+            color: #22d3ee !important;
+        }
+        body#top.light-mode .podcast-platform-link:hover,
+        body#top.light-mode .podcast-platform-link:focus-visible {
+            background: transparent !important;
+            color: #81b2ff !important;
+        }
+
+        body#top:not(.light-mode) .focus-card {
+            border-color: rgba(34, 211, 238, 0.22) !important;
+            border-left-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .focus-card:hover {
+            border-color: rgba(34, 211, 238, 0.42) !important;
+            border-left-color: #67e8f9 !important;
+        }
+        body#top:not(.light-mode) .focus-card .accordion-btn span,
+        body#top:not(.light-mode) .focus-card svg,
+        body#top:not(.light-mode) .focus-card p[style*="#818cf8"],
+        body#top:not(.light-mode) .focus-card p[style*="#a5b4fc"] {
+            color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) #pulse-glossary-popover {
+            border-color: rgba(34, 211, 238, 0.45) !important;
+        }
+        body#top:not(.light-mode) #pulse-glossary-popover .gl-title {
+            color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) a[style*="rgb(56, 189, 248)"] {
+            color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) #uw-reading-guide,
+        body#top:not(.light-mode) #uw-tooltip-box {
+            border-color: #22d3ee !important;
+        }
+        body#top:not(.light-mode) .site-footer a,
+        body#top:not(.light-mode) .site-footer .footer-cookie-btn {
+            color: #22d3ee !important;
+        }
+
+        @media (max-width: 800px) {
+            .dashboard-sidebar nav[role="tablist"] {
+                justify-content: space-between !important;
+                overflow-x: visible !important;
+                gap: 0 !important;
+            }
+            .dashboard-sidebar .nav-link-vertical {
+                gap: 0 !important;
+                padding: 0.45rem 0.3rem !important;
+                font-size: 0.68rem !important;
+            }
+            .dashboard-sidebar .nav-link-vertical svg,
+            .dashboard-sidebar .nav-link-vertical i {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .blog-newsletter-column .profile-container {
+                padding-top: 1.35rem !important;
+            }
+            .blog-search-input,
+            body.light-mode .blog-search-input {
+                width: 100% !important;
+            }
+        }
     </style>
 
     <style type="text/css">
@@ -3001,10 +3274,10 @@
                 </linearGradient>
                 <path id="intro-ecg-motion-path" d="M20,80 L40,80 L50,50 L60,110 L70,80 L80,80 L85,65 L90,95 L100,80 L120,80 L140,80"></path>
             </defs>
-            <polyline class="pulse-ghost-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
+            <polyline class="pulse-ghost-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#22d3ee"
                 stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
-            <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4"
+            <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#22d3ee"
                 stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
         </svg>
@@ -3020,7 +3293,7 @@
                     <!-- Brand / Logo header -->
                     <button id="logo-home-btn" class="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none cursor-pointer text-left" aria-label="Return to Blog Home">
                         <svg width="40" height="40" viewBox="0 0 160 160" fill="none" aria-hidden="true" class="pulse-logo">
-                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#06b6d4" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#22d3ee" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
                         </svg>
                         <div>
                             <div class="text-[9px] tracking-[0.2em] font-mono text-cyan-400 font-semibold uppercase leading-none mb-1">Health &amp; Tech Law</div>
@@ -3100,9 +3373,9 @@
                                     <p class="text-base leading-relaxed mb-6 text-slate-300" style="font-family: 'Source Serif 4', Georgia, serif; font-size: 1.05rem;">
                                         This blog navigates the legal frameworks and ethical guardrails shaping the future of healthcare technology, bridging the gap between complex academic research and practical industry impact.
                                     </p>
-                                    <div class="flex flex-wrap gap-4">
-                                        <button onclick="navigateTo('#post-welcome')" class="welcome-note-btn px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm bg-cyan-500 hover:bg-cyan-400 text-[#080b11]">Read Welcome Note</button>
-                                        <button onclick="navigateTo('#about')" class="px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white" style="background: transparent;">About the Editor</button>
+                                    <div class="hero-action-row">
+                                        <button onclick="navigateTo('#post-welcome')" class="hero-text-link hero-text-link--primary">Read Welcome Note <span aria-hidden="true">&rarr;</span></button>
+                                        <button onclick="navigateTo('#about')" class="hero-text-link">About the Editor</button>
                                     </div>
                                 </div>
                             </div>
@@ -7350,7 +7623,7 @@
 
                 <div class="mt-12 text-center max-w-2xl mx-auto border-t border-white/5 pt-8">
                     <p class="text-slate-400 font-medium text-sm italic leading-relaxed">
-                        Thanks again for reading/listening guys, I appreciate y’all’s support tremendously. If you have any more questions, please do not hesitate to reach out to me on LinkedIn or via <a href="mailto:hello@theregulatedpulse.com" class="text-cyan-400 hover:underline">hello@theregulatedpulse.com</a>.
+                        Thanks again for reading/listening guys, I appreciate y’all’s support tremendously. If you have any more questions, please do not hesitate to reach out to me on LinkedIn or via <a href="mailto:theregulatedpulse@gmail.com" class="text-cyan-400 hover:underline">theregulatedpulse@gmail.com</a>.
                     </p>
                 </div>
             </section>
@@ -10687,7 +10960,7 @@
             <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-login"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.openAnnAuth && window.openAnnAuth()">Sign in</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
         </p>
         <p class="footer-line">
-            For inquiries, contact <a href="mailto:hello@theregulatedpulse.com">hello@theregulatedpulse.com</a>
+            For inquiries, contact <a href="mailto:theregulatedpulse@gmail.com">theregulatedpulse@gmail.com</a>
         </p>
         <p class="footer-line footer-legal-row">
             <a href="./terms.html">Terms &amp; Conditions</a>
@@ -10742,7 +11015,7 @@
         };
 
         // ---------- Dynamic Light/Dark Favicon & Theme Toggle ----------
-        const FAVICON_DARK_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#080b11"/><circle cx="256" cy="256" r="160" fill="#06b6d4" opacity="0.12"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#06b6d4" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity="0.22" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#22d3ee" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
+        const FAVICON_DARK_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#080b11"/><circle cx="256" cy="256" r="160" fill="#06b6d4" opacity="0.12"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#22d3ee" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity="0.22" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#22d3ee" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
         const FAVICON_LIGHT_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#dbe7f5"/><circle cx="256" cy="256" r="165" fill="#1f56d3" opacity="0.10"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#2b57a8" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" opacity="0.2" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#1f56d3" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
         window.updateFaviconForTheme = function (isLight) {
             const href = isLight ? FAVICON_LIGHT_SVG : FAVICON_DARK_SVG;
@@ -11169,7 +11442,7 @@
                     <button onclick="window.annGoogleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #f8fafc; color: #0f172a; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.4a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.6-5.2 3.6-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg>Google</button>
                     <button onclick="window.annAppleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="15" height="17" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-4zM11.7 3.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.8-1.5z"/></svg>Apple</button>
                 </div>
-                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
+                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(103, 232, 249); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Maybe later &mdash; keep highlights for this visit only</button>
             </div>
             <div id="ann-set-password-view" style="display: none;">
@@ -11179,14 +11452,14 @@
                 <button type="button" onclick="window.annTogglePwVisibility('ann-password-input', this)" style="float: right; margin-top: -30px; margin-right: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 11px; font-weight: 700; cursor: pointer; padding: 4px;">Show</button>
                 <button id="ann-save-password-btn" onclick="window.annSavePassword()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Save password</button>
                 <p id="ann-password-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
-                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
+                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(103, 232, 249); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
                 <button onclick="window.annSkipPassword()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Not now &mdash; email links still work</button>
             </div>
             <div id="ann-signed-in-view" style="display: none;">
                 <p style="margin: 0 0 4px; color: rgb(103, 232, 249); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Signed in</p>
                 <p id="ann-user-email" style="margin: 0 0 16px; color: rgb(241, 245, 249); font-size: 15px; font-weight: 700; word-break: break-all;"></p>
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px;">Your highlights and notes are being saved to your account automatically.</p>
-                <p style="margin: 0 0 14px; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:hello@theregulatedpulse.com" style="color: rgb(103, 232, 249); text-decoration: underline;">hello@theregulatedpulse.com</a>.</p>
+                <p style="margin: 0 0 14px; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(103, 232, 249); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
                 <button onclick="window.__annPasswordSkipped = false; window.__annPasswordSaved = false; window.__annForcePasswordUI = true; window.openAnnAuth()" style="width: 100%; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Set or change password</button>
                 <button onclick="window.annSignOut()" style="width: 100%; margin-top: 10px; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Sign out</button>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Close</button>
