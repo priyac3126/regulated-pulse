@@ -44,10 +44,10 @@
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            --pulse-cyan: #67e8f9;
-            --pulse-cyan-glow: rgba(103, 232, 249, 0.15);
-            --pulse-cyan-border: rgba(103, 232, 249, 0.25);
-            --pulse-cyan-border-hover: rgba(103, 232, 249, 0.6);
+            --pulse-cyan: #3b82f6;
+            --pulse-cyan-glow: rgba(59, 130, 246, 0.15);
+            --pulse-cyan-border: rgba(59, 130, 246, 0.25);
+            --pulse-cyan-border-hover: rgba(59, 130, 246, 0.6);
             --border-subtle: rgba(255, 255, 255, 0.06);
             --border-glow: rgba(255, 255, 255, 0.12);
         }
@@ -124,7 +124,7 @@
             letter-spacing: 0.24em;
             text-transform: uppercase;
             font-weight: 500;
-            color: #67e8f9;
+            color: #3b82f6;
             margin-top: 0.65rem;
             animation: introTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.56s forwards;
         }
@@ -412,7 +412,7 @@
         .hl-dot:hover { transform: scale(1.15); }
         .ann-note-btn {
             display: inline-flex; align-items: center; gap: 5px;
-            color: #67e8f9; font-size: 12px; font-weight: 600;
+            color: #3b82f6; font-size: 12px; font-weight: 600;
             background: transparent; border: none; cursor: pointer;
         }
         mark.ann-hl {
@@ -731,7 +731,7 @@
         body.light-mode .card-slate { background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.07) 68%, rgba(59, 130, 246, 0.02) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; }
         body.light-mode .card-violet:hover,
         body.light-mode .card-education:hover,
-        body.light-mode .card-med-ed:hover { background: linear-gradient(135deg, rgba(6, 182, 212, 0.26) 0%, rgba(6, 182, 212, 0.09) 68%, rgba(6, 182, 212, 0.03) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; border-color: #67e8f9 !important; box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px rgba(103, 232, 249, 0.2) !important; }
+        body.light-mode .card-med-ed:hover { background: linear-gradient(135deg, rgba(6, 182, 212, 0.26) 0%, rgba(6, 182, 212, 0.09) 68%, rgba(6, 182, 212, 0.03) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; border-color: #3b82f6 !important; box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px rgba(103, 232, 249, 0.2) !important; }
         body.light-mode .card-book:hover { background: linear-gradient(135deg, rgba(139, 92, 246, 0.26) 0%, rgba(139, 92, 246, 0.09) 68%, rgba(139, 92, 246, 0.03) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; border-color: #c4b5fd !important; box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px rgba(196, 181, 253, 0.25) !important; }
         body.light-mode .card-quote:hover { background: linear-gradient(135deg, rgba(30, 58, 138, 0.36) 0%, rgba(30, 58, 138, 0.14) 60%, rgba(30, 58, 138, 0.04) 100%), linear-gradient(135deg, #04080c, #0f1824) !important; border-color: #93c5fd !important; box-shadow: 0 12px 30px rgba(21, 40, 64, 0.28), 0 0 20px rgba(147, 197, 253, 0.25) !important; }
         body.light-mode .card-law:hover,
@@ -808,7 +808,7 @@
         .reader-a11y-btn[aria-pressed="true"] {
             border-color: rgba(6, 182, 212, 0.6);
             background: rgba(6, 182, 212, 0.15);
-            color: #67e8f9;
+            color: #3b82f6;
         }
         body.light-mode .reader-a11y-btn {
             border-color: rgba(68, 139, 255, 0.32);
@@ -836,7 +836,7 @@
             font-weight: 500;
             padding-right: 0.6rem;
             padding-top: 0.14rem;
-            color: #67e8f9;
+            color: #3b82f6;
         }
         body.light-mode #blog-post-view .blog-post-content > p:first-of-type::first-letter {
             color: #81b2ff !important;
@@ -975,7 +975,7 @@
             #print-area.pdf-mode-dark, #print-area.pdf-mode-dark * { color: #e2e8f0 !important; background: transparent !important; }
             #print-area.pdf-mode-dark { background: #080b11 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; padding: 24px !important; }
             #print-area.pdf-mode-dark h2, #print-area.pdf-mode-dark h3, #print-area.pdf-mode-dark strong { color: #f8fafc !important; }
-            #print-area.pdf-mode-dark a { color: #67e8f9 !important; }
+            #print-area.pdf-mode-dark a { color: #3b82f6 !important; }
             #print-area.pdf-mode-dark .comparison-table th, #print-area.pdf-mode-dark .comparison-table td { border: 1px solid #475569 !important; }
             #print-area.pdf-mode-dark .comparison-table th { background: #1e293b !important; color: #f8fafc !important; }
             html:has(body.light-mode) { filter: none !important; }
@@ -1043,7 +1043,7 @@
         .tag-book { background: rgba(139, 92, 246, 0.15) !important; color: #c4b5fd !important; }
 
         .card-violet { 
-            border-left: 4px solid #67e8f9 !important;
+            border-left: 4px solid #3b82f6 !important;
             background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
         }
         .card-violet:hover { 
@@ -1087,7 +1087,7 @@
         .tag-slate { background: rgba(59, 130, 246, 0.15) !important; color: #93c5fd !important; }
 
         .card-education { 
-            border-left: 4px solid #67e8f9 !important;
+            border-left: 4px solid #3b82f6 !important;
             background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
         }
         .card-education:hover { 
@@ -1095,7 +1095,7 @@
             background: linear-gradient(135deg, #082635 0%, #0b0f17 100%) !important;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.25) !important; 
         }
-        .tag-education { background: rgba(6, 182, 212, 0.15) !important; color: #67e8f9 !important; }
+        .tag-education { background: rgba(6, 182, 212, 0.15) !important; color: #3b82f6 !important; }
 
         .card-personal { 
             border-left: 4px solid #f472b6 !important; 
@@ -1109,15 +1109,15 @@
         .tag-personal { background: rgba(236, 72, 153, 0.15) !important; color: #fbcfe8 !important; }
 
         .card-welcome { 
-            border-left: 4px solid #a5f3fc !important;
+            border-left: 4px solid #60a5fa !important;
             background: linear-gradient(135deg, #031c19 0%, #080b11 100%) !important;
         }
         .card-welcome:hover {
-            border-color: #67e8f9 !important;
+            border-color: #3b82f6 !important;
             background: linear-gradient(135deg, #062b26 0%, #0b0f17 100%) !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(103, 232, 249, 0.25) !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.25) !important;
         }
-        .tag-welcome { background: rgba(103, 232, 249, 0.15) !important; color: #99f6e4 !important; }
+        .tag-welcome { background: rgba(59, 130, 246, 0.15) !important; color: #99f6e4 !important; }
 
         .card-epic { 
             border-left: 4px solid #d9466e !important; 
@@ -1131,7 +1131,7 @@
         .tag-epic { background: rgba(159, 18, 57, 0.22) !important; color: #f0a3b5 !important; }
 
         .card-med-ed { 
-            border-left: 4px solid #67e8f9 !important;
+            border-left: 4px solid #3b82f6 !important;
             background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
         }
         .card-med-ed:hover { 
@@ -1139,7 +1139,7 @@
             background: linear-gradient(135deg, #082635 0%, #0b0f17 100%) !important;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.25) !important; 
         }
-        .tag-med-ed { background: rgba(6, 182, 212, 0.15) !important; color: #67e8f9 !important; }
+        .tag-med-ed { background: rgba(6, 182, 212, 0.15) !important; color: #3b82f6 !important; }
 
         .card-quote { 
             border-left: 4px solid #3b82f6 !important; 
@@ -1186,7 +1186,7 @@
             transform: translateX(2px);
         }
         .shelf-book-btn:hover .text-sm {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         .shelf-book-btn:focus-visible {
             outline: none !important;
@@ -1394,7 +1394,7 @@
         .floating-audio-bar .play-btn-circle:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 16px rgba(6, 182, 212, 0.5);
-            background: #67e8f9;
+            background: #3b82f6;
         }
 
         .audio-wave {
@@ -2000,8 +2000,8 @@
         }
         .nav-link-vertical.active:hover {
             color: #080b11;
-            background: #67e8f9;
-            border-color: #67e8f9;
+            background: #3b82f6;
+            border-color: #3b82f6;
         }
 
         .mobile-tab-dock {
@@ -2698,7 +2698,7 @@
 
         /* ============================================================
            COLOR + INTERACTION REFINEMENT
-           Dark accent: light cyan-blue #67e8f9, matching the Follow Along label
+           Dark accent: saturated blue #3b82f6
            kicker. Light accent: source #81b2ff (renders blue after the
            global light-mode inversion). Teal is never paired with blue
            in dark mode; teal is a small-surface accent, not a fill.
@@ -2732,11 +2732,11 @@
             color: #f1f5f9 !important;
         }
         .hero-text-link:focus-visible {
-            outline: 2px solid #67e8f9;
+            outline: 2px solid #3b82f6;
             outline-offset: 4px;
         }
         .hero-text-link--primary {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body.light-mode .hero-text-link {
             color: #9fadc1 !important;
@@ -2764,7 +2764,7 @@
             box-shadow: none !important;
         }
         .blog-search-input:focus {
-            border-bottom-color: #67e8f9 !important;
+            border-bottom-color: #3b82f6 !important;
             box-shadow: none !important;
         }
         body.light-mode .blog-search-input {
@@ -2790,7 +2790,7 @@
         .blog-newsletter-column .profile-container h3 {
             border-bottom: 0 !important;
             padding-bottom: 0.55rem !important;
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body.light-mode .blog-newsletter-column .profile-container h3 {
             color: #81b2ff !important;
@@ -2821,7 +2821,7 @@
             color: #f1f5f9 !important;
         }
         body#top .blog-newsletter-column #mlb2-42510540 .form-control:focus {
-            border-bottom-color: #67e8f9 !important;
+            border-bottom-color: #3b82f6 !important;
             outline: 0 !important;
         }
         body#top.light-mode .blog-newsletter-column #mlb2-42510540 .form-control:focus {
@@ -2831,7 +2831,7 @@
             width: auto !important;
             padding: 0.55rem 1rem !important;
             border-radius: 0.3rem !important;
-            background: #67e8f9 !important;
+            background: #3b82f6 !important;
             color: #080b11 !important;
             box-shadow: none !important;
         }
@@ -2842,50 +2842,50 @@
 
         body#top:not(.light-mode) .dashboard-sidebar .nav-link-vertical.active,
         body#top:not(.light-mode) .dashboard-sidebar .nav-link-vertical.active:hover {
-            color: #67e8f9 !important;
-            border-bottom-color: #67e8f9 !important;
-            border-left-color: #67e8f9 !important;
+            color: #3b82f6 !important;
+            border-bottom-color: #3b82f6 !important;
+            border-left-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .mobile-dock-btn.active {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .welcome-hero {
-            border-top-color: #67e8f9 !important;
+            border-top-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .card-premium:hover,
         body#top:not(.light-mode) .card-premium:focus,
         body#top:not(.light-mode) .card-premium:focus-visible,
         body#top:not(.light-mode) .card-premium:active {
-            border-color: #67e8f9 !important;
+            border-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .card-premium > span {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .card-premium > span::before {
-            background-color: #67e8f9 !important;
+            background-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .filter-tag:hover,
         body#top:not(.light-mode) .filter-tag.active {
-            color: #67e8f9 !important;
-            border-bottom-color: #67e8f9 !important;
+            color: #3b82f6 !important;
+            border-bottom-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .tab-btn::after {
-            background-color: #67e8f9 !important;
+            background-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .tab-active {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .pulse-logo polyline {
-            stroke: #67e8f9 !important;
+            stroke: #3b82f6 !important;
         }
         body#top:not(.light-mode) #blog-post-view article form button[type="submit"],
         body#top:not(.light-mode) #blog-post-view article button[style*="linear-gradient"] {
-            background-color: #67e8f9 !important;
+            background-color: #3b82f6 !important;
             background-image: none !important;
             color: #080b11 !important;
         }
         body#top:not(.light-mode) #mlb2-42510540 button[type="submit"] {
-            background-color: #67e8f9 !important;
+            background-color: #3b82f6 !important;
             color: #080b11 !important;
         }
 
@@ -2902,7 +2902,7 @@
         body#top:not(.light-mode) .podcast-platform-link:hover,
         body#top:not(.light-mode) .podcast-platform-link:focus-visible {
             background: transparent !important;
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top.light-mode .podcast-platform-link:hover,
         body#top.light-mode .podcast-platform-link:focus-visible {
@@ -2912,44 +2912,44 @@
 
         body#top:not(.light-mode) .focus-card {
             border-color: rgba(103, 232, 249, 0.22) !important;
-            border-left-color: #67e8f9 !important;
+            border-left-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .focus-card:hover {
             border-color: rgba(103, 232, 249, 0.42) !important;
-            border-left-color: #a5f3fc !important;
+            border-left-color: #60a5fa !important;
         }
         body#top:not(.light-mode) .focus-card .accordion-btn span,
         body#top:not(.light-mode) .focus-card svg,
         body#top:not(.light-mode) .focus-card p[style*="#818cf8"],
         body#top:not(.light-mode) .focus-card p[style*="#a5b4fc"] {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) #pulse-glossary-popover {
             border-color: rgba(103, 232, 249, 0.45) !important;
         }
         body#top:not(.light-mode) #pulse-glossary-popover .gl-title {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) a[style*="rgb(56, 189, 248)"] {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) #uw-reading-guide,
         body#top:not(.light-mode) #uw-tooltip-box {
-            border-color: #67e8f9 !important;
+            border-color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .site-footer a,
         body#top:not(.light-mode) .site-footer .footer-cookie-btn {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .text-cyan-400,
         body#top:not(.light-mode) .text-cyan-300,
         body#top:not(.light-mode) .text-cyan-500,
-        body#top:not(.light-mode) [style*="color: rgb(103, 232, 249)"],
+        body#top:not(.light-mode) [style*="color: rgb(59, 130, 246)"],
         body#top:not(.light-mode) [style*="color: rgb(6, 182, 212)"] {
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) .hover\:text-cyan-300:hover {
-            color: #a5f3fc !important;
+            color: #60a5fa !important;
         }
         body#top:not(.light-mode) #uw-a11y-trigger {
             background-color: #4f8fa8 !important;
@@ -2958,17 +2958,17 @@
             background-color: #4f8fa8 !important;
         }
         body#top:not(.light-mode) .uw-tile.uw-active {
-            border-color: #67e8f9 !important;
+            border-color: #3b82f6 !important;
             background: rgba(103, 232, 249, 0.14) !important;
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
             box-shadow: none !important;
         }
         body#top:not(.light-mode) .ann-note-btn,
         body#top:not(.light-mode) .reader-a11y-btn[aria-pressed="true"],
         body#top:not(.light-mode) abbr.pulse-glossary-term:hover,
         body#top:not(.light-mode) abbr.pulse-glossary-term:focus,
-        body#top:not(.light-mode) [style*="color: #67e8f9"] {
-            color: #67e8f9 !important;
+        body#top:not(.light-mode) [style*="color: #3b82f6"] {
+            color: #3b82f6 !important;
         }
         body#top:not(.light-mode) #ann-send-link-btn,
         body#top:not(.light-mode) #ann-psw-signin-btn,
@@ -3058,7 +3058,7 @@
             cursor: pointer;
         }
         .pw-toggle:hover { color: #e2e8f0; }
-        .pw-toggle:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; }
+        .pw-toggle:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; }
         .pw-toggle .pw-eye-off { display: none; }
         .pw-toggle.is-visible .pw-eye { display: none; }
         .pw-toggle.is-visible .pw-eye-off { display: block; }
@@ -3218,7 +3218,7 @@
                 color: #f8fafc !important;
             }
             body#top.printing #print-area.pdf-mode-dark a {
-                color: #67e8f9 !important;
+                color: #3b82f6 !important;
             }
             body#top.printing #print-area.pdf-mode-dark .comparison-table th,
             body#top.printing #print-area.pdf-mode-dark .comparison-table td {
@@ -3450,7 +3450,7 @@
             border-radius: 9999px;
             border: 1px solid rgba(103, 232, 249, 0.35);
             background: rgba(6, 182, 212, 0.12);
-            color: rgb(103, 232, 249);
+            color: rgb(59, 130, 246);
             cursor: pointer;
             transition: all 0.2s ease;
             margin-left: 6px;
@@ -3546,10 +3546,10 @@
                 </linearGradient>
                 <path id="intro-ecg-motion-path" d="M20,80 L40,80 L50,50 L60,110 L70,80 L80,80 L85,65 L90,95 L100,80 L120,80 L140,80"></path>
             </defs>
-            <polyline class="pulse-ghost-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#67e8f9"
+            <polyline class="pulse-ghost-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#3b82f6"
                 stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
-            <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#67e8f9"
+            <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#3b82f6"
                 stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
         </svg>
@@ -3565,7 +3565,7 @@
                     <!-- Brand / Logo header -->
                     <button id="logo-home-btn" class="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none cursor-pointer text-left" aria-label="Return to Blog Home">
                         <svg width="40" height="40" viewBox="0 0 160 160" fill="none" aria-hidden="true" class="pulse-logo">
-                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#67e8f9" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#3b82f6" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
                         </svg>
                         <div>
                             <div class="text-[9px] tracking-[0.2em] font-mono text-cyan-400 font-semibold uppercase leading-none mb-1">Health &amp; Tech Law</div>
@@ -3897,7 +3897,7 @@
                     <article id="post-battlefield-container" class="hidden max-w-3xl mx-auto relative mb-16">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Beyond the Battlefield</h2>
                         <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The Toll of PTSD and the Fight to Improve Veteran Mental Health</h3>
-                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Book Insights · November 7, 2026 · 5 min read</p>
+                        <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">Book Insights · November 7, 2026 · 5 min read</p>
 
                         <div class="text-center mb-10">
                             <img src="./FieldsofCombat.webp" alt="Book cover of Fields of Combat: Understanding PTSD Among Veterans of Iraq and Afghanistan by Erin P. Finley, featuring a yellow-tinted photograph of a soldier in a camouflage helmet and uniform with hands clasped over their face."
@@ -4080,7 +4080,7 @@
                     <!-- The Fifth Pillar: Why the Arts Belong in Clinical Care -->
                     <article id="post-art-cure-container" class="hidden max-w-3xl mx-auto relative mb-16">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Fifth Pillar: Why the Arts Belong in Clinical Care</h2>
-                        <p class="text-sm mb-11" style="color: rgb(103, 232, 249);">Book Insights · October 25, 2026 · 4 min read</p>
+                        <p class="text-sm mb-11" style="color: rgb(59, 130, 246);">Book Insights · October 25, 2026 · 4 min read</p>
 
                         <div class="text-center mb-10">
                             <img src="./ArtCurebook.webp" alt="Book cover of Art Cure: The Science of How the Arts Save Lives by Daisy Fancourt, showing a white cup filled with paintbrushes, colored pencils, an admission ticket stub, and rolled sheet music in front of a red circle."
@@ -4721,7 +4721,7 @@
                             Without Borders</h2>
                         <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">Bridging
                             gaps in migrant health through innovation and policy</h3>
-                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Book Insights · June 2026 · 5 min
+                        <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">Book Insights · June 2026 · 5 min
                             read</p>
 
                         <div class="text-center mb-10">
@@ -4906,7 +4906,7 @@
                             for Compassionate Care</h2>
                         <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The
                             medical necessity of compassionate care</h3>
-                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Book Insights · June 2026 · 6 min
+                        <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">Book Insights · June 2026 · 6 min
                             read</p>
 
                         <div class="text-center mb-10">
@@ -5183,7 +5183,7 @@
                     <article id="post-giant-leap-container" class="hidden max-w-3xl mx-auto relative mb-16">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">A Giant
                             Leap: Trust and Oversight in Healthcare AI</h2>
-                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Book Insights · June 2026 · 5 min
+                        <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">Book Insights · June 2026 · 5 min
                             read</p>
 
                         <div class="audio-player flex items-center gap-3 mb-8 cursor-pointer w-max"
@@ -5398,7 +5398,7 @@
                             Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights</h2>
                         <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">How we
                             build ethical, inclusive design</h3>
-                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">AI & Policy · June 2026 · 4 min read
+                        <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">AI & Policy · June 2026 · 4 min read
                         </p>
 
                         <div class="audio-player flex items-center gap-3 mb-8 cursor-pointer w-max"
@@ -5604,7 +5604,7 @@
                             Recommendations</h2>
                         <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">My top 11
                             healthcare reads</h3>
-                        <p class="text-sm mb-8" style="color: rgb(103, 232, 249);">Reading List · June 2026</p>
+                        <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">Reading List · June 2026</p>
 
                         <div class="blog-post-content">
                             <p>Over the past year, as an avid reader, I have delved into over 35 books relating
@@ -5615,35 +5615,35 @@
                                 about healthcare and biomedical ethics.</p>
                             <p>Here’s the list of my top 11 in order (you’ll recognize some from my book reviews):</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=A+Giant+Leap+Robert+Wachter" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">A Giant Leap</a></strong> by Robert Wachter</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=A+Giant+Leap+Robert+Wachter" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">A Giant Leap</a></strong> by Robert Wachter</p>
                             <p>Explores transformative concepts and significant advancements within the fields of healthcare and biomedical ethics.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Being+Mortal+Atul+Gawande" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Being Mortal</a></strong> by Atul Gawande</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Being+Mortal+Atul+Gawande" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Being Mortal</a></strong> by Atul Gawande</p>
                             <p>Examines aging and the end of life, arguing that modern medicine must prioritize the quality of life and patient well-being over merely prolonging survival.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Riding+the+Bus+with+My+Sister+Rachel+Simon" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Riding the Bus with My Sister: A True Life Journey</a></strong> by Rachel Simon</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Riding+the+Bus+with+My+Sister+Rachel+Simon" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Riding the Bus with My Sister: A True Life Journey</a></strong> by Rachel Simon</p>
                             <p>Chronicle the author's journey of reconnecting with her sister, who has an intellectual disability and spends her days riding city buses.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Disability+Visibility+Adapted+for+Young+Adults+Alice+Wong" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Disability Visibility (Adapted for Young Adults): 17 First- Person Stories for Today</a></strong> by Alice Wong</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Disability+Visibility+Adapted+for+Young+Adults+Alice+Wong" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Disability Visibility (Adapted for Young Adults): 17 First- Person Stories for Today</a></strong> by Alice Wong</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Compassionomics+Stephen+Trzeciak+Anthony+Mazzarelli" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Compassionomics</a></strong> by Stephen Trzeciak and Anthony Mazzarelli</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Compassionomics+Stephen+Trzeciak+Anthony+Mazzarelli" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Compassionomics</a></strong> by Stephen Trzeciak and Anthony Mazzarelli</p>
                             <p>Reviews scientific evidence demonstrating that compassionate healthcare improves physical outcomes for patients, lowers medical costs, and reduces physician burnout.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=A+Disability+History+of+the+United+States+Kim+E.+Nielsen" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">A Disability History of the United States</a></strong> by Kim E. Nielsen</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=A+Disability+History+of+the+United+States+Kim+E.+Nielsen" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">A Disability History of the United States</a></strong> by Kim E. Nielsen</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Grief+and+Loss+Katherine+Walsh" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Grief and Loss</a></strong> by Katherine Walsh</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Grief+and+Loss+Katherine+Walsh" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Grief and Loss</a></strong> by Katherine Walsh</p>
                             <p>A text detailing the emotional, clinical, and ethical dimensions of navigating death, bereavement, and the grieving process.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=If+You+Knew+the+Conditions+David+H.+Dejong" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</a></strong> by David H. Dejong</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=If+You+Knew+the+Conditions+David+H.+Dejong" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</a></strong> by David H. Dejong</p>
                             <p>Chronicles the history of the Indian Medical Service between 1908 and 1955, exploring the systemic underfunding and assimilation-driven health policies faced by Native American communities.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=The+Spirit+Catches+You+and+You+Fall+Down+Anne+Fadiman" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">The Spirit Catches You and You Fall Down</a></strong> by Anne Fadiman</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=The+Spirit+Catches+You+and+You+Fall+Down+Anne+Fadiman" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">The Spirit Catches You and You Fall Down</a></strong> by Anne Fadiman</p>
                             <p>An ethnographic account detailing the tragic cultural miscommunications between a Hmong refugee family and the American medical establishment over the treatment of their daughter's severe epilepsy.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Migration+and+Health+Sandro+Galea+Catherine+K.+Ettman" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Migration and Health</a></strong>, Edited by Sandro Galea and Catherine K. Ettman</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Migration+and+Health+Sandro+Galea+Catherine+K.+Ettman" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Migration and Health</a></strong>, Edited by Sandro Galea and Catherine K. Ettman</p>
                             <p>Examines the complex systemic health challenges, vulnerabilities, and healthcare access issues faced by migrating and displaced populations.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=The+Invisible+Kingdom+Meghan+O%27Rourke" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">The Invisible Kingdom</a></strong> by Meghan O’ Rourke</p>
+                            <p><strong style="color: rgb(59, 130, 246);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=The+Invisible+Kingdom+Meghan+O%27Rourke" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">The Invisible Kingdom</a></strong> by Meghan O’ Rourke</p>
                             <p>Explores the often-overlooked struggles of patients living with chronic, difficult-to-diagnose, and "invisible" illnesses, and how the healthcare system often fails them.</p>
 
                         </div>
@@ -5690,7 +5690,7 @@
                             Knew the Conditions"</h2>
                         <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The
                             evolution of Native American health care</h3>
-                        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">History & Policy · June 2026 · 4 min
+                        <p class="text-sm mb-4" style="color: rgb(59, 130, 246);">History & Policy · June 2026 · 4 min
                             read</p>
 
                         <div class="text-center mb-10">
@@ -5870,7 +5870,7 @@
                     <article id="post-quote-spotlight-container" class="hidden max-w-3xl mx-auto relative">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Quote
                             Spotlight</h2>
-                        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Inspiration · June 2026</p>
+                        <p class="text-sm mb-4" style="color: rgb(59, 130, 246);">Inspiration · June 2026</p>
 
                         <div class="blog-post-content">
                             <blockquote>
@@ -5933,7 +5933,7 @@
                     <article id="post-med-ed-container" class="hidden max-w-3xl mx-auto relative">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The State
                             of Medical Education</h2>
-                        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Education · June 2026</p>
+                        <p class="text-sm mb-4" style="color: rgb(59, 130, 246);">Education · June 2026</p>
 
                         <div class="blog-post-content">
                             <blockquote>
@@ -6013,7 +6013,7 @@
                     <article id="post-epic-container" class="hidden max-w-3xl mx-auto relative">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Stifled
                             Innovation</h2>
-                        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Industry · June 2026</p>
+                        <p class="text-sm mb-4" style="color: rgb(59, 130, 246);">Industry · June 2026</p>
 
                         <div class="blog-post-content">
                             <p>The end of my blog post about A Giant Leap made a pointed remark at Epic, the largest
@@ -6097,7 +6097,7 @@
 
                     <article id="post-pain-brokers-container" class="hidden max-w-3xl mx-auto relative">
                         <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Pain Brokers</h2>
-                        <p class="text-sm mb-4" style="color: rgb(103, 232, 249);">Reading List · July 30, 2026</p>
+                        <p class="text-sm mb-4" style="color: rgb(59, 130, 246);">Reading List · July 30, 2026</p>
 
                         <div class="blog-post-content">
                             <div class="mb-8 flex flex-col items-center">
@@ -6315,7 +6315,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Legal Engineering, Decentralized Platforms, and Healthcare Compliance with Kyle Smith</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 8 · 1h 37m</p>
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 8 · 1h 37m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 8 summary">
@@ -6354,7 +6354,7 @@
                                 <a href="https://open.spotify.com/episode/6rYPCVeA02t8nHTKgFJMGK?si=aFYaqYgsR7OWXToF8atnyg"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -6432,7 +6432,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Advocating for Safer Childbirth: Birth Injury Law, Fetal Monitoring Risks, and Doula Integration with Gina Mundy</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 7 · 57m</p>
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 7 · 57m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 7 summary">
@@ -6475,7 +6475,7 @@
                                 <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -6553,7 +6553,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 6 · 1h 5m</p>
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 6 · 1h 5m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 6 summary">
@@ -6579,7 +6579,7 @@
                                 <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -6657,7 +6657,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">How Intelligent Dots is Redefining Remote Patient Monitoring with Dr. WenZhan Song</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 5 · 1h 12m</p>
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 5 · 1h 12m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 5 summary">
@@ -6693,7 +6693,7 @@
                                 <a href="https://open.spotify.com/episode/6aYHZxE80jdesAelZqkMHJ?si=QCTbXyQ0SLiogabJ0SbRFg"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -6771,7 +6771,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 4 · 1h 45m</p>
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 4 · 1h 45m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 4 summary">
@@ -6807,7 +6807,7 @@
                                 <a href="https://open.spotify.com/episode/1dAbsHWw68eafeqJdf8JVa?si=89ulTAhaTKifLNrgAfkGJQ"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -6885,7 +6885,7 @@
                                 </button>
                             </div>
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 3 · 1h 44m</p>
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 3 · 1h 44m</p>
 
                             <!-- Episode Summary -->
                             <div class="mb-6" role="region" aria-label="Episode 3 summary">
@@ -6929,7 +6929,7 @@
                                 <a href="https://open.spotify.com/episode/1dAbsHWw68eafeqJdf8JVa?si=89ulTAhaTKifLNrgAfkGJQ"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -7009,7 +7009,7 @@
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Clinical
                                 Advocacy: Bridging
                                 Climate, Policy, and Rural Health</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 2 · 1h 33m
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 2 · 1h 33m
                             </p>
 
                             <!-- Episode Summary -->
@@ -7062,7 +7062,7 @@
                                 <a href="https://open.spotify.com/episode/55lYUpf7USA8lWidxgk7sn?si=tUqljxJpTlORz9C8H45aVw"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -7142,7 +7142,7 @@
                             <h3 class="font-bold mb-2" style="color: rgb(241, 245, 249); font-size: 22px;">Decoding
                                 Digital Accessibility:
                                 Authentic Leadership in UX</h3>
-                            <p class="text-sm mb-6" style="color: rgb(103, 232, 249);">Season 1 · Episode 1 · 55m
+                            <p class="text-sm mb-6" style="color: rgb(59, 130, 246);">Season 1 · Episode 1 · 55m
                             </p>
 
                             <!-- Episode Summary -->
@@ -7182,7 +7182,7 @@
                                 <a href="https://open.spotify.com/episode/5pUggGY8KviMCJizVIbfub?si=gsHoCQRsR-6ELlqeOjBN7A"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:opacity-80"
-                                    style="background: rgba(6,182,212,0.1); color: rgb(103, 232, 249); text-decoration: none;">
+                                    style="background: rgba(6,182,212,0.1); color: rgb(59, 130, 246); text-decoration: none;">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"
                                         aria-hidden="true">
                                         <path
@@ -7287,7 +7287,7 @@
                             systemic frameworks that define the experiences of individuals with disabilities. Focuses on
                             neuro-inclusion, disability rights legislation, and advocacy for cognitive and physical
                             diversity within healthcare.</p>
-                        <p class="text-xs" style="color: rgb(103, 232, 249);">10–12 credit hours · Choose 4 courses</p>
+                        <p class="text-xs" style="color: rgb(59, 130, 246);">10–12 credit hours · Choose 4 courses</p>
                         <div class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4">
                             <p class="text-sm font-semibold mb-1" style="color: rgb(165, 243, 252);">↳ Concentration:
                                 Neuro-Inclusive Education (6 hrs)</p>
@@ -7313,7 +7313,7 @@
                             ethics, AI governance, and intercultural justice.</p>
                         <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">Required: PHIL 3220: Biomedical
                             Ethics</p>
-                        <p class="text-xs" style="color: rgb(103, 232, 249);">10–12 credit hours</p>
+                        <p class="text-xs" style="color: rgb(59, 130, 246);">10–12 credit hours</p>
                         <div class="mt-3 ml-4 border-l-2 border-cyan-800 pl-4">
                             <p class="text-sm font-semibold mb-1" style="color: rgb(165, 243, 252);">↳ Concentration:
                                 Ethics of Intercultural Law & Healthcare (9 hrs)</p>
@@ -7339,7 +7339,7 @@
                             and legal structures governing the modern healthcare industry — business law, risk
                             management, institutional policy, and how corporate regulations and technological
                             innovations are managed.</p>
-                        <p class="text-xs" style="color: rgb(103, 232, 249);">12 credit hours</p>
+                        <p class="text-xs" style="color: rgb(59, 130, 246);">12 credit hours</p>
                     </div>
                 </div>
 
@@ -7375,7 +7375,7 @@
                             the lifespan and how health technology and policy must adapt for elderly populations.</p>
                         <p class="text-xs mb-2" style="color: rgb(148, 163, 184);">Required: GRNT 3500: Smart Technology
                             in an Aging Society</p>
-                        <p class="text-xs" style="color: rgb(103, 232, 249);">7–9 credit hours</p>
+                        <p class="text-xs" style="color: rgb(59, 130, 246);">7–9 credit hours</p>
                     </div>
                 </div>
 
@@ -7394,7 +7394,7 @@
                         <p class="text-sm mb-2" style="color: rgb(148, 163, 184);">Investigates systemic, cultural, and
                             legal barriers that diverse and vulnerable populations encounter within the healthcare
                             system. ANTH 3540: Multicultural Healthcare is required for Specialized distinction.</p>
-                        <p class="text-xs mb-3" style="color: rgb(103, 232, 249);">12 credit hours · 4 Specialized Threads
+                        <p class="text-xs mb-3" style="color: rgb(59, 130, 246);">12 credit hours · 4 Specialized Threads
                             available</p>
 
                         <!-- Specialized Thread: Disability -->
@@ -7713,7 +7713,7 @@
                         To learn more about how the Interdisciplinary Studies major works or to officially declare this major focus, reach
                         out to
                         <a href="https://osas.franklin.uga.edu/directory/people/jessica-couch" target="_blank"
-                            rel="noopener noreferrer" style="color: rgb(103, 232, 249); font-weight: 500;"
+                            rel="noopener noreferrer" style="color: rgb(59, 130, 246); font-weight: 500;"
                             class="advisor-link hover:underline transition-colors hover:text-cyan-300"
                             aria-label="Contact UGA's Interdisciplinary Studies Advisor in a new tab">
                             UGA's Interdisciplinary Studies Advisor
@@ -9371,7 +9371,7 @@
                     }, 60);
                     renderWordHighlightForPlayer(player, audio);
                     // Update Inline UI
-                    player.style.color = 'rgb(103, 232, 249)';
+                    player.style.color = 'rgb(59, 130, 246)';
                     playBtn.setAttribute('aria-label', 'Pause article audio');
                     playBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
                     
@@ -10624,7 +10624,7 @@
 
                 const esc = (v) => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
                 const CREATOR_EMAIL = "priyac821@gmail.com";
-                const verifiedBadge = (data) => (data.email === CREATOR_EMAIL ? '<i data-lucide="badge-check" style="width: 14px; height: 14px; color: #67e8f9; display: inline-block; vertical-align: -2px;" aria-label="Blog creator"></i>' : '');
+                const verifiedBadge = (data) => (data.email === CREATOR_EMAIL ? '<i data-lucide="badge-check" style="width: 14px; height: 14px; color: #3b82f6; display: inline-block; vertical-align: -2px;" aria-label="Blog creator"></i>' : '');
 
                 let commentsData = [];
                 snapshot.forEach((doc) => commentsData.push({ id: doc.id, ...doc.data() }));
@@ -11359,7 +11359,7 @@
         };
 
         // ---------- Dynamic Light/Dark Favicon & Theme Toggle ----------
-        const FAVICON_DARK_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#080b11"/><circle cx="256" cy="256" r="160" fill="#06b6d4" opacity="0.12"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#67e8f9" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity="0.22" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#67e8f9" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
+        const FAVICON_DARK_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#080b11"/><circle cx="256" cy="256" r="160" fill="#06b6d4" opacity="0.12"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#3b82f6" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity="0.22" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#3b82f6" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
         const FAVICON_LIGHT_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#dbe7f5"/><circle cx="256" cy="256" r="165" fill="#1f56d3" opacity="0.10"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#2b57a8" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" opacity="0.2" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#1f56d3" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
         window.updateFaviconForTheme = function (isLight) {
             const href = isLight ? FAVICON_LIGHT_SVG : FAVICON_DARK_SVG;
@@ -11628,7 +11628,7 @@
             if (!pop) return;
             pop.dataset.mode = "view";
             pop.dataset.annId = rec.id || "";
-            pop.innerHTML = '<div style="display: flex; align-items: center; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; flex-grow: 1;">Remove this highlight?</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #67e8f9; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Add note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
+            pop.innerHTML = '<div style="display: flex; align-items: center; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; flex-grow: 1;">Remove this highlight?</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #3b82f6; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Add note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
             const rect = markEl.getBoundingClientRect();
             const docLeft = rect.left + window.scrollX;
             const docTop = rect.bottom + window.scrollY + 8;
@@ -11643,7 +11643,7 @@
             if (!pop) return;
             pop.dataset.mode = "view";
             pop.dataset.annId = rec.id || "";
-            pop.innerHTML = '<div style="display: flex; align-items: flex-start; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; line-height: 1.6; flex-grow: 1;">' + annEsc(rec.note).replace(/\n/g, "<br>") + '</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #67e8f9; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Edit note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
+            pop.innerHTML = '<div style="display: flex; align-items: flex-start; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; line-height: 1.6; flex-grow: 1;">' + annEsc(rec.note).replace(/\n/g, "<br>") + '</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #3b82f6; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Edit note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
             const rect = markEl.getBoundingClientRect();
             const docLeft = rect.left + window.scrollX;
             const docTop = rect.bottom + window.scrollY + 8;
@@ -11663,7 +11663,7 @@
                 '<textarea id="ann-edit-note-input" rows="4" placeholder="Write your note..." aria-label="Write your note"></textarea>' +
                 '<div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;">' +
                 '<button onclick="window.annCancelEditNote()" style="font-size: 12px; padding: 8px 14px; border-radius: 9px; background: rgba(255,255,255,0.06); color: rgb(148, 163, 184); border: none; cursor: pointer;">Cancel</button>' +
-                '<button onclick="window.annSaveEditedNote()" style="font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 9px; background: #67e8f9; color: #06212a; border: none; cursor: pointer;">Save note</button></div>';
+                '<button onclick="window.annSaveEditedNote()" style="font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 9px; background: #3b82f6; color: #06212a; border: none; cursor: pointer;">Save note</button></div>';
             const ta = document.getElementById('ann-edit-note-input');
             if (ta) { ta.value = rec.note || ''; setTimeout(() => ta.focus(), 30); }
             const mark = Array.from(document.querySelectorAll('mark.ann-hl')).find(m => m.dataset.annId === rec.id);
@@ -11829,7 +11829,7 @@
             <h3 id="pdf-modal-title" style="margin: 0 0 6px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Download PDF</h3>
             <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Which style would you like?</p>
             <label for="pdf-include-annotations" style="display: flex; align-items: flex-start; gap: 9px; margin: 0 0 18px; color: #cbd5e1; font-size: 12.5px; line-height: 1.5; cursor: pointer;">
-                <input type="checkbox" id="pdf-include-annotations" checked style="accent-color: #67e8f9; width: 16px; height: 16px; margin-top: 1px; flex: 0 0 auto;">
+                <input type="checkbox" id="pdf-include-annotations" checked style="accent-color: #3b82f6; width: 16px; height: 16px; margin-top: 1px; flex: 0 0 auto;">
                 <span>Include my highlights and notes</span>
             </label>
             <div style="display: flex; gap: 12px;">
@@ -11846,7 +11846,7 @@
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Your current highlights stay on this page for now. Sign in and they'll be saved with your account and restored on any device.</p>
                 <input id="ann-email-input" type="email" placeholder="you@example.com" aria-label="Email address" onkeydown="if (event.key === 'Enter') window.annSendLink()" autocomplete="email" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px; text-align: center;">
                 <button id="ann-send-link-btn" onclick="window.annSendLink()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Send me a login link</button>
-                <p id="ann-auth-msg" role="status" aria-live="polite" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
+                <p id="ann-auth-msg" role="status" aria-live="polite" style="margin: 10px 0 0; color: rgb(59, 130, 246); font-size: 12px; min-height: 16px;"></p>
                 <button onclick="window.annTogglePasswordSignIn(true)" style="margin-top: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 12px; cursor: pointer; text-decoration: underline;">Have a password? Sign in with it instead</button>
                 <div id="ann-password-signin-view" style="display: none;">
                     <input id="ann-psw-email-input" type="email" placeholder="Email" aria-label="Email address" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn()" autocomplete="email" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
@@ -11858,7 +11858,7 @@
                         </button>
                     </div>
                     <button id="ann-psw-signin-btn" onclick="window.annPasswordSignIn()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Sign in</button>
-                    <p id="ann-psw-msg" role="status" aria-live="polite" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
+                    <p id="ann-psw-msg" role="status" aria-live="polite" style="margin: 10px 0 0; color: rgb(59, 130, 246); font-size: 12px; min-height: 16px;"></p>
                     <button onclick="window.annTogglePasswordSignIn(false)" style="margin-top: 6px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Back to email link</button>
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px; margin: 14px 0;">
@@ -11870,7 +11870,7 @@
                     <button onclick="window.annGoogleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #f8fafc; color: #0f172a; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.4a5.5 5.5 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.6-5.2 3.6-8.8z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 7.9-2.9l-3.9-3a7.2 7.2 0 0 1-10.7-3.8H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6H1.3a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1A7.2 7.2 0 0 1 12 4.8z"/></svg>Google</button>
                     <button onclick="window.annAppleSignIn()" style="flex: 1; padding: 11px; border-radius: 12px; border: none; cursor: pointer; font-size: 13px; font-weight: 700; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px;"><svg width="15" height="17" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.4 2-3.6 2.1-3.6-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-4zM11.7 3.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.8-1.5z"/></svg>Apple</button>
                 </div>
-                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(103, 232, 249); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
+                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(59, 130, 246); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Maybe later &mdash; keep highlights for this visit only</button>
             </div>
             <div id="ann-set-password-view" style="display: none;">
@@ -11884,15 +11884,15 @@
                     </button>
                 </div>
                 <button id="ann-save-password-btn" onclick="window.annSavePassword()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Save password</button>
-                <p id="ann-password-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
-                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(103, 232, 249); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
+                <p id="ann-password-msg" style="margin: 10px 0 0; color: rgb(59, 130, 246); font-size: 12px; min-height: 16px;"></p>
+                <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(59, 130, 246); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
                 <button onclick="window.annSkipPassword()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Not now &mdash; email links still work</button>
             </div>
             <div id="ann-signed-in-view" style="display: none;">
-                <p style="margin: 0 0 4px; color: rgb(103, 232, 249); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Signed in</p>
+                <p style="margin: 0 0 4px; color: rgb(59, 130, 246); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;">Signed in</p>
                 <p id="ann-user-email" style="margin: 0 0 16px; color: rgb(241, 245, 249); font-size: 15px; font-weight: 700; word-break: break-all;"></p>
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px;">Your highlights and notes are being saved to your account automatically.</p>
-                <p style="margin: 0 0 14px; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(103, 232, 249); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
+                <p style="margin: 0 0 14px; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(59, 130, 246); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>
                 <button onclick="window.__annPasswordSkipped = false; window.__annPasswordSaved = false; window.__annForcePasswordUI = true; window.openAnnAuth()" style="width: 100%; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Set or change password</button>
                 <button onclick="window.annSignOut()" style="width: 100%; margin-top: 10px; padding: 11px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: rgb(226, 232, 240); font-size: 13px; font-weight: 600; cursor: pointer;">Sign out</button>
                 <button onclick="window.annCloseAuth()" style="margin-top: 8px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Close</button>
@@ -12132,7 +12132,7 @@
         .uw-tile.uw-active {
             border-color: #06b6d4 !important;
             background: rgba(6, 182, 212, 0.14) !important;
-            color: #67e8f9 !important;
+            color: #3b82f6 !important;
             box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.35);
         }
         body.light-mode .uw-tile {
@@ -12175,7 +12175,7 @@
             color: #f8fafc !important;
             font-weight: 600;
             font-size: 0.8rem;
-            border: 1px solid rgba(103, 232, 249, 0.25);
+            border: 1px solid rgba(59, 130, 246, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -12377,7 +12377,7 @@
         abbr.pulse-glossary-term:hover,
         abbr.pulse-glossary-term:focus {
             background: rgba(6, 182, 212, 0.16);
-            color: #67e8f9;
+            color: #3b82f6;
         }
         body.light-mode abbr.pulse-glossary-term {
             text-decoration-color: rgba(68, 139, 255, 0.75) !important;
@@ -12433,14 +12433,14 @@
             border-radius: 6px;
             background: rgba(6, 182, 212, 0.14);
             border: 1px solid rgba(6, 182, 212, 0.35);
-            color: #67e8f9;
+            color: #3b82f6;
             cursor: pointer;
             margin-right: 6px;
             transition: all 0.15s ease;
         }
         .ep-ts-btn:hover {
             background: rgba(6, 182, 212, 0.28);
-            border-color: #67e8f9;
+            border-color: #3b82f6;
         }
         body.light-mode .ep-ts-btn {
             background: rgba(68, 139, 255, 0.16) !important;
