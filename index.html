@@ -3034,6 +3034,7 @@
         .pw-toggle.is-visible .pw-eye-off { display: block; }
 
         @media print {
+            @page { margin: 0; }
             html,
             body#top,
             body#top.printing {
@@ -3049,7 +3050,7 @@
                 display: block !important;
                 background: #ffffff !important;
                 color: #111827 !important;
-                padding: 0 !important;
+                padding: 0.65in 0.75in !important;
                 margin: 0 !important;
             }
             body#top.printing #print-area * {
@@ -3116,7 +3117,7 @@
             body#top.printing #print-area.pdf-mode-dark {
                 background-color: transparent !important;
                 color: #e2e8f0 !important;
-                padding: 0 !important;
+                padding: 0.65in 0.75in !important;
             }
             body#top.printing #print-area.pdf-mode-dark * {
                 background-color: transparent !important;
