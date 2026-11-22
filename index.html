@@ -2494,11 +2494,197 @@
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .dashboard-container,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .dashboard-content,
+        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .tab-section {
+            background-color: #ffffff !important;
+        }
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .dashboard-sidebar,
-        html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .tab-section,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .site-footer,
         html:has(body.light-mode):has(#section-podcast:not(.hidden), #podcast-platforms-modal.show) body.light-mode .mobile-tab-dock {
-            background-color: #ffffff !important;
+            background-color: #000000 !important;
+        }
+
+        /* ============================================================
+           TOP-DOWN BLOG LAYOUT
+           ============================================================ */
+        .dashboard-container {
+            display: block !important;
+        }
+
+        .dashboard-sidebar,
+        body.light-mode .dashboard-sidebar {
+            display: flex !important;
+            position: sticky !important;
+            top: 0 !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            padding: 0.85rem 2rem !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-right: 0 !important;
+            border-bottom: 1px solid #1f2937 !important;
+            z-index: 90 !important;
+        }
+        body.light-mode .dashboard-sidebar {
+            border-bottom-color: #16181c !important;
+        }
+
+        .dashboard-sidebar > div:first-child {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 2rem !important;
+            width: 100% !important;
+            max-width: 1180px !important;
+            margin: 0 auto !important;
+        }
+
+        .dashboard-sidebar > div:last-child {
+            display: none !important;
+        }
+
+        .dashboard-sidebar nav[role="tablist"] {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 0.15rem !important;
+            margin: 0 !important;
+            flex-wrap: nowrap !important;
+        }
+
+        .dashboard-sidebar .nav-link-vertical {
+            margin-bottom: 0 !important;
+            padding: 0.55rem 0.8rem !important;
+            border-radius: 0.25rem !important;
+            font-size: 0.85rem !important;
+            white-space: nowrap !important;
+        }
+
+        .dashboard-sidebar .nav-link-vertical.active,
+        body.light-mode .dashboard-sidebar .nav-link-vertical.active,
+        .dashboard-sidebar .nav-link-vertical.active:hover,
+        body.light-mode .dashboard-sidebar .nav-link-vertical.active:hover {
+            border: 0 !important;
+            border-bottom: 2px solid #81b2ff !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .dashboard-content {
+            margin: 0 auto !important;
+            width: 100% !important;
+            max-width: 1180px !important;
+            padding: 2.5rem 2rem 0 !important;
+        }
+
+        .site-footer,
+        body.light-mode .site-footer {
+            margin: 0 auto !important;
+            width: 100% !important;
+            max-width: 1180px !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
+
+        .mobile-tab-dock {
+            display: none !important;
+        }
+
+        #blog-list-view > .grid {
+            display: block !important;
+        }
+        .blog-main-column,
+        .blog-newsletter-column {
+            grid-column: 1 / -1 !important;
+            width: 100% !important;
+        }
+        .blog-main-column {
+            gap: 2.5rem !important;
+        }
+
+        .blog-editor-card,
+        .shelf-widget {
+            display: none !important;
+        }
+
+        .blog-newsletter-column {
+            margin-top: 2rem !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        .blog-newsletter-column .profile-container {
+            width: 100% !important;
+            max-width: 620px !important;
+            margin: 0 auto !important;
+            text-align: center !important;
+            align-items: center !important;
+        }
+        .blog-newsletter-column .profile-container h3 {
+            border-bottom: 0 !important;
+            color: #81b2ff !important;
+        }
+
+        #recent-articles-list {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 1.25rem !important;
+        }
+
+        #recent-articles-list .card-premium {
+            height: 100% !important;
+        }
+
+        #recent-articles-list .card-premium:first-child {
+            grid-column: 1 / -1;
+            padding: 2rem !important;
+        }
+
+        #recent-articles-list .card-premium:first-child h3 {
+            font-size: clamp(1.45rem, 2.2vw, 1.8rem) !important;
+        }
+
+        .vital-signs-list {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 1.25rem !important;
+        }
+
+        @media (max-width: 800px) {
+            .dashboard-sidebar {
+                padding: 0.7rem 1rem !important;
+            }
+            .dashboard-sidebar > div:first-child {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.5rem !important;
+            }
+            .dashboard-sidebar nav[role="tablist"] {
+                width: 100% !important;
+                overflow-x: auto !important;
+                padding-bottom: 0.15rem !important;
+            }
+            .dashboard-sidebar .nav-link-vertical {
+                padding: 0.4rem 0.45rem !important;
+                gap: 0.35rem !important;
+                font-size: 0.72rem !important;
+            }
+            .dashboard-content {
+                padding: 1.5rem 1rem 0 !important;
+            }
+            .site-footer {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            #recent-articles-list,
+            .vital-signs-list {
+                grid-template-columns: 1fr !important;
+            }
         }
     </style>
 
@@ -2906,7 +3092,7 @@
                 <div id="blog-list-view">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                         <!-- Main Content (Left Column) -->
-                        <div class="lg:col-span-8 flex flex-col gap-12">
+                        <div class="blog-main-column lg:col-span-8 flex flex-col gap-12">
                             <!-- Premium Welcome Hero Section -->
                             <div class="welcome-hero rounded-2xl p-8 md:p-12 text-left">
                                 <div class="max-w-3xl">
@@ -2919,17 +3105,6 @@
                                         <button onclick="navigateTo('#about')" class="px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 hover:shadow-lg focus:outline-none cursor-pointer text-sm border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white" style="background: transparent;">About the Editor</button>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Recommended for You Section (Blog) -->
-                            <div id="blog-recommended-section" class="hidden">
-                                <div class="flex items-center justify-between gap-2 mb-4">
-                                    <div>
-                                        <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Personalized Picks</span>
-                                        <h2 class="text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Recommended for You</h2>
-                                    </div>
-                                </div>
-                                <div id="blog-recommended-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
                             </div>
 
                             <!-- Articles Area -->
@@ -3072,7 +3247,7 @@
                                 <h2 class="mb-2 text-white font-extrabold section-heading text-2xl tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Vital Signs</h2>
                                 <p class="text-sm mb-8" style="color: rgb(148, 163, 184);">Under one-page takes on healthcare trends, law, and medical technology</p>
                                 
-                                <div class="flex flex-col gap-6">
+                                <div class="vital-signs-list flex flex-col gap-6">
                                     <button
                                         class="rounded-2xl p-7 card-premium card-book text-left w-full focus:outline-none cursor-pointer flex flex-col"
                                         id="card-pain-brokers-click" aria-label="Read post: The Pain Brokers">
@@ -3113,74 +3288,7 @@
                         </div>
 
                         <!-- Sidebar Content (Right Column) -->
-                        <div class="lg:col-span-4 flex flex-col gap-8">
-                            <!-- Priya Profile widget -->
-                            <div onclick="navigateTo('#about')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();navigateTo('#about');}" role="button" tabindex="0" aria-label="Read full About Me bio for Priya Chaudhari" class="profile-container p-6 text-left flex flex-col gap-4 cursor-pointer transition-transform hover:-translate-y-0.5">
-                                <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">The Editor</h3>
-                                <div class="flex flex-row md:flex-col items-center gap-4 text-left md:text-center mt-2">
-                                    <div class="editor-portrait w-16 h-16 md:w-28 md:h-28 rounded-full overflow-hidden flex-shrink-0">
-                                        <img class="w-full h-full object-cover" style="object-position: 100% 50%; transform: scale(1.025) translateX(-1%);" src="./IMG_5048.jpg?v=3" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-white text-lg">Priya Chaudhari</h4>
-                                        <p class="editor-subtitle text-xs text-cyan-400 font-medium mt-1">UGA Class of 2028 · Interdisciplinary Studies</p>
-                                        <p class="text-sm text-slate-400 mt-3 leading-relaxed" style="word-spacing: 0.06em;">
-                                            Studying Healthcare Technology Law &amp; Regulation with a Focus Area in Public Health.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- On the Shelf widget -->
-                            <div class="profile-container p-6 text-left flex flex-col gap-4">
-                                <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">On the Shelf</h3>
-                                <p class="shelf-subtitle text-xs text-slate-400 -mt-2">Current reads shaping The Pulse's coverage.</p>
-                                <div class="space-y-4 mt-2">
-                                    <button onclick="navigateTo('#post-battlefield')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Fields of Combat: Beyond the Battlefield">
-                                        <img src="./FieldsofCombat.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Book cover of Fields of Combat by Erin P. Finley, showing a yellow-tinted photograph of a soldier in a camouflage helmet with hands clasped over their face.">
-                                        <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Fields of Combat</div>
-                                            <div class="text-xs text-slate-400 truncate">Dr. Erin P. Finley</div>
-                                        </div>
-                                    </button>
-                                    <button onclick="navigateTo('#post-art-cure')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Art Cure: The Fifth Pillar">
-                                        <img src="./art-cure.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Book cover of Art Cure by Daisy Fancourt, showing a white cup holding paintbrushes, colored pencils, a ticket stub, and rolled sheet music against a red circle.">
-                                        <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Art Cure</div>
-                                            <div class="text-xs text-slate-400 truncate">Dr. Daisy Fancourt</div>
-                                        </div>
-                                    </button>
-                                    <button onclick="navigateTo('#post-giant-leap')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on A Giant Leap">
-                                        <img src="./A Giant Leap.jpeg" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Book cover of A Giant Leap by Robert Wachter, MD, featuring a blue line tracing a face profile that rises into a multicolored ECG heartbeat peak.">
-                                        <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">A Giant Leap</div>
-                                            <div class="text-xs text-slate-400 truncate">Dr. Robert Wachter</div>
-                                        </div>
-                                    </button>
-                                    <button onclick="navigateTo('#post-compassion')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Compassionomics: The Case for Compassionate Care">
-                                        <img src="./Compassionomics.jpeg" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Book cover of Compassionomics by Stephen Trzeciak and Anthony Mazzarelli, showing a cream background with a red wax seal embossed with the medical Rod of Asclepius.">
-                                        <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Compassionomics</div>
-                                            <div class="text-xs text-slate-400 truncate">Drs. Trzeciak &amp; Mazzarelli</div>
-                                        </div>
-                                    </button>
-                                    <button onclick="navigateTo('#post-migration')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my insights on Migration and Health: Healing Without Borders">
-                                        <img src="./migration.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Book cover of Migration and Health, showing a tree-lined highway curving toward a city skyline with an airplane flying overhead.">
-                                        <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">Migration and Health</div>
-                                            <div class="text-xs text-slate-400 truncate">Dr. Galea, Dr. Ettman, Dr. Zaman</div>
-                                        </div>
-                                    </button>
-                                    <button onclick="navigateTo('#post-na')" class="shelf-book-btn group flex items-center gap-3 min-w-0" aria-label="Read my review: If You Knew the Conditions">
-                                        <img src="./NAbook.webp" class="w-10 h-14 rounded object-cover border border-white/10 shadow flex-shrink-0" alt="Book cover of If You Knew the Conditions by David H. DeJong, featuring a historical photograph of an elderly Native American patient resting under blankets while a young woman sits nearby.">
-                                        <div class="min-w-0">
-                                            <div class="text-sm font-semibold text-white leading-snug break-words group-hover:text-cyan-300 transition-colors">"If You Knew the Conditions"</div>
-                                            <div class="text-xs text-slate-400 truncate">Dr. David H. DeJong</div>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-
+                        <div class="blog-newsletter-column lg:col-span-4 flex flex-col gap-8">
                             <!-- Subscribe Form Card -->
                             <div class="profile-container p-6 text-left flex flex-col gap-4">
                                 <h3 class="font-bold border-b border-white/5 pb-2 text-xs tracking-wider uppercase text-cyan-400" style="font-family: 'Plus Jakarta Sans', sans-serif;">Subscribe</h3>
@@ -5545,13 +5653,6 @@
 
                 <!-- Podcast List View (Episode Cards) -->
                 <div id="podcast-list-view">
-                    <!-- Recommended for You Section (Podcast) -->
-                    <div id="podcast-recommended-section" class="hidden mb-10">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Personalized Picks</span>
-                        <h3 class="font-bold mb-4" style="color: rgb(241, 245, 249); font-size: 22px;">Recommended for You</h3>
-                        <div id="podcast-recommended-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-                    </div>
-
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
                         <h3 class="font-bold" style="color: rgb(241, 245, 249); font-size: 22px;">Episodes</h3>
                         <input type="search" id="podcast-search-input" class="blog-search-input" placeholder="Search episodes..." aria-label="Search podcast episodes">
