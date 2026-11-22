@@ -44,10 +44,10 @@
             --text-primary: #f1f5f9;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            --pulse-cyan: #22d3ee;
-            --pulse-cyan-glow: rgba(34, 211, 238, 0.15);
-            --pulse-cyan-border: rgba(34, 211, 238, 0.25);
-            --pulse-cyan-border-hover: rgba(34, 211, 238, 0.6);
+            --pulse-cyan: #14b8a6;
+            --pulse-cyan-glow: rgba(20, 184, 166, 0.15);
+            --pulse-cyan-border: rgba(20, 184, 166, 0.25);
+            --pulse-cyan-border-hover: rgba(20, 184, 166, 0.6);
             --border-subtle: rgba(255, 255, 255, 0.06);
             --border-glow: rgba(255, 255, 255, 0.12);
         }
@@ -932,13 +932,16 @@
             display: none !important;
         }
         .img-a11y-desc {
-            display: block;
+            display: none;
             margin: 8px auto 0;
             max-width: 26rem;
             text-align: center;
             font-size: 0.68rem !important;
             line-height: 1.42 !important;
             color: #94a3b8 !important;
+        }
+        body.uw-image-descriptions .img-a11y-desc {
+            display: block;
         }
         #section-about .img-a11y-desc {
             margin: 0 auto !important;
@@ -1040,7 +1043,7 @@
         .tag-book { background: rgba(139, 92, 246, 0.15) !important; color: #c4b5fd !important; }
 
         .card-violet { 
-            border-left: 4px solid #22d3ee !important; 
+            border-left: 4px solid #14b8a6 !important;
             background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
         }
         .card-violet:hover { 
@@ -1084,7 +1087,7 @@
         .tag-slate { background: rgba(59, 130, 246, 0.15) !important; color: #93c5fd !important; }
 
         .card-education { 
-            border-left: 4px solid #22d3ee !important; 
+            border-left: 4px solid #14b8a6 !important;
             background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
         }
         .card-education:hover { 
@@ -1128,7 +1131,7 @@
         .tag-epic { background: rgba(159, 18, 57, 0.22) !important; color: #f0a3b5 !important; }
 
         .card-med-ed { 
-            border-left: 4px solid #22d3ee !important; 
+            border-left: 4px solid #14b8a6 !important;
             background: linear-gradient(135deg, #041822 0%, #080b11 100%) !important;
         }
         .card-med-ed:hover { 
@@ -1183,7 +1186,7 @@
             transform: translateX(2px);
         }
         .shelf-book-btn:hover .text-sm {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         .shelf-book-btn:focus-visible {
             outline: none !important;
@@ -1391,7 +1394,7 @@
         .floating-audio-bar .play-btn-circle:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 16px rgba(6, 182, 212, 0.5);
-            background: #22d3ee;
+            background: #14b8a6;
         }
 
         .audio-wave {
@@ -1997,8 +2000,8 @@
         }
         .nav-link-vertical.active:hover {
             color: #080b11;
-            background: #22d3ee;
-            border-color: #22d3ee;
+            background: #14b8a6;
+            border-color: #14b8a6;
         }
 
         .mobile-tab-dock {
@@ -2689,7 +2692,7 @@
 
         /* ============================================================
            COLOR + INTERACTION REFINEMENT
-           Dark accent: teal #22d3ee, matching the Health & Tech Law
+           Dark accent: teal #14b8a6, matching the Health & Tech Law
            kicker. Light accent: source #81b2ff (renders blue after the
            global light-mode inversion). Teal is never paired with blue
            in dark mode; teal is a small-surface accent, not a fill.
@@ -2723,11 +2726,11 @@
             color: #f1f5f9 !important;
         }
         .hero-text-link:focus-visible {
-            outline: 2px solid #22d3ee;
+            outline: 2px solid #14b8a6;
             outline-offset: 4px;
         }
         .hero-text-link--primary {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body.light-mode .hero-text-link {
             color: #9fadc1 !important;
@@ -2755,7 +2758,7 @@
             box-shadow: none !important;
         }
         .blog-search-input:focus {
-            border-bottom-color: #22d3ee !important;
+            border-bottom-color: #14b8a6 !important;
             box-shadow: none !important;
         }
         body.light-mode .blog-search-input {
@@ -2771,8 +2774,8 @@
             border-radius: 0 !important;
             background: transparent !important;
             padding: 1.75rem 0 2rem !important;
-            text-align: left !important;
-            align-items: stretch !important;
+            text-align: center !important;
+            align-items: center !important;
         }
         body.light-mode .blog-newsletter-column .profile-container {
             border-top-color: #16181c !important;
@@ -2781,7 +2784,7 @@
         .blog-newsletter-column .profile-container h3 {
             border-bottom: 0 !important;
             padding-bottom: 0.55rem !important;
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body.light-mode .blog-newsletter-column .profile-container h3 {
             color: #81b2ff !important;
@@ -2795,7 +2798,7 @@
         body#top .blog-newsletter-column .ml-form-embedContent,
         body#top .blog-newsletter-column .ml-form-formContent,
         body#top .blog-newsletter-column .ml-form-embedSubmit {
-            text-align: left !important;
+            text-align: center !important;
         }
         body#top .blog-newsletter-column #mlb2-42510540 .form-control {
             background: transparent !important;
@@ -2804,7 +2807,7 @@
             border-radius: 0 !important;
             padding: 0.65rem 0 !important;
             color: #f1f5f9 !important;
-            text-align: left !important;
+            text-align: center !important;
             box-shadow: none !important;
         }
         body#top.light-mode .blog-newsletter-column #mlb2-42510540 .form-control {
@@ -2812,7 +2815,7 @@
             color: #f1f5f9 !important;
         }
         body#top .blog-newsletter-column #mlb2-42510540 .form-control:focus {
-            border-bottom-color: #22d3ee !important;
+            border-bottom-color: #14b8a6 !important;
             outline: 0 !important;
         }
         body#top.light-mode .blog-newsletter-column #mlb2-42510540 .form-control:focus {
@@ -2822,7 +2825,7 @@
             width: auto !important;
             padding: 0.55rem 1rem !important;
             border-radius: 0.3rem !important;
-            background: #22d3ee !important;
+            background: #14b8a6 !important;
             color: #080b11 !important;
             box-shadow: none !important;
         }
@@ -2833,50 +2836,50 @@
 
         body#top:not(.light-mode) .dashboard-sidebar .nav-link-vertical.active,
         body#top:not(.light-mode) .dashboard-sidebar .nav-link-vertical.active:hover {
-            color: #22d3ee !important;
-            border-bottom-color: #22d3ee !important;
-            border-left-color: #22d3ee !important;
+            color: #14b8a6 !important;
+            border-bottom-color: #14b8a6 !important;
+            border-left-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .mobile-dock-btn.active {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .welcome-hero {
-            border-top-color: #22d3ee !important;
+            border-top-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .card-premium:hover,
         body#top:not(.light-mode) .card-premium:focus,
         body#top:not(.light-mode) .card-premium:focus-visible,
         body#top:not(.light-mode) .card-premium:active {
-            border-color: #22d3ee !important;
+            border-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .card-premium > span {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .card-premium > span::before {
-            background-color: #22d3ee !important;
+            background-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .filter-tag:hover,
         body#top:not(.light-mode) .filter-tag.active {
-            color: #22d3ee !important;
-            border-bottom-color: #22d3ee !important;
+            color: #14b8a6 !important;
+            border-bottom-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .tab-btn::after {
-            background-color: #22d3ee !important;
+            background-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .tab-active {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .pulse-logo polyline {
-            stroke: #22d3ee !important;
+            stroke: #14b8a6 !important;
         }
         body#top:not(.light-mode) #blog-post-view article form button[type="submit"],
         body#top:not(.light-mode) #blog-post-view article button[style*="linear-gradient"] {
-            background-color: #22d3ee !important;
+            background-color: #14b8a6 !important;
             background-image: none !important;
             color: #080b11 !important;
         }
         body#top:not(.light-mode) #mlb2-42510540 button[type="submit"] {
-            background-color: #22d3ee !important;
+            background-color: #14b8a6 !important;
             color: #080b11 !important;
         }
 
@@ -2893,7 +2896,7 @@
         body#top:not(.light-mode) .podcast-platform-link:hover,
         body#top:not(.light-mode) .podcast-platform-link:focus-visible {
             background: transparent !important;
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body#top.light-mode .podcast-platform-link:hover,
         body#top.light-mode .podcast-platform-link:focus-visible {
@@ -2902,35 +2905,48 @@
         }
 
         body#top:not(.light-mode) .focus-card {
-            border-color: rgba(34, 211, 238, 0.22) !important;
-            border-left-color: #22d3ee !important;
+            border-color: rgba(20, 184, 166, 0.22) !important;
+            border-left-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .focus-card:hover {
-            border-color: rgba(34, 211, 238, 0.42) !important;
-            border-left-color: #67e8f9 !important;
+            border-color: rgba(20, 184, 166, 0.42) !important;
+            border-left-color: #2dd4bf !important;
         }
         body#top:not(.light-mode) .focus-card .accordion-btn span,
         body#top:not(.light-mode) .focus-card svg,
         body#top:not(.light-mode) .focus-card p[style*="#818cf8"],
         body#top:not(.light-mode) .focus-card p[style*="#a5b4fc"] {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body#top:not(.light-mode) #pulse-glossary-popover {
-            border-color: rgba(34, 211, 238, 0.45) !important;
+            border-color: rgba(20, 184, 166, 0.45) !important;
         }
         body#top:not(.light-mode) #pulse-glossary-popover .gl-title {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body#top:not(.light-mode) a[style*="rgb(56, 189, 248)"] {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
         }
         body#top:not(.light-mode) #uw-reading-guide,
         body#top:not(.light-mode) #uw-tooltip-box {
-            border-color: #22d3ee !important;
+            border-color: #14b8a6 !important;
         }
         body#top:not(.light-mode) .site-footer a,
         body#top:not(.light-mode) .site-footer .footer-cookie-btn {
-            color: #22d3ee !important;
+            color: #14b8a6 !important;
+        }
+        body#top:not(.light-mode) .text-cyan-400,
+        body#top:not(.light-mode) .text-cyan-300,
+        body#top:not(.light-mode) .text-cyan-500,
+        body#top:not(.light-mode) [style*="color: rgb(103, 232, 249)"],
+        body#top:not(.light-mode) [style*="color: rgb(6, 182, 212)"] {
+            color: #2dd4bf !important;
+        }
+        body#top:not(.light-mode) .hover\:text-cyan-300:hover {
+            color: #2dd4bf !important;
+        }
+        body#top:not(.light-mode) #uw-a11y-trigger {
+            background-color: #0d9488 !important;
         }
 
         @media (max-width: 800px) {
@@ -3257,7 +3273,9 @@
                 }
             } catch (e) {}
             const hash = window.location.hash;
-            if (hash && hash !== '#blog' && hash !== '#') {
+            let introSeen = false;
+            try { introSeen = sessionStorage.getItem('pulseIntroShown') === '1'; } catch (e) {}
+            if ((hash && hash !== '#blog' && hash !== '#') || introSeen) {
                 document.write('<style>#intro-overlay { display: none !important; } #main-content { opacity: 1 !important; transition: none !important; }</style>');
             }
         })();
@@ -3274,10 +3292,10 @@
                 </linearGradient>
                 <path id="intro-ecg-motion-path" d="M20,80 L40,80 L50,50 L60,110 L70,80 L80,80 L85,65 L90,95 L100,80 L120,80 L140,80"></path>
             </defs>
-            <polyline class="pulse-ghost-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#22d3ee"
+            <polyline class="pulse-ghost-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#14b8a6"
                 stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
-            <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#22d3ee"
+            <polyline class="pulse-active-line" points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#14b8a6"
                 stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
             </polyline>
         </svg>
@@ -3293,7 +3311,7 @@
                     <!-- Brand / Logo header -->
                     <button id="logo-home-btn" class="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none cursor-pointer text-left" aria-label="Return to Blog Home">
                         <svg width="40" height="40" viewBox="0 0 160 160" fill="none" aria-hidden="true" class="pulse-logo">
-                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#22d3ee" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                            <polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#14b8a6" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
                         </svg>
                         <div>
                             <div class="text-[9px] tracking-[0.2em] font-mono text-cyan-400 font-semibold uppercase leading-none mb-1">Health &amp; Tech Law</div>
@@ -5336,41 +5354,41 @@
                         <div class="blog-post-content">
                             <p>Over the past year, as an avid reader, I have delved into over 35 books relating
                                 to American healthcare.</p>
-                            <p>I wish I could pull up on my library records all of their titles to deliver a proper book
-                                recommendation post, but I am only able to go back to this April.</p>
+                            <p>I wish I could pull up my library records further back than this April to deliver a proper book
+                                recommendation post, but alas.</p>
                             <p>The books on this list define recent reads that have had a profound impact on how I think
                                 about healthcare and biomedical ethics.</p>
                             <p>Here’s the list of my top 11 in order (you’ll recognize some from my book reviews):</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">A Giant Leap</strong> by Robert Wachter</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=A+Giant+Leap+Robert+Wachter" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">A Giant Leap</a></strong> by Robert Wachter</p>
                             <p>Explores transformative concepts and significant advancements within the fields of healthcare and biomedical ethics.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">Being Mortal</strong> by Atul Gawande</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Being+Mortal+Atul+Gawande" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Being Mortal</a></strong> by Atul Gawande</p>
                             <p>Examines aging and the end of life, arguing that modern medicine must prioritize the quality of life and patient well-being over merely prolonging survival.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">Riding the Bus with My Sister: A True Life Journey</strong> by Rachel Simon</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Riding+the+Bus+with+My+Sister+Rachel+Simon" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Riding the Bus with My Sister: A True Life Journey</a></strong> by Rachel Simon</p>
                             <p>Chronicle the author's journey of reconnecting with her sister, who has an intellectual disability and spends her days riding city buses.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">Disability Visibility (Adapted for Young Adults): 17 First- Person Stories for Today</strong> by Alice Wong</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Disability+Visibility+Adapted+for+Young+Adults+Alice+Wong" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Disability Visibility (Adapted for Young Adults): 17 First- Person Stories for Today</a></strong> by Alice Wong</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">Compassionomics</strong> by Stephen Trzeciak and Anthony Mazzarelli</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Compassionomics+Stephen+Trzeciak+Anthony+Mazzarelli" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Compassionomics</a></strong> by Stephen Trzeciak and Anthony Mazzarelli</p>
                             <p>Reviews scientific evidence demonstrating that compassionate healthcare improves physical outcomes for patients, lowers medical costs, and reduces physician burnout.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">A Disability History of the United States</strong> by Kim E. Nielsen</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=A+Disability+History+of+the+United+States+Kim+E.+Nielsen" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">A Disability History of the United States</a></strong> by Kim E. Nielsen</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">Grief and Loss</strong> by Katherine Walsh</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Grief+and+Loss+Katherine+Walsh" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Grief and Loss</a></strong> by Katherine Walsh</p>
                             <p>A text detailing the emotional, clinical, and ethical dimensions of navigating death, bereavement, and the grieving process.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</strong> by David H. Dejong</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=If+You+Knew+the+Conditions+David+H.+Dejong" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">“If You Knew the Conditions”: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908-1955</a></strong> by David H. Dejong</p>
                             <p>Chronicles the history of the Indian Medical Service between 1908 and 1955, exploring the systemic underfunding and assimilation-driven health policies faced by Native American communities.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">The Spirit Catches You and You Fall Down</strong> by Anne Fadiman</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=The+Spirit+Catches+You+and+You+Fall+Down+Anne+Fadiman" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">The Spirit Catches You and You Fall Down</a></strong> by Anne Fadiman</p>
                             <p>An ethnographic account detailing the tragic cultural miscommunications between a Hmong refugee family and the American medical establishment over the treatment of their daughter's severe epilepsy.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">Migration and Health</strong>, Edited by Sandro Galea and Catherine K. Ettman</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=Migration+and+Health+Sandro+Galea+Catherine+K.+Ettman" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Migration and Health</a></strong>, Edited by Sandro Galea and Catherine K. Ettman</p>
                             <p>Examines the complex systemic health challenges, vulnerabilities, and healthcare access issues faced by migrating and displaced populations.</p>
 
-                            <p><strong style="color: rgb(103, 232, 249);">The Invisible Kingdom</strong> by Meghan O’ Rourke</p>
+                            <p><strong style="color: rgb(103, 232, 249);"><a href="https://www.amazon.com/s?i=stripbooks&amp;k=The+Invisible+Kingdom+Meghan+O%27Rourke" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">The Invisible Kingdom</a></strong> by Meghan O’ Rourke</p>
                             <p>Explores the often-overlooked struggles of patients living with chronic, difficult-to-diagnose, and "invisible" illnesses, and how the healthcare system often fails them.</p>
 
                         </div>
@@ -5829,7 +5847,7 @@
                         <div class="blog-post-content">
                             <div class="mb-8 flex flex-col items-center">
                                 <img src="./ThePainBrokers.jpg" alt="Book cover of The Pain Brokers: How Con Men, Call Centers, and Rogue Doctors Fuel America's Lawsuit Factory by Elizabeth Chamblee Burch, showing a bright orange highway billboard reading THE PAIN BROKERS and CALL NOW: 1-855-SCAM-LAW against a vivid yellow sky." class="max-w-xs rounded-lg shadow-xl" style="max-height: 450px; object-fit: contain;">
-                                <p class="text-xs text-slate-400 mt-3">Released Jan 2026</p>
+                                <p class="text-xs text-slate-400 mt-3"><em>Released Jan 2026</em>.</p>
                             </div>
                             <p>The Pain Brokers was a fantastic read intersecting the worlds of legal and business corruption, women systematically being taken advantage of, and the chilling effects of the lack of the medical device industry can have on thousands of Americans.</p>
                             <p>In other words, it is a must-read to gain a deeper understanding into how mass torts, filed as hundreds or thousands of individual lawsuits, are orchestrated across a cross-country, multi-year process to expose defective healthcare technology, in this case, about pelvic mesh. Several corporations and bad actors took advantage of women by telling them their pelvic mesh was a “ticking time bomb” and they would have to seek removal surgery in a few select locations, primarily, in Florida.</p>
@@ -5883,44 +5901,22 @@
                 <!-- Streaming Platform Links -->
                 <div class="mb-12">
                     <h3 class="font-medium text-white text-base mb-4" style="font-family: 'Plus Jakarta Sans', sans-serif;">Listen &amp; Subscribe</h3>
-                    <nav aria-label="Podcast streaming platforms" class="flex flex-wrap gap-3">
+                    <nav aria-label="Podcast streaming platforms" class="flex flex-wrap gap-x-6 gap-y-1">
                         <a href="https://www.youtube.com/@theregulatedpulse" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link platform-youtube inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
-                            aria-label="Listen on YouTube (opens in new tab)">
-                            <span class="platform-dot platform-dot-youtube" style="width: 10px; height: 10px; border-radius: 50%; background: #FF0000; flex-shrink: 0;" aria-hidden="true"></span>
-                            YouTube
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                        </a>
+                            class="podcast-platform-link platform-youtube inline-flex items-center text-sm font-medium"
+                            aria-label="Listen on YouTube (opens in new tab)">YouTube</a>
                         <a href="https://open.spotify.com/show/033JhLXXgusJ9n9qAJhAnj?si=8mrNG5-fRzOpKfwqjjr6zQ" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link platform-spotify inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
-                            aria-label="Listen on Spotify (opens in new tab)">
-                            <span class="platform-dot platform-dot-spotify" style="width: 10px; height: 10px; border-radius: 50%; background: #1DB954; flex-shrink: 0;" aria-hidden="true"></span>
-                            Spotify
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                        </a>
+                            class="podcast-platform-link platform-spotify inline-flex items-center text-sm font-medium"
+                            aria-label="Listen on Spotify (opens in new tab)">Spotify</a>
                         <a href="https://podcasts.apple.com/us/podcast/the-regulated-pulse-podcast/id6787278020" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link platform-apple inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
-                            aria-label="Listen on Apple Podcasts (opens in new tab)">
-                            <span class="platform-dot platform-dot-apple" style="width: 10px; height: 10px; border-radius: 50%; background: #9933CC; flex-shrink: 0;" aria-hidden="true"></span>
-                            Apple Podcasts
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                        </a>
+                            class="podcast-platform-link platform-apple inline-flex items-center text-sm font-medium"
+                            aria-label="Listen on Apple Podcasts (opens in new tab)">Apple Podcasts</a>
                         <a href="https://music.amazon.com/podcasts/5832a01d-6bab-43ec-9158-4f5ff91dd896/the-regulated-pulse-podcast" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link platform-amazon inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
-                            aria-label="Listen on Amazon Music (opens in new tab)">
-                            <span class="platform-dot platform-dot-amazon" style="width: 10px; height: 10px; border-radius: 50%; background: #00A8E1; flex-shrink: 0;" aria-hidden="true"></span>
-                            Amazon Music
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                        </a>
+                            class="podcast-platform-link platform-amazon inline-flex items-center text-sm font-medium"
+                            aria-label="Listen on Amazon Music (opens in new tab)">Amazon Music</a>
                         <a href="https://pca.st/mws3867u" target="_blank" rel="noopener noreferrer"
-                            class="podcast-platform-link platform-pocketcasts inline-flex items-center gap-3 rounded-xl px-5 py-3 text-sm font-medium border border-white/5 bg-[#0f131a]"
-                            aria-label="Listen on Pocket Casts (opens in new tab)">
-                            <span class="platform-dot platform-dot-pocketcasts" style="width: 10px; height: 10px; border-radius: 50%; background: #F43E37; flex-shrink: 0;" aria-hidden="true"></span>
-                            Pocket Casts
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="opacity: 0.4;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                        </a>
-
-
+                            class="podcast-platform-link platform-pocketcasts inline-flex items-center text-sm font-medium"
+                            aria-label="Listen on Pocket Casts (opens in new tab)">Pocket Casts</a>
                     </nav>
                 </div>
 
@@ -7550,14 +7546,14 @@
                     <!-- Q6a -->
                     <div class="faq-card" data-category="academic">
                         <button class="faq-trigger focus:outline-none" aria-expanded="false">
-                            <span>Did you always want to create your own major through the Interdisciplinary Studies program?</span>
+                            <span>Did you always want to create your own major?</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-400"><polyline points="6 9 12 15 18 9"></polyline></svg>
                         </button>
                         <div class="faq-content">
                             <div class="faq-content-inner">
                                 No! Throughout my life, I have always been interested in a variety of careers and majors. Freshman year was no exception. My first semester, I changed my major nearly every week—moderately stressful, do not recommend. However, crossing out the vast majority of professions and academic programs through thorough research and time investment, I can say for certain that what I pursue now is a perfect blend of my interests, passions, and strengths.
                                 <br><br>
-                                One interesting fun fact about my major though is that for the first year of it, it was actually AI, Ethics, and the Future of Health Policy. I decided to expand it to Healthcare Technology Law and Regulation in April 2025 as I became more curious as to other areas of healthcare technology law and regulation. However, this area remains one of my top research and professional interests still, and can explain why I've really enjoyed using artificial intelligence to build this website.
+                                One interesting fun fact about my major though is that for the first year of it, it was actually AI, Ethics, and the Future of Health Policy. I decided to expand it to Healthcare Technology Law and Regulation in April 2025 as I became more curious as to other areas of healthcare technology law and regulation. However, my original major focus remains one of my top research and professional interests still, and can explain why I've really enjoyed using artificial intelligence to build this website.
                             </div>
                         </div>
                     </div>
@@ -7621,7 +7617,7 @@
                     </div>
                 </div>
 
-                <div class="mt-12 text-center max-w-2xl mx-auto border-t border-white/5 pt-8">
+                <div class="mt-8 text-center max-w-2xl mx-auto border-t border-white/5 pt-8 pb-8">
                     <p class="text-slate-400 font-medium text-sm italic leading-relaxed">
                         Thanks again for reading/listening guys, I appreciate y’all’s support tremendously. If you have any more questions, please do not hesitate to reach out to me on LinkedIn or via <a href="mailto:theregulatedpulse@gmail.com" class="text-cyan-400 hover:underline">theregulatedpulse@gmail.com</a>.
                     </p>
@@ -7863,17 +7859,23 @@
             }
             const currentHash = window.location.hash;
             const isDeepLink = currentHash && currentHash !== '#blog' && currentHash !== '#';
+            let introAlreadyShown = false;
+            try { introAlreadyShown = sessionStorage.getItem('pulseIntroShown') === '1'; } catch (e) {}
+            if (!introAlreadyShown) {
+                try { sessionStorage.setItem('pulseIntroShown', '1'); } catch (e) {}
+            }
+            const shouldSkipIntro = isDeepLink || introAlreadyShown;
 
-            if (isDeepLink) {
-                // Bypass animation: immediately hide overlay and show target section
+            if (shouldSkipIntro) {
+                // Bypass animation for deep links or after it has played once this visit
                 const overlay = document.getElementById('intro-overlay');
                 if (overlay) overlay.remove();
                 document.getElementById('main-content').classList.remove('opacity-0');
-                navigateTo(currentHash);
+                navigateTo(currentHash || '#blog');
                 document.body.classList.add('pulse-ready');
                 setTimeout(() => { hasLoaded = true; }, 500);
             } else {
-                // Play intro animation normally for default home view
+                // Play intro animation once per visit for the default home view
                 setTimeout(() => {
                     const welcomePolyline = document.querySelector('#intro-overlay .pulse-logo polyline.pulse-active-line') || document.querySelector('#intro-overlay .pulse-logo polyline');
                     if (welcomePolyline) {
@@ -11015,7 +11017,7 @@
         };
 
         // ---------- Dynamic Light/Dark Favicon & Theme Toggle ----------
-        const FAVICON_DARK_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#080b11"/><circle cx="256" cy="256" r="160" fill="#06b6d4" opacity="0.12"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#22d3ee" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity="0.22" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#22d3ee" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
+        const FAVICON_DARK_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#080b11"/><circle cx="256" cy="256" r="160" fill="#06b6d4" opacity="0.12"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#14b8a6" stroke-width="38" stroke-linecap="round" stroke-linejoin="round" opacity="0.22" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#14b8a6" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
         const FAVICON_LIGHT_SVG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#dbe7f5"/><circle cx="256" cy="256" r="165" fill="#1f56d3" opacity="0.10"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#2b57a8" stroke-width="40" stroke-linecap="round" stroke-linejoin="round" opacity="0.2" fill="none"/><polyline points="64,256 128,256 160,160 192,352 224,256 256,256 272,208 288,304 320,256 384,256 448,256" stroke="#1f56d3" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>');
         window.updateFaviconForTheme = function (isLight) {
             const href = isLight ? FAVICON_LIGHT_SVG : FAVICON_DARK_SVG;
@@ -11574,6 +11576,18 @@
             justify-content: space-between;
             font-weight: 700;
             font-size: 0.95rem;
+            cursor: grab;
+            touch-action: none;
+            user-select: none;
+        }
+        #uw-a11y-panel.uw-dragging .uw-header {
+            cursor: grabbing;
+        }
+        #uw-a11y-panel.uw-dragging {
+            user-select: none;
+        }
+        #uw-a11y-panel.uw-dragging * {
+            cursor: grabbing !important;
         }
         body.light-mode .uw-header {
             background: #5293ff !important;
@@ -11991,7 +12005,7 @@
         }
         .ep-ts-btn:hover {
             background: rgba(6, 182, 212, 0.28);
-            border-color: #22d3ee;
+            border-color: #14b8a6;
         }
         body.light-mode .ep-ts-btn {
             background: rgba(68, 139, 255, 0.16) !important;
@@ -12066,6 +12080,11 @@
                     <span class="uw-label">Hide Images</span>
                 </button>
 
+                <button type="button" class="uw-tile" data-uw-key="imageDescriptions" data-uw-max="1" aria-pressed="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m4 14 4-4 3 3 2-2 5 5"/><line x1="6" y1="20" x2="18" y2="20"/><line x1="9" y1="23" x2="15" y2="23"/></svg>
+                    <span class="uw-label">Image Descriptions</span>
+                </button>
+
                 <button type="button" class="uw-tile" data-uw-key="dyslexia" data-uw-max="1" aria-pressed="false">
                     <span style="font-size: 1.25rem; font-weight: 800; line-height: 1; font-family: 'Lexend', sans-serif;" aria-hidden="true">Df</span>
                     <span class="uw-label">Dyslexia Friendly</span>
@@ -12119,6 +12138,7 @@
                 spacing: 0,
                 pauseAnim: 0,
                 hideImages: 0,
+                imageDescriptions: 0,
                 dyslexia: 0,
                 cursor: 0,
                 tooltips: 0,
@@ -12213,6 +12233,9 @@
                 // 6. Hide Images
                 b.classList.toggle('uw-hide-images', state.hideImages > 0);
 
+                // 6b. Image Descriptions (off by default)
+                b.classList.toggle('uw-image-descriptions', state.imageDescriptions > 0);
+
                 // 7. Dyslexia Friendly
                 b.classList.toggle('uw-dyslexia', state.dyslexia > 0);
 
@@ -12264,6 +12287,62 @@
                     panel.classList.remove('uw-open');
                     triggerBtn.setAttribute('aria-expanded', 'false');
                 });
+            }
+
+            // Drag the panel by its header
+            if (panel) {
+                const dragHeader = panel.querySelector('.uw-header');
+                let dragState = null;
+
+                const clampPanelToViewport = () => {
+                    if (!dragState && !panel.style.left) return;
+                    const rect = panel.getBoundingClientRect();
+                    const gap = 8;
+                    const maxLeft = Math.max(gap, window.innerWidth - rect.width - gap);
+                    const maxTop = Math.max(gap, window.innerHeight - rect.height - gap);
+                    panel.style.left = Math.min(Math.max(gap, rect.left), maxLeft) + 'px';
+                    panel.style.top = Math.min(Math.max(gap, rect.top), maxTop) + 'px';
+                    panel.style.right = 'auto';
+                };
+
+                if (dragHeader) {
+                    dragHeader.addEventListener('pointerdown', (event) => {
+                        if (event.button !== 0 || event.target.closest('.uw-close-btn')) return;
+                        const rect = panel.getBoundingClientRect();
+                        dragState = {
+                            pointerId: event.pointerId,
+                            offsetX: event.clientX - rect.left,
+                            offsetY: event.clientY - rect.top
+                        };
+                        panel.style.left = rect.left + 'px';
+                        panel.style.top = rect.top + 'px';
+                        panel.style.right = 'auto';
+                        panel.classList.add('uw-dragging');
+                        dragHeader.setPointerCapture?.(event.pointerId);
+                        event.preventDefault();
+                    });
+
+                    dragHeader.addEventListener('pointermove', (event) => {
+                        if (!dragState || event.pointerId !== dragState.pointerId) return;
+                        const rect = panel.getBoundingClientRect();
+                        const gap = 8;
+                        const maxLeft = Math.max(gap, window.innerWidth - rect.width - gap);
+                        const maxTop = Math.max(gap, window.innerHeight - rect.height - gap);
+                        panel.style.left = Math.min(Math.max(gap, event.clientX - dragState.offsetX), maxLeft) + 'px';
+                        panel.style.top = Math.min(Math.max(gap, event.clientY - dragState.offsetY), maxTop) + 'px';
+                    });
+
+                    const endDrag = (event) => {
+                        if (!dragState || (event.pointerId !== undefined && event.pointerId !== dragState.pointerId)) return;
+                        dragState = null;
+                        panel.classList.remove('uw-dragging');
+                    };
+                    dragHeader.addEventListener('pointerup', endDrag);
+                    dragHeader.addEventListener('pointercancel', endDrag);
+                    dragHeader.addEventListener('lostpointercapture', endDrag);
+                }
+
+                window.addEventListener('resize', clampPanelToViewport);
             }
             if (oversizeSwitch) {
                 oversizeSwitch.addEventListener('click', () => {
@@ -12322,14 +12401,28 @@
                 }
             });
 
-            // Keyboard shortcut Ctrl+U to toggle Accessibility Menu
+            // Keyboard shortcuts: Ctrl+U menu, Shift+L light mode, Shift+D dark mode
             document.addEventListener('keydown', (e) => {
                 if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') {
                     e.preventDefault();
                     triggerBtn?.click();
-                } else if (e.key === 'Escape' && panel?.classList.contains('uw-open')) {
+                    return;
+                }
+                if (e.key === 'Escape' && panel?.classList.contains('uw-open')) {
                     panel.classList.remove('uw-open');
                     triggerBtn?.setAttribute('aria-expanded', 'false');
+                    return;
+                }
+                const typing = e.target?.closest?.('input, textarea, select, [contenteditable="true"]');
+                if (e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey && !typing) {
+                    const key = e.key.toLowerCase();
+                    if (key === 'l' && window.enterLightMode) {
+                        e.preventDefault();
+                        window.enterLightMode();
+                    } else if (key === 'd' && window.exitLightMode) {
+                        e.preventDefault();
+                        window.exitLightMode();
+                    }
                 }
             });
 
