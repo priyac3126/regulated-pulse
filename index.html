@@ -3008,6 +3008,31 @@
             }
         }
 
+        .pw-field { position: relative; }
+        .pw-field > input { padding-right: 48px !important; }
+        .pw-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: none;
+            border: 0;
+            border-radius: 6px;
+            color: #94a3b8;
+            cursor: pointer;
+        }
+        .pw-toggle:hover { color: #e2e8f0; }
+        .pw-toggle:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; }
+        .pw-toggle .pw-eye-off { display: none; }
+        .pw-toggle.is-visible .pw-eye { display: none; }
+        .pw-toggle.is-visible .pw-eye-off { display: block; }
+
         @media print {
             html,
             body#top,
@@ -3804,7 +3829,7 @@
                         <div class="text-center mb-10">
                             <img src="./FieldsofCombat.webp" alt="Book cover of Fields of Combat: Understanding PTSD Among Veterans of Iraq and Afghanistan by Erin P. Finley, featuring a yellow-tinted photograph of a soldier in a camouflage helmet and uniform with hands clasped over their face."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
-                            <p class="text-slate-400 text-sm mt-3 italic">Published in 2011</p>
+                            <p class="text-slate-400 text-sm mt-3 italic">Published in 2011.</p>
                         </div>
 
                         <div class="blog-post-content">
@@ -3987,7 +4012,7 @@
                         <div class="text-center mb-10">
                             <img src="./ArtCurebook.webp" alt="Book cover of Art Cure: The Science of How the Arts Save Lives by Daisy Fancourt, showing a white cup filled with paintbrushes, colored pencils, an admission ticket stub, and rolled sheet music in front of a red circle."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
-                            <p class="text-slate-400 text-sm mt-3 italic">Published Feb 2026</p>
+                            <p class="text-slate-400 text-sm mt-3 italic">Published Feb 2026.</p>
                         </div>
 
                         <div class="blog-post-content">
@@ -4629,7 +4654,7 @@
                         <div class="text-center mb-10">
                             <img src="./migration.webp" alt="Book cover of Migration and Health, edited by Sandro Galea, Catherine K. Ettman, and Muhammad H. Zaman, showing a tree-lined highway curving toward a city skyline with an airplane flying overhead in a blue sky."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
-                            <p class="text-slate-400 text-sm mt-3 italic">Published Dec 2022</p>
+                            <p class="text-slate-400 text-sm mt-3 italic">Published Dec 2022.</p>
                         </div>
 
                         <div class="blog-post-content">
@@ -4814,7 +4839,7 @@
                         <div class="text-center mb-10">
                             <img src="./Compassionomics.jpeg" alt="Book cover of Compassionomics: The Revolutionary Scientific Evidence That Caring Makes a Difference by Stephen Trzeciak and Anthony Mazzarelli, showing a textured cream background with a red wax seal embossed with the medical Rod of Asclepius."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
-                            <p class="text-slate-400 text-sm mt-3 italic">Published in 2019</p>
+                            <p class="text-slate-400 text-sm mt-3 italic">Published in 2019.</p>
                         </div>
 
                         <div class="blog-post-content">
@@ -5108,7 +5133,7 @@
                         <div class="text-center mb-10">
                             <img src="./A Giant Leap.jpeg" alt="Book cover of A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future by Robert Wachter, MD, showing a blue line tracing a human face profile that rises into a multicolored ECG heartbeat peak."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
-                            <p class="text-slate-400 text-sm mt-3 italic">Published February 2026</p>
+                            <p class="text-slate-400 text-sm mt-3 italic">Published February 2026.</p>
                         </div>
 
                         <div class="blog-post-content">
@@ -10643,7 +10668,10 @@
                     createdAt: serverTimestamp()
                 });
                 const s = (window.annSessionList || []).find((x) => x.id === rec.id);
-                if (s) s.remoteId = ref.id;
+                if (s) {
+                    s.remoteId = ref.id;
+                    if (window.savePulseLocalAnnotation) window.savePulseLocalAnnotation(s);
+                }
             } catch (err) { console.error("Failed to save annotation:", err); }
         };
 
@@ -10652,6 +10680,7 @@
             const rec = (window.annSessionList || []).find((r) => r.id === id);
             if (rec && rec.remoteId) await window.annDeleteRemote(rec.remoteId);
             window.annSessionList = (window.annSessionList || []).filter((r) => r.id !== id);
+            if (window.deletePulseLocalAnnotation) window.deletePulseLocalAnnotation(id);
             const art = document.querySelector('#blog-post-view > article:not(.hidden)');
             if (art) window.annApplySession(art.id.replace(/-container$/, ""));
         };
@@ -10659,20 +10688,38 @@
         window.annDeleteRemote = async function (remoteId) {
             try { await deleteDoc(doc(db, "annotations", remoteId)); } catch (err) { console.error("Failed to delete annotation:", err); }
         };
+        window.annUpdateRemoteNote = async function (remoteId, note) {
+            if (!remoteId) return;
+            try { await updateDoc(doc(db, "annotations", remoteId), { note: note || "" }); } catch (err) { console.error("Failed to update annotation note:", err); }
+        };
 
         window.renderAnnotations = async function (postId) {
             const art = document.getElementById(postId + "-container");
             if (!art) return;
-            window.annSessionList = window.annSessionList || [];
+            window.annSessionList = (window.annSessionList || []).filter(r => r.postId !== postId);
             art.querySelectorAll('mark.ann-hl').forEach((m) => m.replaceWith(document.createTextNode(m.textContent)));
+            const mergeRecord = (r) => {
+                const key = [r.postId, r.paraIdx, r.start, r.end, r.color, r.note || ''].join('|');
+                const existing = window.annSessionList.find(x => [x.postId, x.paraIdx, x.start, x.end, x.color, x.note || ''].join('|') === key);
+                if (existing) {
+                    if (r.remoteId) existing.remoteId = r.remoteId;
+                    if (!existing.id && r.id) existing.id = r.id;
+                } else {
+                    window.annSessionList.push(r);
+                }
+            };
+            const local = window.readPulseLocalAnnotations ? window.readPulseLocalAnnotations() : [];
+            local.filter(r => r.postId === postId).forEach(mergeRecord);
+            window.annApplySession(postId);
             if (!window.annUser) return;
             try {
                 const snap = await getDocs(query(annCol, where("postId", "==", postId), where("email", "==", window.annUser.email)));
                 snap.forEach((d) => {
                     const r = d.data();
                     r.id = d.id;
+                    r.remoteId = d.id;
                     r.postId = postId;
-                    window.annSessionList.push(r);
+                    mergeRecord(r);
                 });
                 window.annApplySession(postId);
             } catch (err) { console.error("Failed to load annotations:", err); }
@@ -10796,6 +10843,7 @@
                 window.__annAfterAuth = null;
                 if (art) { window.renderAnnotations(art.id.replace(/-container$/, "")); setTimeout(() => { window.annApplySession(art.id.replace(/-container$/, "")); done(); }, 300); }
                 else done();
+                window.annCloseAuth();
                 return;
             }
             if (art) window.renderAnnotations(art.id.replace(/-container$/, ""));
@@ -10901,10 +10949,12 @@
         };
         window.annTogglePwVisibility = function (inputId, btn) {
             const input = document.getElementById(inputId);
-            if (!input) return;
+            if (!input || !btn) return;
             const show = input.type === 'password';
             input.type = show ? 'text' : 'password';
-            btn.textContent = show ? 'Hide' : 'Show';
+            btn.classList.toggle('is-visible', show);
+            btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+            btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
         };
         window.annSavePassword = async function () {
             const input = document.getElementById('ann-password-input');
@@ -11467,10 +11517,25 @@
             Object.keys(groups).forEach((k) => { window.applyHighlightsForPara(paras[k], groups[k]); });
         };
 
-        // --- Firebase-side persistence (signed in) ---
-        // window.saveAnnotation is set from the Firebase module; Local-only fallback:
-        const localAnnotations = {};
-        const localKey = (pid) => "ann_" + pid;
+        // --- Local annotation persistence (works signed out) ---
+        const LOCAL_ANN_KEY = 'pulseLocalAnnotationsV1';
+        window.readPulseLocalAnnotations = function () {
+            try { return JSON.parse(localStorage.getItem(LOCAL_ANN_KEY) || '[]') || []; } catch (e) { return []; }
+        };
+        window.writePulseLocalAnnotations = function (list) {
+            try { localStorage.setItem(LOCAL_ANN_KEY, JSON.stringify(list || [])); } catch (e) {}
+        };
+        window.savePulseLocalAnnotation = function (rec) {
+            if (!rec || !rec.id) return;
+            const list = window.readPulseLocalAnnotations();
+            const idx = list.findIndex(r => r.id === rec.id);
+            if (idx >= 0) list[idx] = Object.assign({}, list[idx], rec);
+            else list.push(rec);
+            window.writePulseLocalAnnotations(list);
+        };
+        window.deletePulseLocalAnnotation = function (id) {
+            window.writePulseLocalAnnotations(window.readPulseLocalAnnotations().filter(r => r.id !== id));
+        };
 
         // --- note card popup for existing highlight ---
         window.annShowDeleteCard = function (markEl, rec) {
@@ -11479,7 +11544,7 @@
             if (!pop) return;
             pop.dataset.mode = "view";
             pop.dataset.annId = rec.id || "";
-            pop.innerHTML = '<div style="display: flex; align-items: center; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; flex-grow: 1;">Remove this highlight?</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annHideNotePop()" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(255,255,255,0.06); color: rgb(148, 163, 184); border: none; cursor: pointer;">Keep it</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
+            pop.innerHTML = '<div style="display: flex; align-items: center; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; flex-grow: 1;">Remove this highlight?</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #67e8f9; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Add note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
             const rect = markEl.getBoundingClientRect();
             pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
             pop.style.top = (rect.bottom + 8) + 'px';
@@ -11492,11 +11557,45 @@
             if (!pop) return;
             pop.dataset.mode = "view";
             pop.dataset.annId = rec.id || "";
-            pop.innerHTML = '<div style="display: flex; align-items: flex-start; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; line-height: 1.6; flex-grow: 1;">' + annEsc(rec.note).replace(/\n/g, "<br>") + '</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
+            pop.innerHTML = '<div style="display: flex; align-items: flex-start; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; line-height: 1.6; flex-grow: 1;">' + annEsc(rec.note).replace(/\n/g, "<br>") + '</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #67e8f9; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Edit note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
             const rect = markEl.getBoundingClientRect();
             pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
             pop.style.top = (rect.bottom + 8) + 'px';
             pop.style.display = 'block';
+        };
+        window.annEditNote = function (id) {
+            const rec = (window.annSessionList || []).find(r => r.id === id);
+            if (!rec) return;
+            hideToolbar();
+            const pop = document.getElementById('note-pop');
+            if (!pop) return;
+            pop.dataset.mode = "edit";
+            pop.dataset.annId = rec.id;
+            pop.innerHTML = '<p style="margin: 0 0 8px; color: rgb(226, 232, 240); font-size: 13px; font-weight: 600;">Note on this highlight</p>' +
+                '<textarea id="ann-edit-note-input" rows="4" placeholder="Write your note..." aria-label="Write your note"></textarea>' +
+                '<div style="display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end;">' +
+                '<button onclick="window.annCancelEditNote()" style="font-size: 12px; padding: 8px 14px; border-radius: 9px; background: rgba(255,255,255,0.06); color: rgb(148, 163, 184); border: none; cursor: pointer;">Cancel</button>' +
+                '<button onclick="window.annSaveEditedNote()" style="font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 9px; background: #67e8f9; color: #06212a; border: none; cursor: pointer;">Save note</button></div>';
+            const ta = document.getElementById('ann-edit-note-input');
+            if (ta) { ta.value = rec.note || ''; setTimeout(() => ta.focus(), 30); }
+            const mark = Array.from(document.querySelectorAll('mark.ann-hl')).find(m => m.dataset.annId === rec.id);
+            const rect = mark ? mark.getBoundingClientRect() : { left: window.innerWidth / 2 - 160, bottom: 80 };
+            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
+            pop.style.top = (rect.bottom + 8) + 'px';
+            pop.style.display = 'block';
+        };
+        window.annCancelEditNote = function () { window.annHideNotePop(); };
+        window.annSaveEditedNote = function () {
+            const pop = document.getElementById('note-pop');
+            const id = pop && pop.dataset.annId;
+            const rec = (window.annSessionList || []).find(r => r.id === id);
+            const ta = document.getElementById('ann-edit-note-input');
+            if (!rec || !ta) return;
+            rec.note = ta.value.trim();
+            window.savePulseLocalAnnotation(rec);
+            if (rec.remoteId && window.annUpdateRemoteNote) window.annUpdateRemoteNote(rec.remoteId, rec.note);
+            window.annHideNotePop();
+            window.annApplySession(rec.postId);
         };
         window.annHideNotePop = function () { const p = document.getElementById('note-pop'); if (p) p.style.display = 'none'; };
 
@@ -11549,6 +11648,7 @@
             rec.id = "sess-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
             window.annSessionList = window.annSessionList || [];
             window.annSessionList.push(rec);
+            if (window.savePulseLocalAnnotation) window.savePulseLocalAnnotation(rec);
             window.annApplySession(rec.postId);
             if (window.annUser) {
                 window.saveAnnotation && window.saveAnnotation(rec);
@@ -11642,8 +11742,13 @@
                 <button onclick="window.annTogglePasswordSignIn(true)" style="margin-top: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 12px; cursor: pointer; text-decoration: underline;">Have a password? Sign in with it instead</button>
                 <div id="ann-password-signin-view" style="display: none;">
                     <input id="ann-psw-email-input" type="email" placeholder="Email" aria-label="Email address" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn()" autocomplete="email" style="width: 100%; border-radius: 12px; padding: 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
-                    <input id="ann-psw-input" type="password" placeholder="Password" aria-label="Password" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn()" autocomplete="current-password" style="width: 100%; margin-top: 10px; border-radius: 12px; padding: 12px 60px 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
-                    <button type="button" onclick="window.annTogglePwVisibility('ann-psw-input', this)" aria-label="Toggle password visibility" style="position: absolute; right: 10px; margin-top: -30px; background: none; border: none; color: rgb(148, 163, 184); font-size: 11px; font-weight: 700; cursor: pointer; padding: 4px;">Show</button>
+                    <div class="pw-field" style="margin-top: 10px;">
+                        <input id="ann-psw-input" type="password" placeholder="Password" aria-label="Password" onkeydown="if (event.key === 'Enter') window.annPasswordSignIn()" autocomplete="current-password" style="width: 100%; border-radius: 12px; padding: 12px 48px 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                        <button type="button" class="pw-toggle" onclick="window.annTogglePwVisibility('ann-psw-input', this)" aria-label="Show password" aria-pressed="false">
+                            <svg class="pw-eye" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <svg class="pw-eye-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c6.5 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.5 13.5 0 0 0 2 12s3.5 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+                        </button>
+                    </div>
                     <button id="ann-psw-signin-btn" onclick="window.annPasswordSignIn()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Sign in</button>
                     <p id="ann-psw-msg" role="status" aria-live="polite" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
                     <button onclick="window.annTogglePasswordSignIn(false)" style="margin-top: 6px; background: none; border: none; color: rgb(100, 116, 139); font-size: 12px; cursor: pointer;">Back to email link</button>
@@ -11663,8 +11768,13 @@
             <div id="ann-set-password-view" style="display: none;">
                 <h3 style="margin: 0 0 8px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Set a password</h3>
                 <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">You signed in with an email link. Add a password so you can also sign in with just your email and password next time.</p>
-                <input id="ann-password-input" type="password" placeholder="Choose a password (6+ characters)" onkeydown="if (event.key === 'Enter') window.annSavePassword()" autocomplete="new-password" style="width: 100%; border-radius: 12px; padding: 12px 60px 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
-                <button type="button" onclick="window.annTogglePwVisibility('ann-password-input', this)" style="float: right; margin-top: -30px; margin-right: 10px; background: none; border: none; color: rgb(148, 163, 184); font-size: 11px; font-weight: 700; cursor: pointer; padding: 4px;">Show</button>
+                <div class="pw-field">
+                    <input id="ann-password-input" type="password" placeholder="Choose a password (6+ characters)" onkeydown="if (event.key === 'Enter') window.annSavePassword()" autocomplete="new-password" style="width: 100%; border-radius: 12px; padding: 12px 48px 12px 14px; background-color: rgb(15, 23, 42); border: 1px solid rgb(51, 65, 85); color: white; font-size: 14px;">
+                    <button type="button" class="pw-toggle" onclick="window.annTogglePwVisibility('ann-password-input', this)" aria-label="Show password" aria-pressed="false">
+                        <svg class="pw-eye" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        <svg class="pw-eye-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c6.5 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.5 13.5 0 0 0 2 12s3.5 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+                    </button>
+                </div>
                 <button id="ann-save-password-btn" onclick="window.annSavePassword()" style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: linear-gradient(135deg, #38b6c9, #2a7f8f); color: #06212a;">Save password</button>
                 <p id="ann-password-msg" style="margin: 10px 0 0; color: rgb(103, 232, 249); font-size: 12px; min-height: 16px;"></p>
                 <p style="margin: 12px 0 0; font-size: 11.5px; line-height: 1.5; color: rgb(148, 163, 184);">If you have any suggestions on how to make the website more accessible, please contact <a href="mailto:theregulatedpulse@gmail.com" style="color: rgb(103, 232, 249); text-decoration: underline;">theregulatedpulse@gmail.com</a>.</p>

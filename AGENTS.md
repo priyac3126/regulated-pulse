@@ -276,6 +276,10 @@ The Firebase web API key is public client configuration in `index.html`; do not 
 - Post Comment buttons are solid blue (no gradient).
 - Do not reintroduce the old comment button gradients.
 - Annotation auth uses the existing Firebase auth modal. Keep IDs/handlers stable.
+- Unsigned highlights and notes persist in localStorage under `pulseLocalAnnotationsV1`; restore them for the current post on load.
+- Existing highlights can be given or edited a note from the highlight popup. Persist note edits locally and to Firestore when signed in.
+- Password fields use an eye/eye-off toggle (`.pw-toggle`) instead of a text “Show” button.
+- PDF export excludes related-post/comment sections; it offers an “Include my highlights and notes” checkbox and appends a “My Notes” section. PDF highlights print as backgrounds, not underlines.
 
 ## 13. Repo/deployment workflow
 
