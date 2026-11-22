@@ -124,7 +124,7 @@
             letter-spacing: 0.24em;
             text-transform: uppercase;
             font-weight: 500;
-            color: #38bdf8;
+            color: #67e8f9;
             margin-top: 0.65rem;
             animation: introTextReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.56s forwards;
         }
@@ -422,7 +422,7 @@
             padding: 0.5px 0;
         }
         .ann-note-pop {
-            position: fixed; z-index: 80;
+            position: absolute; z-index: 80;
             width: 320px; max-width: 92vw;
             background: #11161e; border: 1px solid rgba(255,255,255,0.12);
             border-radius: 14px; padding: 14px;
@@ -756,7 +756,7 @@
             filter: none !important;
         }
         body.light-mode #intro-overlay .intro-title { color: #e3ebf9 !important; }
-        body.light-mode #intro-overlay .intro-kicker { color: #77aeff !important; }
+        body.light-mode #intro-overlay .intro-kicker { color: #448bff !important; }
         body.light-mode #intro-overlay .pulse-logo polyline { stroke: #448bff !important; }
         /* Light mode: navy & bright blue accents on navigation and branding */
         body.light-mode .pulse-logo polyline { stroke: #7fb1e9 !important; }
@@ -11246,11 +11246,11 @@
                         list.appendChild(item);
                     });
                     notesSection.appendChild(list);
-                    (holder.firstElementChild || holder).appendChild(notesSection);
+                    (holder.querySelector('article') || holder).appendChild(notesSection);
                 }
             }
 
-            const cloneEl = holder.firstElementChild;
+            const cloneEl = holder.querySelector('article') || holder.firstElementChild;
             let metaEl = null;
             for (const child of (cloneEl ? cloneEl.children : [])) {
                 if (child.tagName === 'P' && /(^|\s)text-sm(\s|$)/.test(child.className) && child.textContent.indexOf('·') !== -1) { metaEl = child; break; }
@@ -11546,8 +11546,10 @@
             pop.dataset.annId = rec.id || "";
             pop.innerHTML = '<div style="display: flex; align-items: center; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; flex-grow: 1;">Remove this highlight?</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #67e8f9; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Add note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
             const rect = markEl.getBoundingClientRect();
-            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
-            pop.style.top = (rect.bottom + 8) + 'px';
+            const docLeft = rect.left + window.scrollX;
+            const docTop = rect.bottom + window.scrollY + 8;
+            pop.style.left = Math.max(window.scrollX + 8, Math.min(docLeft, window.scrollX + window.innerWidth - 336)) + 'px';
+            pop.style.top = docTop + 'px';
             pop.style.display = 'block';
         };
         window.annShowNoteCard = function (markEl, rec) {
@@ -11559,8 +11561,10 @@
             pop.dataset.annId = rec.id || "";
             pop.innerHTML = '<div style="display: flex; align-items: flex-start; gap: 8px;"><p style="margin: 0; color: rgb(226, 232, 240); font-size: 13px; line-height: 1.6; flex-grow: 1;">' + annEsc(rec.note).replace(/\n/g, "<br>") + '</p><button onclick="window.annHideNotePop()" style="background: none; border: none; color: rgb(100, 116, 139); cursor: pointer; font-size: 16px;">&times;</button></div><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; justify-content: flex-end;"><button onclick="window.annEditNote(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(103,232,249,0.12); color: #67e8f9; border: 1px solid rgba(103,232,249,0.28); cursor: pointer;">Edit note</button><button onclick="window.annDelete(\'' + rec.id + '\')" style="font-size: 12px; padding: 6px 12px; border-radius: 9px; background: rgba(239, 68, 68, 0.12); color: #fca5a5; border: none; cursor: pointer;">Delete</button></div>';
             const rect = markEl.getBoundingClientRect();
-            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
-            pop.style.top = (rect.bottom + 8) + 'px';
+            const docLeft = rect.left + window.scrollX;
+            const docTop = rect.bottom + window.scrollY + 8;
+            pop.style.left = Math.max(window.scrollX + 8, Math.min(docLeft, window.scrollX + window.innerWidth - 336)) + 'px';
+            pop.style.top = docTop + 'px';
             pop.style.display = 'block';
         };
         window.annEditNote = function (id) {
@@ -11580,8 +11584,10 @@
             if (ta) { ta.value = rec.note || ''; setTimeout(() => ta.focus(), 30); }
             const mark = Array.from(document.querySelectorAll('mark.ann-hl')).find(m => m.dataset.annId === rec.id);
             const rect = mark ? mark.getBoundingClientRect() : { left: window.innerWidth / 2 - 160, bottom: 80 };
-            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
-            pop.style.top = (rect.bottom + 8) + 'px';
+            const docLeft = rect.left + window.scrollX;
+            const docTop = rect.bottom + window.scrollY + 8;
+            pop.style.left = Math.max(window.scrollX + 8, Math.min(docLeft, window.scrollX + window.innerWidth - 336)) + 'px';
+            pop.style.top = docTop + 'px';
             pop.style.display = 'block';
         };
         window.annCancelEditNote = function () { window.annHideNotePop(); };
@@ -11625,8 +11631,10 @@
                 '<button onclick="window.annCancelNote()" style="font-size: 12px; padding: 8px 14px; border-radius: 9px; background: rgba(255,255,255,0.06); color: rgb(148, 163, 184); border: none; cursor: pointer;">Cancel</button>' +
                 '<button onclick="window.annSaveNote()" style="font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 9px; background: #38b6c9; color: #06212a; border: none; cursor: pointer;">Save note</button></div>';
             const rect = tb.getBoundingClientRect();
-            pop.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 336)) + 'px';
-            pop.style.top = (rect.bottom + 8) + 'px';
+            const docLeft = rect.left + window.scrollX;
+            const docTop = rect.bottom + window.scrollY + 8;
+            pop.style.left = Math.max(window.scrollX + 8, Math.min(docLeft, window.scrollX + window.innerWidth - 336)) + 'px';
+            pop.style.top = docTop + 'px';
             pop.style.display = 'block';
             tb.classList.remove('show');
             setTimeout(() => { const ip = document.getElementById('ann-note-input'); if (ip) ip.focus(); }, 50);
