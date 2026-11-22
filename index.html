@@ -10752,9 +10752,19 @@
         window.annDelete = async function (id) {
             window.annHideNotePop();
             const rec = (window.annSessionList || []).find((r) => r.id === id);
-            if (rec && rec.remoteId) await window.annDeleteRemote(rec.remoteId);
-            window.annSessionList = (window.annSessionList || []).filter((r) => r.id !== id);
-            if (window.deletePulseLocalAnnotation) window.deletePulseLocalAnnotation(id);
+            if (!rec) return;
+            const overlapping = (window.annSessionList || []).filter((r) =>
+                r.postId === rec.postId &&
+                r.paraIdx === rec.paraIdx &&
+                r.start < rec.end &&
+                r.end > rec.start
+            );
+            for (const item of overlapping) {
+                if (item.remoteId) await window.annDeleteRemote(item.remoteId);
+                if (window.deletePulseLocalAnnotation) window.deletePulseLocalAnnotation(item.id);
+            }
+            const removeIds = new Set(overlapping.map(r => r.id));
+            window.annSessionList = (window.annSessionList || []).filter((r) => !removeIds.has(r.id));
             const art = document.querySelector('#blog-post-view > article:not(.hidden)');
             if (art) window.annApplySession(art.id.replace(/-container$/, ""));
         };
@@ -11729,6 +11739,22 @@
             if (!rec) return;
             rec.id = "sess-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8);
             window.annSessionList = window.annSessionList || [];
+            const overlapping = window.annSessionList.filter((r) =>
+                r.postId === rec.postId &&
+                r.paraIdx === rec.paraIdx &&
+                r.start < rec.end &&
+                r.end > rec.start
+            );
+            if (overlapping.length) {
+                rec.start = Math.min(rec.start, ...overlapping.map(r => r.start));
+                rec.end = Math.max(rec.end, ...overlapping.map(r => r.end));
+                for (const item of overlapping) {
+                    if (item.remoteId && window.annDeleteRemote) window.annDeleteRemote(item.remoteId);
+                    if (window.deletePulseLocalAnnotation) window.deletePulseLocalAnnotation(item.id);
+                }
+                const removeIds = new Set(overlapping.map(r => r.id));
+                window.annSessionList = window.annSessionList.filter(r => !removeIds.has(r.id));
+            }
             window.annSessionList.push(rec);
             if (window.savePulseLocalAnnotation) window.savePulseLocalAnnotation(rec);
             window.annApplySession(rec.postId);
