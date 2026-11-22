@@ -14,9 +14,7 @@
     padding: 1.2rem 1.25rem;
     border: 1px solid rgba(68, 139, 255, 0.34);
     border-radius: 1rem;
-    background:
-        radial-gradient(circle at 100% 0%, rgba(68, 139, 255, 0.14), transparent 17rem),
-        rgba(8, 15, 25, 0.98);
+    background-color: #080b11;
     color: #e8eefc;
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
     font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -192,9 +190,7 @@
 }
 
 .pulse-cookie-banner.pulse-cookie-banner-light {
-    background:
-        radial-gradient(circle at 100% 0%, rgba(68, 139, 255, 0.14), transparent 17rem),
-        #f5f9ff;
+    background-color: #ffffff;
     border-color: rgba(68, 139, 255, 0.32);
     color: #20324a;
     box-shadow: 0 24px 70px rgba(21, 40, 64, 0.18);
