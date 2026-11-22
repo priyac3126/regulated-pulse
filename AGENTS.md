@@ -73,7 +73,7 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
 
 The site follows a restrained editorial 60/30/10 color model:
 
-- **60% surface:** dark `#080b11` or light final white. Keep large areas quiet and neutral.
+- **60% surface:** dark `#080b11` or light final light grey `#f0f3f8` (source `#0a0d12`). Cards and the sticky header stay white for separation. Keep large areas quiet and neutral.
 - **30% type and structure:** `#f1f5f9` for primary type, `#9fadc1` for secondary text, `#1f2937` for dark borders, `#16181c` source for light borders.
 - **10% accent:** dark mode muted light blue `#7fa8d4`; light mode deeper blue `#1d4ed8` final (`#81b2ff` pre-filter source).
 
@@ -115,6 +115,7 @@ filter: invert(1) hue-rotate(180deg);
 That means CSS source colors are **pre-filter** colors, not the visible final colors. Examples of source → final:
 
 - `#000` → white
+- `#0a0d12` → light grey page canvas (`#f0f3f8`)
 - `#16181c` → light gray border
 - `#81b2ff` → blue accent (~`#1d4ed8`)
 - `#f1f5f9` → near-black text
@@ -353,7 +354,7 @@ Notes:
 
 ## 16. Current known state
 
-- White top-down blog design is live.
+- White top-down blog design is live, with a light grey page canvas and white content surfaces.
 - Top nav replaces the old left sidebar.
 - Dark-mode accent is muted light blue `#7fa8d4`; light-mode accent is deeper blue `#1d4ed8` final.
 - Hero actions, search, and newsletter use text/underline treatments instead of large filled boxes.
