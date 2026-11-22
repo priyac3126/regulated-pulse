@@ -3033,6 +3033,8 @@
                 color: #111827 !important;
                 box-shadow: none !important;
                 text-shadow: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
             }
             body#top.printing #print-area form,
             body#top.printing #print-area button,
@@ -11135,6 +11137,7 @@
             holder.innerHTML = art.outerHTML;
             holder.classList.toggle('pdf-mode-dark', mode === 'dark');
             holder.classList.toggle('include-annotations', includeAnnotations);
+            holder.querySelectorAll('.view-fade-enter').forEach(el => el.classList.remove('view-fade-enter'));
 
             holder.querySelectorAll('.related-posts-box, form, button, [id$="-comments-list"], [id*="comments"], .audio-player, .share-bar').forEach(el => el.remove());
             holder.querySelectorAll('h3').forEach(heading => {
@@ -11186,7 +11189,9 @@
             }
             document.body.classList.add('printing');
             void holder.offsetHeight;
-            setTimeout(() => window.print(), 150);
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                setTimeout(() => window.print(), 300);
+            }));
         };
         window.onafterprint = function () {
             document.body.classList.remove('printing');
