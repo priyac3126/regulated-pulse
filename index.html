@@ -2946,7 +2946,7 @@
         body#top:not(.light-mode) .text-cyan-500,
         body#top:not(.light-mode) [style*="color: rgb(103, 232, 249)"],
         body#top:not(.light-mode) [style*="color: rgb(6, 182, 212)"] {
-            color: #a5f3fc !important;
+            color: #67e8f9 !important;
         }
         body#top:not(.light-mode) .hover\:text-cyan-300:hover {
             color: #a5f3fc !important;
@@ -2960,7 +2960,7 @@
         body#top:not(.light-mode) .uw-tile.uw-active {
             border-color: #67e8f9 !important;
             background: rgba(103, 232, 249, 0.14) !important;
-            color: #a5f3fc !important;
+            color: #67e8f9 !important;
             box-shadow: none !important;
         }
         body#top:not(.light-mode) .ann-note-btn,
@@ -2968,7 +2968,7 @@
         body#top:not(.light-mode) abbr.pulse-glossary-term:hover,
         body#top:not(.light-mode) abbr.pulse-glossary-term:focus,
         body#top:not(.light-mode) [style*="color: #67e8f9"] {
-            color: #a5f3fc !important;
+            color: #67e8f9 !important;
         }
         body#top:not(.light-mode) #ann-send-link-btn,
         body#top:not(.light-mode) #ann-psw-signin-btn,
@@ -3005,6 +3005,77 @@
             .blog-search-input,
             body.light-mode .blog-search-input {
                 width: 100% !important;
+            }
+        }
+
+        @media print {
+            html,
+            body#top,
+            body#top.printing {
+                background: #ffffff !important;
+                filter: none !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            body#top.printing > *:not(#print-area) {
+                display: none !important;
+            }
+            body#top.printing #print-area {
+                display: block !important;
+                background: #ffffff !important;
+                color: #111827 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            body#top.printing #print-area * {
+                background-color: transparent !important;
+                background-image: none !important;
+                color: #111827 !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+            }
+            body#top.printing #print-area form,
+            body#top.printing #print-area button,
+            body#top.printing #print-area [id$="-comments-list"],
+            body#top.printing #print-area .audio-player,
+            body#top.printing #print-area .share-bar {
+                display: none !important;
+            }
+            body#top.printing #print-area img {
+                max-width: 55% !important;
+            }
+            body#top.printing #print-area .comparison-table th,
+            body#top.printing #print-area .comparison-table td {
+                border: 1px solid #374151 !important;
+            }
+            body#top.printing #print-area .comparison-table th {
+                background-color: #f3f4f6 !important;
+                color: #111827 !important;
+            }
+            body#top.printing #print-area.pdf-mode-dark {
+                background-color: #080b11 !important;
+                color: #e2e8f0 !important;
+                padding: 24px !important;
+            }
+            body#top.printing #print-area.pdf-mode-dark * {
+                background-color: transparent !important;
+                color: #e2e8f0 !important;
+            }
+            body#top.printing #print-area.pdf-mode-dark h2,
+            body#top.printing #print-area.pdf-mode-dark h3,
+            body#top.printing #print-area.pdf-mode-dark strong {
+                color: #f8fafc !important;
+            }
+            body#top.printing #print-area.pdf-mode-dark a {
+                color: #67e8f9 !important;
+            }
+            body#top.printing #print-area.pdf-mode-dark .comparison-table th,
+            body#top.printing #print-area.pdf-mode-dark .comparison-table td {
+                border-color: #475569 !important;
+            }
+            body#top.printing #print-area.pdf-mode-dark .comparison-table th {
+                background-color: #1e293b !important;
+                color: #f8fafc !important;
             }
         }
     </style>
@@ -11040,7 +11111,8 @@
                 metaEl.after(byline);
             }
             document.body.classList.add('printing');
-            window.print();
+            void holder.offsetHeight;
+            setTimeout(() => window.print(), 150);
         };
         window.onafterprint = function () {
             document.body.classList.remove('printing');
