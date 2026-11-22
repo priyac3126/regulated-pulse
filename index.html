@@ -11999,9 +11999,10 @@
             border-color: rgba(68, 139, 255, 0.28) !important;
         }
         .uw-header {
-            background: linear-gradient(135deg, #0284c7, #06b6d4);
-            color: #080b11;
-            padding: 0.9rem 1.15rem;
+            background-color: #0d2a45;
+            background-image: none !important;
+            color: #f8fafc;
+            padding: 0.55rem 0.8rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -12025,11 +12026,11 @@
             color: #080b11 !important;
         }
         .uw-close-btn {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             border-radius: 9999px;
-            background: rgba(8, 11, 17, 0.15);
-            color: #080b11;
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
             border: none;
             display: inline-flex;
             align-items: center;
@@ -12039,12 +12040,12 @@
             font-size: 1rem;
         }
         .uw-body {
-            padding: 1rem;
+            padding: 0.5rem 0.75rem 0.5rem;
             overflow-y: auto;
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.85rem;
+            gap: 0.55rem;
         }
         .uw-oversize-row {
             display: flex;
@@ -12167,25 +12168,27 @@
         }
         .uw-reset-btn {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border-radius: 0.85rem;
-            background: linear-gradient(135deg, #0284c7, #06b6d4);
-            color: #080b11;
-            font-weight: 700;
-            font-size: 0.84rem;
-            border: none;
+            padding: 0.55rem 0.8rem;
+            border-radius: 0.6rem;
+            background-color: #0d2a45;
+            background-image: none !important;
+            color: #f8fafc !important;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: 1px solid rgba(103, 232, 249, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             cursor: pointer;
-            transition: opacity 0.2s ease;
-            margin-top: 0.25rem;
+            transition: opacity 0.2s ease, border-color 0.2s ease;
+            margin-top: 0;
         }
-        .uw-reset-btn:hover { opacity: 0.92; }
+        .uw-reset-btn:hover { opacity: 0.92; border-color: rgba(103, 232, 249, 0.5); }
         body.light-mode .uw-reset-btn {
-            background: #5293ff !important;
-            color: #080b11 !important;
+            background-color: #e8eef7 !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
         }
 
         /* --- Accessibility Feature Effect Classes --- */
