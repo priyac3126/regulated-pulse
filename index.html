@@ -3052,6 +3052,40 @@
                 background-color: #f3f4f6 !important;
                 color: #111827 !important;
             }
+            body#top.printing #print-area.include-annotations mark.ann-hl {
+                color: inherit !important;
+                background-color: transparent !important;
+                border-bottom: 3px solid var(--ann-bg) !important;
+                padding-bottom: 1px !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            body#top.printing #print-area .pdf-notes {
+                page-break-before: always;
+                margin-top: 2rem;
+                padding-top: 1rem;
+                border-top: 1px solid #d1d5db;
+            }
+            body#top.printing #print-area .pdf-notes h2 {
+                margin: 0 0 1rem;
+                font-size: 1.5rem;
+                color: #0f172a !important;
+            }
+            body#top.printing #print-area .pdf-notes ol {
+                padding-left: 1.25rem;
+            }
+            body#top.printing #print-area .pdf-notes li {
+                margin-bottom: 1rem;
+            }
+            body#top.printing #print-area .pdf-notes blockquote {
+                margin: 0 0 0.4rem;
+                padding-left: 0.8rem;
+                border-left: 3px solid #94a3b8;
+                font-style: italic;
+            }
+            body#top.printing #print-area .pdf-notes p {
+                margin: 0;
+            }
             body#top.printing #print-area.pdf-mode-dark {
                 background-color: #ffffff !important;
                 color: #111827 !important;
@@ -11088,16 +11122,56 @@
         window.printArticle = function (mode) {
             window.closePdfModal();
             const postView = document.getElementById('blog-post-view');
-            const art = document.querySelector('#blog-post-view article:not(.hidden)');
+            const currentPostId = window.location.hash.startsWith('#post-') ? window.location.hash.slice(1) : '';
+            const art = (currentPostId && document.getElementById(currentPostId + '-container'))
+                || document.querySelector('#blog-post-view article:not(.hidden)');
             const holder = document.getElementById('print-area');
             if (!art || !holder) { window.print(); return; }
+            const includeAnnotations = !!document.getElementById('pdf-include-annotations')?.checked;
             const activeScale = (postView && postView.style.getPropertyValue('--reader-scale')) || '1';
             const isWide = !!(postView && postView.classList.contains('reader-wide-spacing'));
             holder.style.setProperty('--reader-scale', activeScale);
             holder.classList.toggle('reader-wide-spacing', isWide);
             holder.innerHTML = art.outerHTML;
             holder.classList.toggle('pdf-mode-dark', mode === 'dark');
-            holder.querySelectorAll('form, button, [id$="-comments-list"], .audio-player').forEach(el => el.remove());
+            holder.classList.toggle('include-annotations', includeAnnotations);
+
+            holder.querySelectorAll('.related-posts-box, form, button, [id$="-comments-list"], [id*="comments"], .audio-player, .share-bar').forEach(el => el.remove());
+            holder.querySelectorAll('h3').forEach(heading => {
+                if (/^\s*Leave a Comment\s*$/i.test(heading.textContent)) {
+                    const block = heading.closest('.mt-16, .rounded-2xl') || heading.parentElement;
+                    if (block) block.remove();
+                }
+            });
+
+            if (!includeAnnotations) {
+                holder.querySelectorAll('mark.ann-hl').forEach(mark => {
+                    mark.replaceWith(document.createTextNode(mark.textContent));
+                });
+            } else {
+                const noteMarks = Array.from(holder.querySelectorAll('mark.ann-hl')).filter(mark => (mark.dataset.annNote || '').trim());
+                if (noteMarks.length) {
+                    const notesSection = document.createElement('section');
+                    notesSection.className = 'pdf-notes';
+                    const title = document.createElement('h2');
+                    title.textContent = 'My Notes';
+                    notesSection.appendChild(title);
+                    const list = document.createElement('ol');
+                    noteMarks.forEach(mark => {
+                        const item = document.createElement('li');
+                        const quote = document.createElement('blockquote');
+                        quote.textContent = mark.textContent;
+                        const note = document.createElement('p');
+                        note.textContent = mark.dataset.annNote || '';
+                        item.appendChild(quote);
+                        item.appendChild(note);
+                        list.appendChild(item);
+                    });
+                    notesSection.appendChild(list);
+                    (holder.firstElementChild || holder).appendChild(notesSection);
+                }
+            }
+
             const cloneEl = holder.firstElementChild;
             let metaEl = null;
             for (const child of (cloneEl ? cloneEl.children : [])) {
@@ -11340,6 +11414,7 @@
                         const mk = document.createElement('mark');
                         mk.className = 'ann-hl';
                         mk.dataset.annId = rec.id;
+                        mk.dataset.annNote = rec.note || "";
                         mk.style.setProperty('--ann-bg', ANN_COLORS[rec.color] || ANN_COLORS.yellow);
                         mk.addEventListener('click', (ev) => { ev.stopPropagation(); if (rec.note) { window.annShowNoteCard(mk, rec); } else { window.annShowDeleteCard(mk, rec); } });
                         mk.textContent = text;
@@ -11514,7 +11589,11 @@
     <div id="pdf-mode-modal" class="ann-overlay" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title">
         <div class="ann-card">
             <h3 id="pdf-modal-title" style="margin: 0 0 6px; color: rgb(241, 245, 249); font-size: 19px; font-weight: 700;">Download PDF</h3>
-            <p style="margin: 0 0 20px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Which style would you like?</p>
+            <p style="margin: 0 0 16px; color: rgb(148, 163, 184); font-size: 13px; line-height: 1.6;">Which style would you like?</p>
+            <label for="pdf-include-annotations" style="display: flex; align-items: flex-start; gap: 9px; margin: 0 0 18px; color: #cbd5e1; font-size: 12.5px; line-height: 1.5; cursor: pointer;">
+                <input type="checkbox" id="pdf-include-annotations" checked style="accent-color: #67e8f9; width: 16px; height: 16px; margin-top: 1px; flex: 0 0 auto;">
+                <span>Include my highlights and notes</span>
+            </label>
             <div style="display: flex; gap: 12px;">
                 <button onclick="window.printArticle('light')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #f8fafc; color: #0f172a;">Light</button>
                 <button onclick="window.printArticle('dark')" style="flex: 1; padding: 14px 10px; border-radius: 14px; border: none; cursor: pointer; font-size: 14px; font-weight: 700; background: #101623; color: #e2e8f0; border: 1px solid rgba(255,255,255,0.14);">Dark</button>
