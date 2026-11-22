@@ -40,7 +40,7 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
 - Sticky top navigation, built by restyling the existing `.dashboard-sidebar`; the old left sidebar must stay gone.
 - Default theme is **white**, not dark. New visitors should see a white page.
 - **No gradients anywhere.** There is a global rule using `body#top * { background-image: none !important; }` plus additional cleanup. Do not add `linear-gradient`, `radial-gradient`, or background-image gradients. Keep the body `id="top"`.
-- Palette: white surfaces, deep navy `#080b11` in dark mode, **teal accent in dark mode**, **blue accent in light mode**, gray borders, restrained category labels. Avoid rainbow card colors and neon glows.
+- Palette: white surfaces, deep navy `#080b11` in dark mode, **muted light blue accent in dark mode**, **deeper blue accent in light mode**, gray borders, restrained category labels. Avoid rainbow card colors and neon glows.
 - Typography:
   - Brand: Playfair Display.
   - Section/card/article headings: Source Serif 4.
@@ -64,7 +64,7 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - The podcast transcript/chapter box.
 - Article/podcast cards:
   - Flat white surface, thin gray border, small radius, no shadow, no gradient.
-  - Category label is small uppercase accent text with a small accent square: teal `#14b8a6` in dark mode, blue final `#1d4ed8` in light mode.
+  - Category label is small uppercase accent text with a small accent square: muted light blue `#7fa8d4` in dark mode, deeper blue final `#1d4ed8` in light mode.
   - The old `tag-*` classes still exist in markup but are visually overridden by `.card-premium > span`; edit the override if changing card-label colors.
   - Card hover/focus uses a subtle border change and slight lift, not a gradient.
 - The current CSS redesign override block is appended near the end of the main `<style>` block. Add new rules there or later, and verify them in both themes.
@@ -75,20 +75,20 @@ The site follows a restrained editorial 60/30/10 color model:
 
 - **60% surface:** dark `#080b11` or light final white. Keep large areas quiet and neutral.
 - **30% type and structure:** `#f1f5f9` for primary type, `#9fadc1` for secondary text, `#1f2937` for dark borders, `#16181c` source for light borders.
-- **10% accent:** dark mode teal `#14b8a6`; light mode blue `#1d4ed8` final (`#81b2ff` pre-filter source).
+- **10% accent:** dark mode muted light blue `#7fa8d4`; light mode deeper blue `#1d4ed8` final (`#81b2ff` pre-filter source).
 
 Accent semantics:
 
-- **Dark mode teal** is sampled from the small “Health & Tech Law” kicker above the brand. Use it for links, active nav, category squares/labels, focus rings, small underlines, and accent borders.
-- **Light mode blue** is the equivalent accent. Do not substitute teal in light mode.
-- **Never mix blue and teal in dark mode.** Blue belongs to light mode; teal belongs to dark mode. `/tmp` screenshots and DevTools are the source of truth because the light-mode invert filter changes rendered colors.
-- Teal hover: `#2dd4bf`. Deep teal for a pressed or high-emphasis fill if needed: `#0d9488`. Avoid large teal fills; teal should act like ink, not paint.
+- **Dark mode blue** is a muted, desaturated light blue sampled to match the “Health & Tech Law” kicker. Use it for links, active nav, category squares/labels, focus rings, small underlines, and accent borders.
+- **Light mode blue** is the deeper equivalent accent. Do not substitute teal or green in either theme.
+- **Stay in the blue family.** Do not reintroduce teal, turquoise, or green as the dark-mode accent. `/tmp` screenshots and DevTools are the source of truth because the light-mode invert filter changes rendered colors.
+- Dark-mode blue hover: `#9db8d6`. Deep blue for a pressed or high-emphasis fill if needed: `#4f83bd`. Avoid large accent fills; the accent should act like ink, not paint.
 - Dark-mode neutrals form a tight ladder: page/card `#080b11`, subtle raised surface `#0b1220`, border `#1f2937`, muted text `#9fadc1`, primary text `#f1f5f9`. Do not introduce unrelated grays.
 - Light-mode source colors must be chosen for the invert filter: white final comes from `#000`, light border final comes from `#16181c`, blue final comes from `#81b2ff`, near-black type comes from `#f1f5f9`.
-- Treat teal as a **cool, clinical signal** and blue as its **light-mode equivalent**. Do not make one decorative or introduce a second competing accent.
+- Treat blue as a **cool, clinical signal**. Dark mode uses the lighter, muted tone; light mode uses the deeper tone. Do not introduce a second competing accent.
 - Use the accent in short strokes: a square, a rule, a label, an underline, an active indicator, a focus ring. A single viewport band should usually contain only one accent moment.
 - Official platform dots (YouTube red, Spotify green, Apple purple, Amazon blue, Pocket Casts red) are exempt because they are tiny brand identifiers. They are not part of the site accent system.
-- Measured contrast: `#14b8a6` on `#080b11` is about 7.9:1; `#2dd4bf` on `#080b11` is about 10.6:1; `#9fadc1` on `#080b11` is about 8.7:1; `#1d4ed8` on white is about 6.7:1. These are accessible for body and UI text.
+- Measured contrast: `#7fa8d4` on `#080b11` is about 7.9:1; `#9db8d6` on `#080b11` is about 9.6:1; `#9fadc1` on `#080b11` is about 8.7:1; `#1d4ed8` on white is about 6.7:1. These are accessible for body and UI text.
 - Aim for at least 4.5:1 for normal text and 3:1 for large text, icons, borders, and focus indicators. Never use accent color as the only way to communicate state.
 - Borders should stay low-contrast in their resting state and become accent-colored only on hover/focus.
 - No gradients. No glow effects. No rainbow category colors. The accent should feel clinical and editorial, not decorative.
@@ -126,8 +126,8 @@ Dark mode has no filter, so colors render directly:
 - Resting border: `#1f2937`
 - Primary text: `#f1f5f9`
 - Muted text: `#9fadc1`
-- Accent: `#14b8a6` (teal, matching the Health & Tech Law kicker)
-- Accent hover: `#2dd4bf`
+- Accent: `#7fa8d4` (muted light blue, matching the Health & Tech Law kicker)
+- Accent hover: `#9db8d6`
 
 When adding light-mode styles:
 
@@ -336,7 +336,7 @@ Notes:
 - Do not add gradients anywhere.
 - Do not bring back the left sidebar, Editor corner, On the Shelf, Recommended for You, bottom mobile dock, transcript box, or old reader tabs.
 - Do not use raw light-theme colors without accounting for the light-mode invert filter.
-- Do not use blue as the dark-mode accent. Dark mode uses teal `#14b8a6`; light mode uses blue `#1d4ed8` final.
+- Do not use teal, turquoise, or green as the dark-mode accent. Dark mode uses muted light blue `#7fa8d4`; light mode uses deeper blue `#1d4ed8` final.
 - Do not reintroduce large filled button boxes or pill-shaped primary navigation. Prefer inline text links, underlines, and compact action buttons.
 - Keep the live contact address as `theregulatedpulse@gmail.com` for general and privacy inquiries.
 - Do not change article wording, punctuation, or typos without explicit permission.
@@ -355,7 +355,7 @@ Notes:
 
 - White top-down blog design is live.
 - Top nav replaces the old left sidebar.
-- Dark-mode accent is teal `#14b8a6`; light-mode accent remains blue `#1d4ed8` final.
+- Dark-mode accent is muted light blue `#7fa8d4`; light-mode accent is deeper blue `#1d4ed8` final.
 - Hero actions, search, and newsletter use text/underline treatments instead of large filled boxes.
 - Editor, On the Shelf, Recommended for You, and transcript box are removed/hidden.
 - No gradients remain in the intended UI; verify after any new styles.
