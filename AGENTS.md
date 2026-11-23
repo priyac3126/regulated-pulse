@@ -12,8 +12,12 @@ Primary files:
 - `legal.css` — styling shared by legal pages.
 - `cookie-consent.css` / `cookie-consent.js` — cookie preference banner and consent behavior.
 - `firestore.rules` — Firestore access rules.
+- `article-static.css` — styling for generated static article pages.
+- `generate-static-articles.py` — regenerates `post-*/index.html` and `article-static.css` from the inline article markup in `index.html`.
+- `feed.xml`, `sitemap.xml`, `robots.txt` — RSS, sitemap, and crawler directives.
+- `priya-about-crop.jpg` — current About Me portrait.
 - `CNAME` — custom domain: `theregulatedpulse.com`.
-- `post-*/index.html` — tiny redirect stubs to hash routes such as `/#post-ai`; do not add new folders per post.
+- `post-*/index.html` — generated static SEO article pages; each links to the interactive hash version such as `/#post-ai`. Do not add new folders per post.
 - `tts-post-*.mp3` and `tts-timings.json` — pre-generated article read-aloud audio and timing data.
 - `welcome-to-the-pulse.m4a` — browser-compatible AAC version of the welcome post audio.
 - `A Giant Leap.m4a`, `UI-UX Design.m4a`, `Welcome to the Pulse.m4a`, `The Realities of Chronic Illness.m4a` — human-recorded audio assets. The original `Welcome to the Pulse.m4a` is ALAC and does not play in Chrome; use `welcome-to-the-pulse.m4a` instead.
@@ -27,7 +31,7 @@ Remote:
 
 ## 2. User content rules — highest priority
 
-- Do **not** create a new folder per blog post. Existing posts live inline in `index.html`; `post-*/index.html` files are only redirects. Never create `new-post/index.html`.
+- Do **not** create a new folder per blog post. Existing posts live inline in `index.html`; `post-*/index.html` files are generated static SEO pages. Never create `new-post/index.html`. After editing article markup, run `python3 generate-static-articles.py` to refresh the static pages.
 - When the user supplies article text, publish it **exactly** as given. Do not change wording, grammar, spelling, punctuation, phrasing, em dashes, or typos unless explicitly asked. Only change markup/layout around it.
 - The user often asks for exact text replacements. Preserve their supplied punctuation and spelling even if it looks like a typo (for example `recieving`, double punctuation, or curly vs straight quotes).
 - Do not silently “fix” content. If a change seems necessary, make only the requested change.
@@ -189,6 +193,7 @@ For podcast episodes:
 ## 7. Search behavior
 
 - Blog search: semantic/concept-aware. Uses `BLOG_POST_CATALOG`, `ARTICLE_SEMANTIC_CONCEPTS`, `CONCEPT_SYNONYM_GROUPS`, and `filterBlogCards`.
+- Global command palette: `Ctrl/Cmd + K`, header Search button (hidden on mobile), and footer Search link. Uses `window.__pulseSearchIndex` to search articles and episodes.
 - Podcast search: uses `PODCAST_EP_CATALOG`, `PODCAST_SEMANTIC_CONCEPTS`, and `filterPodcastCards`.
 - Search indexes are built from titles, metadata, curated key terms, and visible detail-card text.
 - Podcast search input: `#podcast-search-input`; no-results message: `#podcast-no-results-msg`.
@@ -272,6 +277,7 @@ The Firebase web API key is public client configuration in `index.html`; do not 
 ## 12. Comments, highlights, and annotations
 
 - Comments and highlights use Firestore.
+- Article views add a “By Priya Chaudhari” byline and a footer “Back to top” link.
 - Comment form headings and labels were intentionally softened to `font-weight: 600` (heading) and `500` (labels).
 - Post Comment buttons are solid blue (no gradient).
 - Do not reintroduce the old comment button gradients.
@@ -359,8 +365,12 @@ Notes:
 ## 16. Current known state
 
 - White top-down blog design is live, with a light grey page canvas and white content surfaces.
+- `feed.xml`, `sitemap.xml`, and `robots.txt` are live; homepage includes RSS discovery and Blog JSON-LD; static article pages include BlogPosting JSON-LD and Open Graph metadata.
+- Search palette (Ctrl/Cmd + K) and article bylines are live.
+- Static article URLs exist at `post-<id>/`; the interactive SPA still uses hash routes (`#post-<id>`). Regenerate static pages after article edits.
 - Top nav replaces the old left sidebar.
 - Dark-mode accent is saturated blue `#77bdfa`; light-mode accent is deeper blue `#1d4ed8` final.
+- The first article card includes a featured book-cover image; images use lazy loading.
 - Hero actions, search, and newsletter use text/underline treatments instead of large filled boxes.
 - Editor, On the Shelf, Recommended for You, and transcript box are removed/hidden.
 - No gradients remain in the intended UI; verify after any new styles.

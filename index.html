@@ -27,7 +27,16 @@
     <meta property="og:image" content="https://theregulatedpulse.com/preview-image-light.jpeg?v=8">
     <meta property="og:url" content="https://theregulatedpulse.com">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Regulated Pulse">
+    <meta name="twitter:description" content="Demystifying the legal frameworks and ethical guardrails shaping the future of healthcare technology.">
+    <meta name="twitter:image" content="https://theregulatedpulse.com/preview-image-light.jpeg?v=8">
 
+    <link rel="canonical" href="https://theregulatedpulse.com/">
+    <link rel="alternate" type="application/rss+xml" title="The Regulated Pulse" href="https://theregulatedpulse.com/feed.xml">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"The Regulated Pulse","url":"https://theregulatedpulse.com/","description":"Healthcare, technology, law, and policy.","blogPost":[{"@type":"BlogPosting","headline":"Beyond the Battlefield","url":"https://theregulatedpulse.com/post-battlefield"},{"@type":"BlogPosting","headline":"The Fifth Pillar: Why the Arts Belong in Clinical Care","url":"https://theregulatedpulse.com/post-art-cure"},{"@type":"BlogPosting","headline":"State Medical Malpractice Laws Comparison","url":"https://theregulatedpulse.com/post-malpractice"},{"@type":"BlogPosting","headline":"From Anatomy Labs to Biosafety Laws","url":"https://theregulatedpulse.com/post-cdc-interview"},{"@type":"BlogPosting","headline":"Book Recommendations","url":"https://theregulatedpulse.com/post-book-recs"},{"@type":"BlogPosting","headline":"The Case for Compassionate Care","url":"https://theregulatedpulse.com/post-compassion"},{"@type":"BlogPosting","headline":"Healing Without Borders","url":"https://theregulatedpulse.com/post-migration"},{"@type":"BlogPosting","headline":"\"If You Knew the Conditions\"","url":"https://theregulatedpulse.com/post-na"},{"@type":"BlogPosting","headline":"A Giant Leap: Trust and Oversight in Healthcare AI","url":"https://theregulatedpulse.com/post-giant-leap"},{"@type":"BlogPosting","headline":"Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights","url":"https://theregulatedpulse.com/post-ai"},{"@type":"BlogPosting","headline":"Welcome to The Regulated Pulse","url":"https://theregulatedpulse.com/post-welcome"},{"@type":"BlogPosting","headline":"The Pain Brokers","url":"https://theregulatedpulse.com/post-pain-brokers"},{"@type":"BlogPosting","headline":"The State of Medical Education","url":"https://theregulatedpulse.com/post-med-ed"},{"@type":"BlogPosting","headline":"Stifled Innovation","url":"https://theregulatedpulse.com/post-epic"},{"@type":"BlogPosting","headline":"Quote Spotlight","url":"https://theregulatedpulse.com/post-quote-spotlight"}]}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
@@ -2996,6 +3005,9 @@
             .dashboard-sidebar .nav-link-vertical i {
                 display: none !important;
             }
+            #header-search-btn {
+                display: none !important;
+            }
         }
 
         @media (max-width: 640px) {
@@ -3063,6 +3075,36 @@
         .pw-toggle .pw-eye-off { display: none; }
         .pw-toggle.is-visible .pw-eye { display: none; }
         .pw-toggle.is-visible .pw-eye-off { display: block; }
+
+
+
+
+        #recent-articles-list .card-premium:first-child { position: relative; padding-right: 210px !important; min-height: 190px; }
+        .featured-cover { position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); width: 150px; max-height: 190px; object-fit: contain; border-radius: 0.3rem; }
+        @media (max-width: 800px) { #recent-articles-list .card-premium:first-child { padding-right: 1.5rem !important; } .featured-cover { display: none; } }
+
+        .article-byline { margin: 0.25rem 0 1.5rem; color: #9fadc1; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.01em; }
+        .back-to-top { color: #77bdfa; text-decoration: none; }
+        .back-to-top:hover { text-decoration: underline; }
+
+        /* Command palette */
+        #pulse-palette { position: fixed; inset: 0; z-index: 210; display: none; align-items: flex-start; justify-content: center; padding: 11vh 1rem 1rem; background: rgba(3, 7, 14, 0.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        #pulse-palette.open { display: flex; }
+        .pulse-palette-card { width: min(680px, 100%); background-color: #0b1220; border: 1px solid #1f2937; border-radius: 0.55rem; box-shadow: 0 24px 80px rgba(0,0,0,.55); overflow: hidden; }
+        .pulse-palette-input { width: 100%; border: 0; border-bottom: 1px solid #1f2937; background: transparent; color: #f1f5f9; padding: 1rem 1.1rem; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; outline: none; }
+        .pulse-palette-input::placeholder { color: #7f8fa6; }
+        .pulse-palette-results { max-height: min(56vh, 520px); overflow-y: auto; padding: 0.45rem; }
+        .pulse-palette-item { display: block; width: 100%; text-align: left; border: 0; background: transparent; color: #f1f5f9; padding: 0.7rem 0.75rem; border-radius: 0.35rem; cursor: pointer; }
+        .pulse-palette-item:hover, .pulse-palette-item:focus-visible { background-color: #111b2c; outline: none; }
+        .pulse-palette-kind { display: block; color: #77bdfa; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.18rem; }
+        .pulse-palette-title { display: block; font-family: 'Source Serif 4', Georgia, serif; font-size: 1rem; font-weight: 600; line-height: 1.35; }
+        .pulse-palette-sub { display: block; color: #9fadc1; font-size: 0.78rem; margin-top: 0.18rem; }
+        .pulse-palette-hint { margin: 0; padding: 0.6rem 1rem 0.75rem; border-top: 1px solid #1f2937; color: #7f8fa6; font-size: 0.7rem; }
+        body.light-mode .pulse-palette-card { background-color: #000 !important; border-color: #16181c !important; }
+        body.light-mode .pulse-palette-input { border-bottom-color: #16181c !important; color: #f1f5f9 !important; }
+        body.light-mode .pulse-palette-item { color: #f1f5f9 !important; }
+        body.light-mode .pulse-palette-item:hover, body.light-mode .pulse-palette-item:focus-visible { background-color: #050505 !important; }
+        body.light-mode .pulse-palette-sub { color: #9fadc1 !important; }
 
         @media print {
             @page { margin: 0; }
@@ -3596,6 +3638,10 @@
                             <i data-lucide="user" style="width: 18px; height: 18px;"></i>
                             <span>About Me</span>
                         </a>
+                        <button type="button" class="nav-link-vertical" id="header-search-btn" onclick="window.openPulsePalette && window.openPulsePalette()" aria-label="Search the site" style="background: none; border: 0; cursor: pointer;">
+                            <i data-lucide="search" style="width: 18px; height: 18px;"></i>
+                            <span>Search</span>
+                        </button>
                     </nav>
                 </div>
                 
@@ -3679,6 +3725,7 @@
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">Beyond the Battlefield</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">The Toll of PTSD and the Fight to Improve Veteran Mental Health</p>
                                             <p class="text-xs text-slate-500 font-medium">November 2026 · 5 min read</p>
+                                            <img class="featured-cover" src="./FieldsofCombat.webp" alt="Book cover of Fields of Combat: Understanding PTSD Among Veterans of Iraq and Afghanistan by Erin P. Finley." loading="lazy" decoding="async">
                                     </button>
 
                                     <!-- The Fifth Pillar -->
@@ -3901,7 +3948,7 @@
                         <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">Book Insights · November 7, 2026 · 5 min read</p>
 
                         <div class="text-center mb-10">
-                            <img src="./FieldsofCombat.webp" alt="Book cover of Fields of Combat: Understanding PTSD Among Veterans of Iraq and Afghanistan by Erin P. Finley, featuring a yellow-tinted photograph of a soldier in a camouflage helmet and uniform with hands clasped over their face."
+                            <img decoding="async" loading="lazy" src="./FieldsofCombat.webp" alt="Book cover of Fields of Combat: Understanding PTSD Among Veterans of Iraq and Afghanistan by Erin P. Finley, featuring a yellow-tinted photograph of a soldier in a camouflage helmet and uniform with hands clasped over their face."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published in 2011.</p>
                         </div>
@@ -4084,7 +4131,7 @@
                         <p class="text-sm mb-11" style="color: rgb(59, 130, 246);">Book Insights · October 25, 2026 · 4 min read</p>
 
                         <div class="text-center mb-10">
-                            <img src="./ArtCurebook.webp" alt="Book cover of Art Cure: The Science of How the Arts Save Lives by Daisy Fancourt, showing a white cup filled with paintbrushes, colored pencils, an admission ticket stub, and rolled sheet music in front of a red circle."
+                            <img decoding="async" loading="lazy" src="./ArtCurebook.webp" alt="Book cover of Art Cure: The Science of How the Arts Save Lives by Daisy Fancourt, showing a white cup filled with paintbrushes, colored pencils, an admission ticket stub, and rolled sheet music in front of a red circle."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published Feb 2026.</p>
                         </div>
@@ -4480,7 +4527,7 @@
                         </p>
 
                         <div class="text-center mb-10">
-                            <img src="./taylor-revenew.jpg" alt="Outdoor portrait of CDC attorney Mrs. Taylor Revenew smiling with long brown hair, wearing a navy blazer over a white V-neck blouse in front of sunlit green foliage."
+                            <img decoding="async" loading="lazy" src="./taylor-revenew.jpg" alt="Outdoor portrait of CDC attorney Mrs. Taylor Revenew smiling with long brown hair, wearing a navy blazer over a white V-neck blouse in front of sunlit green foliage."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[97%] sm:max-w-[503px] object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Mrs. Taylor Revenew</p>
                         </div>
@@ -4725,7 +4772,7 @@
                             read</p>
 
                         <div class="text-center mb-10">
-                            <img src="./migration.webp" alt="Book cover of Migration and Health, edited by Sandro Galea, Catherine K. Ettman, and Muhammad H. Zaman, showing a tree-lined highway curving toward a city skyline with an airplane flying overhead in a blue sky."
+                            <img decoding="async" loading="lazy" src="./migration.webp" alt="Book cover of Migration and Health, edited by Sandro Galea, Catherine K. Ettman, and Muhammad H. Zaman, showing a tree-lined highway curving toward a city skyline with an airplane flying overhead in a blue sky."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published Dec 2022.</p>
                         </div>
@@ -4910,7 +4957,7 @@
                             read</p>
 
                         <div class="text-center mb-10">
-                            <img src="./Compassionomics.jpeg" alt="Book cover of Compassionomics: The Revolutionary Scientific Evidence That Caring Makes a Difference by Stephen Trzeciak and Anthony Mazzarelli, showing a textured cream background with a red wax seal embossed with the medical Rod of Asclepius."
+                            <img decoding="async" loading="lazy" src="./Compassionomics.jpeg" alt="Book cover of Compassionomics: The Revolutionary Scientific Evidence That Caring Makes a Difference by Stephen Trzeciak and Anthony Mazzarelli, showing a textured cream background with a red wax seal embossed with the medical Rod of Asclepius."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published in 2019.</p>
                         </div>
@@ -5204,7 +5251,7 @@
                         </div>
 
                         <div class="text-center mb-10">
-                            <img src="./A Giant Leap.jpeg" alt="Book cover of A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future by Robert Wachter, MD, showing a blue line tracing a human face profile that rises into a multicolored ECG heartbeat peak."
+                            <img decoding="async" loading="lazy" src="./A Giant Leap.jpeg" alt="Book cover of A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future by Robert Wachter, MD, showing a blue line tracing a human face profile that rises into a multicolored ECG heartbeat peak."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published February 2026.</p>
                         </div>
@@ -5694,7 +5741,7 @@
                             read</p>
 
                         <div class="text-center mb-10">
-                            <img src="./NAbook.webp" alt="Book cover of If You Knew the Conditions: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908–1955 by David H. DeJong, featuring a historical black-and-white photograph of an elderly Native American patient resting under blankets beside a wood stove while a young woman sits nearby holding a small bowl."
+                            <img decoding="async" loading="lazy" src="./NAbook.webp" alt="Book cover of If You Knew the Conditions: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908–1955 by David H. DeJong, featuring a historical black-and-white photograph of an elderly Native American patient resting under blankets beside a wood stove while a young woman sits nearby holding a small bowl."
                                 class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">A Chronicle of the Indian Medical Service</p>
                         </div>
@@ -6101,7 +6148,7 @@
 
                         <div class="blog-post-content">
                             <div class="mb-8 flex flex-col items-center">
-                                <img src="./ThePainBrokers.jpg" alt="Book cover of The Pain Brokers: How Con Men, Call Centers, and Rogue Doctors Fuel America's Lawsuit Factory by Elizabeth Chamblee Burch, showing a bright orange highway billboard reading THE PAIN BROKERS and CALL NOW: 1-855-SCAM-LAW against a vivid yellow sky." class="max-w-xs rounded-lg shadow-xl" style="max-height: 450px; object-fit: contain;">
+                                <img decoding="async" loading="lazy" src="./ThePainBrokers.jpg" alt="Book cover of The Pain Brokers: How Con Men, Call Centers, and Rogue Doctors Fuel America's Lawsuit Factory by Elizabeth Chamblee Burch, showing a bright orange highway billboard reading THE PAIN BROKERS and CALL NOW: 1-855-SCAM-LAW against a vivid yellow sky." class="max-w-xs rounded-lg shadow-xl" style="max-height: 450px; object-fit: contain;">
                                 <p class="text-xs text-slate-400 mt-3"><em>Released Jan 2026</em>.</p>
                             </div>
                             <p>The Pain Brokers was a fantastic read intersecting the worlds of legal and business corruption, women systematically being taken advantage of, and the chilling effects of the lack of the medical device industry can have on thousands of Americans.</p>
@@ -7900,8 +7947,8 @@
                         </div>
                     </div>
                     <div class="flex-shrink-0 flex flex-col items-center gap-4 w-full lg:w-64">
-                        <img class="w-64 h-80 rounded-2xl object-cover border-2 border-white/5 shadow-2xl" style="object-position: center center;"
-                            src="./priya-about-crop.jpg?v=1" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
+                        <img decoding="async" loading="lazy" class="w-64 h-80 rounded-2xl object-cover border-2 border-white/5 shadow-2xl" style="object-position: center center;"
+                            src="./priya-about-crop.jpg?v=2" alt="Headshot portrait of Priya Chaudhari smiling with long dark hair, wearing a black blazer over a white collared blouse with a pink and black floral print against a light grey studio background.">
                         <a href="https://www.linkedin.com/in/priya-chaudhari-8798b2398/" target="_blank"
                             rel="noopener noreferrer"
                             class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold transition-all w-full bg-[#1e293b] text-white hover:bg-[#334155] border border-white/5 text-sm"
@@ -8065,6 +8112,13 @@
                         triggerViewFade(el);
                         if (window.recordPulseView) window.recordPulseView('post', postId);
                         window.scrollTo({ top: 0, behavior: 'instant' });
+                        const metaP = el.querySelector(':scope > p.text-sm');
+                        if (metaP && !el.querySelector('.article-byline')) {
+                            const byline = document.createElement('p');
+                            byline.className = 'article-byline';
+                            byline.textContent = 'By Priya Chaudhari';
+                            metaP.after(byline);
+                        }
                         const h2 = el.querySelector('h2');
                         if (h2) {
                             h2.setAttribute('tabindex', '-1');
@@ -9697,6 +9751,11 @@
                 }
             ];
 
+            window.__pulseSearchIndex = [
+                ...BLOG_POST_CATALOG.map(p => ({ kind: 'Article', id: p.id, title: p.title, subtitle: p.subtitle, tag: p.tagLabel, hash: '#' + p.id })),
+                ...PODCAST_EP_CATALOG.map(e => ({ kind: 'Podcast', id: e.id, title: e.title, subtitle: e.dur + ' · ' + e.date, tag: 'Episode', hash: '#episode-' + e.id }))
+            ];
+
             function getPulseHistory() {
                 try {
                     const raw = JSON.parse(localStorage.getItem('pulseViewHistory') || '{}');
@@ -11250,7 +11309,7 @@
         <p class="footer-line footer-meta-row">
             <span class="footer-copy"><span>&copy; 2026 The Regulated Pulse</span></span>
             <span class="footer-sep">&middot;</span>
-            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span id="footer-login"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.openAnnAuth && window.openAnnAuth()">Sign in</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
+            <span class="footer-mode-toggle"><span class="dark-link"><a href="javascript:void(0)" onclick="window.enterLightMode()">Switch to light mode</a></span><span class="light-back"><a href="javascript:void(0)" onclick="window.exitLightMode()">Switch to dark mode</a></span><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.openPulsePalette && window.openPulsePalette()">Search</a><span id="footer-login"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.openAnnAuth && window.openAnnAuth()">Sign in</a></span><span id="footer-logout" style="display: none;"><span class="footer-sep">&middot;</span><a href="javascript:void(0)" onclick="window.annSignOut && window.annSignOut()">Log out</a></span></span>
         </p>
         <p class="footer-line">
             For inquiries, contact <a href="mailto:theregulatedpulse@gmail.com">theregulatedpulse@gmail.com</a>
@@ -11260,9 +11319,64 @@
             <span class="footer-sep" aria-hidden="true">&middot;</span>
             <a href="./privacy.html">Privacy Policy</a>
             <span class="footer-sep" aria-hidden="true">&middot;</span>
+            <a href="javascript:void(0)" class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</a>
+            <span class="footer-sep" aria-hidden="true">&middot;</span>
             <button type="button" class="footer-cookie-btn" data-cookie-settings>Cookie settings</button>
         </p>
     </footer>
+
+    <div id="pulse-palette" role="dialog" aria-modal="true" aria-label="Search The Regulated Pulse">
+        <div class="pulse-palette-card">
+            <input id="pulse-palette-input" class="pulse-palette-input" type="search" placeholder="Search articles and episodes..." autocomplete="off" aria-label="Search articles and episodes">
+            <div id="pulse-palette-results" class="pulse-palette-results"></div>
+            <p class="pulse-palette-hint">Press Esc to close · Ctrl/Cmd + K to open</p>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const overlay = document.getElementById('pulse-palette');
+            const input = document.getElementById('pulse-palette-input');
+            const results = document.getElementById('pulse-palette-results');
+            if (!overlay || !input || !results) return;
+            const esc = (v) => String(v || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            function render() {
+                const q = input.value.trim().toLowerCase();
+                const all = window.__pulseSearchIndex || [];
+                const matches = (q ? all.filter(item => [item.title, item.subtitle, item.tag, item.kind].join(' ').toLowerCase().includes(q)) : all).slice(0, 10);
+                if (!matches.length) {
+                    results.innerHTML = '<p class="pulse-palette-sub" style="padding: 1rem 0.75rem;">No matching articles or episodes.</p>';
+                    return;
+                }
+                results.innerHTML = matches.map(item => '<button type="button" class="pulse-palette-item" data-hash="' + esc(item.hash) + '"><span class="pulse-palette-kind">' + esc(item.kind) + ' · ' + esc(item.tag) + '</span><span class="pulse-palette-title">' + esc(item.title) + '</span><span class="pulse-palette-sub">' + esc(item.subtitle) + '</span></button>').join('');
+            }
+            function open() {
+                overlay.classList.add('open');
+                input.value = '';
+                render();
+                setTimeout(() => input.focus(), 30);
+            }
+            function close() { overlay.classList.remove('open'); }
+            window.openPulsePalette = open;
+            window.closePulsePalette = close;
+            input.addEventListener('input', render);
+            results.addEventListener('click', (event) => {
+                const item = event.target.closest('[data-hash]');
+                if (!item) return;
+                close();
+                if (window.navigateTo) window.navigateTo(item.getAttribute('data-hash'));
+            });
+            overlay.addEventListener('click', (event) => { if (event.target === overlay) close(); });
+            document.addEventListener('keydown', (event) => {
+                if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+                    event.preventDefault();
+                    open();
+                } else if (event.key === 'Escape' && overlay.classList.contains('open')) {
+                    close();
+                }
+            });
+        })();
+    </script>
     <div id="print-area"></div>
     <script>
         window.askPdfMode = function () {
