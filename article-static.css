@@ -30,6 +30,8 @@ img{max-width:100%;height:auto}
 .static-article .comparison-table th{background:#1e293b;color:var(--text);text-align:left}
 .static-article .comparison-table .group-row td{background:#111b2c;color:var(--text);font-weight:700;text-transform:uppercase;font-size:.78em;letter-spacing:.05em}
 .static-article .comparison-table p{margin:0 0 .5rem;font-size:inherit}
+.static-article .blog-post-content p.pulse-motto{font-size:1.21rem}
+.static-article .pulse-motto-accent{color:var(--accent)}
 .static-article .works-cited{font-size:.86rem;color:var(--muted)}
 .static-article .works-cited li{margin-bottom:.6rem}
 .static-article .table-note{font-size:.8rem;color:var(--muted)}

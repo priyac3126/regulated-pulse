@@ -55,7 +55,7 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - Header row: brand left, horizontal nav right.
   - Main content is fully fluid (no fixed max-width); the header and footer span the same width. Root font-size steps up at `2200/2600/3000/3400px` (17/18/19/20px) so type and rem-based spacing scale on high-resolution displays.
   - Wide screens use an editorial composition: the welcome hero splits into a heading column and a copy/actions column at `900px` and up, and a third actions column at `2200px`. About bio and the My Major intro use multi-column/side-by-side layouts at wide widths; FAQ cards form a 2-column grid at `2200px` (filter row stays inline).
-  - Blog articles: first article is a featured card, then articles in a 2-column grid; 3 columns at `1200px`, 4 at `1700px`, 6 at `2200px`. The featured card spans the full row on narrow screens and 2 columns on wide screens.
+  - **Newest first:** the newest article is always the first card (the featured slot). Blog articles: first article is a featured card, then articles in a 2-column grid; 3 columns at `1200px`, 4 at `1700px`, 6 at `2200px`. The featured card spans the full row on narrow screens and 2 columns on wide screens.
   - `Vital Signs`: 2 columns, expanding to 4 columns at `1280px`.
   - Podcast episodes: 3-column grid, 4 columns at `1700px`, 8 columns at `3000px`.
   - Newsletter signup: centered below the article grid, presented as an open rule with an underlined email field and a compact submit button, not a card.
@@ -179,7 +179,7 @@ Podcast IDs: `ep1`–`ep8`.
 When adding an article, follow the existing inline SPA pattern:
 
 1. Add its full content to a hidden `<article id="post-<id>-container">` in `index.html`.
-2. Add its card to the article grid (`#recent-articles-list` or `#vital-signs-section`).
+2. Add its card as the **first** card in `#recent-articles-list` so the newest post occupies the featured slot. Move the `featured-cover` image (and its `img` element) to the new first card and remove it from the previously first card. Keep `BLOG_POST_CATALOG` newest-first as well. Vital Signs cards are not part of this ordering.
 3. Add a click handler for the static card if needed (many cards have `card-<id>-click` IDs and explicit listeners).
 4. Add an entry to `BLOG_POST_CATALOG` with `id`, `cardId`, `cat`, `cardClass`, `tagClass`, `tagLabel`, `title`, `subtitle`, and `date`.
 5. Add key terms to `ARTICLE_SEMANTIC_CONCEPTS` so search works.

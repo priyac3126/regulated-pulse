@@ -4,7 +4,7 @@ root=Path('.')
 s=(root/'index.html').read_text()
 posts=[
 ('post-battlefield','Beyond the Battlefield','The Toll of PTSD and the Fight to Improve Veteran Mental Health','Book Insights','2026-11-01'),
-('post-farmer','The Legacy of Partners in Health and Paul Farmer','Lessons from Mountains Beyond Mountains','Book Insights','2026-11-26'),
+('post-farmer','Equity is the Only Acceptable Goal','The Enduring Legacy of Paul Farmer','Book Insights','2026-11-26'),
 ('post-art-cure','The Fifth Pillar: Why the Arts Belong in Clinical Care','How arts engagement can improve patient outcomes','Book Insights','2026-10-25'),
 ('post-malpractice','State Medical Malpractice Laws Comparison','Texas and Arizona','Law & Policy','2026-07-01'),
 ('post-cdc-interview','From Anatomy Labs to Biosafety Laws','An Interview with CDC Attorney Taylor Revenew','Interview','2026-07-01'),
@@ -52,6 +52,8 @@ img{max-width:100%;height:auto}
 .static-article .comparison-table th{background:#1e293b;color:var(--text);text-align:left}
 .static-article .comparison-table .group-row td{background:#111b2c;color:var(--text);font-weight:700;text-transform:uppercase;font-size:.78em;letter-spacing:.05em}
 .static-article .comparison-table p{margin:0 0 .5rem;font-size:inherit}
+.static-article .blog-post-content p.pulse-motto{font-size:1.21rem}
+.static-article .pulse-motto-accent{color:var(--accent)}
 .static-article .works-cited{font-size:.86rem;color:var(--muted)}
 .static-article .works-cited li{margin-bottom:.6rem}
 .static-article .table-note{font-size:.8rem;color:var(--muted)}

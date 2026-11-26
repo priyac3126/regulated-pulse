@@ -34,7 +34,7 @@
 
     <link rel="canonical" href="https://theregulatedpulse.com/">
     <link rel="alternate" type="application/rss+xml" title="The Regulated Pulse" href="https://theregulatedpulse.com/feed.xml">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"The Regulated Pulse","url":"https://theregulatedpulse.com/","description":"Healthcare, technology, law, and policy.","blogPost":[{"@type":"BlogPosting","headline":"The Legacy of Partners in Health and Paul Farmer","url":"https://theregulatedpulse.com/post-farmer"},{"@type":"BlogPosting","headline":"Beyond the Battlefield","url":"https://theregulatedpulse.com/post-battlefield"},{"@type":"BlogPosting","headline":"The Fifth Pillar: Why the Arts Belong in Clinical Care","url":"https://theregulatedpulse.com/post-art-cure"},{"@type":"BlogPosting","headline":"State Medical Malpractice Laws Comparison","url":"https://theregulatedpulse.com/post-malpractice"},{"@type":"BlogPosting","headline":"From Anatomy Labs to Biosafety Laws","url":"https://theregulatedpulse.com/post-cdc-interview"},{"@type":"BlogPosting","headline":"Book Recommendations","url":"https://theregulatedpulse.com/post-book-recs"},{"@type":"BlogPosting","headline":"The Case for Compassionate Care","url":"https://theregulatedpulse.com/post-compassion"},{"@type":"BlogPosting","headline":"Healing Without Borders","url":"https://theregulatedpulse.com/post-migration"},{"@type":"BlogPosting","headline":"\"If You Knew the Conditions\"","url":"https://theregulatedpulse.com/post-na"},{"@type":"BlogPosting","headline":"A Giant Leap: Trust and Oversight in Healthcare AI","url":"https://theregulatedpulse.com/post-giant-leap"},{"@type":"BlogPosting","headline":"Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights","url":"https://theregulatedpulse.com/post-ai"},{"@type":"BlogPosting","headline":"Welcome to The Regulated Pulse","url":"https://theregulatedpulse.com/post-welcome"},{"@type":"BlogPosting","headline":"The Pain Brokers","url":"https://theregulatedpulse.com/post-pain-brokers"},{"@type":"BlogPosting","headline":"The State of Medical Education","url":"https://theregulatedpulse.com/post-med-ed"},{"@type":"BlogPosting","headline":"Stifled Innovation","url":"https://theregulatedpulse.com/post-epic"},{"@type":"BlogPosting","headline":"Quote Spotlight","url":"https://theregulatedpulse.com/post-quote-spotlight"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"The Regulated Pulse","url":"https://theregulatedpulse.com/","description":"Healthcare, technology, law, and policy.","blogPost":[{"@type":"BlogPosting","headline":"Equity is the Only Acceptable Goal","url":"https://theregulatedpulse.com/post-farmer"},{"@type":"BlogPosting","headline":"Beyond the Battlefield","url":"https://theregulatedpulse.com/post-battlefield"},{"@type":"BlogPosting","headline":"The Fifth Pillar: Why the Arts Belong in Clinical Care","url":"https://theregulatedpulse.com/post-art-cure"},{"@type":"BlogPosting","headline":"State Medical Malpractice Laws Comparison","url":"https://theregulatedpulse.com/post-malpractice"},{"@type":"BlogPosting","headline":"From Anatomy Labs to Biosafety Laws","url":"https://theregulatedpulse.com/post-cdc-interview"},{"@type":"BlogPosting","headline":"Book Recommendations","url":"https://theregulatedpulse.com/post-book-recs"},{"@type":"BlogPosting","headline":"The Case for Compassionate Care","url":"https://theregulatedpulse.com/post-compassion"},{"@type":"BlogPosting","headline":"Healing Without Borders","url":"https://theregulatedpulse.com/post-migration"},{"@type":"BlogPosting","headline":"\"If You Knew the Conditions\"","url":"https://theregulatedpulse.com/post-na"},{"@type":"BlogPosting","headline":"A Giant Leap: Trust and Oversight in Healthcare AI","url":"https://theregulatedpulse.com/post-giant-leap"},{"@type":"BlogPosting","headline":"Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights","url":"https://theregulatedpulse.com/post-ai"},{"@type":"BlogPosting","headline":"Welcome to The Regulated Pulse","url":"https://theregulatedpulse.com/post-welcome"},{"@type":"BlogPosting","headline":"The Pain Brokers","url":"https://theregulatedpulse.com/post-pain-brokers"},{"@type":"BlogPosting","headline":"The State of Medical Education","url":"https://theregulatedpulse.com/post-med-ed"},{"@type":"BlogPosting","headline":"Stifled Innovation","url":"https://theregulatedpulse.com/post-epic"},{"@type":"BlogPosting","headline":"Quote Spotlight","url":"https://theregulatedpulse.com/post-quote-spotlight"}]}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
@@ -1356,6 +1356,19 @@
         .comparison-table p {
             font-size: inherit !important;
             line-height: inherit !important;
+        }
+
+        /* Motto emphasis in "Equity is the Only Acceptable Goal" */
+        #blog-post-view .blog-post-content p.pulse-motto,
+        #print-area .blog-post-content p.pulse-motto {
+            font-size: calc(1.29rem * var(--reader-scale, 1)) !important;
+            line-height: 1.7 !important;
+        }
+        .pulse-motto-accent {
+            color: #75c1fa !important;
+        }
+        body.light-mode .pulse-motto-accent {
+            color: #73affb !important;
         }
         #blog-post-view.reader-wide-spacing .blog-post-content,
         #blog-post-view.reader-wide-spacing .blog-post-content p,
@@ -4092,6 +4105,18 @@
                                 <p id="blog-no-results-msg" class="text-sm text-slate-400 py-6 text-center blog-card-hidden">No matching articles found. Try a different keyword or category.</p>
                                 
                                 <div class="flex flex-col gap-6" id="recent-articles-list">
+                                    <!-- Equity is the Only Acceptable Goal -->
+                                    <button
+                                            class="rounded-2xl p-7 card-premium card-book text-left w-full focus:outline-none cursor-pointer flex flex-col"
+                                            id="card-farmer-click"
+                                            aria-label="Read post: Equity is the Only Acceptable Goal">
+                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
+                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">Equity is the Only Acceptable Goal</h3>
+                                            <p class="text-sm mb-4 flex-grow text-slate-400">The Enduring Legacy of Paul Farmer</p>
+                                            <p class="text-xs text-slate-500 font-medium">November 2026 · 6 min read</p>
+                                            <img class="featured-cover" src="./mountains-beyond-mountains.jpg" alt="Book cover of Mountains Beyond Mountains by Tracy Kidder, showing a cream background with a red central band, patterned border, and the subtitle The Quest of Dr. Paul Farmer." loading="lazy" decoding="async">
+                                    </button>
+
                                     <!-- Beyond the Battlefield -->
                                     <button
                                             class="rounded-2xl p-7 card-premium card-violet text-left w-full focus:outline-none cursor-pointer flex flex-col"
@@ -4101,19 +4126,9 @@
                                             <h3 class="font-bold mb-2 text-white text-lg leading-snug">Beyond the Battlefield</h3>
                                             <p class="text-sm mb-4 flex-grow text-slate-400">The Toll of PTSD and the Fight to Improve Veteran Mental Health</p>
                                             <p class="text-xs text-slate-500 font-medium">November 2026 · 5 min read</p>
-                                            <img class="featured-cover" src="./FieldsofCombat.webp" alt="Book cover of Fields of Combat: Understanding PTSD Among Veterans of Iraq and Afghanistan by Erin P. Finley." loading="lazy" decoding="async">
                                     </button>
 
-                                    <!-- The Legacy of Partners in Health and Paul Farmer -->
-                                    <button
-                                            class="rounded-2xl p-7 card-premium card-book text-left w-full focus:outline-none cursor-pointer flex flex-col"
-                                            id="card-farmer-click"
-                                            aria-label="Read post: The Legacy of Partners in Health and Paul Farmer">
-                                            <span class="text-xs px-3 py-1 rounded-full inline-block mb-4 font-semibold self-start tag-violet">Book Insights</span>
-                                            <h3 class="font-bold mb-2 text-white text-lg leading-snug">The Legacy of Partners in Health and Paul Farmer</h3>
-                                            <p class="text-sm mb-4 flex-grow text-slate-400">Lessons from Mountains Beyond Mountains</p>
-                                            <p class="text-xs text-slate-500 font-medium">November 2026 · 6 min read</p>
-                                    </button>
+
 
                                     <!-- The Fifth Pillar -->
                                     <button
@@ -4336,7 +4351,7 @@
 
                         <div class="text-center mb-10">
                             <img decoding="async" loading="lazy" src="./FieldsofCombat.webp" alt="Book cover of Fields of Combat: Understanding PTSD Among Veterans of Iraq and Afghanistan by Erin P. Finley, featuring a yellow-tinted photograph of a soldier in a camouflage helmet and uniform with hands clasped over their face."
-                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                                class="mx-auto block rounded-lg shadow-lg w-full max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published in 2011.</p>
                         </div>
 
@@ -4512,15 +4527,15 @@
                         </div>
                     </article>
 
-                    <!-- The Legacy of Partners in Health and Paul Farmer -->
+                    <!-- Equity is the Only Acceptable Goal -->
                     <article id="post-farmer-container" class="hidden max-w-3xl mx-auto relative mb-16">
-                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">The Legacy of Partners in Health and Paul Farmer</h2>
-                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">Lessons from Mountains Beyond Mountains</h3>
+                        <h2 class="mb-1" style="color: rgb(241, 245, 249); font-weight: 700; font-size: 32px;">Equity is the Only Acceptable Goal</h2>
+                        <h3 class="mb-3" style="color: rgb(203, 213, 225); font-weight: 600; font-size: 20px;">The Enduring Legacy of Paul Farmer</h3>
                         <p class="text-sm mb-8" style="color: rgb(59, 130, 246);">Book Insights · November 26, 2026 · 6 min read</p>
 
                         <div class="text-center mb-10">
                             <img decoding="async" loading="lazy" src="./mountains-beyond-mountains.jpg" alt="Book cover of Mountains Beyond Mountains by Tracy Kidder: a cream background with a red band reading MOUNTAINS BEYOND MOUNTAINS in black capitals, New York Times Bestseller and Pulitzer Prize notes above, and the subtitle The Quest of Dr. Paul Farmer, a Man Who Would Cure the World below, framed by a colorful patterned border."
-                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                                class="mx-auto block rounded-lg shadow-lg w-full max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published 2009.</p>
                         </div>
 
@@ -4539,8 +4554,8 @@
                             <p>Today, Partners in Health operates in 11 countries: Haiti, Kazakhstan, Lesotho, Liberia, Malawi, Mexico, Navajo Nation, Peru, Rwanda, and Sierra Leone. The vast majority of the staff they employ are from the countries they serve, directly uplifting people and nations and poverty. They also partner with federal governments in all these nations to strengthen public health systems to meet communities and people where they are, and to create sustainable long-term change.</p>
                             <p>Please consider donating to Partners in Health to support their mission, in Paul Farmer’s words: “Equity is the only acceptable goal” (Kidder 261).</p>
                             <p>Paul Farmer passed away in 2022 of a heart attack in his sleep while in his Rwanda hospital, but the work he dedicated his life to lives on, and it is up to those of us still alive to fight the good fight.</p>
-                            <p class="text-center">PATRIAS ES HUMANIDAD.<br>The only real nation is humanity.</p>
-                            <p class="text-right">- Kidder, 209</p>
+                            <p class="text-center pulse-motto"><span class="pulse-motto-accent">PATRIAS ES HUMANIDAD.</span><br>The only real nation is humanity.</p>
+                            <p class="text-right"><cite style="font-size: 0.85rem; color: #64748b; font-style: italic;">— Kidder, 209</cite></p>
                             <p>Support Partners in Health: <a href="https://www.pih.org/?form=donate" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">https://www.pih.org/?form=donate</a></p>
                         </div>
 
@@ -4585,7 +4600,7 @@
 
                         <div class="text-center mb-10">
                             <img decoding="async" loading="lazy" src="./ArtCurebook.webp" alt="Book cover of Art Cure: The Science of How the Arts Save Lives by Daisy Fancourt, showing a white cup filled with paintbrushes, colored pencils, an admission ticket stub, and rolled sheet music in front of a red circle."
-                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                                class="mx-auto block rounded-lg shadow-lg w-full max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published Feb 2026.</p>
                         </div>
 
@@ -5226,7 +5241,7 @@
 
                         <div class="text-center mb-10">
                             <img decoding="async" loading="lazy" src="./migration.webp" alt="Book cover of Migration and Health, edited by Sandro Galea, Catherine K. Ettman, and Muhammad H. Zaman, showing a tree-lined highway curving toward a city skyline with an airplane flying overhead in a blue sky."
-                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                                class="mx-auto block rounded-lg shadow-lg w-full max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published Dec 2022.</p>
                         </div>
 
@@ -5411,7 +5426,7 @@
 
                         <div class="text-center mb-10">
                             <img decoding="async" loading="lazy" src="./Compassionomics.jpeg" alt="Book cover of Compassionomics: The Revolutionary Scientific Evidence That Caring Makes a Difference by Stephen Trzeciak and Anthony Mazzarelli, showing a textured cream background with a red wax seal embossed with the medical Rod of Asclepius."
-                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                                class="mx-auto block rounded-lg shadow-lg w-full max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published in 2019.</p>
                         </div>
 
@@ -5705,7 +5720,7 @@
 
                         <div class="text-center mb-10">
                             <img decoding="async" loading="lazy" src="./A Giant Leap.jpeg" alt="Book cover of A Giant Leap: How AI Is Transforming Healthcare and What That Means for Our Future by Robert Wachter, MD, showing a blue line tracing a human face profile that rises into a multicolored ECG heartbeat peak."
-                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                                class="mx-auto block rounded-lg shadow-lg w-full max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">Published February 2026.</p>
                         </div>
 
@@ -6198,7 +6213,7 @@
 
                         <div class="text-center mb-10">
                             <img decoding="async" loading="lazy" src="./NAbook.webp" alt="Book cover of If You Knew the Conditions: A Chronicle of the Indian Medical Service and American Indian Health Care, 1908–1955 by David H. DeJong, featuring a historical black-and-white photograph of an elderly Native American patient resting under blankets beside a wood stove while a young woman sits nearby holding a small bowl."
-                                class="mx-auto block rounded-lg shadow-lg max-w-[85%] sm:max-w-xs object-cover">
+                                class="mx-auto block rounded-lg shadow-lg w-full max-w-[85%] sm:max-w-xs object-cover">
                             <p class="text-slate-400 text-sm mt-3 italic">A Chronicle of the Indian Medical Service</p>
                         </div>
 
@@ -10155,8 +10170,8 @@
 
             // ================= Catalog & "Recommended for You" + Editorial Enhancements =================
             const BLOG_POST_CATALOG = [
+                { id: 'post-farmer', cardId: 'card-farmer-click', cat: 'book', cardClass: 'card-book', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'Equity is the Only Acceptable Goal', subtitle: 'The Enduring Legacy of Paul Farmer', date: 'November 2026 · 6 min read' },
                 { id: 'post-battlefield', cardId: 'card-battlefield-click', cat: 'book', cardClass: 'card-violet', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'Beyond the Battlefield', subtitle: 'The Toll of PTSD and the Fight to Improve Veteran Mental Health', date: 'November 2026 · 5 min read' },
-                { id: 'post-farmer', cardId: 'card-farmer-click', cat: 'book', cardClass: 'card-book', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'The Legacy of Partners in Health and Paul Farmer', subtitle: 'Lessons from Mountains Beyond Mountains', date: 'November 2026 · 6 min read' },
                 { id: 'post-art-cure', cardId: 'card-art-cure-click', cat: 'book', cardClass: 'card-book', tagClass: 'tag-violet', tagLabel: 'Book Insights', title: 'The Fifth Pillar: Why the Arts Belong in Clinical Care', subtitle: 'How arts engagement can improve patient outcomes', date: 'October 2026 · 4 min read' },
                 { id: 'post-malpractice', cardId: 'card-malpractice-click', cat: 'law', cardClass: 'card-law', tagClass: 'tag-law', tagLabel: 'Law & Policy', title: 'State Medical Malpractice Laws Comparison', subtitle: 'Texas and Arizona', date: 'July 2026 · 6 min read' },
                 { id: 'post-cdc-interview', cardId: 'card-cdc-interview-click', cat: 'interview', cardClass: 'card-interview', tagClass: 'tag-interview', tagLabel: 'Interview', title: 'From Anatomy Labs to Biosafety Laws', subtitle: 'An Interview with CDC Attorney Taylor Revenew', date: 'July 2026 · 5 min read' },
