@@ -16,6 +16,7 @@ Primary files:
 - `generate-static-articles.py` — regenerates `post-*/index.html` and `article-static.css` from the inline article markup in `index.html`.
 - `feed.xml`, `sitemap.xml`, `robots.txt` — RSS, sitemap, and crawler directives.
 - `priya-about-crop.jpg` — current About Me portrait.
+- `mountains-beyond-mountains.jpg` — book cover for the Paul Farmer / Partners in Health post.
 - `CNAME` — custom domain: `theregulatedpulse.com`.
 - `post-*/index.html` — generated static SEO article pages; each links to the interactive hash version such as `/#post-ai`. Do not add new folders per post.
 - `tts-post-*.mp3` and `tts-timings.json` — pre-generated article read-aloud audio and timing data.
@@ -52,10 +53,11 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - Article/legal body copy: Source Serif 4.
 - Layout:
   - Header row: brand left, horizontal nav right.
-  - Main content max-width roughly `1180px`, centered.
-  - Blog articles: first article is a full-width featured card, then articles in a 2-column grid.
-  - `Vital Signs`: 2-column grid.
-  - Podcast episodes: 3-column grid.
+  - Main content is fully fluid (no fixed max-width); the header and footer span the same width. Root font-size steps up at `2200/2600/3000/3400px` (17/18/19/20px) so type and rem-based spacing scale on high-resolution displays.
+  - Wide screens use an editorial composition: the welcome hero splits into a heading column and a copy/actions column at `900px` and up, and a third actions column at `2200px`. About bio and the My Major intro use multi-column/side-by-side layouts at wide widths; FAQ cards form a 2-column grid at `2200px` (filter row stays inline).
+  - Blog articles: first article is a featured card, then articles in a 2-column grid; 3 columns at `1200px`, 4 at `1700px`, 6 at `2200px`. The featured card spans the full row on narrow screens and 2 columns on wide screens.
+  - `Vital Signs`: 2 columns, expanding to 4 columns at `1280px`.
+  - Podcast episodes: 3-column grid, 4 columns at `1700px`, 8 columns at `3000px`.
   - Newsletter signup: centered below the article grid, presented as an open rule with an underlined email field and a compact submit button, not a card.
   - Podcast “Listen & Subscribe” links are quiet inline links with small official brand dots, not bordered pills.
   - On screens below `800px`, nav icons are hidden so all five top-nav labels fit without horizontal clipping.
@@ -68,10 +70,12 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - The podcast transcript/chapter box.
 - Article/podcast cards:
   - Flat white surface, thin gray border, small radius, no shadow, no gradient.
-  - Category label is small uppercase accent text with a small accent square: saturated blue `#77bdfa` in dark mode, deeper blue final `#1d4ed8` in light mode.
+  - Category label is small uppercase accent text with a small accent square: saturated blue `#75c1fa` in dark mode, deeper blue final `#1d4ed8` in light mode.
   - The old `tag-*` classes still exist in markup but are visually overridden by `.card-premium > span`; edit the override if changing card-label colors.
   - Card hover/focus uses a subtle border change and slight lift, not a gradient.
 - The current CSS redesign override block is appended near the end of the main `<style>` block. Add new rules there or later, and verify them in both themes.
+- Article body copy and comparison-table body cells share the same size (`1.15rem`, scaled by the reader control); only headings, table headers/labels, notes, bylines, and citations use smaller type. Static article CSS uses the same rule.
+- Static article pages use the dark accent `#75c1fa`, including the inline logo stroke and `article-static.css`; regenerate them after changing the accent.
 
 ## 3a. Color theory and usage
 
@@ -79,20 +83,20 @@ The site follows a restrained editorial 60/30/10 color model:
 
 - **60% surface:** dark `#080b11` or light final light grey `#f0f3f8` (source `#0a0d12`). Cards and the sticky header stay white for separation. Keep large areas quiet and neutral.
 - **30% type and structure:** `#f1f5f9` for primary type, `#9fadc1` for secondary text, `#1f2937` for dark borders, `#16181c` source for light borders.
-- **10% accent:** dark mode saturated blue `#77bdfa`; light mode deeper blue `#1d4ed8` final (`#81b2ff` pre-filter source).
+- **10% accent:** dark mode saturated blue `#75c1fa`; light mode deeper blue `#1d4ed8` final (`#81b2ff` pre-filter source).
 
 Accent semantics:
 
 - **Dark mode blue** is a saturated blue sampled from the “Follow Along: On” label.  Use it for links, active nav, category squares/labels, focus rings, small underlines, and accent borders.
 - **Light mode blue** is the deeper equivalent accent. Do not substitute green or deeper teal in either theme.
 - **Stay in the blue family.** Keep the intentional saturated blue in dark mode; do not drift back to green, turquoise, or deep teal. `/tmp` screenshots and DevTools are the source of truth because the light-mode invert filter changes rendered colors.
-- Dark-mode blue hover: `#88cefb`. Deep blue for a pressed or high-emphasis fill if needed: `#4f8fa8`. Avoid large accent fills; the accent should act like ink, not paint.
+- Dark-mode blue hover: `#84d1fb`. Deep blue for a pressed or high-emphasis fill if needed: `#4f8fa8`. Avoid large accent fills; the accent should act like ink, not paint.
 - Dark-mode neutrals form a tight ladder: page/card `#080b11`, subtle raised surface `#0b1220`, border `#1f2937`, muted text `#9fadc1`, primary text `#f1f5f9`. Do not introduce unrelated grays.
 - Light-mode source colors must be chosen for the invert filter: white final comes from `#000`, light border final comes from `#16181c`, blue final comes from `#81b2ff`, near-black type comes from `#f1f5f9`.
 - Treat blue as a **cool, clinical signal**. Dark mode uses the lighter cyan-blue tone; light mode uses the deeper blue tone. Do not introduce a second competing accent.
 - Use the accent in short strokes: a square, a rule, a label, an underline, an active indicator, a focus ring. A single viewport band should usually contain only one accent moment.
 - Official platform dots (YouTube red, Spotify green, Apple purple, Amazon blue, Pocket Casts red) are exempt because they are tiny brand identifiers. They are not part of the site accent system.
-- Measured contrast: `#77bdfa` on `#080b11` is about 8.8:1; `#88cefb` on `#080b11` is about 10.9:1; `#9fadc1` on `#080b11` is about 8.7:1; `#1d4ed8` on white is about 6.7:1. These are accessible for body and UI text.
+- Measured contrast: `#75c1fa` on `#080b11` is about 8.5:1; `#84d1fb` on `#080b11` is about 10.6:1; `#9fadc1` on `#080b11` is about 8.7:1; `#1d4ed8` on white is about 6.7:1. These are accessible for body and UI text.
 - Aim for at least 4.5:1 for normal text and 3:1 for large text, icons, borders, and focus indicators. Never use accent color as the only way to communicate state.
 - Borders should stay low-contrast in their resting state and become accent-colored only on hover/focus.
 - No gradients. No glow effects. No rainbow category colors. The accent should feel clinical and editorial, not decorative.
@@ -131,8 +135,8 @@ Dark mode has no filter, so colors render directly:
 - Resting border: `#1f2937`
 - Primary text: `#f1f5f9`
 - Muted text: `#9fadc1`
-- Accent: `#77bdfa` (saturated blue, matching the Follow Along label)
-- Accent hover: `#88cefb`
+- Accent: `#75c1fa` (saturated blue, matching the Follow Along label)
+- Accent hover: `#84d1fb`
 
 When adding light-mode styles:
 
@@ -166,7 +170,7 @@ The routing function is `navigateTo(hash)`. It hides/shows containers and update
 
 Article IDs currently include:
 
-`post-battlefield`, `post-art-cure`, `post-malpractice`, `post-cdc-interview`, `post-book-recs`, `post-compassion`, `post-migration`, `post-na`, `post-giant-leap`, `post-ai`, `post-welcome`, `post-pain-brokers`, `post-med-ed`, `post-epic`, `post-quote-spotlight`.
+`post-battlefield`, `post-farmer`, `post-art-cure`, `post-malpractice`, `post-cdc-interview`, `post-book-recs`, `post-compassion`, `post-migration`, `post-na`, `post-giant-leap`, `post-ai`, `post-welcome`, `post-pain-brokers`, `post-med-ed`, `post-epic`, `post-quote-spotlight`.
 
 Podcast IDs: `ep1`–`ep8`.
 
@@ -347,7 +351,7 @@ Notes:
 - Do not add gradients anywhere.
 - Do not bring back the left sidebar, Editor corner, On the Shelf, Recommended for You, bottom mobile dock, transcript box, or old reader tabs.
 - Do not use raw light-theme colors without accounting for the light-mode invert filter.
-- Do not use green or deep teal as the dark-mode accent. Dark mode uses saturated blue `#77bdfa`; light mode uses deeper blue `#1d4ed8` final.
+- Do not use green or deep teal as the dark-mode accent. Dark mode uses saturated blue `#75c1fa`; light mode uses deeper blue `#1d4ed8` final.
 - Do not reintroduce large filled button boxes or pill-shaped primary navigation. Prefer inline text links, underlines, and compact action buttons.
 - Keep the live contact address as `theregulatedpulse@gmail.com` for general and privacy inquiries.
 - Do not change article wording, punctuation, or typos without explicit permission.
@@ -369,7 +373,7 @@ Notes:
 - Search palette (Ctrl/Cmd + K) and article bylines are live.
 - Static article URLs exist at `post-<id>/`; the interactive SPA still uses hash routes (`#post-<id>`). Regenerate static pages after article edits.
 - Top nav replaces the old left sidebar.
-- Dark-mode accent is saturated blue `#77bdfa`; light-mode accent is deeper blue `#1d4ed8` final.
+- Dark-mode accent is saturated blue `#75c1fa`; light-mode accent is deeper blue `#1d4ed8` final.
 - The first article card includes a featured book-cover image; images use lazy loading.
 - Hero actions, search, and newsletter use text/underline treatments instead of large filled boxes.
 - Editor, On the Shelf, Recommended for You, and transcript box are removed/hidden.

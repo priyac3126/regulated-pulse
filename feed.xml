@@ -6,7 +6,14 @@
     <atom:link href="https://theregulatedpulse.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>Healthcare, technology, law, and policy.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The Legacy of Partners in Health and Paul Farmer</title>
+      <link>https://theregulatedpulse.com/post-farmer</link>
+      <guid isPermaLink="true">https://theregulatedpulse.com/post-farmer</guid>
+      <description>Lessons from Mountains Beyond Mountains</description>
+      <pubDate>Thu, 26 Nov 2026 12:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Beyond the Battlefield</title>
       <link>https://theregulatedpulse.com/post-battlefield</link>
@@ -39,7 +46,7 @@
       <title>Book Recommendations</title>
       <link>https://theregulatedpulse.com/post-book-recs</link>
       <guid isPermaLink="true">https://theregulatedpulse.com/post-book-recs</guid>
-      <description>My top 11 healthcare reads</description>
+      <description>My top 10 heathcare reads</description>
       <pubDate>Sun, 22 Nov 2026 12:00:00 +0000</pubDate>
     </item>
     <item>

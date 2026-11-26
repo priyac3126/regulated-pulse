@@ -4,10 +4,11 @@ root=Path('.')
 s=(root/'index.html').read_text()
 posts=[
 ('post-battlefield','Beyond the Battlefield','The Toll of PTSD and the Fight to Improve Veteran Mental Health','Book Insights','2026-11-01'),
+('post-farmer','The Legacy of Partners in Health and Paul Farmer','Lessons from Mountains Beyond Mountains','Book Insights','2026-11-26'),
 ('post-art-cure','The Fifth Pillar: Why the Arts Belong in Clinical Care','How arts engagement can improve patient outcomes','Book Insights','2026-10-25'),
 ('post-malpractice','State Medical Malpractice Laws Comparison','Texas and Arizona','Law & Policy','2026-07-01'),
 ('post-cdc-interview','From Anatomy Labs to Biosafety Laws','An Interview with CDC Attorney Taylor Revenew','Interview','2026-07-01'),
-('post-book-recs','Book Recommendations','My top 11 healthcare reads','Reading List','2026-06-01'),
+('post-book-recs','Book Recommendations','My top 10 heathcare reads','Reading List','2026-06-01'),
 ('post-compassion','The Case for Compassionate Care','The medical necessity of compassionate care','Book Insights','2026-06-01'),
 ('post-migration','Healing Without Borders','Bridging gaps in migrant health through innovation and policy','Book Insights','2026-06-01'),
 ('post-na','"If You Knew the Conditions"','The evolution of Native American health care','History & Policy','2026-06-01'),
@@ -20,12 +21,12 @@ posts=[
 ('post-quote-spotlight','Quote Spotlight','Any sufficiently advanced technology is indistinguishable from magic.','Inspiration','2026-06-01'),
 ]
 css='''
-:root{--bg:#080b11;--surface:#0b1220;--border:#1f2937;--text:#f1f5f9;--muted:#9fadc1;--accent:#77bdfa}
+:root{--bg:#080b11;--surface:#0b1220;--border:#1f2937;--text:#f1f5f9;--muted:#9fadc1;--accent:#75c1fa}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',ui-sans-serif,sans-serif;line-height:1.7}
 a{color:var(--accent)}
-.static-header{max-width:1180px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:20}
+.static-header{max-width:none;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:20}
 .static-brand{display:flex;align-items:center;gap:.75rem;color:var(--text);text-decoration:none}
 .static-brand svg{width:36px;height:36px}
 .static-brand small{display:block;color:var(--accent);font-size:9px;letter-spacing:.18em;text-transform:uppercase}
@@ -33,7 +34,7 @@ a{color:var(--accent)}
 .static-nav{display:flex;gap:1rem;font-size:.82rem;font-weight:600;flex-wrap:wrap}
 .static-nav a{color:var(--muted);text-decoration:none}
 .static-nav a:hover{color:var(--accent)}
-.static-main{max-width:820px;margin:0 auto;padding:3rem 2rem 4rem}
+.static-main{max-width:50rem;margin:0 auto;padding:3rem 2rem 4rem}
 .static-kicker{font-family:'Plus Jakarta Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
 .static-article h2{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(2rem,5vw,3rem);line-height:1.12;margin:0 0 .4rem;color:var(--text)}
 .static-article h3{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;line-height:1.35;margin:0 0 1rem;color:#cbd5e1}
@@ -46,17 +47,18 @@ a{color:var(--accent)}
 .static-article .blog-post-content cite{display:block;margin-top:.6rem;font-size:.82rem;color:var(--muted)}
 img{max-width:100%;height:auto}
 .static-article img{border-radius:.4rem}
-.static-article .comparison-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;display:table}
+.static-article .comparison-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-family:'Plus Jakarta Sans',sans-serif;font-size:1em;display:table}
 .static-article .comparison-table th,.static-article .comparison-table td{border:1px solid #475569;padding:.55rem .65rem;vertical-align:top;white-space:normal}
 .static-article .comparison-table th{background:#1e293b;color:var(--text);text-align:left}
-.static-article .comparison-table .group-row td{background:#111b2c;color:var(--text);font-weight:700;text-transform:uppercase;font-size:.7rem;letter-spacing:.05em}
-.static-article .comparison-table p{margin:0 0 .5rem}
+.static-article .comparison-table .group-row td{background:#111b2c;color:var(--text);font-weight:700;text-transform:uppercase;font-size:.78em;letter-spacing:.05em}
+.static-article .comparison-table p{margin:0 0 .5rem;font-size:inherit}
 .static-article .works-cited{font-size:.86rem;color:var(--muted)}
 .static-article .works-cited li{margin-bottom:.6rem}
 .static-article .table-note{font-size:.8rem;color:var(--muted)}
 .static-article .img-a11y-desc{font-size:.7rem;color:var(--muted)}
-.static-footer{max-width:820px;margin:0 auto;padding:0 2rem 3rem;color:#7f8fa6;font-size:.78rem;border-top:1px solid var(--border);padding-top:1.5rem}
+.static-footer{max-width:50rem;margin:0 auto;padding:0 2rem 3rem;color:#7f8fa6;font-size:.78rem;border-top:1px solid var(--border);padding-top:1.5rem}
 .static-footer a{color:var(--accent)}
+@media(min-width:2200px){html{font-size:17px}}@media(min-width:2600px){html{font-size:18px}}@media(min-width:3000px){html{font-size:19px}}@media(min-width:3400px){html{font-size:20px}}
 @media(max-width:640px){.static-header{padding:1rem}.static-main{padding:2rem 1rem}.static-footer{padding-left:1rem;padding-right:1rem}.static-nav{font-size:.74rem;gap:.7rem}}
 '''
 (root/'article-static.css').write_text(css)
@@ -98,13 +100,14 @@ for pid,title,subtitle,cat,date in posts:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon-dark.svg">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <link rel="stylesheet" href="/article-static.css">
 </head>
 <body>
 <header class="static-header">
   <a class="static-brand" href="/">
-    <svg viewBox="0 0 160 160" fill="none" aria-hidden="true"><polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#77bdfa" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <svg viewBox="0 0 160 160" fill="none" aria-hidden="true"><polyline points="20,80 40,80 50,50 60,110 70,80 80,80 85,65 90,95 100,80 120,80 140,80" stroke="#75c1fa" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <span><small>Health &amp; Tech Law</small><strong>The Regulated Pulse</strong></span>
   </a>
   <nav class="static-nav"><a href="/">Blog</a><a href="/#podcast">Podcast</a><a href="/#about">About Me</a><a href="/feed.xml">RSS</a></nav>
