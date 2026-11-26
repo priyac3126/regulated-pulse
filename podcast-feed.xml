@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Regulated Pulse Podcast</title>
+    <link>https://theregulatedpulse.com/#podcast</link>
+    <atom:link href="https://theregulatedpulse.com/podcast-feed.xml" rel="self" type="application/rss+xml" />
+    <description>Conversations at the intersection of healthcare, technology, law, leadership, and the human experience.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Nov 2026 12:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Legal Engineering, Decentralized Platforms, and Healthcare Compliance with Kyle Smith</title>
+      <link>https://open.spotify.com/episode/6rYPCVeA02t8nHTKgFJMGK?si=aFYaqYgsR7OWXToF8atnyg</link>
+      <guid isPermaLink="false">ep8</guid>
+      <description>The Regulated Pulse Podcast · ep8 · 1h 37m · November 2026</description>
+      <pubDate>Sun, 01 Nov 2026 12:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Advocating for Safer Childbirth: Birth Injury Law, Fetal Monitoring Risks, and Doula Integration with Gina Mundy</title>
+      <link>https://open.spotify.com/episode/0XEaA7CTOhmb52GP1kwcEt?si=ebUVly30SFq_ZA7mO6ZhIg</link>
+      <guid isPermaLink="false">ep7</guid>
+      <description>The Regulated Pulse Podcast · ep7 · 57m · October 2026</description>
+      <pubDate>Thu, 01 Oct 2026 12:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The JD/MD Path, Political Determinants of Health, and AI Risk with Dr. Fazal Khan</title>
+      <link>https://open.spotify.com/episode/0rFREujSHk4TMIpaoTcndR?si=QoOxzVs6TH66LriZLxoPJA</link>
+      <guid isPermaLink="false">ep6</guid>
+      <description>The Regulated Pulse Podcast · ep6 · 1h 5m · September 2026</description>
+      <pubDate>Tue, 01 Sep 2026 12:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How Intelligent Dot is Redefining Remote Patient Monitoring with Dr. WenZhan Song</title>
+      <link>https://open.spotify.com/episode/6aYHZxE80jdesAelZqkMHJ?si=QCTbXyQ0SLiogabJ0SbRFg</link>
+      <guid isPermaLink="false">ep5</guid>
+      <description>The Regulated Pulse Podcast · ep5 · 1h 12m · August 2026</description>
+      <pubDate>Sat, 01 Aug 2026 12:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>From the People’s Court to Regulatory Reform: Access to Justice with Chief Magistrate Judge Brendan Murphy</title>
+      <link>https://open.spotify.com/episode/1dAbsHWw68eafeqJdf8JVa?si=89ulTAhaTKifLNrgAfkGJQ</link>
+      <guid isPermaLink="false">ep4</guid>
+      <description>The Regulated Pulse Podcast · ep4 · 1h 45m · August 2026</description>
+      <pubDate>Sat, 01 Aug 2026 12:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Breaking the Tech Silos: Bringing Clinicians, Policy, and Data Together</title>
+      <link>https://open.spotify.com/episode/55lYUpf7USA8lWidxgk7sn?si=tUqljxJpTlORz9C8H45aVw</link>
+      <guid isPermaLink="false">ep3</guid>
+      <description>The Regulated Pulse Podcast · ep3 · 1h 44m · July 2026</description>
+      <pubDate>Wed, 01 Jul 2026 12:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Clinical Advocacy: Bridging Climate, Policy, and Rural Health</title>
+      <link>https://open.spotify.com/episode/1OFR09NIGbt856qlvYmm3u?si=ujExS95-QKSCEU30NVlzNw</link>
+      <guid isPermaLink="false">ep2</guid>
+      <description>The Regulated Pulse Podcast · ep2 · 1h 33m · July 2025</description>
+      <pubDate>Tue, 01 Jul 2025 12:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Decoding Digital Accessibility: Authentic Leadership in UX</title>
+      <link>https://open.spotify.com/episode/5pUggGY8KviMCJizVIbfub?si=gsHoCQRsR-6ELlqeOjBN7A</link>
+      <guid isPermaLink="false">ep1</guid>
+      <description>The Regulated Pulse Podcast · ep1 · 55m · July 2025</description>
+      <pubDate>Tue, 01 Jul 2025 12:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -13,7 +13,16 @@ Primary files:
 - `cookie-consent.css` / `cookie-consent.js` — cookie preference banner and consent behavior.
 - `firestore.rules` — Firestore access rules.
 - `article-static.css` — styling for generated static article pages.
-- `generate-static-articles.py` — regenerates `post-*/index.html` and `article-static.css` from the inline article markup in `index.html`.
+- `generate-static-articles.py` — regenerates `post-*/index.html`, `article-static.css`, `feed.xml`, `sitemap.xml`, and `podcast-feed.xml` from `index.html`.
+- `pulse-tailwind.css` — precompiled Tailwind utilities; the site no longer loads the Tailwind CDN.
+- `tailwind.config.js` / `tailwind-input.css` — rebuild config for `pulse-tailwind.css` if new Tailwind utility classes are introduced.
+- `fonts/` — self-hosted font files and `fonts.css` (Google Fonts is no longer required).
+- `covers/` — 320px and 640px responsive JPEG variants of article book covers.
+- `og/` — per-post 1200×630 social preview JPEGs used for Open Graph/Twitter metadata and some card thumbnails.
+- `podcast-feed.xml` — episode RSS feed; it does not invent audio enclosures.
+- `update-read-times.py` — recalculates article/card/catalog read times at 225 wpm, excluding works-cited lists and table notes.
+- `scripts/check_site.py` — stdlib local-reference and generated-page checker.
+- `.github/workflows/site-checks.yml` — push/PR link checks and Lighthouse reports.
 - `feed.xml`, `sitemap.xml`, `robots.txt` — RSS, sitemap, and crawler directives.
 - `priya-about-crop.jpg` — current About Me portrait.
 - `mountains-beyond-mountains.jpg` — book cover for the Paul Farmer / Partners in Health post.
@@ -55,7 +64,7 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - Header row: brand left, horizontal nav right.
   - Main content is fully fluid (no fixed max-width); the header and footer span the same width. Root font-size steps up at `2200/2600/3000/3400px` (17/18/19/20px) so type and rem-based spacing scale on high-resolution displays.
   - Wide screens use an editorial composition: the welcome hero splits into a heading column and a copy/actions column at `900px` and up, and a third actions column at `2200px`. About bio and the My Major intro use multi-column/side-by-side layouts at wide widths; FAQ cards form a 2-column grid at `2200px` (filter row stays inline).
-  - **Newest first:** the newest article is always the first card (the featured slot). Blog articles: first article is a featured card, then articles in a 2-column grid; 3 columns at `1200px`, 4 at `1700px`, 6 at `2200px`. The featured card spans the full row on narrow screens and 2 columns on wide screens.
+  - **Newest first:** cards carry `data-published` and are sorted newest-first on load. Every article card has a uniform `.card-thumb`; the first/featured card shows a larger version. Blog articles: first article is a featured card, then articles in a 2-column grid; 3 columns at `1200px`, 4 at `1700px`, 6 at `2200px`. The featured card spans the full row on narrow screens and 2 columns on wide screens.
   - `Vital Signs`: 2 columns, expanding to 4 columns at `1280px`.
   - Podcast episodes: 3-column grid, 4 columns at `1700px`, 8 columns at `3000px`.
   - Newsletter signup: centered below the article grid, presented as an open rule with an underlined email field and a compact submit button, not a card.
@@ -74,6 +83,9 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - The old `tag-*` classes still exist in markup but are visually overridden by `.card-premium > span`; edit the override if changing card-label colors.
   - Card hover/focus uses a subtle border change and slight lift, not a gradient.
 - The current CSS redesign override block is appended near the end of the main `<style>` block. Add new rules there or later, and verify them in both themes.
+- Comparison tables stack on mobile with per-cell `data-label` labels. Article views include previous/next navigation; static pages include the same navigation and structured breadcrumbs.
+- The command palette has All/Articles/Podcasts filters, recent searches (localStorage), match highlighting, and arrow-key navigation.
+- Comment forms include a honeypot and short submission rate limit. Existing reply notification email behavior is unchanged.
 - Article body copy and comparison-table body cells share the same size (`1.15rem`, scaled by the reader control); only headings, table headers/labels, notes, bylines, and citations use smaller type. Static article CSS uses the same rule.
 - Static article pages use the dark accent `#75c1fa`, including the inline logo stroke and `article-static.css`; regenerate them after changing the accent.
 
