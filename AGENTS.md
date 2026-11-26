@@ -181,10 +181,11 @@ When adding an article, follow the existing inline SPA pattern:
 1. Add its full content to a hidden `<article id="post-<id>-container">` in `index.html`.
 2. Add its card as the **first** card in `#recent-articles-list` so the newest post occupies the featured slot. Move the `featured-cover` image (and its `img` element) to the new first card and remove it from the previously first card. Keep `BLOG_POST_CATALOG` newest-first as well. Vital Signs cards are not part of this ordering.
 3. Add a click handler for the static card if needed (many cards have `card-<id>-click` IDs and explicit listeners).
-4. Add an entry to `BLOG_POST_CATALOG` with `id`, `cardId`, `cat`, `cardClass`, `tagClass`, `tagLabel`, `title`, `subtitle`, and `date`.
+4. Add an entry to `BLOG_POST_CATALOG` with `id`, `cardId`, `cat`, `cardClass`, `tagClass`, `tagLabel`, `title`, `subtitle`, and `date`. Compute the read time from visible article text (excluding works-cited lists and table notes) at about 225 words per minute, rounded to the nearest minute, and keep the card, article meta, and catalog date strings consistent.
 5. Add key terms to `ARTICLE_SEMANTIC_CONCEPTS` so search works.
 6. Add TOC anchors/search-related content if applicable.
 7. If a new audio file is supplied, wire it as a static `.audio-player` with `data-src`; otherwise the site creates a Web Speech/Google Translate TTS player automatically.
+8. TOC section labels must be unique within an article; the fallback TOC uses short paragraph snippets and appends `(2)`, `(3)`, etc. if a label repeats.
 
 For podcast episodes:
 
