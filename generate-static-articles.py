@@ -4,7 +4,7 @@ root=Path('.')
 s=(root/'index.html').read_text()
 posts=[
 ('post-battlefield','Beyond the Battlefield','The Toll of PTSD and the Fight to Improve Veteran Mental Health','Book Insights','2026-11-01'),
-('post-farmer','Equity is the Only Acceptable Goal','The Enduring Legacy of Paul Farmer','Book Insights','2026-11-26'),
+('post-farmer','“Equity is the Only Acceptable Goal”','The Enduring Legacy of Paul Farmer','Book Insights','2026-11-26'),
 ('post-art-cure','The Fifth Pillar: Why the Arts Belong in Clinical Care','How arts engagement can improve patient outcomes','Book Insights','2026-10-25'),
 ('post-malpractice','State Medical Malpractice Laws Comparison','Texas and Arizona','Law & Policy','2026-07-01'),
 ('post-cdc-interview','From Anatomy Labs to Biosafety Laws','An Interview with CDC Attorney Taylor Revenew','Interview','2026-07-01'),
