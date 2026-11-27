@@ -312,7 +312,7 @@ This repository is static. There is no build or test command.
 - `regulated-pulse/` is an **ignored secondary clone** of the same remote. It is not tracked by the root repo.
 - When editing site files, keep the mirror in sync by copying changed files into `regulated-pulse/`:
   - `index.html`, `terms.html`, `privacy.html`, `legal.css`, `cookie-consent.css`, `cookie-consent.js`, and audio assets if changed.
-- The user has asked that all changes be committed and pushed live automatically, without waiting for confirmation. Stage only intended site files; never stage `.opencode/` (large local tooling, ~66 MB).
+- The user has asked that all changes be committed and pushed live automatically to GitHub (`origin main`), without waiting for confirmation, **at the end of the response** (after all edits and checks are complete). Stage only intended site/project files; never stage `.opencode/` (large local tooling, ~66 MB).
 - No secrets should be committed. The Firebase web config is public client configuration.
 - Commit style: concise, descriptive, sentence case, e.g. `Redesign as a top-down blog and remove side widgets and recommendations`.
 
