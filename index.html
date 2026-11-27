@@ -12031,7 +12031,7 @@
         <div class="pulse-palette-card">
             <input id="pulse-palette-input" class="pulse-palette-input" type="search" placeholder="Search articles and episodes..." autocomplete="off" aria-label="Search articles and episodes">
             <div id="pulse-palette-results" class="pulse-palette-results"></div>
-            <p class="pulse-palette-hint">Press Esc to close · Ctrl/Cmd + K to open</p>
+            <p class="pulse-palette-hint">Press Esc to close</p>
         </div>
     </div>
 
@@ -12044,6 +12044,7 @@
             const esc = (v) => String(v || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
             const escapeReg = (v) => v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             const RECENT_KEY = 'pulseRecentSearchesV1';
+            const POP_KEY = 'pulseSearchPopularityV1';
             let activeFilter = 'all';
             let selectedIndex = -1;
 
@@ -12073,6 +12074,20 @@
                     localStorage.setItem(RECENT_KEY, JSON.stringify(recent));
                 } catch (e) {}
             };
+            const getPopularity = () => {
+                try {
+                    const parsed = JSON.parse(localStorage.getItem(POP_KEY) || '{}');
+                    return parsed && typeof parsed === 'object' ? parsed : {};
+                } catch (e) { return {}; }
+            };
+            const incrementPopularity = (hash) => {
+                if (!hash) return;
+                try {
+                    const pop = getPopularity();
+                    pop[hash] = (Number(pop[hash]) || 0) + 1;
+                    localStorage.setItem(POP_KEY, JSON.stringify(pop));
+                } catch (e) {}
+            };
             const highlight = (text, query) => {
                 const safe = esc(text);
                 const terms = query.trim().split(/\s+/).filter(Boolean).map(escapeReg);
@@ -12088,8 +12103,13 @@
                 selectedIndex = -1;
                 const query = input.value.trim();
                 const q = query.toLowerCase();
-                const all = (window.__pulseSearchIndex || []).filter(item => activeFilter === 'all' || item.kind === activeFilter);
-                if (!query) {
+                const pop = getPopularity();
+                const all = (window.__pulseSearchIndex || [])
+                    .filter(item => activeFilter === 'all' || item.kind === activeFilter)
+                    .map((item, idx) => ({ item, idx, score: Number(pop[item.hash]) || 0 }))
+                    .sort((a, b) => (b.score - a.score) || (a.idx - b.idx))
+                    .map(entry => entry.item);
+                if (!query && activeFilter === 'all') {
                     const recent = getRecent();
                     if (recent.length) {
                         results.innerHTML = '<p class="pulse-palette-recent-label">Recent searches</p>' + recent.map(item =>
@@ -12143,9 +12163,11 @@
                 }
                 const item = event.target.closest('[data-hash]');
                 if (!item) return;
+                const hash = item.getAttribute('data-hash');
+                incrementPopularity(hash);
                 saveRecent(input.value.trim());
                 close();
-                if (window.navigateTo) window.navigateTo(item.getAttribute('data-hash'));
+                if (window.navigateTo) window.navigateTo(hash);
             });
             input.addEventListener('keydown', (event) => {
                 const items = selectableItems();
