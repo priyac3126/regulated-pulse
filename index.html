@@ -12188,7 +12188,7 @@
                 holder.prepend(darkBg);
             }
 
-            holder.querySelectorAll('.article-toc-box, .related-posts-box, form, button, [id$="-comments-list"], [id*="comments"], .audio-player, .share-bar').forEach(el => el.remove());
+            holder.querySelectorAll('.article-toc-box, .related-posts-box, .article-nav, form, button, [id$="-comments-list"], [id*="comments"], .audio-player, .share-bar').forEach(el => el.remove());
             holder.querySelectorAll('h3').forEach(heading => {
                 if (/^\s*Leave a Comment\s*$/i.test(heading.textContent)) {
                     const block = heading.closest('.mt-16, .rounded-2xl') || heading.parentElement;
