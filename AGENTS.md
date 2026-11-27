@@ -29,8 +29,8 @@ Primary files:
 - `CNAME` — custom domain: `theregulatedpulse.com`.
 - `post-*/index.html` — generated static SEO article pages; each links to the interactive hash version such as `/#post-ai`. Do not add new folders per post.
 - `tts-post-*.mp3` and `tts-timings.json` — pre-generated article read-aloud audio and timing data.
-- `welcome-to-the-pulse.m4a` — browser-compatible AAC version of the welcome post audio.
-- `A Giant Leap.m4a`, `UI-UX Design.m4a`, `Welcome to the Pulse.m4a`, `The Realities of Chronic Illness.m4a` — human-recorded audio assets. The original `Welcome to the Pulse.m4a` is ALAC and does not play in Chrome; use `welcome-to-the-pulse.m4a` instead.
+- `welcome-to-the-pulse.m4a` — retained legacy audio asset; the Welcome article has been removed.
+- `A Giant Leap.m4a`, `UI-UX Design.m4a`, `Welcome to the Pulse.m4a`, `The Realities of Chronic Illness.m4a` — human-recorded audio assets. The original `Welcome to the Pulse.m4a` is ALAC and is retained unused; the Welcome article has been removed.
 
 Remote:
 
@@ -77,6 +77,7 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - The mobile bottom dock (hidden; top nav is used on mobile too).
   - The old reader toolbar tabs (`A−`, multiplier, `A+`, Wide Spacing, Focus Mode).
   - The podcast transcript/chapter box.
+- Article categories are subject-based: `History & Policy`, `Health & Wellbeing`, `Law & Policy`, `AI & Tech`, `Reading List`, `History`, and `Interview`. `Book Insights` is not used; `Education & History` was renamed to `History`, and the Welcome article was removed. The hero no longer links to it.
 - Article/podcast cards:
   - Flat white surface, thin gray border, small radius, no shadow, no gradient.
   - Category label is small uppercase accent text with a small accent square: saturated blue `#75c1fa` in dark mode, deeper blue final `#1d4ed8` in light mode.
@@ -182,7 +183,7 @@ The routing function is `navigateTo(hash)`. It hides/shows containers and update
 
 Article IDs currently include:
 
-`post-battlefield`, `post-farmer`, `post-art-cure`, `post-malpractice`, `post-cdc-interview`, `post-book-recs`, `post-compassion`, `post-migration`, `post-na`, `post-giant-leap`, `post-ai`, `post-welcome`, `post-pain-brokers`, `post-med-ed`, `post-epic`, `post-quote-spotlight`.
+`post-battlefield`, `post-farmer`, `post-art-cure`, `post-malpractice`, `post-cdc-interview`, `post-book-recs`, `post-compassion`, `post-migration`, `post-na`, `post-giant-leap`, `post-ai`, `post-pain-brokers`, `post-med-ed`, `post-epic`, `post-quote-spotlight`.
 
 Podcast IDs: `ep1`–`ep8`.
 
@@ -266,7 +267,6 @@ The Firebase web API key is public client configuration in `index.html`; do not 
 
 ## 10. Audio
 
-- Welcome post uses `./welcome-to-the-pulse.m4a` (AAC, ~0:54). The original ALAC file is not browser-compatible.
 - Human-narrated posts:
   - A Giant Leap → `./A Giant Leap.m4a`
   - Beyond Compliance → `./UI-UX Design.m4a`
@@ -357,7 +357,7 @@ Notes:
   - In DevTools, scan elements where `getComputedStyle(el).backgroundImage !== 'none'`.
   - The current global kill rule is `body#top * { background-image: none !important; }`; specific later `!important` rules can still win, so verify computed styles.
 - Validate local links with a script or manual check after adding pages/assets.
-- Test the welcome audio plays after opening the welcome post; test the 3 cookie choices and MailerLite loading only after Allow.
+- Test article audio playback, the 3 cookie choices, and MailerLite loading only after Allow.
 
 ## 15. Known pitfalls / do not do
 
@@ -394,7 +394,6 @@ Notes:
 - General and privacy contact email is `theregulatedpulse@gmail.com`.
 - Privacy policy and Terms are condensed.
 - Cookie banner has 3 options and defers MailerLite.
-- Welcome audio is fixed with AAC.
 - A Giant Leap and Beyond Compliance have 75% volume boost.
 - Apple provider remains disabled.
 - Voice cloning remains unavailable.
