@@ -129,8 +129,6 @@ for pid,title,subtitle,cat,date in posts:
 <link rel="alternate" type="application/rss+xml" title="The Regulated Pulse" href="https://theregulatedpulse.com/feed.xml">
 <link rel="alternate" type="application/rss+xml" title="The Regulated Pulse Podcast" href="https://theregulatedpulse.com/podcast-feed.xml">
 <script type="application/ld+json">{json.dumps(ld,separators=(',',':'))}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/fonts/fonts.css">
 <link rel="icon" type="image/svg+xml" href="/favicon-dark.svg">
 <link rel="stylesheet" href="/pulse-tailwind.css">
