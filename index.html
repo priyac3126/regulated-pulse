@@ -3016,6 +3016,15 @@
         .article-nav .article-nav-next { margin-left: auto; text-align: right; }
         body.light-mode .article-nav a { color: #73affb !important; }
 
+        #blog-filter-tags {
+            column-gap: 1.25rem !important;
+            row-gap: 0.75rem !important;
+        }
+        #blog-filter-tags .filter-tag {
+            margin: 0 !important;
+            padding: 0.25rem 0 !important;
+        }
+
         .pulse-palette-filters {
             display: flex;
             gap: 1rem;
@@ -4238,7 +4247,6 @@
                                     <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('law', this)" class="filter-tag" data-blog-cat="law" aria-pressed="false">Law &amp; Policy</button>
                                     <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('ai', this)" class="filter-tag" data-blog-cat="ai" aria-pressed="false">AI &amp; Tech</button>
                                     <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('book', this)" class="filter-tag" data-blog-cat="book" aria-pressed="false">Reading List</button>
-                                    <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('education', this)" class="filter-tag" data-blog-cat="education" aria-pressed="false">History</button>
                                     <button type="button" onclick="window.selectBlogCategory && window.selectBlogCategory('interview', this)" class="filter-tag" data-blog-cat="interview" aria-pressed="false">Interview</button>
                                 </div>
                                 <p id="blog-no-results-msg" class="text-sm text-slate-400 py-6 text-center blog-card-hidden">No matching articles found. Try a different keyword or category.</p>
