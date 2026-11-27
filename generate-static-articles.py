@@ -12,7 +12,7 @@ posts=[
 ('post-compassion','The Case for Compassionate Care','The medical necessity of compassionate care','Health & Wellbeing','2026-06-01'),
 ('post-migration','Healing Without Borders','Bridging gaps in migrant health through innovation and policy','History & Policy','2026-06-01'),
 ('post-na','"If You Knew the Conditions"','The evolution of Native American health care','History & Policy','2026-06-01'),
-('post-giant-leap','A Giant Leap: Trust and Oversight in Healthcare AI','AI will transform healthcare. This book explains why and what it means for healthtech regulation.','AI & Tech','2026-06-01'),
+('post-giant-leap','A Giant Leap: Trust and Oversight in Healthcare AI','How AI will transform healthcare','AI & Tech','2026-06-01'),
 ('post-ai','Beyond Compliance: The Intersection of AI, Inclusive UI/UX, and Digital Rights','How we build ethical, inclusive design','AI & Policy','2026-06-01'),
 ('post-pain-brokers','The Pain Brokers','Defective healthcare technology and legal corruption','Reading List','2026-07-30'),
 ('post-med-ed','The State of Medical Education','Medical knowledge doubles every few months','Education','2026-06-01'),
