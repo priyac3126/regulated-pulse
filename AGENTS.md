@@ -77,7 +77,7 @@ The site is a **top-down editorial blog**, not a dashboard with a left sidebar.
   - The mobile bottom dock (hidden; top nav is used on mobile too).
   - The old reader toolbar tabs (`A−`, multiplier, `A+`, Wide Spacing, Focus Mode).
   - The podcast transcript/chapter box.
-- Article categories are subject-based: `History & Policy`, `Health & Wellbeing`, `Law & Policy`, `AI & Tech`, `Reading List`, `History`, and `Interview`. `Book Insights` is not used; `Education & History` was renamed to `History`, and the Welcome article was removed. The hero no longer links to it.
+- Article categories are subject-based: `History & Policy`, `Health & Wellbeing`, `Law & Policy`, `AI & Tech`, `Reading List`, and `Interview`. `Book Insights` is not used; `Education & History` was renamed to `History`, and the Welcome article was removed. The hero no longer links to it.
 - Article/podcast cards:
   - Flat white surface, thin gray border, small radius, no shadow, no gradient.
   - Category label is small uppercase accent text with a small accent square: saturated blue `#75c1fa` in dark mode, deeper blue final `#1d4ed8` in light mode.
