@@ -2983,6 +2983,14 @@
         #recent-articles-list .card-premium:first-child {
             padding-right: 13rem !important;
         }
+        #card-malpractice-click {
+            padding-right: 8.5rem !important;
+        }
+        #card-malpractice-click .card-thumb {
+            width: 6.5rem;
+            height: 7.5rem;
+        }
+
         #recent-articles-list .card-premium:first-child .card-thumb {
             width: 10rem;
             height: 12.8rem;
@@ -3051,6 +3059,31 @@
         .pulse-palette-match { color: #75c1fa; font-weight: 700; }
         body.light-mode .pulse-palette-match { color: #73affb !important; }
         .comment-hp-wrap { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+
+        /* Centered, spread-out About Me layout */
+        #section-about > h2 {
+            text-align: center !important;
+        }
+        #section-about .audio-player {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        #section-about > .flex.flex-col[class*="lg:flex-row"] {
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            gap: clamp(2rem, 5vw, 5rem) !important;
+        }
+        #section-about .about-bio {
+            flex: 0 1 75ch !important;
+        }
+        @media (max-width: 1023px) {
+            #section-about > .flex.flex-col[class*="lg:flex-row"] {
+                align-items: center !important;
+            }
+        }
 
         /* ============================================================
            COLOR + INTERACTION REFINEMENT
@@ -7899,7 +7932,7 @@
                     <ul class="space-y-3 text-sm pl-4 list-disc marker:text-cyan-500">
                         <li class="text-slate-300">SOCI 3110: Sociology of Healthcare or SOCI 3100/H: Medical Sociology</li>
                         <li class="text-slate-300">HPAM 3600: Introduction to Health Policy</li>
-                        <li class="text-slate-300">One course relating to artificial intelligence</li>
+                        <li class="text-slate-300">One course related to artificial intelligence</li>
                         <li class="text-slate-300">INTS 4990R: Undergraduate Research Thesis or Final Project</li>
                     </ul>
                 </div>
